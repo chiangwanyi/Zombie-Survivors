@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgl8ft3j81lre"]
+
+[ext_resource type="Texture2D" uid="uid://bj7fjm8qjmo0q" path="res://assets/thumbs/plant_peashooter_thumb.webp" id="1_coonn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxi6l"]
+radius = 19.0
+height = 60.0
+
+[node name="Level" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(548, 309)
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_coonn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_nxi6l")
