@@ -1,20 +1,139 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgl8ft3j81lre"]
+[gd_scene load_steps=31 format=3 uid="uid://bgl8ft3j81lre"]
 
-[ext_resource type="Texture2D" uid="uid://bj7fjm8qjmo0q" path="res://assets/thumbs/plant_peashooter_thumb.webp" id="1_coonn"]
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_f07po"]
+[ext_resource type="Texture2D" uid="uid://bvbcowd8jxvgp" path="res://assets/plants/Sunflower/idle/SunFlower0005.png" id="1_x27bn"]
+[ext_resource type="Texture2D" uid="uid://ckhlf3n57ee7y" path="res://assets/plants/Sunflower/idle/SunFlower0006.png" id="2_1lnlq"]
+[ext_resource type="Texture2D" uid="uid://b77gtqnxexcmm" path="res://assets/plants/Sunflower/idle/SunFlower0007.png" id="3_fk4c4"]
+[ext_resource type="Texture2D" uid="uid://bemxde5gsg7f7" path="res://assets/plants/Sunflower/idle/SunFlower0008.png" id="4_t4k54"]
+[ext_resource type="Texture2D" uid="uid://nyo7a8nc3qp3" path="res://assets/plants/Sunflower/idle/SunFlower0009.png" id="5_ocari"]
+[ext_resource type="Texture2D" uid="uid://c405t8ejfg4or" path="res://assets/plants/Sunflower/idle/SunFlower0010.png" id="6_yomgk"]
+[ext_resource type="Texture2D" uid="uid://boug80atd7mje" path="res://assets/plants/Sunflower/idle/SunFlower0011.png" id="7_stb13"]
+[ext_resource type="Texture2D" uid="uid://eojox8ftls68" path="res://assets/plants/Sunflower/idle/SunFlower0012.png" id="8_3l6y4"]
+[ext_resource type="Texture2D" uid="uid://cup36a6synd7i" path="res://assets/plants/Sunflower/idle/SunFlower0013.png" id="9_v6i1v"]
+[ext_resource type="Texture2D" uid="uid://84g0pdox0y2k" path="res://assets/plants/Sunflower/idle/SunFlower0014.png" id="10_swd52"]
+[ext_resource type="Texture2D" uid="uid://rv1shgi1wgrx" path="res://assets/plants/Sunflower/idle/SunFlower0015.png" id="11_jxsyh"]
+[ext_resource type="Texture2D" uid="uid://bsdou50t5sdav" path="res://assets/plants/Sunflower/idle/SunFlower0016.png" id="12_xc7ok"]
+[ext_resource type="Texture2D" uid="uid://2og5utg8brom" path="res://assets/plants/Sunflower/idle/SunFlower0017.png" id="13_qvw8k"]
+[ext_resource type="Texture2D" uid="uid://qen68r888f64" path="res://assets/plants/Sunflower/idle/SunFlower0018.png" id="14_w43sn"]
+[ext_resource type="Texture2D" uid="uid://csjo1fabjhv42" path="res://assets/plants/Sunflower/idle/SunFlower0019.png" id="15_jp7vt"]
+[ext_resource type="Texture2D" uid="uid://4qlb3wat0td3" path="res://assets/plants/Sunflower/idle/SunFlower0020.png" id="16_phnm8"]
+[ext_resource type="Texture2D" uid="uid://dfxvy51ee72rn" path="res://assets/plants/Sunflower/idle/SunFlower0021.png" id="17_hiode"]
+[ext_resource type="Texture2D" uid="uid://cpx7ftdjshsx6" path="res://assets/plants/Sunflower/idle/SunFlower0022.png" id="18_8a887"]
+[ext_resource type="Texture2D" uid="uid://ygkdkrb0cyty" path="res://assets/plants/Sunflower/idle/SunFlower0023.png" id="19_jp48m"]
+[ext_resource type="Texture2D" uid="uid://cqvw3ljod1s1u" path="res://assets/plants/Sunflower/idle/SunFlower0024.png" id="20_u6axc"]
+[ext_resource type="Texture2D" uid="uid://c5gqeqk05t4g2" path="res://assets/plants/Sunflower/idle/SunFlower0025.png" id="21_nk5tj"]
+[ext_resource type="Texture2D" uid="uid://d144u5oqnpp4t" path="res://assets/plants/Sunflower/idle/SunFlower0026.png" id="22_ytbh2"]
+[ext_resource type="Texture2D" uid="uid://17mf6xrxxngx" path="res://assets/plants/Sunflower/idle/SunFlower0027.png" id="23_ci4m7"]
+[ext_resource type="Texture2D" uid="uid://csrhkq2xc61ef" path="res://assets/plants/Sunflower/idle/SunFlower0028.png" id="24_jepil"]
+[ext_resource type="Texture2D" uid="uid://drx57goppq8gn" path="res://assets/plants/Sunflower/idle/SunFlower0029.png" id="25_t1v8w"]
+[ext_resource type="PackedScene" uid="uid://cb5jtl40e8giv" path="res://zombies/zombie.tscn" id="26_r3n2q"]
+[ext_resource type="PackedScene" uid="uid://bjtwrdaw8spfe" path="res://plants/pea_shooter_single/pea_shooter_single.tscn" id="28_0cojk"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nxi6l"]
-radius = 19.0
-height = 60.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_8if30"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_x27bn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1lnlq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fk4c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t4k54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ocari")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yomgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_stb13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3l6y4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_v6i1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_swd52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jxsyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_xc7ok")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qvw8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_w43sn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jp7vt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_phnm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hiode")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_8a887")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_jp48m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_u6axc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_nk5tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_ytbh2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ci4m7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_jepil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_t1v8w")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8s80"]
+radius = 15.0
+height = 46.0
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_f07po")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(548, 309)
-motion_mode = 1
+[node name="Sunflower" type="Area2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_coonn")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sunflower"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_8if30")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.114833
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-shape = SubResource("CapsuleShape2D_nxi6l")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sunflower"]
+shape = SubResource("CapsuleShape2D_t8s80")
+
+[node name="Zombie" parent="." instance=ExtResource("26_r3n2q")]
+position = Vector2(231, 105)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PeaShooterSingle" parent="." instance=ExtResource("28_0cojk")]
