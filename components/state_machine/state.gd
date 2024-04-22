@@ -1,3 +1,4 @@
+@icon("res://components/state_machine/state.svg")
 class_name State extends Node
 # 所有state的基类: it doesn't do anything by itself,
 # but forces us to pass the right arguments to the methods below
@@ -6,7 +7,7 @@ class_name State extends Node
 # warning-ignore:unused_signal
 signal finished(next_state_name)
 
-# Initialize the state. E.g. change the animation.
+# 用于进入当前 state 后的初始化操作. E.g. 切换 animation.
 func enter() -> void:
 	pass
 
@@ -19,8 +20,8 @@ func exit() -> void:
 func handle_input(_event: InputEvent) -> void:
 	pass
 
-
-func update(_delta) -> void:
+# 由当前 state 的 state_machine 在 _physics_process 中调用
+func update(_delta: float) -> void:
 	pass
 
 

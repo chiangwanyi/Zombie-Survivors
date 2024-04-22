@@ -1,6 +1,6 @@
 [gd_scene load_steps=98 format=3 uid="uid://cb5jtl40e8giv"]
 
-[ext_resource type="Script" path="res://zombies/zombie.gd" id="1_8s6y0"]
+[ext_resource type="Script" path="res://entities/zombies/zombie.gd" id="1_8s6y0"]
 [ext_resource type="Texture2D" uid="uid://bojjtlwdmfolx" path="res://assets/zombies/Zombie/Zombie0001.png" id="1_wqxyd"]
 [ext_resource type="Texture2D" uid="uid://cvoerhd40nphh" path="res://assets/zombies/Zombie/Zombie0002.png" id="2_mryll"]
 [ext_resource type="Texture2D" uid="uid://b5gmr84nkyqp4" path="res://assets/zombies/Zombie/Zombie0003.png" id="3_qrv6e"]

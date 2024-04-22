@@ -1,8 +1,10 @@
-[gd_scene load_steps=31 format=3 uid="uid://bgl8ft3j81lre"]
+[gd_scene load_steps=36 format=3 uid="uid://bgl8ft3j81lre"]
 
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_f07po"]
 [ext_resource type="Texture2D" uid="uid://bvbcowd8jxvgp" path="res://assets/plants/Sunflower/idle/SunFlower0005.png" id="1_x27bn"]
 [ext_resource type="Texture2D" uid="uid://ckhlf3n57ee7y" path="res://assets/plants/Sunflower/idle/SunFlower0006.png" id="2_1lnlq"]
+[ext_resource type="Texture2D" uid="uid://cqkewcv24eg6i" path="res://assets/tiles/groud1.png" id="2_n8vp7"]
+[ext_resource type="Texture2D" uid="uid://ca2q2hlcc1ohu" path="res://assets/tiles/groud2.png" id="3_76gm2"]
 [ext_resource type="Texture2D" uid="uid://b77gtqnxexcmm" path="res://assets/plants/Sunflower/idle/SunFlower0007.png" id="3_fk4c4"]
 [ext_resource type="Texture2D" uid="uid://bemxde5gsg7f7" path="res://assets/plants/Sunflower/idle/SunFlower0008.png" id="4_t4k54"]
 [ext_resource type="Texture2D" uid="uid://nyo7a8nc3qp3" path="res://assets/plants/Sunflower/idle/SunFlower0009.png" id="5_ocari"]
@@ -26,8 +28,23 @@
 [ext_resource type="Texture2D" uid="uid://17mf6xrxxngx" path="res://assets/plants/Sunflower/idle/SunFlower0027.png" id="23_ci4m7"]
 [ext_resource type="Texture2D" uid="uid://csrhkq2xc61ef" path="res://assets/plants/Sunflower/idle/SunFlower0028.png" id="24_jepil"]
 [ext_resource type="Texture2D" uid="uid://drx57goppq8gn" path="res://assets/plants/Sunflower/idle/SunFlower0029.png" id="25_t1v8w"]
-[ext_resource type="PackedScene" uid="uid://cb5jtl40e8giv" path="res://zombies/zombie.tscn" id="26_r3n2q"]
-[ext_resource type="PackedScene" uid="uid://bjtwrdaw8spfe" path="res://plants/pea_shooter_single/pea_shooter_single.tscn" id="28_0cojk"]
+[ext_resource type="PackedScene" uid="uid://cb5jtl40e8giv" path="res://entities/zombies/zombie.tscn" id="26_r3n2q"]
+[ext_resource type="PackedScene" uid="uid://bjtwrdaw8spfe" path="res://entities/plants/pea_shooter_single/pea_shooter_single.tscn" id="28_0cojk"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jm51u"]
+texture = ExtResource("2_n8vp7")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x5gkn"]
+texture = ExtResource("3_76gm2")
+texture_region_size = Vector2i(200, 200)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ag0vy"]
+tile_size = Vector2i(200, 200)
+sources/1 = SubResource("TileSetAtlasSource_jm51u")
+sources/2 = SubResource("TileSetAtlasSource_x5gkn")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8if30"]
 animations = [{
@@ -119,7 +136,15 @@ height = 46.0
 [node name="Level" type="Node2D"]
 script = ExtResource("1_f07po")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ag0vy")
+format = 2
+layer_0/tile_data = PackedInt32Array(65535, 1, 0, 0, 1, 0, 65536, 2, 0, 131071, 2, 0, 65534, 1, 0, 131070, 1, 0, 196607, 2, 0, 1, 2, 0, 65537, 2, 0)
+
 [node name="Sunflower" type="Area2D" parent="."]
+visible = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sunflower"]
 texture_filter = 1
@@ -132,8 +157,7 @@ frame_progress = 0.114833
 shape = SubResource("CapsuleShape2D_t8s80")
 
 [node name="Zombie" parent="." instance=ExtResource("26_r3n2q")]
+visible = false
 position = Vector2(231, 105)
-
-[node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="PeaShooterSingle" parent="." instance=ExtResource("28_0cojk")]

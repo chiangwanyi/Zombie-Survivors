@@ -7,7 +7,7 @@ class_name StateMachine extends Node
 
 signal state_changed(current_state)
 
-@export var start_state: NodePath
+@export var start_state: State
 
 var states_map : Dictionary = {}
 var states_stack : Array[State] = []
@@ -21,18 +21,18 @@ var _active = false:
 
 
 func _enter_tree():
-	if start_state.is_empty():
-		start_state = get_child(0).get_path()
-	for child in get_children():
+	if start_state == null:
+		start_state = get_child(0) as State
+	for child: State in get_children():
 		var err = child.finished.connect(self._change_state)
 		if err:
 			printerr(err)
 	initialize(start_state)
 
 
-func initialize(initial_state: NodePath):
+func initialize(initial_state: State):
 	_active = true
-	states_stack.push_front(get_node(initial_state))
+	states_stack.push_front(initial_state)
 	current_state = states_stack[0]
 	current_state.enter()
 
