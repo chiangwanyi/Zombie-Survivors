@@ -1,13 +1,19 @@
-[gd_scene load_steps=98 format=3 uid="uid://cb5jtl40e8giv"]
+[gd_scene load_steps=101 format=3 uid="uid://cb5jtl40e8giv"]
 
-[ext_resource type="Script" path="res://entities/zombies/zombie.gd" id="1_8s6y0"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/zombie.gd" id="1_8s6y0"]
 [ext_resource type="Texture2D" uid="uid://bojjtlwdmfolx" path="res://assets/zombies/Zombie/Zombie0001.png" id="1_wqxyd"]
 [ext_resource type="Texture2D" uid="uid://cvoerhd40nphh" path="res://assets/zombies/Zombie/Zombie0002.png" id="2_mryll"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/zombie_state_machine.gd" id="3_id0oo"]
 [ext_resource type="Texture2D" uid="uid://b5gmr84nkyqp4" path="res://assets/zombies/Zombie/Zombie0003.png" id="3_qrv6e"]
 [ext_resource type="Texture2D" uid="uid://cl57oybxc233o" path="res://assets/zombies/Zombie/Zombie0004.png" id="4_iku5a"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/states/motion/idle.gd" id="4_vc5o4"]
 [ext_resource type="Texture2D" uid="uid://dve2dns083xcx" path="res://assets/zombies/Zombie/Zombie0005.png" id="5_gr2qd"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/states/combat/stagger.gd" id="5_uecwv"]
 [ext_resource type="Texture2D" uid="uid://dbcox68jn7ww5" path="res://assets/zombies/Zombie/Zombie0006.png" id="6_q3khr"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/states/die.gd" id="6_uo2e6"]
 [ext_resource type="Texture2D" uid="uid://ds5o7xqrup5ri" path="res://assets/zombies/Zombie/Zombie0007.png" id="7_rnrvf"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/states/combat/attack.gd" id="7_v01r2"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/states/motion/move.gd" id="8_8amht"]
 [ext_resource type="Texture2D" uid="uid://0uukkpmqak28" path="res://assets/zombies/Zombie/Zombie0008.png" id="8_26ltd"]
 [ext_resource type="Texture2D" uid="uid://c4qo4j15htcyg" path="res://assets/zombies/Zombie/Zombie0009.png" id="9_rnym8"]
 [ext_resource type="Texture2D" uid="uid://bvxjsfxbv75py" path="res://assets/zombies/Zombie/Zombie0010.png" id="10_k5iwi"]
@@ -91,6 +97,7 @@
 [ext_resource type="Texture2D" uid="uid://b1m617pwnpfa7" path="res://assets/zombies/Zombie/Zombie0088.png" id="88_ktrwr"]
 [ext_resource type="Texture2D" uid="uid://cpi3x885w8xy2" path="res://assets/zombies/Zombie/Zombie0089.png" id="89_vxelu"]
 [ext_resource type="Texture2D" uid="uid://mg1c322xgvr7" path="res://assets/zombies/Zombie/Zombie0090.png" id="90_fgrgm"]
+[ext_resource type="Script" path="res://entities/zombies/zombie/zombie_controller.gd" id="92_d5cj4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_73q1g"]
 animations = [{
@@ -380,72 +387,39 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_271p0"]
-radius = 17.0294
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t8s80"]
-radius = 18.0
-height = 54.0
-
-[sub_resource type="Animation" id="Animation_rq4ad"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-13, -40)]
-}
-
-[sub_resource type="Animation" id="Animation_wgoni"]
-resource_name = "idle1"
-length = 2.33334
-loop_mode = 1
-step = 0.0833333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.333333, 0.833333, 1.33333, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-13, -40), Vector2(-6, -46), Vector2(3, -41), Vector2(-5, -46), Vector2(-15, -37)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rrml"]
-_data = {
-"RESET": SubResource("Animation_rq4ad"),
-"idle1": SubResource("Animation_wgoni")
-}
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufx5x"]
+radius = 16.0
+height = 64.0
 
 [node name="Zombie" type="Area2D"]
 script = ExtResource("1_8s6y0")
+
+[node name="CharacterController" type="Node" parent="."]
+script = ExtResource("92_d5cj4")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("3_id0oo")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_vc5o4")
+
+[node name="Stagger" type="Node" parent="StateMachine"]
+script = ExtResource("5_uecwv")
+
+[node name="Die" type="Node" parent="StateMachine"]
+script = ExtResource("6_uo2e6")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_v01r2")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("8_8amht")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_73q1g")
 animation = &"walk1"
 autoplay = "idle1"
-frame_progress = 0.539197
 
-[node name="Head" type="CollisionShape2D" parent="."]
-position = Vector2(-13, -40)
-shape = SubResource("CircleShape2D_271p0")
-
-[node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2(6, -4)
-shape = SubResource("CapsuleShape2D_t8s80")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_0rrml")
-}
-autoplay = "idle1"
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ufx5x")

@@ -2,13 +2,17 @@ extends Node
 
 static var subscribers : Dictionary = {}
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+static func add_listener(event: BasicEvent) -> void:
+	if not subscribers.has(event.event_name):
+		var list : Array[BasicEvent] = []
+		subscribers[event.event_name] = list
 
-static func add_listener(listener: Node, event: BasicEvent) -> void:
-	#var event_class := ()
-	print()
-	if not subscribers.has(listener):
-		pass
-	pass
+	var events := subscribers[event.event_name] as Array[BasicEvent]
+	
+	if not events.has(event):
+		events.append(event)
+	
+static func trigger_event(e: BasicEvent) -> void:
+	var events := subscribers.get(e.event_name, []) as Array[BasicEvent]
+	for event in events:
+		event.on_event.emit(e)

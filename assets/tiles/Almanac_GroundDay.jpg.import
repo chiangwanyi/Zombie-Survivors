@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rym2c12pni10"
-path="res://.godot/imported/tiny-town.png-3efffd70afb75a7f9d60367ca6972d65.ctex"
+uid="uid://bme6aobnwxmo1"
+path="res://.godot/imported/Almanac_GroundDay.jpg-240dc41864e402f298b0da35bd328db7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/tiny-town.png"
-dest_files=["res://.godot/imported/tiny-town.png-3efffd70afb75a7f9d60367ca6972d65.ctex"]
+source_file="res://assets/tiles/Almanac_GroundDay.jpg"
+dest_files=["res://.godot/imported/Almanac_GroundDay.jpg-240dc41864e402f298b0da35bd328db7.ctex"]
 
 [params]
 
