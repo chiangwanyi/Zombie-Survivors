@@ -1,4 +1,4 @@
-class_name Plant extends Area2D
+class_name Plant extends DamageableArea2D
 
 # 移动速度
 var speed : float = 20.0

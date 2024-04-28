@@ -11,5 +11,4 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	# 进行攻击
-	var damage_area := owner.get_node(^"DamageOnTouchArea") as DamageOnTouch
-	damage_area.attack(delta)
+	body.damage_area.attack(delta)

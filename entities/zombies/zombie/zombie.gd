@@ -7,7 +7,7 @@ func _ready() -> void:
 	state_machine = $StateMachine as StateMachine
 	animation = $AnimatedSprite2D as AnimatedSprite2D
 	damage_area = $DamageOnTouchArea as DamageOnTouch
-	
+
 	print("生成僵尸:[%s]" % self)
 	state_machine.start()
 

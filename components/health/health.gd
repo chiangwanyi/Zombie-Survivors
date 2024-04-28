@@ -39,10 +39,15 @@ func can_take_damage_this_frame() -> bool:
 func take_damage(damage: float, instigator: Node2D, invincibility_duration: float) -> void:
 	if not can_take_damage_this_frame():
 		return
-		
+	
 	damage = compute_damage_output(damage)
 	
+	print("[%s] 被 [%s] 攻击了，当前 hp:%s" % [get_parent(), instigator, current_health])
+	
 	set_health(current_health - damage)
+	
+	if current_health <= 0:
+		kill()
 		
 func compute_damage_output(damage: float) -> float :
 	if in_vulnerable:
@@ -53,3 +58,9 @@ func compute_damage_output(damage: float) -> float :
 	total_damage += damage
 	
 	return total_damage
+
+func kill() -> void:
+	var body := get_parent() as DamageableArea2D
+	#var state_machine := get_parent().get_node("StateMachine") as StateMachine
+	body.state_machine._change_state(&"die")
+	body.killed.emit()

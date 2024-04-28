@@ -1,7 +1,5 @@
-class_name Zombie extends Area2D
+class_name Zombie extends DamageableArea2D
 
-var health: Health
-var state_machine: StateMachine
 var animation: AnimatedSprite2D
 var damage_area: DamageOnTouch
 
@@ -9,3 +7,6 @@ var damage_area: DamageOnTouch
 var target_plant : Plant
 # 移动速度
 var speed : float = 20.0
+
+func on_target_plant_died() -> void:
+	state_machine._change_state(&"idle")

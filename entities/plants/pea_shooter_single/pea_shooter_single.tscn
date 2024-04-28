@@ -1,9 +1,8 @@
-[gd_scene load_steps=88 format=3 uid="uid://bjtwrdaw8spfe"]
+[gd_scene load_steps=86 format=3 uid="uid://bjtwrdaw8spfe"]
 
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_single.gd" id="1_gx60g"]
 [ext_resource type="Texture2D" uid="uid://cr0vlvsu8codn" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0080.png" id="2_6w8c1"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_controller.gd" id="2_fxglm"]
-[ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_health.gd" id="2_kvicx"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_state_machine.gd" id="2_r8k2c"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/combat/attack.gd" id="3_6b8w2"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/motion/idle.gd" id="3_is6hj"]
@@ -13,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://wavlvnr4jdvf" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0083.png" id="5_bicx1"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/die.gd" id="6_b46n1"]
 [ext_resource type="Texture2D" uid="uid://p4pv3plhkkxd" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0084.png" id="6_f1ccv"]
-[ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/motion/move.gd" id="6_mg0vo"]
 [ext_resource type="Texture2D" uid="uid://b8g81n7i3iakx" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0085.png" id="7_ddgfd"]
 [ext_resource type="Texture2D" uid="uid://dlek4mixpmsj7" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0086.png" id="8_xwbs2"]
 [ext_resource type="Texture2D" uid="uid://d4cp3s4koyd3p" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0087.png" id="9_pf32d"]
@@ -348,9 +346,6 @@ z_index = 1
 collision_mask = 0
 script = ExtResource("1_gx60g")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_kvicx")
-
 [node name="CharacterController" type="Node" parent="."]
 script = ExtResource("2_fxglm")
 character_type = 0
@@ -370,9 +365,6 @@ script = ExtResource("6_b46n1")
 
 [node name="Attack" type="Node" parent="StateMachine"]
 script = ExtResource("3_6b8w2")
-
-[node name="Move" type="Node" parent="StateMachine"]
-script = ExtResource("6_mg0vo")
 
 [node name="HeadAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8mfnt")
