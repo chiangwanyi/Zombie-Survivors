@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_single.gd" id="1_gx60g"]
 [ext_resource type="Texture2D" uid="uid://cr0vlvsu8codn" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0080.png" id="2_6w8c1"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_controller.gd" id="2_fxglm"]
+[ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_health.gd" id="2_kvicx"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_state_machine.gd" id="2_r8k2c"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/combat/attack.gd" id="3_6b8w2"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/states/motion/idle.gd" id="3_is6hj"]
@@ -339,13 +340,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6aw8"]
-height = 54.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_3ddnv"]
-radius = 83.2166
+radius = 16.0
+height = 64.0
 
 [node name="PeaShooterSingle" type="Area2D"]
+z_index = 1
+collision_mask = 0
 script = ExtResource("1_gx60g")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_kvicx")
 
 [node name="CharacterController" type="Node" parent="."]
 script = ExtResource("2_fxglm")
@@ -381,8 +385,4 @@ animation = &"shoot"
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_f6aw8")
-
-[node name="DetactionArea" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3ddnv")

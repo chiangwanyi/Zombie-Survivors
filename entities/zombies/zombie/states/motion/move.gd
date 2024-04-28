@@ -1,10 +1,21 @@
 extends State
 
+var walk_animations := [&"walk1", &"walk2"]
+var body : Zombie
+
 func enter() -> void:
-	print("idle")
-	var head_animation := owner.get_node(^"HeadAnimation") as AnimatedSprite2D
-	var stem_animation := owner.get_node(^"StemAnimation") as AnimatedSprite2D
+	body = owner as Zombie
 	
-	head_animation.play(&"idle")
-	stem_animation.play(&"idle")
+	body.animation.play(walk_animations.pick_random())
 	super.enter()
+	
+func update(delta: float) -> void:
+	if body.target_plant != null:
+		var current_position : Vector2 = body.position
+		var direction : Vector2 = (body.target_plant.position - current_position).normalized()
+		var movement : Vector2 = direction * body.speed * delta
+		body.position += movement
+		if direction.x > 0:
+			body.animation.flip_h = true
+		else:
+			body.animation.flip_h = false

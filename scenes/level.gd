@@ -1,5 +1,6 @@
 extends Node2D
 
+# 僵尸和植物的scene资源缓存
 var entity_resources : Dictionary = {}
 
 var debug_spawn_mode := SpawnEvent.ItemType.ZOMBIE
@@ -34,7 +35,6 @@ func on_game_paused() -> void:
 	print("game is pause")
 	
 func spawn_item(e: SpawnEvent) -> void:
-	#print("准备生成item:[%s, %s, %s]" % [e.item_type, e.item_type_name, e.spawn_pos])
 	match e.item_type:
 		SpawnEvent.ItemType.PLANT:
 			spawn_plant(e.item_type_name, e.spawn_pos)
@@ -50,7 +50,7 @@ func spawn_zombie(zombie_type: String, spawn_pos: Vector2) -> void:
 		else:
 			entity_resources[zombie_type] = res
 			
-	var entity := (entity_resources[zombie_type] as PackedScene).instantiate() as Area2D
+	var entity := (entity_resources[zombie_type] as PackedScene).instantiate() as Zombie
 	entity.position = spawn_pos
 	add_child(entity)
 	
@@ -63,10 +63,10 @@ func spawn_plant(plant_type: String, spawn_pos: Vector2) -> void:
 		else:
 			entity_resources[plant_type] = res
 			
-	var entity := (entity_resources[plant_type] as PackedScene).instantiate() as Area2D
+	var entity := (entity_resources[plant_type] as PackedScene).instantiate() as Plant
 	entity.position = spawn_pos
 	add_child(entity)
-	
+	GameManager.plants.append(entity)
 
 func _on_debug_spawn_zombie_pressed() -> void:
 	debug_spawn_mode = SpawnEvent.ItemType.ZOMBIE

@@ -13,6 +13,7 @@ tile_size = Vector2i(200, 200)
 sources/0 = SubResource("TileSetAtlasSource_xeftx")
 
 [node name="Level" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_f07po")
 
 [node name="HUD" type="CanvasLayer" parent="."]
