@@ -2,11 +2,13 @@ extends State
 
 var idle_animations := [&"idle1", &"idle2"]
 var body : Zombie
+var animation : AnimatedSprite2D
 
 func enter() -> void:
 	body = owner as Zombie
+	animation = owner.get_node(^"AnimatedSprite2D") as AnimatedSprite2D
 	
-	body.animation.play(idle_animations.pick_random())
+	animation.play(idle_animations.pick_random())
 	super.enter()
 
 func update(_delta: float) -> void:

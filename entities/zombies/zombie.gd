@@ -1,6 +1,5 @@
 class_name Zombie extends DamageableArea2D
 
-var animation: AnimatedSprite2D
 var damage_area: DamageOnTouch
 
 # 当前追逐的植物

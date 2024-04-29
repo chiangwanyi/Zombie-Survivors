@@ -2,11 +2,13 @@ extends State
 
 var walk_animations := [&"walk1", &"walk2"]
 var body : Zombie
+var animation : AnimatedSprite2D
 
 func enter() -> void:
 	body = owner as Zombie
+	animation = owner.get_node(^"AnimatedSprite2D") as AnimatedSprite2D
 	
-	body.animation.play(walk_animations.pick_random())
+	animation.play(walk_animations.pick_random())
 	super.enter()
 	
 func update(delta: float) -> void:
@@ -16,6 +18,8 @@ func update(delta: float) -> void:
 		var movement : Vector2 = direction * body.speed * delta
 		body.position += movement
 		if direction.x > 0:
-			body.animation.flip_h = true
+			animation.flip_h = true
 		else:
-			body.animation.flip_h = false
+			animation.flip_h = false
+	else:
+		body.state_machine._change_state(&"idle")

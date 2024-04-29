@@ -1,11 +1,13 @@
 extends State
 
 var body: Zombie
+var animation : AnimatedSprite2D
 
 func enter() -> void:
 	body = owner as Zombie
+	animation = owner.get_node(^"AnimatedSprite2D") as AnimatedSprite2D
 	
-	body.animation.play(&"eat")
+	animation.play(&"eat")
 	print("僵尸:[%s] 开始攻击 植物:[%s]" % [body, body.target_plant])
 	super.enter()
 

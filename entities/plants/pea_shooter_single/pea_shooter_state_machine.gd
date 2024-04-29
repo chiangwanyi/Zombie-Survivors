@@ -12,7 +12,3 @@ func _ready() -> void:
 		&"die": die,
 		&"attack": attack,
 	}
-
-
-func _change_state(state_name: StringName) -> void :
-	super._change_state(state_name)

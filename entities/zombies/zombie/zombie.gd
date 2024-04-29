@@ -5,7 +5,6 @@ func _ready() -> void:
 	add_child(health)
 	
 	state_machine = $StateMachine as StateMachine
-	animation = $AnimatedSprite2D as AnimatedSprite2D
 	damage_area = $DamageOnTouchArea as DamageOnTouch
 
 	print("生成僵尸:[%s]" % self)
