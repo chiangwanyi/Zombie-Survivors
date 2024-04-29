@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://bjtwrdaw8spfe"]
+[gd_scene load_steps=87 format=3 uid="uid://bjtwrdaw8spfe"]
 
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_single.gd" id="1_gx60g"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_controller.gd" id="2_fxglm"]
@@ -161,9 +161,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("32_t5l68")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -241,9 +241,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("57_ax5om")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 12.0
+"speed": 18.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d7p23"]
@@ -324,9 +324,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("76_rjxk8")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -404,18 +404,21 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("76_rjxk8")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 12.0
+"speed": 18.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f6aw8"]
 radius = 16.0
 height = 64.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i1hau"]
+radius = 400.0
+
 [node name="PeaShooterSingle" type="Area2D"]
 z_index = 1
-collision_mask = 0
+collision_mask = 4
 script = ExtResource("1_gx60g")
 
 [node name="CharacterController" type="Node" parent="."]
@@ -440,12 +443,20 @@ script = ExtResource("3_6b8w2")
 
 [node name="HeadAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8mfnt")
-animation = &"idle"
+animation = &"shoot"
 
 [node name="StemAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d7p23")
-animation = &"shoot"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_f6aw8")
+
+[node name="ShootArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
+shape = SubResource("CircleShape2D_i1hau")
+
+[connection signal="area_entered" from="ShootArea" to="." method="_on_shoot_area_area_entered"]

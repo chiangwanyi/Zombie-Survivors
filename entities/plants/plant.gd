@@ -1,5 +1,7 @@
 class_name Plant extends DamageableArea2D
 
+var target_zombie: Zombie
+
 # 移动速度
 var speed : float = 20.0
 # 攻击力

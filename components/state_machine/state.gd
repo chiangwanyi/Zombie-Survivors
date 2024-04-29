@@ -13,7 +13,7 @@ func enter() -> void:
 
 
 # Clean up the state. Reinitialize values like a timer.
-func exit() -> void:
+func exit(wait_for_animation_finish : bool) -> void:
 	pass
 
 

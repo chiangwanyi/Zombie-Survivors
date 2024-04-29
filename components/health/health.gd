@@ -61,6 +61,6 @@ func compute_damage_output(damage: float) -> float :
 
 func kill() -> void:
 	var body := get_parent() as DamageableArea2D
-	#var state_machine := get_parent().get_node("StateMachine") as StateMachine
-	body.state_machine._change_state(&"die")
+	print("[%s] 被击杀了" % [get_parent()])
+	body.state_machine._change_state(&"die", true)
 	body.killed.emit()

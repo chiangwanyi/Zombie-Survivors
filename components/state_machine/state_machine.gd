@@ -60,10 +60,10 @@ func _on_animation_finished(anim_name: String):
 	current_state._on_animation_finished(anim_name)
 
 
-func _change_state(state_name: StringName) -> void:
+func _change_state(state_name: StringName, immediately := false) -> void:
 	if not _active:
 		return
-	current_state.exit()
+	await current_state.exit(immediately)
 
 	if state_name == &"previous":
 		states_stack.pop_front()
