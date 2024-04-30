@@ -313,7 +313,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"eat",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -402,7 +402,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle1",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -452,7 +452,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle2",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -601,7 +601,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk1",
-"speed": 12.0
+"speed": 18.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -747,7 +747,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk2",
-"speed": 12.0
+"speed": 18.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ufx5x"]
@@ -788,8 +788,7 @@ script = ExtResource("8_8amht")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_73q1g")
-animation = &"eat"
-frame_progress = 0.176791
+animation = &"walk1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ufx5x")
@@ -801,4 +800,4 @@ script = ExtResource("188_xkfec")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageOnTouchArea"]
 shape = SubResource("CircleShape2D_odh4t")
 
-[connection signal="area_entered" from="DamageOnTouchArea" to="DamageOnTouchArea" method="_on_area_entered"]
+[connection signal="area_entered" from="DamageOnTouchArea" to="." method="_on_damage_on_touch_area_area_entered"]

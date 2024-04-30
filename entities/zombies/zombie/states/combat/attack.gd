@@ -12,5 +12,8 @@ func enter() -> void:
 	super.enter()
 
 func update(delta: float) -> void:
-	# 进行攻击
-	body.damage_area.attack(delta)
+	if body.target_plant != null:
+		# 进行攻击
+		body.damage_area.attack(delta)
+	else:
+		emit_signal("finished", "idle")

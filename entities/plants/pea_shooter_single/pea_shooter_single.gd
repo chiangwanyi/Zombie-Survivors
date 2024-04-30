@@ -3,7 +3,7 @@ extends Plant
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health = Health.new(100, false)
+	health = Health.new(60, false)
 	add_child(health)
 	
 	state_machine = $StateMachine as StateMachine
@@ -13,7 +13,6 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	pass
-
 
 func _on_shoot_area_area_entered(area: Area2D) -> void:
 	if area is Zombie and target_zombie == null:
