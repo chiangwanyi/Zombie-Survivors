@@ -1,10 +1,11 @@
 extends Plant
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	health = Health.new(60, false)
 	add_child(health)
+	
+	projectile_weapons = []
+	projectile_weapons.append($Weapon as ProjectileWeapon)
 	
 	state_machine = $StateMachine as StateMachine
 	

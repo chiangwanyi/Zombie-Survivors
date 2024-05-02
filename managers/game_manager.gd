@@ -1,7 +1,9 @@
 extends Node
 
 var plants : Array[Plant] = []
+var projectile_scenes : Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	projectile_scenes[&"Pea"] = preload("res://entities/projectiles/projectile_pea.tscn") as PackedScene
+	print("Game Manager 初始化完成")

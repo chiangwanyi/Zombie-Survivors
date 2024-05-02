@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bjtwrdaw8spfe"]
+[gd_scene load_steps=88 format=3 uid="uid://bjtwrdaw8spfe"]
 
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_single.gd" id="1_gx60g"]
 [ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_controller.gd" id="2_fxglm"]
@@ -82,6 +82,7 @@
 [ext_resource type="Texture2D" uid="uid://bi4jqg5bd5eey" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0027.png" id="74_sjfw6"]
 [ext_resource type="Texture2D" uid="uid://cptkid7lkjs81" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0028.png" id="75_11dvj"]
 [ext_resource type="Texture2D" uid="uid://hm4d3rktntwq" path="res://assets/plants/PeaShooterSingle/PeaShooterSingle0029.png" id="76_rjxk8"]
+[ext_resource type="Script" path="res://entities/plants/pea_shooter_single/pea_shooter_weapon.gd" id="83_fu48h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8mfnt"]
 animations = [{
@@ -458,5 +459,9 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShootArea"]
 shape = SubResource("CircleShape2D_i1hau")
+
+[node name="Weapon" type="Node2D" parent="."]
+position = Vector2(24, -12)
+script = ExtResource("83_fu48h")
 
 [connection signal="area_entered" from="ShootArea" to="." method="_on_shoot_area_area_entered"]
