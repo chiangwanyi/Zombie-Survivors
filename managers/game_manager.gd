@@ -2,6 +2,7 @@ extends Node
 
 var plants : Array[Plant] = []
 var projectile_scenes : Dictionary = {}
+var level : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -11,6 +11,8 @@ func _ready() -> void:
 	spawn_event.on_event.connect(self.spawn_item)
 	
 	EventManager.add_listener(spawn_event)
+	
+	GameManager.level = self
 
 func _process(delta: float) -> void:
 	pass

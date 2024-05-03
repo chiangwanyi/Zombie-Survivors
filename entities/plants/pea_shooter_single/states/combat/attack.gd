@@ -35,7 +35,7 @@ func update(_delta: float) -> void:
 	if body.target_zombie != null:
 		if head_animation.animation == &"shoot" and head_animation.frame == 13 and remaining_attack_count > 0:
 			for weapon in body.projectile_weapons:
-				weapon.weapon_use()
+				weapon.weapon_use(GameManager.level.to_local(weapon.spawn_position).direction_to(body.target_zombie.position))
 			remaining_attack_count -= 1
 		
 		if (body.target_zombie.position - body.position).x < 0:
