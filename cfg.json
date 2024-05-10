@@ -1,0 +1,17 @@
+{
+	"seed_chooser_size": "49",
+	"unlocked_seed_packets": ["PeaShooterSingle", "Sunflower"],
+	"max_seed_bank_size": "8",
+	"plants": [
+		{
+			"name": "PeaShooterSingle",
+			"cost": "10",
+			"hp": "100"
+		},
+		{
+			"name": "Sunflower",
+			"cost": "5",
+			"hp": "50"
+		}
+	]
+}

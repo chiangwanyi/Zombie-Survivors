@@ -1,0 +1,1 @@
+class_name Character2D extends DamageableArea2D

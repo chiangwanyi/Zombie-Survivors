@@ -1,2 +1,0 @@
-extends CharacterController2D
-

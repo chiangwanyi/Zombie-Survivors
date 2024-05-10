@@ -1,34 +1,34 @@
-@icon("res://components/health/health.svg")
 class_name Health extends Node
 
-# 节点的当前HP
+## HP的所属者
+var body: DamageableArea2D
+## 节点的当前HP
 var current_health: float
-# 节点的初始HP
+## 节点的初始HP
 var initial_health: float = 10
-# 节点的最大HP
-#var maximum_health: float = 10
 
-# 如果为true，则当前节点无法受到伤害
+## 如果为true，则当前节点无法受到伤害
 var in_vulnerable: bool
 
 var destory_on_death: bool = true
 
-func _init(init_health: float, invincible: bool) -> void:
+func _init(init_health: float, invincible: bool, node: DamageableArea2D) -> void:
 	initial_health = init_health
 	in_vulnerable = invincible
+	body = node
 	name = "Health"
 	
-	initialize_current_health()
+	_initialize_current_health()
 
-func initialize_current_health() -> void:
-	set_health(initial_health)
+func _initialize_current_health() -> void:
+	_set_health(initial_health)
 	
-func set_health(new_value: float) -> void:
+func _set_health(new_value: float) -> void:
 	current_health = new_value
 	#UpdateHealthBar(false);
 	#HealthChangeEvent.Trigger(this, newValue);
-	
-func can_take_damage_this_frame() -> bool:
+
+func _can_take_damage_this_frame() -> bool:
 	if in_vulnerable:
 		return false
 	
@@ -36,20 +36,18 @@ func can_take_damage_this_frame() -> bool:
 		return false
 	return true
 
-func take_damage(damage: float, instigator: Node2D, invincibility_duration: float) -> void:
-	if not can_take_damage_this_frame():
+func take_damage(damage: float, instigator: Node, invincibility_duration: float) -> void:
+	if not _can_take_damage_this_frame():
 		return
 	
-	damage = compute_damage_output(damage)
+	damage = _compute_damage_output(damage)
 	
-	print("[%s] 被 [%s] 攻击了，当前 hp:%s" % [get_parent(), instigator, current_health])
-	
-	set_health(current_health - damage)
+	_set_health(current_health - damage)
 	
 	if current_health <= 0:
-		kill()
+		_kill()
 		
-func compute_damage_output(damage: float) -> float :
+func _compute_damage_output(damage: float) -> float :
 	if in_vulnerable:
 		return 0
 	var total_damage = 0
@@ -59,7 +57,5 @@ func compute_damage_output(damage: float) -> float :
 	
 	return total_damage
 
-func kill() -> void:
-	var body := get_parent() as Plant
-	print("[%s] 被击杀了" % [body])
-	body.state_machine._change_state(&"die", true)
+func _kill() -> void:
+	body.killed.emit()
