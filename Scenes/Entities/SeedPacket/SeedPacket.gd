@@ -3,9 +3,9 @@ class_name SeedPacket extends TextureButton
 var seed_name: StringName
 var cost: int
 ## Seed 是否可用
-var is_available: bool
+var is_available: bool = false
 ## Seed 是否处于冷却状态
-var is_cooldown: bool
+var is_cooldown: bool = false
 
 var dragging = false  # 用于跟踪是否正在拖拽
 
@@ -13,11 +13,14 @@ func seed_off() -> void:
 	disabled = true
 	($Avatar as TextureRect).visible = false
 	($Cost as Label).visible = false
+	($CoolDownProgress as TextureProgressBar).visible = false
 	
 func seed_on() -> void:
 	disabled = false
 	($Avatar as TextureRect).visible = true
 	($Cost as Label).visible = true
+	if is_cooldown:
+		($CoolDownProgress as TextureProgressBar).visible = true
 	
 func seed_info(sn: StringName) -> void:
 	seed_name = sn
