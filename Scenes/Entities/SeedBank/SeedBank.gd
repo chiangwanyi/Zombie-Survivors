@@ -54,6 +54,7 @@ func _on_seed_packet_event(e: SeedPacketEvent) -> void:
 
 func _on_seed_chooser_event(e: SeedChooserEvent) -> void:
 	if e.type == SeedChooserEvent.Type.SELECTION_COMPLETE:
+		is_game_playing = true
 		for sp: SeedPacket in seed_container.get_children():
 			sp.state_machine.change_state("Loading")
 

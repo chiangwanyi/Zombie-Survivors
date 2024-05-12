@@ -1,6 +1,7 @@
 class_name GameEvent extends BasicEvent
 
 enum Type {
+	#PlayReady,
 	Playing,
 }
 

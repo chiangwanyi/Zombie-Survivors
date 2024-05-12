@@ -20,12 +20,12 @@ var dragging = false  # 用于跟踪是否正在拖拽
 func _ready() -> void:
 	state_machine.start()
 	
-func set_info(name: StringName) -> void:
-	seed_name = name
-	cost = int(GameManager.cfg_seeds[name]["cost"])
-	cooldown = int(GameManager.cfg_seeds[name]["cooldown"])
+func set_info(n: StringName) -> void:
+	seed_name = n
+	cost = int(GameManager.cfg_seeds[n]["cost"])
+	cooldown = int(GameManager.cfg_seeds[n]["cooldown"])
 	
-	($Avatar as TextureRect).texture = load("res://Assets/Images/Plants/%s.png" % name)
+	($Avatar as TextureRect).texture = load("res://Assets/Images/Plants/%s.png" % n)
 	($Cost as Label).text = str(cost)
 	
 	state_machine.change_state("Selection")

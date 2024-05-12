@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpuncy5ars5e6"]
+
+[ext_resource type="Script" path="res://Scenes/Entities/Plants/Sunflower/Sunflower.gd" id="1_i0hr1"]
+[ext_resource type="Script" path="res://Scenes/Entities/Plants/Sunflower/SunflowerStateMachine.gd" id="2_fyo5c"]
+[ext_resource type="Script" path="res://Scenes/Entities/Plants/Sunflower/State/Idle.gd" id="3_dwm0p"]
+[ext_resource type="Script" path="res://Scenes/Entities/Plants/Sunflower/State/SpawnSun.gd" id="4_7jnea"]
+
+[node name="Sunflower" type="Node2D"]
+script = ExtResource("1_i0hr1")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_fyo5c")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_dwm0p")
+
+[node name="SpawnSun" type="Node" parent="StateMachine"]
+script = ExtResource("4_7jnea")
