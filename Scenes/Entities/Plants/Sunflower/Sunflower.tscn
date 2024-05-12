@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bpuncy5ars5e6"]
+[gd_scene load_steps=35 format=3 uid="uid://bpuncy5ars5e6"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Plants/Sunflower/Sunflower.gd" id="1_i0hr1"]
 [ext_resource type="Texture2D" uid="uid://b8injmr0vs7iv" path="res://Assets/Images/Plantshadow.png" id="2_7t75o"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://cog1y0k3g2i7x" path="res://Assets/Items/Plants/Sunflower/SunFlower0028.png" id="28_h0bl1"]
 [ext_resource type="Texture2D" uid="uid://oolytd2wxmj3" path="res://Assets/Items/Plants/Sunflower/SunFlower0029.png" id="29_ulcfb"]
 [ext_resource type="PackedScene" uid="uid://boa01adyfbank" path="res://Scenes/Audios/plant_on_grass_audio_player.tscn" id="31_c88b8"]
+[ext_resource type="Texture2D" uid="uid://bo4ojvsb07cv" path="res://Assets/Images/2d_lights_and_shadows_neutral_point_light.webp" id="32_08k0s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_aw4b7"]
 animations = [{
@@ -139,6 +140,17 @@ sprite_frames = SubResource("SpriteFrames_aw4b7")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_xdvl5")
 
 [node name="PlantOnGrassAudioPlayer" parent="." instance=ExtResource("31_c88b8")]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.0
+texture = ExtResource("32_08k0s")
+texture_scale = 0.25
+
+[node name="SpawnSunTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="SpawnSunTimer" to="StateMachine/Idle" method="_on_spawn_sun_timer_timeout"]

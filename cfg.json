@@ -16,8 +16,8 @@
             "cost": 50,
             "cooldown": 5,
             "type": "Resource",
+            "res_time": 10,
             "health": 100,
-
             "defense": 50,
             "attack_power": 0,
             "attack_speed": 0,
