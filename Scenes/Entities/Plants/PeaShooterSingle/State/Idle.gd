@@ -9,7 +9,7 @@ var need_exit := false
 func enter() -> void:
 	head_animation = owner.get_node(^"HeadAnimatedSprite2D") as AnimatedSprite2D
 	stem_animation = owner.get_node(^"StemAnimatedSprite2D") as AnimatedSprite2D
-	plant_audio_player = owner.get_node(^"PlantAudioPlayer") as AudioStreamPlayer
+	plant_audio_player = owner.get_node(^"PlantOnGrassAudioPlayer") as AudioStreamPlayer
 	
 	head_animation.play(&"idle")
 	stem_animation.play(&"idle")

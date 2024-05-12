@@ -419,7 +419,7 @@ pivot_offset = Vector2(150, 66)
 texture = ExtResource("15_xlsik")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.75, 0.75)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_c6pwi")

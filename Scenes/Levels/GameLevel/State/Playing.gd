@@ -5,7 +5,6 @@ extends State
 
 func enter() -> void:
 	print("Playing")
-	#GameEvent.trigger(GameEvent.Type.PlayReady)
 	animation.play("Ready")
 	super.enter()
 
@@ -18,6 +17,5 @@ func exit() -> void:
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == &"Ready":
-		# 通知 SeedBank 修改 SeedPacket 动作
 		GameEvent.trigger(GameEvent.Type.Playing)
 		level_grasswalk_bg.play()

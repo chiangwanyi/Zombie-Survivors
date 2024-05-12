@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cv4ghq7xfsijj"]
+[gd_scene load_steps=85 format=3 uid="uid://cv4ghq7xfsijj"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Plants/PeaShooterSingle/PeaShooterSingle.gd" id="1_g0xhb"]
 [ext_resource type="Texture2D" uid="uid://b4gkuy8phq8pc" path="res://Assets/Items/Plants/PeaShooterSingle/Idle/PeaShooterSingle0080.png" id="2_kna3w"]
@@ -80,8 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://cy0uu3lrar8yc" path="res://Assets/Items/Plants/PeaShooterSingle/PeaShooterSingle0027.png" id="74_pe03y"]
 [ext_resource type="Texture2D" uid="uid://c2j7kbjj6rcmb" path="res://Assets/Items/Plants/PeaShooterSingle/PeaShooterSingle0028.png" id="75_i75l0"]
 [ext_resource type="Texture2D" uid="uid://bv7008gtiu873" path="res://Assets/Items/Plants/PeaShooterSingle/PeaShooterSingle0029.png" id="76_n1k8b"]
-[ext_resource type="AudioStream" uid="uid://dafhtoe8ty53g" path="res://Assets/Sounds/plant.ogg" id="80_bebeq"]
-[ext_resource type="AudioStream" uid="uid://f5faa1l0y35p" path="res://Assets/Sounds/plant2.ogg" id="81_fskpn"]
+[ext_resource type="PackedScene" uid="uid://boa01adyfbank" path="res://Scenes/Audios/plant_on_grass_audio_player.tscn" id="81_mst7w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ymbow"]
 animations = [{
@@ -163,7 +162,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle",
-"speed": 18.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -243,7 +242,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 18.0
+"speed": 15.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_irk76"]
@@ -326,7 +325,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"idle",
-"speed": 18.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -406,18 +405,10 @@ animations = [{
 }],
 "loop": false,
 "name": &"shoot",
-"speed": 18.0
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fomtl"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1m23d"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("80_bebeq")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("81_fskpn")
-stream_1/weight = 1.0
 
 [node name="PeaShooterSingle" type="Area2D"]
 script = ExtResource("1_g0xhb")
@@ -438,18 +429,13 @@ script = ExtResource("4_bhgqv")
 
 [node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ymbow")
-animation = &"idle"
-frame = 24
-frame_progress = 1.0
+animation = &"shoot"
 
 [node name="StemAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_irk76")
-animation = &"idle"
-frame = 24
-frame_progress = 1.0
+animation = &"shoot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fomtl")
 
-[node name="PlantAudioPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_1m23d")
+[node name="PlantOnGrassAudioPlayer" parent="." instance=ExtResource("81_mst7w")]

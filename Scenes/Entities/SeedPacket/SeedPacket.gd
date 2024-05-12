@@ -40,6 +40,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			else:
 				dragging = false  # 当左键释放时，停止拖拽
 				SeedPacketEvent.trigger(SeedPacketEvent.Type.DRAG_OFF, seed_name)
+				# FIXME: 会导致未拖拽时也进入冷却
 				state_machine.change_state("CoolDown")
 	elif event is InputEventMouseMotion:
 		if dragging:

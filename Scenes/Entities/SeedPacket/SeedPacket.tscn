@@ -90,6 +90,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 value = 100.0
+rounded = true
 fill_mode = 2
 texture_progress = ExtResource("1_t8ejo")
 tint_progress = Color(0, 0, 0, 0.588235)
