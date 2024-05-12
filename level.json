@@ -4,7 +4,7 @@
         "difficulty": "easy",
         "num_of_waves": 5,
         "wave_duration": 60,
-        "initial_sun": 200,
+        "initial_sun": 100,
         "max_seed_bank_size": 7
     },
     {

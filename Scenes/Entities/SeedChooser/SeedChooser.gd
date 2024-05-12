@@ -20,14 +20,12 @@ func init() -> void:
 		
 	for seed_name in GameManager.cfg_unlocked_seeds_name:
 		var sp := GameManager.scene_seed_packet.instantiate() as SeedPacket
-		sp.seed_info(seed_name)
-		sp.seed_on()
 		sp.pressed.connect(_on_seed_packet_pressed.bind(sp))
 		seed_packet_container.add_child(sp)
+		sp.set_info(seed_name)
 	
 	for i in range(GameManager.cfg_seeds.size() - GameManager.cfg_unlocked_seeds_name.size()):
 		var sp := GameManager.scene_seed_packet.instantiate() as SeedPacket
-		sp.seed_off()
 		seed_packet_container.add_child(sp)
 		
 func _on_seed_packet_pressed(sp: SeedPacket) -> void:

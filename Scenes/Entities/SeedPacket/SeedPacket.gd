@@ -1,7 +1,15 @@
 class_name SeedPacket extends TextureButton
 
+@onready var state_machine := $StateMachine as StateMachine
+
 var seed_name: StringName
+
+## 所属 SeedBank
+var seed_bank: SeedBank
+## 种植所需阳光
 var cost: int
+## 种植后的冷却时间
+var cooldown: int
 ## Seed 是否可用
 var is_available: bool = false
 ## Seed 是否处于冷却状态
@@ -9,30 +17,22 @@ var is_cooldown: bool = false
 
 var dragging = false  # 用于跟踪是否正在拖拽
 
-func seed_off() -> void:
-	disabled = true
-	($Avatar as TextureRect).visible = false
-	($Cost as Label).visible = false
-	($CoolDownProgress as TextureProgressBar).visible = false
+func _ready() -> void:
+	state_machine.start()
 	
-func seed_on() -> void:
-	disabled = false
-	($Avatar as TextureRect).visible = true
-	($Cost as Label).visible = true
-	if is_cooldown:
-		($CoolDownProgress as TextureProgressBar).visible = true
+func set_info(name: StringName) -> void:
+	seed_name = name
+	cost = int(GameManager.cfg_seeds[name]["cost"])
+	cooldown = int(GameManager.cfg_seeds[name]["cooldown"])
 	
-func seed_info(sn: StringName) -> void:
-	seed_name = sn
-	cost = int(GameManager.cfg_seeds[sn]["cost"])
-	
-	($Avatar as TextureRect).texture = load("res://Assets/Images/Plants/%s.png" % sn)
+	($Avatar as TextureRect).texture = load("res://Assets/Images/Plants/%s.png" % name)
 	($Cost as Label).text = str(cost)
-
-func _process(_delta: float) -> void:
-	pass
+	
+	state_machine.change_state("Selection")
 
 func _on_gui_input(event: InputEvent) -> void:
+	if state_machine.current_state.name != &"Ready":
+		return
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
@@ -40,6 +40,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			else:
 				dragging = false  # 当左键释放时，停止拖拽
 				SeedPacketEvent.trigger(SeedPacketEvent.Type.DRAG_OFF, seed_name)
+				state_machine.change_state("CoolDown")
 	elif event is InputEventMouseMotion:
 		if dragging:
 			SeedPacketEvent.trigger(SeedPacketEvent.Type.DRAG_ON, seed_name)

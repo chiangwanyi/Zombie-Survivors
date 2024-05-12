@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1gjmmj84sam8"]
+[gd_scene load_steps=11 format=3 uid="uid://b1gjmmj84sam8"]
 
 [ext_resource type="Texture2D" uid="uid://njddfmqbi2ul" path="res://Assets/Images/SeedPacket_Larger.png" id="1_t8ejo"]
 [ext_resource type="Texture2D" uid="uid://bqm8b6rxyh5p6" path="res://Assets/Images/SeedPacketSilhouette.png" id="2_cq5ki"]
 [ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/SeedPacket.gd" id="3_fcw34"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/SeedPacketStateMachine.gd" id="4_2aipi"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/Blank.gd" id="5_gi6rh"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/Selection.gd" id="6_bcand"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/Ready.gd" id="7_o21dm"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/Loading.gd" id="7_plq41"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/CoolDown.gd" id="8_350bc"]
+[ext_resource type="Script" path="res://Scenes/Entities/SeedPacket/State/Unavailable.gd" id="9_qs4wx"]
 
 [node name="SeedPacket" type="TextureButton"]
 offset_right = 100.0
@@ -11,6 +18,28 @@ texture_normal = ExtResource("1_t8ejo")
 texture_disabled = ExtResource("2_cq5ki")
 stretch_mode = 0
 script = ExtResource("3_fcw34")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = ExtResource("4_2aipi")
+start_state = NodePath("Blank")
+
+[node name="Blank" type="Node" parent="StateMachine"]
+script = ExtResource("5_gi6rh")
+
+[node name="Selection" type="Node" parent="StateMachine"]
+script = ExtResource("6_bcand")
+
+[node name="Loading" type="Node" parent="StateMachine"]
+script = ExtResource("7_plq41")
+
+[node name="Ready" type="Node" parent="StateMachine"]
+script = ExtResource("7_o21dm")
+
+[node name="CoolDown" type="Node" parent="StateMachine"]
+script = ExtResource("8_350bc")
+
+[node name="Unavailable" type="Node" parent="StateMachine"]
+script = ExtResource("9_qs4wx")
 
 [node name="Avatar" type="TextureRect" parent="."]
 layout_mode = 1
@@ -63,6 +92,7 @@ grow_vertical = 2
 value = 100.0
 fill_mode = 2
 texture_progress = ExtResource("1_t8ejo")
-tint_progress = Color(0, 0, 0, 0.792157)
+tint_progress = Color(0, 0, 0, 0.588235)
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="value_changed" from="CoolDownProgress" to="StateMachine/CoolDown" method="_on_cool_down_progress_value_changed"]

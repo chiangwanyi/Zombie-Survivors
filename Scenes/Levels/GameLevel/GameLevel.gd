@@ -40,6 +40,8 @@ func _on_seed_packet_event(e: SeedPacketEvent) -> void:
 			hold_seed_sprite.queue_free()
 			
 			_spawn_plant(e.seed_name, get_global_mouse_position())
+			var cost := int(GameManager.cfg_seeds[e.seed_name]["cost"])
+			SpawnEvent.trigger(SpawnEvent.Type.PLANT, e.seed_name, cost)
 			
 func _spawn_plant(seed_name: StringName, pos: Vector2) ->void:
 	var plant_scene := load("res://Scenes/Entities/Plants/%s/%s.tscn" % [seed_name, seed_name]) as PackedScene
