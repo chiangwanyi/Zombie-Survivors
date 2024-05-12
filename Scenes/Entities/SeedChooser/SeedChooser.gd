@@ -18,14 +18,14 @@ func init_seed_chooser() -> void:
 	for child in seed_packet_container.get_children():
 		child.queue_free()
 		
-	for seed_name in GameManager.cfg_unlocked_seed_packets_name:
+	for seed_name in GameManager.cfg_unlocked_seeds_name:
 		var sp := GameManager.scene_seed_packet.instantiate() as SeedPacket
 		sp.seed_info(seed_name)
 		sp.seed_on()
 		sp.pressed.connect(_on_seed_packet_pressed.bind(sp))
 		seed_packet_container.add_child(sp)
 	
-	for i in range(GameManager.cfg_seed_chooser_size - GameManager.cfg_unlocked_seed_packets_name.size()):
+	for i in range(GameManager.cfg_seeds.size() - GameManager.cfg_unlocked_seeds_name.size()):
 		var sp := GameManager.scene_seed_packet.instantiate() as SeedPacket
 		sp.seed_off()
 		seed_packet_container.add_child(sp)

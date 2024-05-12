@@ -1,0 +1,49 @@
+seeds:
+  - name: Pea Shooter
+    cost: 100
+    cooldown: 10
+    type: Attack
+    health: 100
+    defense: 50
+    attack_power: 20
+    attack_speed: 1
+    attack_range: 10
+  - name: Sunflower
+    cost: 50
+    cooldown: 5
+    type: Resource
+    health: 100
+    defense: 50
+    attack_power: 0
+    attack_speed: 0
+    attack_range_radius: 0
+  - name: Walnut
+    cost: 50
+    cooldown: 5
+    type: Defense
+    health: 500
+    defense: 100
+    attack_power: 0
+    attack_speed: 0
+    attack_range: 0
+  - name: Cherry Bomb
+    cost: 200
+    cooldown: 50
+    type: Attack
+    health: 500
+    defense: 100
+    attack_power: 500
+    attack_speed: 0
+    attack_range: 0
+zombies:
+  - name: Regular Zombie
+    spawn_time: 10
+    type: Normal
+    health: 100
+    defense: 10
+    attack_power: 20
+    attack_speed: 1
+    attack_range: 1
+unlocked_seeds:
+  - Pea Shooter
+  - Sunflower

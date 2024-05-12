@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Level 1",
+        "difficulty": "easy",
+        "num_of_waves": 5,
+        "wave_duration": 60,
+        "initial_sun": 200,
+        "max_seed_bank_size": 7
+    },
+    {
+        "name": "Level 2",
+        "difficulty": "medium",
+        "num_of_waves": 7,
+        "wave_duration": 45,
+        "initial_sun": 250,
+        "max_seed_bank_size": 7
+    }
+]

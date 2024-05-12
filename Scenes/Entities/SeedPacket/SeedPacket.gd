@@ -24,7 +24,7 @@ func seed_on() -> void:
 	
 func seed_info(sn: StringName) -> void:
 	seed_name = sn
-	cost = int(GameManager.cfg_plants_dict[sn]["cost"])
+	cost = int(GameManager.cfg_seeds[sn]["cost"])
 	
 	($Avatar as TextureRect).texture = load("res://Assets/Images/Plants/%s.png" % sn)
 	($Cost as Label).text = str(cost)
