@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var state_machine := $StateMachine as StateMachine
 
+@export var level_name := "Level 1"
+
 var seed_packet_event := SeedPacketEvent.new()
 
 ## 当前正在准备种植的植物名称
@@ -9,9 +11,10 @@ var hold_seed_name : StringName
 var hold_seed_sprite : Sprite2D
 
 func _ready() -> void:
-	($HUD/SeedChooser as SeedChooser).init_seed_chooser()
-	seed_packet_event.on_event.connect(_on_seed_packet_event)
+	($HUD/SeedChooser as SeedChooser).init()
+	($HUD/SeedBank as SeedBank).init(GameManager.levels[level_name]["initial_sun"])
 	
+	seed_packet_event.on_event.connect(_on_seed_packet_event)
 	EventManager.add_listener(seed_packet_event)
 	state_machine.start()
 

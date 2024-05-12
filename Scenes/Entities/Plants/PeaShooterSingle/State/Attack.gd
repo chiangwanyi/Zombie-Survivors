@@ -37,7 +37,8 @@ func update(_delta: float) -> void:
 		# 豌豆射手在攻击动画的第13帧开火
 		if head_animation.animation == &"shoot" and head_animation.frame == 13 and remaining_attack_count > 0:
 			for weapon in plant.projectile_weapons:
-				weapon.weapon_use(GameManager.level.to_local(weapon.spawn_position).direction_to(plant.target_zombie.position))
+				break
+				# weapon.weapon_use(GameManager.level_array.to_local(weapon.spawn_position).direction_to(plant.target_zombie.position))
 			remaining_attack_count -= 1
 		
 		if (plant.target_zombie.position - plant.position).x < 0:

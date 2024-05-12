@@ -1,6 +1,7 @@
 class_name SeedBank extends Control
 
 @onready var seed_container := $SeedContainer
+@onready var sun_label := $SunCount as Label
 
 var game_event := GameEvent.new()
 var seed_packet_event := SeedPacketEvent.new()
@@ -9,7 +10,10 @@ var seed_packet_event := SeedPacketEvent.new()
 ## 当前选择的 Seed 个数
 var selected_seed_count := 0
 ## 当前 Sun 数
-var sun := 0
+var _sun: int:
+	set(value):
+		_sun = value
+		sun_label.text = str(value)
 
 var is_game_playing := false
 
@@ -21,6 +25,9 @@ func _ready() -> void:
 	EventManager.add_listener(game_event)
 	EventManager.add_listener(seed_packet_event)
 	#EventManager.add_listener(seed_chooser_event)
+
+func init(init_sun: int) -> void:
+	_sun = init_sun
 
 func _on_game_event(e: GameEvent) -> void:
 	if e.type == GameEvent.Type.Playing:

@@ -14,7 +14,7 @@ func _ready() -> void:
 	EventManager.add_listener(seed_packet_event)
 	EventManager.add_listener(seed_bank_event)
 
-func init_seed_chooser() -> void:
+func init() -> void:
 	for child in seed_packet_container.get_children():
 		child.queue_free()
 		
