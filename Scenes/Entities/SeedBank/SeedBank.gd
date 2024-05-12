@@ -7,7 +7,9 @@ var seed_packet_event := SeedPacketEvent.new()
 #var seed_chooser_event := SeedChooserEvent.new()
 
 ## 当前选择的 Seed 个数
-var seed_count := 0
+var selected_seed_count := 0
+## 当前 Sun 数
+var sun := 0
 
 var is_game_playing := false
 
@@ -32,7 +34,7 @@ func _on_seed_packet_event(e: SeedPacketEvent) -> void:
 		sp.pressed.connect(_on_seed_packet_pressed.bind(sp))
 		
 		seed_container.add_child(sp)
-		seed_count += 1
+		selected_seed_count += 1
 	
 	if not is_game_playing:
 		_check_seed_bank()
@@ -46,13 +48,13 @@ func _on_seed_packet_pressed(sp: SeedPacket) -> void:
 		SeedPacketEvent.trigger(SeedPacketEvent.Type.BACK_TO_SEED_CHOOSER, sp.seed_name)
 		
 		sp.queue_free()
-		seed_count -= 1
+		selected_seed_count -= 1
 		_check_seed_bank()
 
 func _check_seed_bank() -> void:
-	if seed_count > 0:
+	if selected_seed_count > 0:
 		SeedBankEvent.trigger(SeedBankEvent.Type.HAS_SEED)
-	elif seed_count == 0:
+	elif selected_seed_count == 0:
 		SeedBankEvent.trigger(SeedBankEvent.Type.NONE_SEED)
-	elif seed_count == GameManager.cfg_max_seed_bank_size:
+	elif selected_seed_count == GameManager.cfg_max_seed_bank_size:
 		SeedBankEvent.trigger(SeedBankEvent.Type.FULL_SEED)
