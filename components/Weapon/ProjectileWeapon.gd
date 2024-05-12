@@ -17,7 +17,7 @@ func _spawn_projectile(index: int, total: int, direction: Vector2) -> void :
 		var scene := GameManager.projectile_scenes.get(projectile[index]) as PackedScene
 		var p := scene.instantiate() as Projectile
 		p.direction = direction
-		p.position = GameManager.level.to_local(spawn_position)
-		
-		GameManager.level.add_child(p)
+		#p.position = GameManager.level.to_local(spawn_position)
+		#
+		#GameManager.level.add_child(p)
 		

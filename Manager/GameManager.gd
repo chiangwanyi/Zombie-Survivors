@@ -1,6 +1,7 @@
 extends Node
 
 var cfg: Dictionary
+var level: Array[Dictionary]
 
 ## Scene
 const scene_seed_packet := preload("res://Scenes/Entities/SeedPacket/SeedPacket.tscn") as PackedScene
@@ -36,6 +37,11 @@ func _ready() -> void:
 func _load_cfg() -> void:
 	var cfg_file := FileAccess.open("res://cfg.json", FileAccess.READ)
 	cfg = JSON.parse_string(cfg_file.get_as_text())
+
+
+func _load_level() -> void:
+	var level_fiel := FileAccess.open("res://level.json", FileAccess.READ)
+	level = JSON.parse_string(level_fiel.get_as_text())	
 
 
 func _load_cfg_seeds() -> void:

@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var state_machine := $StateMachine as StateMachine
-@onready var seed_chooser := $HUD/SeedChooser as SeedChooser
 
 var seed_packet_event := SeedPacketEvent.new()
 
@@ -10,7 +9,7 @@ var hold_seed_name : StringName
 var hold_seed_sprite : Sprite2D
 
 func _ready() -> void:
-	seed_chooser.init_seed_chooser()
+	($HUD/SeedChooser as SeedChooser).init_seed_chooser()
 	seed_packet_event.on_event.connect(_on_seed_packet_event)
 	
 	EventManager.add_listener(seed_packet_event)
