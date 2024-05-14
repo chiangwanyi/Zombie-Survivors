@@ -140,7 +140,6 @@ sprite_frames = SubResource("SpriteFrames_aw4b7")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CapsuleShape2D_xdvl5")
 
 [node name="PlantOnGrassAudioPlayer" parent="." instance=ExtResource("31_c88b8")]
@@ -151,6 +150,7 @@ texture = ExtResource("32_08k0s")
 texture_scale = 0.25
 
 [node name="SpawnSunTimer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 5.0
+one_shot = true
 
 [connection signal="timeout" from="SpawnSunTimer" to="StateMachine/Idle" method="_on_spawn_sun_timer_timeout"]

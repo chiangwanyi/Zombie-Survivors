@@ -28,7 +28,9 @@ func handle_input(_event: InputEvent) -> void:
 # 由当前 state 的 state_machine 在 _physics_process 中调用
 func update(_delta: float) -> void:
 	pass
-
+	
+func integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	pass
 
 func _on_animation_finished(_anim_name: StringName) -> void:
 	pass

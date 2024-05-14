@@ -31,6 +31,10 @@ window/stretch/mode="canvas_items"
 
 script/templates_search_path="res://_script_templates"
 
+[layer_names]
+
+2d_physics/layer_1="Projectile"
+
 [rendering]
 
 renderer/rendering_method="mobile"

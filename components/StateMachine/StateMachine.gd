@@ -55,6 +55,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	current_state.handle_input(event)
 
+func _rigid_process(state: PhysicsDirectBodyState2D) -> void:
+	if not _active:
+		return
+	if not current_state.ready_flag:
+		return
+	current_state.integrate_forces(state)
+
 
 func _physics_process(delta: float) -> void:
 	if not _active:
