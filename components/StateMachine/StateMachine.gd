@@ -31,7 +31,7 @@ var _active = false:
 		set_active(value)
 
 
-func _enter_tree() -> void:
+func _ready() -> void:
 	if start_state == null:
 		start_state = get_child(0) as State
 	for child: State in get_children():

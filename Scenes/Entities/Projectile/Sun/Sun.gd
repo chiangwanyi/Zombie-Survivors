@@ -2,6 +2,8 @@ extends RigidBody2D
 
 @onready var state_machine = $StateMachine as StateMachine
 
+var picked_flag := false
+
 func _ready() -> void:
 	state_machine.start()
 	
@@ -11,5 +13,5 @@ func _ready() -> void:
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			print("")
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true and not picked_flag:
+			state_machine.change_state("Pick")

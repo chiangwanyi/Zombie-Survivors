@@ -1,24 +1,24 @@
 [gd_scene load_steps=22 format=3 uid="uid://bnbpa5mxlykij"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/Sun.gd" id="1_56vqu"]
-[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://Assets/Items/Projectiles/Sun/Sun0001.png" id="1_eeg7p"]
+[ext_resource type="Texture2D" uid="uid://bwiwgtm00msr" path="res://Assets/Items/Projectiles/Sun/Sun0001.png" id="1_eeg7p"]
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/SunStateMachine.gd" id="1_hoq4x"]
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/State/Spawn.gd" id="2_12t7j"]
-[ext_resource type="Texture2D" uid="uid://djke70ux2o8vf" path="res://Assets/Items/Projectiles/Sun/Sun0002.png" id="2_g46jx"]
-[ext_resource type="Texture2D" uid="uid://cf22g6tsmk0im" path="res://Assets/Items/Projectiles/Sun/Sun0003.png" id="3_1db4f"]
+[ext_resource type="Texture2D" uid="uid://ccvyd5h0xayo1" path="res://Assets/Items/Projectiles/Sun/Sun0002.png" id="2_g46jx"]
+[ext_resource type="Texture2D" uid="uid://bby04d7f1xtl7" path="res://Assets/Items/Projectiles/Sun/Sun0003.png" id="3_1db4f"]
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/State/Falling.gd" id="3_206dd"]
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/State/Idle.gd" id="4_2top5"]
-[ext_resource type="Texture2D" uid="uid://pyekqghtu3e4" path="res://Assets/Items/Projectiles/Sun/Sun0004.png" id="4_yt3t2"]
+[ext_resource type="Texture2D" uid="uid://dq5uv3mju264l" path="res://Assets/Items/Projectiles/Sun/Sun0004.png" id="4_yt3t2"]
 [ext_resource type="Script" path="res://Scenes/Entities/Projectile/Sun/State/Pick.gd" id="5_0ogl2"]
-[ext_resource type="Texture2D" uid="uid://cikwpfbh7n0ii" path="res://Assets/Items/Projectiles/Sun/Sun0005.png" id="5_4occx"]
-[ext_resource type="Texture2D" uid="uid://boqljvn6xpb1q" path="res://Assets/Items/Projectiles/Sun/Sun0006.png" id="6_roppf"]
-[ext_resource type="Texture2D" uid="uid://bdwwbansciyqa" path="res://Assets/Items/Projectiles/Sun/Sun0007.png" id="7_fl2og"]
-[ext_resource type="Texture2D" uid="uid://clk0db8n0rqeu" path="res://Assets/Items/Projectiles/Sun/Sun0008.png" id="8_e0it4"]
-[ext_resource type="Texture2D" uid="uid://f6vkntkbhcn4" path="res://Assets/Items/Projectiles/Sun/Sun0009.png" id="9_5onn5"]
-[ext_resource type="Texture2D" uid="uid://bml6jit4t7ih5" path="res://Assets/Items/Projectiles/Sun/Sun0010.png" id="10_g0p8w"]
-[ext_resource type="Texture2D" uid="uid://btw0fhv4myyo1" path="res://Assets/Items/Projectiles/Sun/Sun0011.png" id="11_wiqau"]
-[ext_resource type="Texture2D" uid="uid://b1e1x783tcykg" path="res://Assets/Items/Projectiles/Sun/Sun0012.png" id="12_ey0wh"]
-[ext_resource type="Texture2D" uid="uid://c63v33xtidump" path="res://Assets/Items/Projectiles/Sun/Sun0013.png" id="13_gs10h"]
+[ext_resource type="Texture2D" uid="uid://d2ar3hahkl6fy" path="res://Assets/Items/Projectiles/Sun/Sun0005.png" id="5_4occx"]
+[ext_resource type="Texture2D" uid="uid://ct5hqogb8eexf" path="res://Assets/Items/Projectiles/Sun/Sun0006.png" id="6_roppf"]
+[ext_resource type="Texture2D" uid="uid://csf648w77r22j" path="res://Assets/Items/Projectiles/Sun/Sun0007.png" id="7_fl2og"]
+[ext_resource type="Texture2D" uid="uid://b4v5rgrktdwtj" path="res://Assets/Items/Projectiles/Sun/Sun0008.png" id="8_e0it4"]
+[ext_resource type="Texture2D" uid="uid://dmkflipwcofus" path="res://Assets/Items/Projectiles/Sun/Sun0009.png" id="9_5onn5"]
+[ext_resource type="Texture2D" uid="uid://l77uxmjgll4r" path="res://Assets/Items/Projectiles/Sun/Sun0010.png" id="10_g0p8w"]
+[ext_resource type="Texture2D" uid="uid://dqeon6hub51xs" path="res://Assets/Items/Projectiles/Sun/Sun0011.png" id="11_wiqau"]
+[ext_resource type="Texture2D" uid="uid://bepmfryaugfco" path="res://Assets/Items/Projectiles/Sun/Sun0012.png" id="12_ey0wh"]
+[ext_resource type="Texture2D" uid="uid://bsou3dn77l3ck" path="res://Assets/Items/Projectiles/Sun/Sun0013.png" id="13_gs10h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_b1vjf"]
 animations = [{
@@ -71,7 +71,6 @@ animations = [{
 radius = 46.0109
 
 [node name="Sun" type="RigidBody2D"]
-position = Vector2(609, 259)
 collision_mask = 0
 input_pickable = true
 gravity_scale = 0.5
