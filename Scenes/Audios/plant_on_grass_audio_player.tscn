@@ -1,9 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://boa01adyfbank"]
 
-[ext_resource type="AudioStream" uid="uid://dafhtoe8ty53g" path="res://Assets/Sounds/plant.ogg" id="1_6nhtr"]
-[ext_resource type="AudioStream" uid="uid://f5faa1l0y35p" path="res://Assets/Sounds/plant2.ogg" id="2_2dqvn"]
+[ext_resource type="AudioStream" uid="uid://dlk62lwp0c6ie" path="res://Assets/Sounds/plant.ogg" id="1_6nhtr"]
+[ext_resource type="AudioStream" uid="uid://c21tfe6vgwbej" path="res://Assets/Sounds/plant2.ogg" id="2_2dqvn"]
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1m23d"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_34am6"]
 playback_mode = 1
 streams_count = 2
 stream_0/stream = ExtResource("1_6nhtr")
@@ -12,4 +12,4 @@ stream_1/stream = ExtResource("2_2dqvn")
 stream_1/weight = 1.0
 
 [node name="PlantOnGrassAudioPlayer" type="AudioStreamPlayer"]
-stream = SubResource("AudioStreamRandomizer_1m23d")
+stream = SubResource("AudioStreamRandomizer_34am6")

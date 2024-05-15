@@ -2,7 +2,6 @@ extends State
 
 func enter() -> void:
 	($"../../AnimatedSprite2D" as AnimatedSprite2D).play("idle")
-	($"../../PlantOnGrassAudioPlayer" as AudioStreamPlayer).play()
 	($"../../SpawnSunTimer" as Timer).start()
 	super.enter()
 
