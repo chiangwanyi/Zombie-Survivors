@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://w7xu435qumq2"]
+[gd_scene load_steps=28 format=3 uid="uid://w7xu435qumq2"]
 
 [ext_resource type="Texture2D" uid="uid://b1hdv21ho2e82" path="res://Assets/Items/Tiles/Almanac_GroundDay.jpg" id="1_3oqfe"]
 [ext_resource type="Script" path="res://Scenes/Levels/GameLevel/GameLevel.gd" id="1_kc6x4"]
@@ -15,12 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://bwam8xt0qchv4" path="res://Scenes/Entities/FlagMeter/FlagMeter.tscn" id="12_vt1yw"]
 [ext_resource type="AudioStream" uid="uid://caxkpp6gnpcnp" path="res://Assets/Sounds/choose_your_seeds.ogg" id="13_0pjrr"]
 [ext_resource type="Texture2D" uid="uid://bdiwqc7m2bcwj" path="res://Assets/Images/StartSet.png" id="13_6hkbv"]
-[ext_resource type="Texture2D" uid="uid://d15gk1sa2o2vq" path="res://Assets/Images/Plants/PeaShooterSingle.png" id="13_v2dd2"]
 [ext_resource type="AudioStream" uid="uid://c875j2nmyyyha" path="res://Assets/Sounds/level_grasswalk.ogg" id="14_2wobg"]
 [ext_resource type="Texture2D" uid="uid://cb12dsreb007w" path="res://Assets/Images/StartReady.png" id="14_dqhww"]
 [ext_resource type="Texture2D" uid="uid://nmljlw62e1ls" path="res://Assets/Images/StartPlant.png" id="15_xlsik"]
 [ext_resource type="AudioStream" uid="uid://dr3ihne0mvy6x" path="res://Assets/Sounds/readysetplant.ogg" id="19_5vj1g"]
-[ext_resource type="Texture2D" uid="uid://bpv0vxfbji41o" path="res://Assets/Images/Plants/Sunflower.png" id="20_r1iqe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
 texture = ExtResource("1_3oqfe")
@@ -304,6 +302,12 @@ _data = {
 "SelectionComplete": SubResource("Animation_q4tqu")
 }
 
+[sub_resource type="Curve2D" id="Curve2D_titk4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1920, 0, 0, 0, 0, 0, 1920, 1080, 0, 0, 0, 0, 0, 1080, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
 [node name="GameLevel" type="Node2D"]
 script = ExtResource("1_kc6x4")
 
@@ -421,7 +425,7 @@ pivot_offset = Vector2(150, 66)
 texture = ExtResource("15_xlsik")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.5, 0.5)
+zoom = Vector2(0.75, 0.75)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_c6pwi")
@@ -442,18 +446,13 @@ stream = ExtResource("14_2wobg")
 [node name="ReadySetPlantBG" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_5vj1g")
 
-[node name="F2" type="Sprite2D" parent="."]
-texture = ExtResource("20_r1iqe")
-
 [node name="OverHUD" type="CanvasLayer" parent="."]
 layer = 2
+scale = Vector2(0.75, 0.75)
+transform = Transform2D(0.75, 0, 0, 0.75, 0, 0)
 
-[node name="P" type="Sprite2D" parent="OverHUD"]
-texture = ExtResource("13_v2dd2")
-
-[node name="F" type="Sprite2D" parent="OverHUD"]
-position = Vector2(1080, 0)
-texture = ExtResource("20_r1iqe")
+[node name="ZombieSpawnPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_titk4")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SelectionComplete" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Playing" method="_on_animation_player_animation_finished"]

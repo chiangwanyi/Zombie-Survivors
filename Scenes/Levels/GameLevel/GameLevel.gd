@@ -19,9 +19,9 @@ func _ready() -> void:
 	state_machine.start()
 
 func _process(delta: float) -> void:
-	pass
 	#print(DisplayServer.mouse_get_position())
 	#print(get_local_mouse_position())
+	pass
 
 func _on_seed_packet_event(e: SeedPacketEvent) -> void:
 	# 只有游戏状态为 Playing 时，才处理 种子拖拽 事件

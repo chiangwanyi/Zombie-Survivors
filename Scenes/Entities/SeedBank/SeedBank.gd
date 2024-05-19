@@ -7,6 +7,7 @@ var game_event := GameEvent.new()
 var seed_packet_event := SeedPacketEvent.new()
 var seed_chooser_event := SeedChooserEvent.new()
 var spawn_event := SpawnEvent.new()
+var pick_event := PickEvent.new()
 
 ## 当前选择的 Seed 个数
 var selected_seed_count := 0
@@ -23,11 +24,13 @@ func _ready() -> void:
 	seed_packet_event.on_event.connect(_on_seed_packet_event)
 	seed_chooser_event.on_event.connect(_on_seed_chooser_event)
 	spawn_event.on_event.connect(_on_spawn_event)
+	pick_event.on_event.connect(_on_pick_event)
 	
 	EventManager.add_listener(game_event)
 	EventManager.add_listener(seed_packet_event)
 	EventManager.add_listener(seed_chooser_event)
 	EventManager.add_listener(spawn_event)
+	EventManager.add_listener(pick_event)
 
 func init(init_sun: int) -> void:
 	sun = init_sun
@@ -62,6 +65,10 @@ func _on_spawn_event(e: SpawnEvent) -> void:
 	if e.type == SpawnEvent.Type.PLANT:
 		sun -= e.spawn_cost
 		
+func _on_pick_event(e: PickEvent) -> void:
+	if e.type == PickEvent.Type.Sun:
+		sun += 100
+
 func _on_seed_packet_pressed(sp: SeedPacket) -> void:
 	print("选择了 %s" % sp.seed_name)
 	if not is_game_playing:
