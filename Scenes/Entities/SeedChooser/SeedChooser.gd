@@ -1,15 +1,14 @@
 class_name SeedChooser extends Control
 
 @onready var seed_packet_container := $SeedPacketContainer
-
 @onready var selection_complete_btn := $SelectionCompleteButton as TextureButton
 
 var seed_packet_event := SeedPacketEvent.new()
 var seed_bank_event := SeedBankEvent.new()
 
 func _ready() -> void:
-	seed_packet_event.on_event.connect(_on_seed_packet_event)
-	seed_bank_event.on_event.connect(_on_seed_bank_event)
+	seed_packet_event.on_event.connect(_on_event_seed_packet)
+	seed_bank_event.on_event.connect(_on_event_seed_bank)
 	
 	EventManager.add_listener(seed_packet_event)
 	EventManager.add_listener(seed_bank_event)
@@ -30,17 +29,16 @@ func init() -> void:
 		
 func _on_seed_packet_pressed(sp: SeedPacket) -> void:
 	sp.visible = false
-	
 	SeedPacketEvent.trigger(SeedPacketEvent.Type.ADD_TO_SEED_BANK, sp.seed_name)
 
-func _on_seed_packet_event(e: SeedPacketEvent) -> void:
+func _on_event_seed_packet(e: SeedPacketEvent) -> void:
 	if e.type == SeedPacketEvent.Type.BACK_TO_SEED_CHOOSER:
 		for child: SeedPacket in seed_packet_container.get_children():
 			if child.seed_name == e.seed_name:
 				child.visible = true
 				break
 
-func _on_seed_bank_event(e: SeedBankEvent) -> void:
+func _on_event_seed_bank(e: SeedBankEvent) -> void:
 	if e.type == SeedBankEvent.Type.HAS_SEED:
 		selection_complete_btn.disabled = false
 	elif e.type == SeedBankEvent.Type.NONE_SEED:

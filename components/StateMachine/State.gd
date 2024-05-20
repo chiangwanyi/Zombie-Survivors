@@ -4,23 +4,26 @@ class_name State extends Node
 # but forces us to pass the right arguments to the methods below
 # and makes sure every State object had all of these methods.
 
-var exit_flag : bool
-var ready_flag : bool
+var is_exiting : bool
+var is_ready : bool
 
 # warning-ignore:unused_signal
 signal finished(next_state_name)
 
 # 用于进入当前 state 后的初始化操作. E.g. 切换 animation.
 func enter() -> void:
-	exit_flag = false
-	ready_flag = true
+	is_exiting = false
+	is_ready = true
 
 
 # Clean up the state. Reinitialize values like a timer.
 func exit() -> void:
-	exit_flag = true
-	ready_flag = false
+	is_exiting = true
+	is_ready = false
 
+
+func is_active() -> bool:
+	return is_ready and not is_exiting
 
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -29,8 +32,8 @@ func handle_input(_event: InputEvent) -> void:
 func update(_delta: float) -> void:
 	pass
 	
-func integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	pass
+# func integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+# 	pass
 
 func _on_animation_finished(_anim_name: StringName) -> void:
 	pass
