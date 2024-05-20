@@ -1,10 +1,16 @@
-[gd_scene load_steps=253 format=3 uid="uid://csjaap3wc54xu"]
+[gd_scene load_steps=259 format=3 uid="uid://csjaap3wc54xu"]
 
 [ext_resource type="Texture2D" uid="uid://c0hiydtsa4bc2" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0179.png" id="1_ce4pi"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/zombie.gd" id="1_glcs6"]
 [ext_resource type="Texture2D" uid="uid://6ys4osas1p60" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0180.png" id="2_5b8cs"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/ZombieStateMachine.gd" id="2_xevlp"]
 [ext_resource type="Texture2D" uid="uid://300pghbnibx8" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0181.png" id="3_2tkmn"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/State/Idle.gd" id="3_4ru28"]
 [ext_resource type="Texture2D" uid="uid://cwhjsfeb2onql" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0182.png" id="4_co42t"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/State/Death.gd" id="4_hxo7b"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/State/Walk.gd" id="5_8ukoq"]
 [ext_resource type="Texture2D" uid="uid://dbqykpkyd4uxm" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0183.png" id="5_x8llr"]
+[ext_resource type="Script" path="res://Scenes/Entities/Zombies/Zombie/State/Eat.gd" id="6_j854j"]
 [ext_resource type="Texture2D" uid="uid://ccut4w4iqyq14" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0184.png" id="6_ryr5n"]
 [ext_resource type="Texture2D" uid="uid://cgtpq0vlgevjt" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0185.png" id="7_srr2b"]
 [ext_resource type="Texture2D" uid="uid://ph0lybfyvsrv" path="res://Assets/Items/Zombies/Zombie/Death1/Zombie0186.png" id="8_awlew"]
@@ -1040,19 +1046,32 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ryi30"]
-radius = 24.0
+radius = 18.0
 
-[node name="Zombie" type="Node2D"]
+[node name="Zombie" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_glcs6")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = ExtResource("2_xevlp")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_4ru28")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("4_hxo7b")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("5_8ukoq")
+
+[node name="Eat" type="Node" parent="StateMachine"]
+script = ExtResource("6_j854j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-30, 0)
 sprite_frames = SubResource("SpriteFrames_4nlr2")
 animation = &"walk2"
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 2
-collision_mask = 3
-gravity_scale = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ryi30")

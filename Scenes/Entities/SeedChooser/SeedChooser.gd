@@ -38,6 +38,7 @@ func _on_event_seed_packet(e: SeedPacketEvent) -> void:
 				child.visible = true
 				break
 
+## SeedChooser 关心 SeedBank 是否选择了 Seed，控制【开始游戏】按钮的状态
 func _on_event_seed_bank(e: SeedBankEvent) -> void:
 	if e.type == SeedBankEvent.Type.HAS_SEED:
 		selection_complete_btn.disabled = false

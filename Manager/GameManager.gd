@@ -10,7 +10,7 @@ const scene_seed_packet := preload("res://Scenes/Entities/SeedPacket/SeedPacket.
 ## 当前存活的植物
 var plants: Array[Plant] = []
 ## 当前存活的僵尸
-var zombies: Array[Zombie] = []
+#var zombies: Array[Zombie] = []
 ## 当前游戏场景
 var current_level: Node2D
 

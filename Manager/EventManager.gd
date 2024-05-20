@@ -18,3 +18,10 @@ func trigger_event(e: BasicEvent) -> void:
 		return
 	for event in events as Array[BasicEvent]:
 		event.on_event.emit(e)
+		
+func remove_listener(event: BasicEvent) -> void:
+	if subscribers.has(event.event_name):
+		var events := subscribers[event.event_name] as Array[BasicEvent]
+		
+		if events.has(event):
+			events.erase(event)

@@ -11,6 +11,7 @@ var pick_event := PickEvent.new()
 
 ## 当前选择的 Seed 个数
 var selected_seed_count := 0
+
 ## 当前 Sun 数
 var sun: int:
 	set(value):
@@ -21,10 +22,10 @@ var is_game_playing := false
 
 func _ready() -> void:
 	game_event.on_event.connect(_on_game_event)
-	seed_packet_event.on_event.connect(_on_seed_packet_event)
-	seed_chooser_event.on_event.connect(_on_seed_chooser_event)
-	spawn_event.on_event.connect(_on_spawn_event)
-	pick_event.on_event.connect(_on_pick_event)
+	seed_packet_event.on_event.connect(_on_event_seed_packet)
+	seed_chooser_event.on_event.connect(_on_event_seed_chooser)
+	spawn_event.on_event.connect(_on_event_spawn)
+	pick_event.on_event.connect(_on_event_pick)
 	
 	EventManager.add_listener(game_event)
 	EventManager.add_listener(seed_packet_event)
@@ -42,7 +43,7 @@ func _on_game_event(e: GameEvent) -> void:
 			sp.state_machine.change_state("Ready")
 
 
-func _on_seed_packet_event(e: SeedPacketEvent) -> void:
+func _on_event_seed_packet(e: SeedPacketEvent) -> void:
 	if not is_game_playing and e.type == SeedPacketEvent.Type.ADD_TO_SEED_BANK:
 		var sp := GameManager.scene_seed_packet.instantiate() as SeedPacket
 		sp.seed_bank = self
@@ -55,17 +56,17 @@ func _on_seed_packet_event(e: SeedPacketEvent) -> void:
 	if not is_game_playing:
 		_check_seed_bank()
 
-func _on_seed_chooser_event(e: SeedChooserEvent) -> void:
+func _on_event_seed_chooser(e: SeedChooserEvent) -> void:
 	if e.type == SeedChooserEvent.Type.SELECTION_COMPLETE:
 		is_game_playing = true
 		for sp: SeedPacket in seed_container.get_children():
 			sp.state_machine.change_state("Loading")
 
-func _on_spawn_event(e: SpawnEvent) -> void:
+func _on_event_spawn(e: SpawnEvent) -> void:
 	if e.type == SpawnEvent.Type.PLANT:
 		sun -= e.spawn_cost
 		
-func _on_pick_event(e: PickEvent) -> void:
+func _on_event_pick(e: PickEvent) -> void:
 	if e.type == PickEvent.Type.Sun:
 		sun += 100
 

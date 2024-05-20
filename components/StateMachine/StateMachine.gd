@@ -51,14 +51,14 @@ func _initialize(initial_state: State):
 func _unhandled_input(event: InputEvent) -> void:
 	if not _active:
 		return
-	if not current_state.ready_flag:
+	if not current_state.is_ready:
 		return
 	current_state.handle_input(event)
 
 func _rigid_process(state: PhysicsDirectBodyState2D) -> void:
 	if not _active:
 		return
-	if not current_state.ready_flag:
+	if not current_state.is_ready:
 		return
 	current_state.integrate_forces(state)
 
@@ -66,7 +66,7 @@ func _rigid_process(state: PhysicsDirectBodyState2D) -> void:
 func _physics_process(delta: float) -> void:
 	if not _active:
 		return
-	if not current_state.ready_flag:
+	if not current_state.is_ready:
 		return
 	current_state.update(delta)
 
