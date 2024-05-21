@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c5us232yjcjox"]
+
+[sub_resource type="GDScript" id="GDScript_uhq8u"]
+script/source = "extends StateMachine
+
+func _ready() -> void:
+	super._ready()
+
+"
+
+[node name="StateMachine" type="Node"]
+script = SubResource("GDScript_uhq8u")

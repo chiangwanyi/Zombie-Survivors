@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bj7kkhbktxh1q"
-path="res://.godot/imported/SunFlower0014.png-2aeec7bb14ae3bfcbab8c0cb8717398f.ctex"
+path="res://.godot/imported/SunFlower0014.png-3f5fa37000d241d6c22793cae785df82.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/Plants/Sunflower/SunFlower0014.png"
-dest_files=["res://.godot/imported/SunFlower0014.png-2aeec7bb14ae3bfcbab8c0cb8717398f.ctex"]
+source_file="res://Assets/Items/Plants/sunflower/SunFlower0014.png"
+dest_files=["res://.godot/imported/SunFlower0014.png-3f5fa37000d241d6c22793cae785df82.ctex"]
 
 [params]
 

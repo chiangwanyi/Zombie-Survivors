@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://chiyw2b2041kb"]
-
-[ext_resource type="Script" path="res://components/character/abilities/character_health.gd" id="1_jl2sh"]
-
-[node name="CharacterHealth" type="Node"]
-script = ExtResource("1_jl2sh")
