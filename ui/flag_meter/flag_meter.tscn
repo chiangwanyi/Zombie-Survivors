@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://bwam8xt0qchv4"]
+
+[ext_resource type="Script" path="res://ui/flag_meter/flag_meter.gd" id="1_it8t5"]
+[ext_resource type="Texture2D" uid="uid://c4tnhh7m838xh" path="res://Assets/Images/FlagMeter.png" id="2_v424g"]
+[ext_resource type="Texture2D" uid="uid://cbsv73ajx3nho" path="res://Assets/Images/FlagMeterParts.png" id="3_y21um"]
+[ext_resource type="Texture2D" uid="uid://cuysalyjnd2js" path="res://Assets/Images/FlagMeterLevelProgress.png" id="4_au00v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsfle"]
+atlas = ExtResource("2_v424g")
+region = Rect2(0, 0, 158, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rovs6"]
+atlas = ExtResource("2_v424g")
+region = Rect2(0, 27, 158, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rehte"]
+atlas = ExtResource("3_y21um")
+region = Rect2(51, 0, 24, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ltjx"]
+atlas = ExtResource("3_y21um")
+region = Rect2(0, 0, 26, 25)
+
+[node name="FlagMeter" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_it8t5")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 20.0
+min_value = 4.0
+value = 95.0
+rounded = true
+fill_mode = 1
+nine_patch_stretch = true
+stretch_margin_left = 8
+stretch_margin_right = 8
+texture_under = SubResource("AtlasTexture_wsfle")
+texture_progress = SubResource("AtlasTexture_rovs6")
+
+[node name="Flag" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 98.0
+offset_top = -2.0
+offset_right = 118.0
+offset_bottom = 18.0
+texture = SubResource("AtlasTexture_rehte")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 32.0
+offset_top = 12.0
+offset_right = 118.0
+offset_bottom = 23.0
+texture = ExtResource("4_au00v")
+stretch_mode = 4
+
+[node name="Zombie" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 20.0
+offset_bottom = 20.0
+texture = SubResource("AtlasTexture_5ltjx")
+expand_mode = 1
+stretch_mode = 5

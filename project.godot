@@ -11,14 +11,14 @@ config_version=5
 [application]
 
 config/name="僵尸幸存者"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://main/main.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://Manager/GameManager.gd"
-EventManager="*res://Manager/EventManager.gd"
+GameManager="*res://manager/game_manager.gd"
+EventManager="*res://manager/event_manager.gd"
 
 [display]
 
