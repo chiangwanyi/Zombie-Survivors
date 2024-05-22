@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1g7imiy1kxsy"]
+
+[ext_resource type="PackedScene" uid="uid://ba0dryhmurp07" path="res://projectiles/sun.tscn" id="1_rp3ql"]
+
+[sub_resource type="GDScript" id="GDScript_x26pi"]
+script/source = "extends ProjectileWeapon
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="SunSpawner" type="Node2D"]
+script = SubResource("GDScript_x26pi")
+projectiles = Array[PackedScene]([ExtResource("1_rp3ql")])

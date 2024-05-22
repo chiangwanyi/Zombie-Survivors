@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bwam8xt0qchv4"]
 
 [ext_resource type="Script" path="res://ui/flag_meter/flag_meter.gd" id="1_it8t5"]
-[ext_resource type="Texture2D" uid="uid://c4tnhh7m838xh" path="res://Assets/Images/FlagMeter.png" id="2_v424g"]
-[ext_resource type="Texture2D" uid="uid://cbsv73ajx3nho" path="res://Assets/Images/FlagMeterParts.png" id="3_y21um"]
-[ext_resource type="Texture2D" uid="uid://cuysalyjnd2js" path="res://Assets/Images/FlagMeterLevelProgress.png" id="4_au00v"]
+[ext_resource type="Texture2D" uid="uid://c4tnhh7m838xh" path="res://_assets/Images/FlagMeter.png" id="2_v424g"]
+[ext_resource type="Texture2D" uid="uid://cbsv73ajx3nho" path="res://_assets/Images/FlagMeterParts.png" id="3_y21um"]
+[ext_resource type="Texture2D" uid="uid://cuysalyjnd2js" path="res://_assets/Images/FlagMeterLevelProgress.png" id="4_au00v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsfle"]
 atlas = ExtResource("2_v424g")

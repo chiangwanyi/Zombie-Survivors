@@ -3,8 +3,6 @@ class_name Health extends Node
 signal damaged
 signal killed
 
-## HP的所属者
-@export var body: Node
 ## 节点的初始HP
 @export var initial_health: float = 10
 
@@ -29,7 +27,7 @@ func _can_take_damage_this_frame() -> bool:
 		return false
 	return true
 
-func take_damage(damage: float, instigator: Node, invincibility_duration: float) -> void:
+func take_damage(damage: float, _instigator: Node, _invincibility_duration: float) -> void:
 	if not _can_take_damage_this_frame():
 		return
 	

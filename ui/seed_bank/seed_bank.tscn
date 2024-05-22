@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqkrmdxlwvvqk"]
 
-[ext_resource type="Texture2D" uid="uid://bn6xsggbhlbvi" path="res://Assets/Images/SeedBank.png" id="1_slpqo"]
+[ext_resource type="Texture2D" uid="uid://bn6xsggbhlbvi" path="res://_assets/Images/SeedBank.png" id="1_slpqo"]
 [ext_resource type="Script" path="res://ui/seed_bank/seed_bank.gd" id="1_xapnq"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1h3mi"]

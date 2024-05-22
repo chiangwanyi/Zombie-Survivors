@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bskyhs7d56e76"]
 
 [ext_resource type="Script" path="res://ui/seed_chooser/seed_chooser.gd" id="1_nxfxq"]
-[ext_resource type="Texture2D" uid="uid://bvoly6vjdd7tc" path="res://Assets/Images/SeedChooser_Background.png" id="2_ygxyp"]
-[ext_resource type="Texture2D" uid="uid://c6e10kqvkmg5r" path="res://Assets/Images/SeedChooser_Button.png" id="3_o3sbr"]
-[ext_resource type="Texture2D" uid="uid://cc0ju37pa361v" path="res://Assets/Images/SeedChooser_Button_Disabled.png" id="4_xh58f"]
+[ext_resource type="Texture2D" uid="uid://bvoly6vjdd7tc" path="res://_assets/Images/SeedChooser_Background.png" id="2_ygxyp"]
+[ext_resource type="Texture2D" uid="uid://c6e10kqvkmg5r" path="res://_assets/Images/SeedChooser_Button.png" id="3_o3sbr"]
+[ext_resource type="Texture2D" uid="uid://cc0ju37pa361v" path="res://_assets/Images/SeedChooser_Button_Disabled.png" id="4_xh58f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_33b08"]
 texture = ExtResource("2_ygxyp")
