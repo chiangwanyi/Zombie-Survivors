@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://ba0dryhmurp07"]
+[gd_scene load_steps=23 format=3 uid="uid://ba0dryhmurp07"]
 
 [ext_resource type="PackedScene" uid="uid://bpo65g4my4s0v" path="res://components/abilities/pickable_ability.tscn" id="1_5lp5i"]
-[ext_resource type="PackedScene" uid="uid://be54h8bv6xubs" path="res://components/abilities/projectile_ability.tscn" id="1_rfnx1"]
 [ext_resource type="PackedScene" uid="uid://c5us232yjcjox" path="res://components/state_machine/state_machine.tscn" id="1_tc2b0"]
 [ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="2_7k58j"]
 [ext_resource type="Texture2D" uid="uid://djke70ux2o8vf" path="res://_assets/items/projectiles/sun/Sun0002.png" id="3_cayew"]
@@ -162,8 +161,6 @@ script = SubResource("GDScript_spg5m")
 
 [node name="PickableAbility" parent="." node_paths=PackedStringArray("pick_target") instance=ExtResource("1_5lp5i")]
 pick_target = NodePath("..")
-
-[node name="ProjectileAbility" parent="." instance=ExtResource("1_rfnx1")]
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("start_state") instance=ExtResource("1_tc2b0")]
 start_state = NodePath("Spawn")
