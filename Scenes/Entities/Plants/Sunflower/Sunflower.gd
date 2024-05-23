@@ -1,9 +1,7 @@
-extends ResourcePlant
+extends Node
 
 func _ready() -> void:
-	state_machine = $StateMachine as StateMachine
-	($PlantOnGrassAudioPlayer as AudioStreamPlayer).play()
-	state_machine.start()
+	pass
 	
 func set_resource_time(t: float) -> void:
 	($SpawnSunTimer as Timer).wait_time = t

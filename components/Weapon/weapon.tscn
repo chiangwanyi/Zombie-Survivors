@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=3 uid="uid://bmmn2owanxfvn"]
+
+[sub_resource type="GDScript" id="GDScript_b045d"]
+script/source = "class_name Weapon extends Node2D
+
+enum TriggerModes { SemiAuto, Auto }
+
+## 是否自动开火
+@export var auto_trigger: bool = false
+## 开火模式
+@export var trigger_mode: TriggerModes = TriggerModes.Auto
+
+func _ready() -> void:
+	print(\"weapon ready\")
+	
+## 使用武器，direction 是开火方向
+func weapon_use(_direction: Vector2) -> void :
+	pass
+"
+
+[sub_resource type="GDScript" id="GDScript_uhq8u"]
+script/source = "extends StateMachine
+
+func _ready() -> void:
+	super._ready()
+
+"
+
+[sub_resource type="GDScript" id="GDScript_iv8al"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_b5gou"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_553j5"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_supsb"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[node name="Weapon" type="Node2D"]
+script = SubResource("GDScript_b045d")
+
+[node name="StateMachine" type="Node" parent="."]
+script = SubResource("GDScript_uhq8u")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_iv8al")
+
+[node name="Use" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_b5gou")
+
+[node name="DelayBetweenUses" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_553j5")
+
+[node name="Reload" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_supsb")
+
+[node name="Reload2" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_supsb")
