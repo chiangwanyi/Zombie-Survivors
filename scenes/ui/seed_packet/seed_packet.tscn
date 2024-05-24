@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://b1gjmmj84sam8"]
+
+[ext_resource type="Texture2D" uid="uid://d1jj3lsv3yrdh" path="res://_assets/images/SeedPacket_Larger.png" id="1_42heu"]
+[ext_resource type="Texture2D" uid="uid://dlxnfdc3xpqxt" path="res://_assets/images/SeedPacketSilhouette.png" id="2_txdxv"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/seed_packet.gd" id="3_pxjot"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/blank.gd" id="4_dx40a"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/selection.gd" id="5_5sbcn"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/loading.gd" id="6_d82l2"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/ready.gd" id="7_351my"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/cooldown.gd" id="8_tf4oj"]
+[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/unavailable.gd" id="9_dr0u6"]
+
+[sub_resource type="GDScript" id="GDScript_31ej0"]
+script/source = "extends StateMachine
+"
+
+[node name="SeedPacket" type="TextureButton"]
+offset_right = 100.0
+offset_bottom = 140.0
+texture_normal = ExtResource("1_42heu")
+texture_disabled = ExtResource("2_txdxv")
+stretch_mode = 0
+script = ExtResource("3_pxjot")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = SubResource("GDScript_31ej0")
+start_state = NodePath("Blank")
+
+[node name="Blank" type="Node" parent="StateMachine"]
+script = ExtResource("4_dx40a")
+
+[node name="Selection" type="Node" parent="StateMachine"]
+script = ExtResource("5_5sbcn")
+
+[node name="Loading" type="Node" parent="StateMachine"]
+script = ExtResource("6_d82l2")
+
+[node name="Ready" type="Node" parent="StateMachine"]
+script = ExtResource("7_351my")
+
+[node name="CoolDown" type="Node" parent="StateMachine"]
+script = ExtResource("8_tf4oj")
+
+[node name="Unavailable" type="Node" parent="StateMachine"]
+script = ExtResource("9_dr0u6")
+
+[node name="Avatar" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 40.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cost" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -30.0
+offset_right = 6.0
+offset_bottom = -6.99994
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "1000"
+horizontal_alignment = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="CoolDownProgress" type="TextureProgressBar" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+rounded = true
+fill_mode = 2
+texture_progress = ExtResource("1_42heu")
+tint_progress = Color(0, 0, 0, 0.588235)
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="value_changed" from="CoolDownProgress" to="StateMachine/CoolDown" method="_on_cool_down_progress_value_changed"]

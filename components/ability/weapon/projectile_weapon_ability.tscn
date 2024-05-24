@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://be54h8bv6xubs"]
+
+[sub_resource type="GDScript" id="GDScript_r72ir"]
+script/source = "class_name ProjectileWeaponAbility extends WeaponAbility
+
+enum ProjectileTrajectory {
+	## 直线弹道
+	LINEAR,
+	## 抛物线弹道
+	PARABOLIC,         
+	## 自动追踪弹道
+	HOMING,            
+	## 反弹弹道
+	BOUNCING,          
+	## 分裂弹道
+	SPLITTING,         
+	## 激光（瞬时命中）
+	LASER,             
+	## 范围效果（例如爆炸）
+	AREA_OF_EFFECT,    
+	## 受重力影响的弹道
+	GRAVITY_AFFECTED   
+}
+
+## 【投射物武器】可以发射的【投射物】
+@export var projectiles: Array[PackedScene] = []
+## 每次发射的【投射物】数量
+@export var projectiles_per_shot := 1
+## 武器弹道
+@export var projectile_trajectory: ProjectileTrajectory
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="ProjectileWeaponAbility" type="Node"]
+script = SubResource("GDScript_r72ir")

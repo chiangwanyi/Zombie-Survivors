@@ -81,6 +81,8 @@ func _process(delta: float) -> void:
 
 
 func change_state(state_name: StringName) -> void:
+	set_process(false)
+	set_physics_process(false)
 	if not _active:
 		return
 	if not current_state.is_active():
@@ -95,3 +97,5 @@ func change_state(state_name: StringName) -> void:
 
 	if state_name != &"previous":
 		current_state.enter()
+	set_process(true)
+	set_physics_process(true)

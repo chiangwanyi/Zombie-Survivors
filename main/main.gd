@@ -1,6 +1,6 @@
 extends Node
 
-const game_level_grass_walk_scene := preload("res://levels/game_grass_walk/game_grass_walk.tscn") as PackedScene
+const game_level_grass_walk_scene := preload("res://scenes/levels/game_grass_walk/game_grass_walk.tscn") as PackedScene
 
 func _ready() -> void:
 	go_to_game_level()

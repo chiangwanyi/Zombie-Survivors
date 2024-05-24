@@ -1,0 +1,187 @@
+[gd_scene load_steps=23 format=3 uid="uid://ba0dryhmurp07"]
+
+[ext_resource type="PackedScene" uid="uid://bpo65g4my4s0v" path="res://components/ability/pickable_ability.tscn" id="1_5lp5i"]
+[ext_resource type="PackedScene" uid="uid://c5us232yjcjox" path="res://components/state_machine/state_machine.tscn" id="1_tc2b0"]
+[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="2_7k58j"]
+[ext_resource type="Texture2D" uid="uid://djke70ux2o8vf" path="res://_assets/items/projectiles/sun/Sun0002.png" id="3_cayew"]
+[ext_resource type="Texture2D" uid="uid://cf22g6tsmk0im" path="res://_assets/items/projectiles/sun/Sun0003.png" id="4_rtaxc"]
+[ext_resource type="Texture2D" uid="uid://pyekqghtu3e4" path="res://_assets/items/projectiles/sun/Sun0004.png" id="5_f52vd"]
+[ext_resource type="Texture2D" uid="uid://cikwpfbh7n0ii" path="res://_assets/items/projectiles/sun/Sun0005.png" id="6_ai1yj"]
+[ext_resource type="Texture2D" uid="uid://boqljvn6xpb1q" path="res://_assets/items/projectiles/sun/Sun0006.png" id="7_tc072"]
+[ext_resource type="Texture2D" uid="uid://bdwwbansciyqa" path="res://_assets/items/projectiles/sun/Sun0007.png" id="8_ptowh"]
+[ext_resource type="Texture2D" uid="uid://clk0db8n0rqeu" path="res://_assets/items/projectiles/sun/Sun0008.png" id="9_e0te5"]
+[ext_resource type="Texture2D" uid="uid://f6vkntkbhcn4" path="res://_assets/items/projectiles/sun/Sun0009.png" id="10_em2yy"]
+[ext_resource type="Texture2D" uid="uid://bml6jit4t7ih5" path="res://_assets/items/projectiles/sun/Sun0010.png" id="11_3uvwf"]
+[ext_resource type="Texture2D" uid="uid://btw0fhv4myyo1" path="res://_assets/items/projectiles/sun/Sun0011.png" id="12_wlbiv"]
+[ext_resource type="Texture2D" uid="uid://b1e1x783tcykg" path="res://_assets/items/projectiles/sun/Sun0012.png" id="13_84jwy"]
+[ext_resource type="Texture2D" uid="uid://c63v33xtidump" path="res://_assets/items/projectiles/sun/Sun0013.png" id="14_kmbvd"]
+
+[sub_resource type="GDScript" id="GDScript_spg5m"]
+script/source = "extends RigidBody2D
+
+@onready var state_machine: StateMachine = $StateMachine
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	state_machine.start()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_pickable_ability_picked() -> void:
+	print(\"picked\")
+"
+
+[sub_resource type="GDScript" id="GDScript_bcfrd"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	($\"../../AnimationPlayer\" as AnimationPlayer).play(\"spawn\")
+	($\"../../AnimatedSprite2D\" as AnimatedSprite2D).play(\"default\")
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if not is_active():
+		return
+	if anim_name == \"spawn\":
+		emit_signal(\"finished\", \"idle\")
+"
+
+[sub_resource type="GDScript" id="GDScript_krqsr"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ym56"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7k58j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cayew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rtaxc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f52vd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ai1yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_tc072")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ptowh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_e0te5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_em2yy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3uvwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_wlbiv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_84jwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_kmbvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rufyb"]
+radius = 28.0
+
+[sub_resource type="Animation" id="Animation_3ykft"]
+resource_name = "spawn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.5, 0.5)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2tu31"]
+_data = {
+"spawn": SubResource("Animation_3ykft")
+}
+
+[node name="Sun" type="RigidBody2D"]
+gravity_scale = 0.0
+script = SubResource("GDScript_spg5m")
+
+[node name="PickableAbility" parent="." node_paths=PackedStringArray("pick_target") instance=ExtResource("1_5lp5i")]
+pick_target = NodePath("..")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("start_state") instance=ExtResource("1_tc2b0")]
+start_state = NodePath("Spawn")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_bcfrd")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_krqsr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_7ym56")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rufyb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2tu31")
+}
+
+[connection signal="picked" from="PickableAbility" to="." method="_on_pickable_ability_picked"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Spawn" method="_on_animation_player_animation_finished"]
