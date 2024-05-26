@@ -24,10 +24,18 @@ enum ProjectileTrajectory {
 
 ## 【投射物武器】可以发射的【投射物】
 @export var projectiles: Array[PackedScene] = []
+
 ## 每次发射的【投射物】数量
 @export var projectiles_per_shot := 1
 ## 武器弹道
 @export var projectile_trajectory: ProjectileTrajectory
+
+## 武器最大【投射物】荷载量
+@export var max_projectile_load := 10.0
+## 每发射1次【投射物】所需荷载
+@export var load_per_shot := 1.0
+## 当前剩余【投射物】荷载
+var current_projectile_load: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +45,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+			pass
+	
+
 "
 
 [node name="ProjectileWeaponAbility" type="Node"]

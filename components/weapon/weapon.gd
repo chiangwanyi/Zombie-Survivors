@@ -7,12 +7,14 @@ enum TriggerModes { SemiAuto, Auto }
 ## 开火模式
 @export var trigger_mode: TriggerModes = TriggerModes.Auto
 ## 每次使用的延迟（秒）
-@export_range(0.1, 10, 0.1) var time_between_used: float = 1
+@export var time_between_used: float = 0.1
 
+## 武器属性能力（投射物、近战等）
 var weapon_abilities: Array[WeaponAbility]
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
+	# 装载所有【武器属性能力】
 	for child in get_children():
 		if child is WeaponAbility:
 			weapon_abilities.append(child)

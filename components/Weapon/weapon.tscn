@@ -19,10 +19,9 @@ func _ready() -> void:
 	pass
 
 func enter() -> void:
-	print(\"weapon idle\")
 	weapon = owner as Weapon
-	for ability in weapon.weapon_abilities:
-		print(ability)
+	#for ability in weapon.weapon_abilities:
+		#print(ability)
 	super.enter()
 
 func update(_delta: float) -> void:
@@ -169,3 +168,5 @@ script = SubResource("GDScript_43gfs")
 
 [node name="Reload" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_w52mh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

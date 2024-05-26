@@ -1,9 +1,10 @@
-[gd_scene load_steps=39 format=3 uid="uid://b85p1ngrke0t"]
+[gd_scene load_steps=41 format=3 uid="uid://b85p1ngrke0t"]
 
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://components/ability/health_ability.tscn" id="1_v4i00"]
 [ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://components/ability/character/handle_weapon_ability.tscn" id="2_ckkvy"]
-[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/images/Plantshadow.png" id="2_klucd"]
+[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/Images/Plantshadow.png" id="2_klucd"]
 [ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="3_5b4nf"]
+[ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://scenes/weapons/sun_spawner.tscn" id="3_sqeff"]
 [ext_resource type="Shader" path="res://scenes/characters/npcs/plants/sunflower/sunflower.gdshader" id="3_vyrsn"]
 [ext_resource type="Texture2D" uid="uid://bb2hxiim7l344" path="res://_assets/items/plants/sunflower/SunFlower0006.png" id="4_j2e1e"]
 [ext_resource type="Texture2D" uid="uid://ccfn7fr46617t" path="res://_assets/items/plants/sunflower/SunFlower0007.png" id="5_0g0mc"]
@@ -61,6 +62,7 @@ func _ready() -> void:
 
 func enter() -> void:
 	animation.play(\"idle\")
+	($\"../../SpawnTimer\" as Timer).start()
 	super.enter()
 
 func update(_delta: float) -> void:
@@ -73,6 +75,38 @@ func exit() -> void:
 func _exit_tree() -> void:
 	pass
 
+func _on_spawn_timer_timeout() -> void:
+	emit_signal(\"finished\", \"Spawn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_pwpfr"]
+script/source = "extends State
+
+@onready var handle_weapon_ability := $\"../../HandleWeaponAbility\"
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	var tween := create_tween()
+	var material :=  ($\"../../AnimatedSprite2D\" as AnimatedSprite2D).material as ShaderMaterial
+	tween.tween_property(material, \"shader_parameter/glow_power\", 1.4, 1)
+	tween.tween_property(material, \"shader_parameter/glow_power\", 1, 1)
+	tween.tween_callback(func ():
+		emit_signal(\"finished\", \"Idle\"))
+		
+	owner.get_node(\"HandleWeaponAbility\") 
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
 "
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6osas"]
@@ -177,11 +211,14 @@ stream_1/stream = ExtResource("30_yfb73")
 stream_1/weight = 1.0
 
 [node name="Sunflower" type="Area2D"]
+position = Vector2(431, 195)
 script = SubResource("GDScript_15brh")
 
 [node name="HealthAbility" parent="." instance=ExtResource("1_v4i00")]
 
-[node name="HandleWeaponAbility" parent="." instance=ExtResource("2_ckkvy")]
+[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment") instance=ExtResource("2_ckkvy")]
+initial_weapon_scene = ExtResource("3_sqeff")
+weapon_attachment = NodePath("../WeaponAttachment")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = SubResource("GDScript_uhq8u")
@@ -189,6 +226,9 @@ start_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_01fnk")
+
+[node name="Spawn" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_pwpfr")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 position = Vector2(0, 32)
@@ -208,3 +248,8 @@ shape = SubResource("CircleShape2D_k0d48")
 stream = SubResource("AudioStreamRandomizer_0ep04")
 
 [node name="WeaponAttachment" type="Marker2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]
