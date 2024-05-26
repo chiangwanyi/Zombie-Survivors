@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="4_6s7oe"]
 
 [node name="SunSpawner" instance=ExtResource("1_ldx4b")]
-auto_trigger = true
 
 [node name="ProjectileWeaponAbility" parent="." index="0" instance=ExtResource("2_aa35b")]
 projectiles = Array[PackedScene]([ExtResource("1_rp3ql")])

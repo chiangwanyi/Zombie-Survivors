@@ -82,7 +82,7 @@ func _on_spawn_timer_timeout() -> void:
 [sub_resource type="GDScript" id="GDScript_pwpfr"]
 script/source = "extends State
 
-@onready var handle_weapon_ability := $\"../../HandleWeaponAbility\"
+@onready var handle_weapon_ability : HandleWeaponAbility = $\"../../HandleWeaponAbility\"
 
 func _ready() -> void:
 	pass
@@ -95,7 +95,6 @@ func enter() -> void:
 	tween.tween_callback(func ():
 		emit_signal(\"finished\", \"Idle\"))
 		
-	owner.get_node(\"HandleWeaponAbility\") 
 	super.enter()
 
 func update(_delta: float) -> void:
