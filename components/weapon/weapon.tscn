@@ -20,6 +20,8 @@ func _ready() -> void:
 
 func enter() -> void:
 	weapon = owner as Weapon
+	print(\"%s -> Idle\" % weapon.name)
+	
 	#for ability in weapon.weapon_abilities:
 		#print(ability)
 	super.enter()
@@ -27,10 +29,11 @@ func enter() -> void:
 func update(_delta: float) -> void:
 	if not is_active():
 		return
-	if weapon.auto_trigger:
+	if weapon.trigger_pressed:
 		emit_signal(\"finished\", \"BeforeUse\")
 	
 func exit() -> void:
+	print(\"%s <- Idle\" % weapon.name)
 	super.exit()
 
 func _exit_tree() -> void:
@@ -41,11 +44,15 @@ func _exit_tree() -> void:
 [sub_resource type="GDScript" id="GDScript_om8ju"]
 script/source = "extends State
 
+var weapon: Weapon
+
 func _ready() -> void:
 	pass
 
 func enter() -> void:
-	print(\"weapon before use\")
+	weapon = owner as Weapon
+	print(\"%s -> BeforeUse\" % weapon.name)
+	# 判断当前武器是否可以使用
 	super.enter()
 
 func update(_delta: float) -> void:
@@ -81,7 +88,7 @@ func _exit_tree() -> void:
 
 "
 
-[sub_resource type="GDScript" id="GDScript_jxwcj"]
+[sub_resource type="GDScript" id="GDScript_43gfs"]
 script/source = "extends State
 
 func _ready() -> void:
@@ -102,7 +109,7 @@ func _exit_tree() -> void:
 
 "
 
-[sub_resource type="GDScript" id="GDScript_43gfs"]
+[sub_resource type="GDScript" id="GDScript_jxwcj"]
 script/source = "extends State
 
 func _ready() -> void:
@@ -147,6 +154,8 @@ func _exit_tree() -> void:
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_r2q1q")
 
+[node name="Slots" type="Node" parent="."]
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = SubResource("GDScript_uhq8u")
 start_state = NodePath("Idle")
@@ -160,11 +169,11 @@ script = SubResource("GDScript_om8ju")
 [node name="Use" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_36jsr")
 
-[node name="AfterUser" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_jxwcj")
-
 [node name="DelayBetweenUses" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_43gfs")
+
+[node name="AfterUser" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_jxwcj")
 
 [node name="Reload" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_w52mh")

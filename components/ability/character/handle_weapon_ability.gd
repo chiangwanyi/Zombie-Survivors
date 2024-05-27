@@ -23,7 +23,7 @@ func shoot_start() -> void:
 	if not current_weapon:
 		return
 	
-	current_weapon.weapon_input_start()
+	current_weapon.turn_weapon_on()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
