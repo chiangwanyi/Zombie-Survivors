@@ -1,8 +1,5 @@
-class_name Spell extends Node
+extends Spell
 
-@export_group("Spell Attributes")
-## 可使用次数
-var uses: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

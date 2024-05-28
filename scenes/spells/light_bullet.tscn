@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4i327mg2r0n2"]
+
+[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://components/weapon/spell.tscn" id="1_h4deq"]
+[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="2_qbx0g"]
+
+[node name="LightBullet" instance=ExtResource("1_h4deq")]
+cast_delay = 0.05
+damage_type = 1
+damage = 3
+
+[node name="Projectile" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_qbx0g")

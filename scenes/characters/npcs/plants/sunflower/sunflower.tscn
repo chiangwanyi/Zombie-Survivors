@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://components/ability/health_ability.tscn" id="1_v4i00"]
 [ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://components/ability/character/handle_weapon_ability.tscn" id="2_ckkvy"]
-[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/Images/Plantshadow.png" id="2_klucd"]
+[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/images/Plantshadow.png" id="2_klucd"]
 [ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="3_5b4nf"]
 [ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://scenes/weapons/sun_spawner.tscn" id="3_sqeff"]
 [ext_resource type="Shader" path="res://scenes/characters/npcs/plants/sunflower/sunflower.gdshader" id="3_vyrsn"]

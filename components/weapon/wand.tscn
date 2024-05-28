@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dub12avp0i8ud"]
 
-[ext_resource type="Script" path="res://components/weapon/weapon.gd" id="1_r2q1q"]
+[ext_resource type="Script" path="res://components/weapon/wand.gd" id="1_r2q1q"]
 
 [sub_resource type="GDScript" id="GDScript_uhq8u"]
 script/source = "extends StateMachine
@@ -151,7 +151,7 @@ func _exit_tree() -> void:
 
 "
 
-[node name="Weapon" type="Node2D"]
+[node name="Wand" type="Node2D"]
 script = ExtResource("1_r2q1q")
 
 [node name="Slots" type="Node" parent="."]
