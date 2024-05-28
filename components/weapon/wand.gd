@@ -1,4 +1,4 @@
-class_name Wand extends Node2D
+class_name Wand extends Weapon
 
 #enum TriggerModes { SemiAuto, Auto }
 
@@ -11,18 +11,14 @@ class_name Wand extends Node2D
 
 var state_machine: StateMachine
 
-## 是否按下 trigger
-var trigger_pressed: bool = false
-
 ## 武器挂载的所有 Spell
 var spells: Array[Spell]
-
 
 @export_group("Wand Statistics")
 ## 容量
 @export var capacity: int = 4
 ## 施放数
-@export var cast: int = 1
+@export var max_cast: int = 1
 ## 施放延迟
 @export var cast_delay: float = 0.5
 ## 充能时间
@@ -32,6 +28,12 @@ var spells: Array[Spell]
 ## 每秒回复的能量值
 @export var energe_recharge_speed: int = 10
 
+## 当前剩余能量值
+@export var energe: float
+## 当前剩余施放数
+@export var cast: int
+## 法术池
+var spell_pool: Array[Spell] = []
 
 func _ready() -> void:
 	var i = 0
@@ -42,6 +44,8 @@ func _ready() -> void:
 		if child is Spell:
 			spells.append(child)
 			i += 1
+			print("Wand:%s Slot[%d/%d]装载：{Name:%s\t, SpellType:%s}" 
+			% [name, i, capacity, child.name, child.spell_type])
 	
 	state_machine = $StateMachine as StateMachine
 	state_machine.start()

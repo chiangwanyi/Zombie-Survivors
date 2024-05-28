@@ -13,27 +13,38 @@ func _ready() -> void:
 [sub_resource type="GDScript" id="GDScript_dpm7t"]
 script/source = "extends State
 
-var weapon: Weapon
+var wand: Wand
 
 func _ready() -> void:
 	pass
 
 func enter() -> void:
-	weapon = owner as Weapon
-	print(\"%s -> Idle\" % weapon.name)
-	
-	#for ability in weapon.weapon_abilities:
-		#print(ability)
+	wand = owner as Wand
+	print(\"%s 进入 Idle 状态\" % wand.name)
+	#wand.cast = wand.max_cast
+	#print(\"%s 初始化 cast, 当前剩余: [%d/%d]\" % [wand.name, wand.cast, wand.max_cast])
+	#wand.energe = wand.max_energe
+	#print(\"%s 初始化 energe, 当前剩余: [%d/%d]\" % [wand.name, wand.energe, wand.max_energe])
 	super.enter()
 
 func update(_delta: float) -> void:
 	if not is_active():
 		return
-	if weapon.trigger_pressed:
+	if wand.trigger_pressed:
 		emit_signal(\"finished\", \"BeforeUse\")
+		
+func physics_update(delta: float) -> void:
+	if not is_active():
+		return
+	if wand.energe < wand.max_energe:
+		# 计算在这个特定帧的时间内应当恢复多少生命值
+		# delta 的单位是秒。如果delta是0.016秒（约等于60帧/秒），
+		# 那么每帧应该恢复的生命值为 10 * 0.016 = 0.16 点。
+		wand.energe += wand.energe_recharge_speed * delta
+		wand.energe = min(wand.energe, wand.max_energe)
 	
 func exit() -> void:
-	print(\"%s <- Idle\" % weapon.name)
+	print(\"%s 退出 Idle 状态\" % wand.name)
 	super.exit()
 
 func _exit_tree() -> void:
@@ -44,14 +55,16 @@ func _exit_tree() -> void:
 [sub_resource type="GDScript" id="GDScript_om8ju"]
 script/source = "extends State
 
-var weapon: Weapon
+var wand: Wand
 
 func _ready() -> void:
 	pass
 
 func enter() -> void:
-	weapon = owner as Weapon
-	print(\"%s -> BeforeUse\" % weapon.name)
+	wand = owner as Wand
+	print(\"%s -> BeforeUse\" % wand.name)
+	#if wand.remaining_cast > 0:
+		
 	# 判断当前武器是否可以使用
 	super.enter()
 

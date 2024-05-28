@@ -10,10 +10,10 @@ enum SpellType {
 }
 
 enum DamageType {
-	## 穿凿伤害
-	Drill,
 	## 投射物伤害
 	Projectile,
+	## 穿凿伤害
+	Drill,
 	## 近战伤害
 	Melee
 }
@@ -27,6 +27,8 @@ enum DamageType {
 @export var cast_delay: float = 0.1
 ## 对武器充能时间的【修正】
 @export var recharge_time: float = 0.1
+## 法术类型
+@export var spell_type: SpellType
 ## 伤害类型
 @export var damage_type: DamageType
 ## 伤害量
