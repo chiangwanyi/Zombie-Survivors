@@ -31,7 +31,7 @@ func update(_delta: float) -> void:
 	if not is_active():
 		return
 	if wand.trigger_pressed:
-		emit_signal(\"finished\", \"BeforeUse\")
+		emit_signal(\"finished\", \"Use\")
 		
 func physics_update(delta: float) -> void:
 	if not is_active():
@@ -83,10 +83,13 @@ func _exit_tree() -> void:
 [sub_resource type="GDScript" id="GDScript_36jsr"]
 script/source = "extends State
 
+var wand: Wand
+
 func _ready() -> void:
 	pass
 
 func enter() -> void:
+	wand = owner as Wand
 	super.enter()
 
 func update(_delta: float) -> void:
