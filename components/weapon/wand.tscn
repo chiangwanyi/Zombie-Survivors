@@ -21,10 +21,10 @@ func _ready() -> void:
 func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Idle 状态\" % wand.name)
-	#wand.cast = wand.max_cast
-	#print(\"%s 初始化 cast, 当前剩余: [%d/%d]\" % [wand.name, wand.cast, wand.max_cast])
-	#wand.energe = wand.max_energe
-	#print(\"%s 初始化 energe, 当前剩余: [%d/%d]\" % [wand.name, wand.energe, wand.max_energe])
+	wand.cast = wand.max_cast
+	print(\"%s 初始化 cast, 当前剩余: [%d/%d]\" % [wand.name, wand.cast, wand.max_cast])
+	wand.energe = wand.max_energe
+	print(\"%s 初始化 energe, 当前剩余: [%d/%d]\" % [wand.name, wand.energe, wand.max_energe])
 	super.enter()
 
 func update(_delta: float) -> void:
@@ -37,9 +37,9 @@ func physics_update(delta: float) -> void:
 	if not is_active():
 		return
 	if wand.energe < wand.max_energe:
-		# 计算在这个特定帧的时间内应当恢复多少生命值
+		# 计算在这个特定帧的时间内应当恢复多少 energe
 		# delta 的单位是秒。如果delta是0.016秒（约等于60帧/秒），
-		# 那么每帧应该恢复的生命值为 10 * 0.016 = 0.16 点。
+		# 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。
 		wand.energe += wand.energe_recharge_speed * delta
 		wand.energe = min(wand.energe, wand.max_energe)
 	
