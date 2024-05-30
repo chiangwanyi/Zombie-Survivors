@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjrphc0jfrf2c"]
+
+[sub_resource type="GDScript" id="GDScript_h3o0b"]
+script/source = "extends Node2D
+
+signal call1
+
+var num := 1
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	call1.connect(_on_call1)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(_delta: float) -> void:
+	#print(\"process, num:%d\" % num)
+	#num += 1
+	#if num > 200:
+		#emit_signal(\"call1\")
+		#print(\"_process end\")
+		
+func _physics_process(_delta: float) -> void:
+	print(\"process, num:%d\" % num)
+	num += 1
+	if num > 200:
+		emit_signal(\"call1\")
+		print(\"_process end\")
+
+## 证明 _process 和 _physics_process 会等待 emit_signal 执行完毕后再继续执行
+func _on_call1() -> void:
+	set_physics_process(false)
+	set_process(false)
+	var time_start = Time.get_ticks_msec()
+	var k = 0
+	for i in range(1000):
+		for j in range(1000):
+			for p in range(200):
+				k += (i*10 + j)
+			#print(\"%d\" % (i*10 + j))
+	print(\"took %d ms\" % (Time.get_ticks_msec() - time_start))
+	print(\"call end\")
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_4nkg8"]
+script/source = "extends Node
+
+signal call2
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+"
+
+[node name="Test1" type="Node2D"]
+script = SubResource("GDScript_h3o0b")
+
+[node name="Node1" type="Node" parent="."]
+script = SubResource("GDScript_4nkg8")

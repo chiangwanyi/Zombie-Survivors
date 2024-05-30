@@ -29,6 +29,8 @@ enum DamageType {
 @export var recharge_time: float = 0.1
 ## 法术类型
 @export var spell_type: SpellType
+## 抽取数变量
+@export var draw_num: int = 0
 ## 伤害类型
 @export var damage_type: DamageType
 ## 伤害量

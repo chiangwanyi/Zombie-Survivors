@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dub12avp0i8ud"]
+[gd_scene load_steps=10 format=3 uid="uid://dub12avp0i8ud"]
 
 [ext_resource type="Script" path="res://components/weapon/wand.gd" id="1_r2q1q"]
 
@@ -21,17 +21,14 @@ func _ready() -> void:
 func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Idle 状态\" % wand.name)
-	wand.cast = wand.max_cast
-	print(\"%s 初始化 cast, 当前剩余: [%d/%d]\" % [wand.name, wand.cast, wand.max_cast])
-	wand.energe = wand.max_energe
-	print(\"%s 初始化 energe, 当前剩余: [%d/%d]\" % [wand.name, wand.energe, wand.max_energe])
 	super.enter()
 
 func update(_delta: float) -> void:
 	if not is_active():
 		return
 	if wand.trigger_pressed:
-		emit_signal(\"finished\", \"Use\")
+		print(\"%s 尝试施法，准备Draw\" % wand.name)
+		emit_signal(\"finished\", \"Draw\")
 		
 func physics_update(delta: float) -> void:
 	if not is_active():
@@ -81,6 +78,63 @@ func _exit_tree() -> void:
 "
 
 [sub_resource type="GDScript" id="GDScript_36jsr"]
+script/source = "extends State
+
+var wand: Wand
+var cast_group: Array[Spell]
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	wand = owner as Wand
+	
+	# 1. 如果【牌库】不为空，【弃牌库】为空，则表示为第1次施法
+	if not wand.deck.is_empty() and wand.discared.is_empty():
+		#TODO 标记回绕
+		pass
+	
+	# 2. 抽取法术，得到一次施法的【施法组】
+	cast_group = draw_spell()
+	super.enter()
+
+func update(_delta: float) -> void:
+	if not is_active():
+		return
+	if cast_group.is_empty(): 
+		print(\"%s 本次抽取未抽取到法术，cast:%d，准备Idle\" % [wand.name, wand.cast])
+		emit_signal(\"finished\", \"Idle\")
+	else:
+		print(\"%s 本次抽取到法术:[%s]，cast:%d，准备Action\" % [wand.name, cast_group, wand.cast])
+		emit_signal(\"finished\", \"Cast\")
+
+## 抽取法术
+func draw_spell() -> Array[Spell]:
+	var cast_group: Array[Spell] = []
+	## 如果当前剩余施法数小于0，则抽取结束
+	if wand.cast <= 0:
+		return cast_group
+	
+	# 定义本次抽取次数
+	var draw = 1
+	while draw > 0 or not wand.deck.is_empty():
+		## 尝试从【牌库】中抽取一个法术
+		var spell := wand.deck.pop_front() as Spell
+		draw += spell.draw_num
+		draw -= 1
+		cast_group.append(spell)
+		
+	return cast_group
+
+func exit() -> void:
+	super.exit()
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_m5hjy"]
 script/source = "extends State
 
 var wand: Wand
@@ -182,8 +236,11 @@ script = SubResource("GDScript_dpm7t")
 [node name="BeforeUse" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_om8ju")
 
-[node name="Use" type="Node" parent="StateMachine"]
+[node name="Draw" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_36jsr")
+
+[node name="Cast" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_m5hjy")
 
 [node name="DelayBetweenUses" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_43gfs")

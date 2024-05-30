@@ -7,8 +7,7 @@ func enter() -> void:
 	super.enter()
 
 func update(_delta: float) -> void:
-	if not is_active():
-		return
+	pass
 	
 func exit() -> void:
 	super.exit()

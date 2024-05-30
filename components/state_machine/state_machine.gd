@@ -14,24 +14,13 @@ var states_map : Dictionary = {}
 var states_stack : Array[State] = []
 var current_state : State
 
-func start():
-	_initialize(start_state)
-
-
-func set_active(value: bool):
-	set_physics_process(value)
-	set_process_input(value)
-	if not _active:
-		states_stack = []
-
-
 var _active = false:
 	set(value):
 		_active = value
 		set_active(value)
 
-
 func _ready() -> void:
+	_active = false
 	if start_state == null:
 		start_state = get_child(0) as State
 	for child: State in get_children():
@@ -40,10 +29,20 @@ func _ready() -> void:
 		if err:
 			printerr(err)
 
+func set_active(value: bool):
+	set_process(value)
+	set_physics_process(value)
+	set_process_input(value)
+	if not _active:
+		states_stack = []
+
+func start():
+	_initialize(start_state)
 
 func _initialize(initial_state: State):
 	states_stack.push_front(initial_state)
 	current_state = states_stack[0]
+	# 此处保证了 state 的 enter 执行完毕后才会启动 process
 	current_state.enter()
 	_active = true
 
@@ -51,23 +50,11 @@ func _initialize(initial_state: State):
 func _unhandled_input(event: InputEvent) -> void:
 	if not _active:
 		return
-	if not current_state.is_active():
-		return
 	current_state.handle_input(event)
-
-
-#func _rigid_process(state: PhysicsDirectBodyState2D) -> void:
-	#if not _active:
-		#return
-	#if not current_state.is_ready:
-		#return
-	#current_state.integrate_forces(state)
 
 
 func _physics_process(delta: float) -> void:
 	if not _active:
-		return
-	if not current_state.is_active():
 		return
 	current_state.physics_update(delta)
 
@@ -75,17 +62,15 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if not _active:
 		return
-	if not current_state.is_active():
-		return
 	current_state.update(delta)
 
 
 func change_state(state_name: StringName) -> void:
 	set_process(false)
 	set_physics_process(false)
+	set_process_input(false)
+	
 	if not _active:
-		return
-	if not current_state.is_active():
 		return
 	current_state.exit()
 	if state_name == &"previous":
@@ -97,5 +82,4 @@ func change_state(state_name: StringName) -> void:
 
 	if state_name != &"previous":
 		current_state.enter()
-	set_process(true)
-	set_physics_process(true)
+	_active = true
