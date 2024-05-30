@@ -22,8 +22,7 @@ func _ready() -> void:
 func shoot_start() -> void:
 	if not current_weapon:
 		return
-	
-	current_weapon.turn_weapon_on()
+	current_weapon.turn_on()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

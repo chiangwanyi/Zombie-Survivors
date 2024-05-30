@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1g7imiy1kxsy"]
+[gd_scene load_steps=5 format=3 uid="uid://b1g7imiy1kxsy"]
 
 [ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://components/weapon/wand.tscn" id="1_ldx4b"]
-[ext_resource type="PackedScene" uid="uid://d4i327mg2r0n2" path="res://scenes/spells/light_bullet.tscn" id="2_1oume"]
+[ext_resource type="PackedScene" uid="uid://ro4g128kvsqc" path="res://scenes/spells/projectile_modifier/energe_reduce.tscn" id="2_3ppam"]
+[ext_resource type="PackedScene" uid="uid://d4i327mg2r0n2" path="res://scenes/spells/projectile/light_bullet.tscn" id="2_33kfh"]
 [ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="4_6s7oe"]
 
 [node name="SunSpawner" instance=ExtResource("1_ldx4b")]
+max_energe = 0
+energe_recharge_speed = 0
 
-[node name="LightBullet" parent="Slots" index="0" instance=ExtResource("2_1oume")]
+[node name="LightBullet2" parent="Slots" index="0" instance=ExtResource("2_33kfh")]
+
+[node name="EnergeReduce" parent="Slots" index="1" instance=ExtResource("2_3ppam")]
+
+[node name="LightBullet" parent="Slots" index="2" instance=ExtResource("2_33kfh")]
 
 [node name="Sprite2D" parent="." index="2"]
 visible = false

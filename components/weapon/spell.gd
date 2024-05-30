@@ -24,9 +24,9 @@ enum DamageType {
 ## 能量消耗
 @export var energe_drain: int = 5
 ## 对两个法术施放之间的时间的【修正】
-@export var cast_delay: float = 0.1
+@export var cast_delay: float = 0
 ## 对武器充能时间的【修正】
-@export var recharge_time: float = 0.1
+@export var recharge_time: float = 0
 ## 法术类型
 @export var spell_type: SpellType
 ## 抽取数变量
