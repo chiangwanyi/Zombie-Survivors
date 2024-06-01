@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d4i327mg2r0n2"]
 
-[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://components/weapon/spell.tscn" id="1_h4deq"]
+[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://components/spells/spell.tscn" id="1_h4deq"]
 
 [node name="LightBullet" instance=ExtResource("1_h4deq")]
 cast_delay = 0.05

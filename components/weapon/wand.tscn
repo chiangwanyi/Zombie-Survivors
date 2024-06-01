@@ -72,11 +72,11 @@ func enter() -> void:
 
 func update(_delta: float) -> void:
 	if cast_group.is_empty(): 
-		print(\"%s 本次抽取未抽取到法术，cast_group:%d，准备Idle\" % [wand.name, wand.cast])
-		emit_signal(\"finished\", \"Idle\")
+		print(\"%s 本次抽取未抽取到法术\" % [wand.name, cast_group])
+		#emit_signal(\"finished\", \"Idle\")
 	else:
 		wand.current_cast_group = cast_group
-		print(\"%s 本次抽取到法术:[%s]，cast_group:%d，准备Cast\" % [wand.name, cast_group, wand.cast])
+		print(\"%s 本次抽取到法术:[%s]，准备Cast\" % [wand.name, cast_group])
 		emit_signal(\"finished\", \"Cast\")
 
 ## 抽取法术
@@ -87,12 +87,11 @@ func draw_spell() -> Array[Spell]:
 	var draw = 1
 	# 暂存当前的剩余 energe
 	var remaining_energe = wand.energe
-	while draw > 0 or not wand.deck.is_empty():
+	while draw > 0 and not wand.deck.is_empty():
 		# 尝试从【牌库】中抽取一个法术
 		var spell := wand.deck.pop_front() as Spell
-		# 如果抽取的法术4
+		# 如果当前的剩余 energe 不足以施放当前抽取的法术
 		if spell.energe_drain > remaining_energe:
-			
 			wand.discared.append(spell)
 			break
 		draw += spell.draw_num

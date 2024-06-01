@@ -1,13 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1g7imiy1kxsy"]
+[gd_scene load_steps=7 format=3 uid="uid://b1g7imiy1kxsy"]
 
 [ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://components/weapon/wand.tscn" id="1_ldx4b"]
 [ext_resource type="PackedScene" uid="uid://ro4g128kvsqc" path="res://scenes/spells/projectile_modifier/energe_reduce.tscn" id="2_3ppam"]
 [ext_resource type="PackedScene" uid="uid://d4i327mg2r0n2" path="res://scenes/spells/projectile/light_bullet.tscn" id="2_33kfh"]
-[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="4_6s7oe"]
+[ext_resource type="PackedScene" uid="uid://xsetvby3pqi0" path="res://components/ability/weapon/weapon_aim_ability.tscn" id="2_qe0oo"]
+[ext_resource type="PackedScene" uid="uid://bhqkl4cunywh3" path="res://scenes/weapons/reticles/ui_reticle.tscn" id="3_yd7u4"]
+[ext_resource type="Texture2D" uid="uid://lv87k3c4qwsu" path="res://_assets/items/wands/wand1.png" id="4_0llch"]
 
 [node name="SunSpawner" instance=ExtResource("1_ldx4b")]
-max_energe = 0
-energe_recharge_speed = 0
+energe_recharge_speed = 30
+
+[node name="WeaponAimAbility" parent="." index="0" instance=ExtResource("2_qe0oo")]
+reticle_scene = ExtResource("3_yd7u4")
 
 [node name="LightBullet2" parent="Slots" index="0" instance=ExtResource("2_33kfh")]
 
@@ -15,7 +19,7 @@ energe_recharge_speed = 0
 
 [node name="LightBullet" parent="Slots" index="2" instance=ExtResource("2_33kfh")]
 
-[node name="Sprite2D" parent="." index="2"]
-visible = false
+[node name="Sprite2D" parent="." index="3"]
+texture_filter = 1
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_6s7oe")
+texture = ExtResource("4_0llch")

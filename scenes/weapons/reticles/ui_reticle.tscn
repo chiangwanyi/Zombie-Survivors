@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhqkl4cunywh3"]
+
+[ext_resource type="Texture2D" uid="uid://cuuoyxqoa3x0k" path="res://_assets/Images/LoftReticle.png" id="1_0y01k"]
+[ext_resource type="PackedScene" uid="uid://dyqr04uteca2t" path="res://components/ability/gui/ui_follow_mouse_ability.tscn" id="2_3owqo"]
+
+[node name="UIReticle" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0y01k")
+expand_mode = 3
+
+[node name="UiFollowMouse" parent="." instance=ExtResource("2_3owqo")]

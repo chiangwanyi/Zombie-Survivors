@@ -1,34 +1,62 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjrphc0jfrf2c"]
+[gd_scene load_steps=7 format=3 uid="uid://cjrphc0jfrf2c"]
 
+[ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="1_m27m6"]
 [ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://components/ability/character/handle_weapon_ability.tscn" id="1_xgklq"]
 [ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://scenes/weapons/sun_spawner.tscn" id="2_qu4bs"]
 
 [sub_resource type="GDScript" id="GDScript_h3o0b"]
 script/source = "extends Node2D
 
-@onready var handle_weapon_ability: HandleWeaponAbility = $HandleWeaponAbility
-
 func _ready() -> void:
+	GameManager.main_hud = $HUD
+
+"
+
+[sub_resource type="GDScript" id="GDScript_blsnn"]
+script/source = "extends Area2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
 	pass
 	
-func _on_fire_button_pressed() -> void:
-	handle_weapon_ability.shoot_start()
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
+			($HandleWeaponAbility as HandleWeaponAbility).shoot_start()
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
+			($HandleWeaponAbility as HandleWeaponAbility).shoot_stop()
 "
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4768o"]
+radius = 18.0
+height = 52.0
 
 [node name="Test1" type="Node2D"]
 script = SubResource("GDScript_h3o0b")
 
-[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment") instance=ExtResource("1_xgklq")]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" type="Area2D" parent="."]
+script = SubResource("GDScript_blsnn")
+
+[node name="HandleWeaponAbility" parent="Player" node_paths=PackedStringArray("weapon_attachment") instance=ExtResource("1_xgklq")]
 initial_weapon_scene = ExtResource("2_qu4bs")
 weapon_attachment = NodePath("../Marker2D")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("1_m27m6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-2, 7)
+shape = SubResource("CapsuleShape2D_4768o")
 
-[node name="FireButton" type="Button" parent="CanvasLayer"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Fire"
-
-[connection signal="pressed" from="CanvasLayer/FireButton" to="." method="_on_fire_button_pressed"]
+[node name="Marker2D" type="Marker2D" parent="Player"]
+position = Vector2(39, 5)

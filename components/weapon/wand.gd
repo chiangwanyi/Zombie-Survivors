@@ -70,6 +70,3 @@ func _ready() -> void:
 	
 #func weapon_input_start() -> void:
 	#_trigger_pressed = true
-
-func turn_on() -> void:
-	trigger_pressed = true

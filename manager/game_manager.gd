@@ -25,6 +25,8 @@ var projectile_scenes : Dictionary = {}
 ## 当前Level选择的 Seed
 var selected_seeds: Array[StringName]
 
+var main_hud: CanvasLayer
+
 func _ready() -> void:
 	_load_cfg()
 	_load_level()
