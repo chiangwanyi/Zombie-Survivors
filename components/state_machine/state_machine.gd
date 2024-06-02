@@ -44,6 +44,7 @@ func _initialize(initial_state: State):
 	current_state = states_stack[0]
 	# 此处保证了 state 的 enter 执行完毕后才会启动 process
 	current_state.enter()
+	current_state.is_ready = true
 	_active = true
 
 
@@ -73,6 +74,7 @@ func change_state(state_name: StringName) -> void:
 	if not _active:
 		return
 	current_state.exit()
+	current_state.is_ready = false
 	if state_name == &"previous":
 		states_stack.pop_front()
 	else:
@@ -82,4 +84,5 @@ func change_state(state_name: StringName) -> void:
 
 	if state_name != &"previous":
 		current_state.enter()
+		current_state.is_ready = true
 	_active = true

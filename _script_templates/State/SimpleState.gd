@@ -4,13 +4,13 @@ func _ready() -> void:
 	pass
 
 func enter() -> void:
-	super.enter()
+	pass
 
 func update(_delta: float) -> void:
 	pass
 	
 func exit() -> void:
-	super.exit()
+	pass
 
 func _exit_tree() -> void:
 	pass

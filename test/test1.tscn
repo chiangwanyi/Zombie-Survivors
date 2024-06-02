@@ -9,6 +9,7 @@ script/source = "extends Node2D
 
 func _ready() -> void:
 	GameManager.main_hud = $HUD
+	GameManager.current_level = self
 
 "
 

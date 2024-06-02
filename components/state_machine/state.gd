@@ -7,17 +7,17 @@ class_name State extends Node
 # warning-ignore:unused_signal
 signal finished(next_state_name)
 
-var is_ready := true
+var is_ready := false
 
 
 # 用于进入当前 state 后的初始化操作. E.g. 切换 animation.
 func enter() -> void:
-	is_ready = true
+	pass
 
 
 # Clean up the state. Reinitialize values like a timer.
 func exit() -> void:
-	is_ready = false
+	pass
 
 
 func is_active() -> bool:
