@@ -71,7 +71,7 @@ func enter() -> void:
 			print(\"%s 本次抽取未抽取到法术\" % [wand.name])
 			emit_signal(\"finished\", \"Idle\")
 		else:
-			wand.current_cast_group = cast_group
+			wand.cast_group_stack.push_front(cast_group)
 			print(\"%s 本次抽取到法术:%s，剩余cast[%d/%d]，准备【施法】\" % [wand.name, cast_group, wand.cast, wand.max_cast])
 			emit_signal(\"finished\", \"Cast\")
 	else:
@@ -120,8 +120,8 @@ func _ready() -> void:
 
 func enter() -> void:
 	wand = owner as Wand
-	print(\"%s 进入 Cast 状态，当前待施放【施法法术组】:%s\" % [wand.name, wand.current_cast_group])
-	for spell in wand.current_cast_group:
+	print(\"%s 进入 Cast 状态，当前待施放【施法法术组】:%s\" % [wand.name, wand.cast_group_stack[0]])
+	for spell in wand.cast_group_stack[0]:
 		if spell.spell_type == Spell.SpellType.Projectile:
 			var p = (load(\"res://scenes/projectiles/light_bullet.tscn\") as PackedScene).instantiate() as Projectile2D
 			p.global_position = wand.projectile_spawn.global_position
@@ -157,8 +157,8 @@ func enter() -> void:
 	wand = owner as Wand
 	cast_delay = 0.0
 	ts = 0.0
-	print(\"%s 进入 CastDelay 状态，上次已施放【施法法术组】cast_group:%s\" % [wand.name, wand.current_cast_group])
-	for spell in wand.current_cast_group:
+	print(\"%s 进入 CastDelay 状态，上次已施放【施法法术组】cast_group:%s\" % [wand.name, wand.cast_group_stack[0]])
+	for spell in wand.cast_group_stack[0]:
 		cast_delay += spell.cast_delay
 	print(\"%s 合计施法延迟【修正】\\tcast_delay=%f+[%f]=%f\" % [wand.name,
 	wand.cast_delay, cast_delay, (wand.cast_delay + cast_delay)])
@@ -189,8 +189,7 @@ func _ready() -> void:
 	
 func enter() -> void:
 	wand = owner as Wand
-	print(\"%s 进入 RechargeDelay 状态\" % wand.name)
-	pass
+	print(\"%s 进入 RechargeDelay 状态，本轮所有施法组：%s\" % [wand.name, wand.cast_group_stack])
 
 func update(_delta: float) -> void:
 	pass

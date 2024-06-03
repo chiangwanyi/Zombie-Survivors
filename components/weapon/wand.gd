@@ -41,6 +41,7 @@ var hand: Array[Spell]
 var discared: Array[Spell]
 
 var current_cast_group: Array[Spell]
+var cast_group_stack: Array = []
 
 func _ready() -> void:
 	spells = []
