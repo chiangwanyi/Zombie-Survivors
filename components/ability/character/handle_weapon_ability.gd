@@ -16,6 +16,7 @@ func _ready() -> void:
 	if initial_weapon_scene:
 		var weapon = initial_weapon_scene.instantiate() as Weapon
 		weapon.position = weapon_attachment.position
+		weapon.weapon_owner = $".." as Node2D
 		current_weapon = weapon
 		owner.add_child.call_deferred(weapon)
 

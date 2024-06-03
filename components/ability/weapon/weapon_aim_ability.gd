@@ -41,4 +41,5 @@ func _process(delta: float) -> void:
 			# 参考整理的公式
 			tmp_p.x = tmp_p.x - 1920 * 0.5 * (1 / 1)
 			tmp_p.y = tmp_p.y - 1080 * 0.5 * (1 / 1)
+			#print(weapon.projectile_spawn.global_position)
 			weapon.look_at(tmp_p)

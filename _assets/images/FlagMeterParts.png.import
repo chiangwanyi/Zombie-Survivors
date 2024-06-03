@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cbsv73ajx3nho"
-path="res://.godot/imported/FlagMeterParts.png-6208bcc1d68335844654397672d7c976.ctex"
+path="res://.godot/imported/FlagMeterParts.png-f7ca3041e95e532c7d29229d513c20e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_assets/Images/FlagMeterParts.png"
-dest_files=["res://.godot/imported/FlagMeterParts.png-6208bcc1d68335844654397672d7c976.ctex"]
+source_file="res://_assets/images/FlagMeterParts.png"
+dest_files=["res://.godot/imported/FlagMeterParts.png-f7ca3041e95e532c7d29229d513c20e2.ctex"]
 
 [params]
 
