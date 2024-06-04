@@ -38,6 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if weapon:
 		if reticle_type == ReticleTypes.UI and aim_control == AimControls.Mouse and reticle:
+			#print("2", reticle.position)
 			# 参考整理的公式
 			reticle_position.x = reticle.position.x - 1920 * 0.5 * (1 / 1)
 			reticle_position.y = reticle.position.y - 1080 * 0.5 * (1 / 1)
