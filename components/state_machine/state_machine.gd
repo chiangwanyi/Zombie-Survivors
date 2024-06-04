@@ -72,6 +72,7 @@ func change_state(state_name: StringName) -> void:
 	set_process_input(false)
 	
 	if not _active:
+		printerr("change_state fail.")
 		return
 	current_state.exit()
 	current_state.is_ready = false

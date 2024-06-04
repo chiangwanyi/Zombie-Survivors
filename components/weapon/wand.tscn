@@ -121,9 +121,10 @@ func _ready() -> void:
 func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Cast 状态，当前待施放【施法法术组】:%s\" % [wand.name, wand.cast_group_stack[0]])
-	for spell in wand.cast_group_stack[0]:
+	for spell in wand.cast_group_stack[0] as Array[Spell]:
 		if spell.spell_type == Spell.SpellType.Projectile:
-			var p = (load(\"res://scenes/projectiles/light_bullet.tscn\") as PackedScene).instantiate() as Projectile2D
+			var p = spell.projectile_scene.instantiate() as Projectile2D
+			p.target_position = ($\"../../WeaponAimAbility\" as WeaponAimAbility).reticle_position
 			p.global_position = wand.projectile_spawn.global_position
 			projectiles.append(p)
 			GameManager.current_level.call_deferred(\"add_child\", p)
