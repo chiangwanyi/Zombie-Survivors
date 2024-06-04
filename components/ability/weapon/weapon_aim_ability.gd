@@ -18,6 +18,8 @@ enum ReticleTypes {
 @export var reticle_scene: PackedScene
 
 var reticle: Control
+var reticle_position: Vector2
+
 var weapon: Weapon
 
 # Called when the node enters the scene tree for the first time.
@@ -36,9 +38,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if weapon:
 		if reticle_type == ReticleTypes.UI and aim_control == AimControls.Mouse and reticle:
-			# 准星在 HUD 的位置
-			var tmp_p = reticle.position
 			# 参考整理的公式
-			tmp_p.x = tmp_p.x - 1920 * 0.5 * (1 / 1)
-			tmp_p.y = tmp_p.y - 1080 * 0.5 * (1 / 1)
-			weapon.look_at(tmp_p)
+			reticle_position.x = reticle.position.x - 1920 * 0.5 * (1 / 1)
+			reticle_position.y = reticle.position.y - 1080 * 0.5 * (1 / 1)
+			weapon.look_at(reticle_position)

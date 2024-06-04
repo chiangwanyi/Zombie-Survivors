@@ -1,5 +1,160 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7e4ru75ajbk7"]
+[gd_scene load_steps=8 format=3 uid="uid://c7e4ru75ajbk7"]
 
 [ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://components/weapon/projectiles/projectile_2d.tscn" id="1_7g6fs"]
 
+[sub_resource type="GDScript" id="GDScript_5dfo8"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	($\"../../Sprite2D\" as Sprite2D).visible = true
+
+func update(_delta: float) -> void:
+	if ($\"../../Sprite2D\" as Sprite2D).visible:
+		emit_signal(\"finished\", \"Idle\")
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_1mfna"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	emit_signal(\"finished\", \"Launched\")
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_r2fni"]
+script/source = "extends State
+
+var body: Projectile2D
+var direction: Vector2
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	print(\"Launched\")
+	body = owner as Projectile2D
+	($\"../../Sprite2D\" as Sprite2D).visible = true
+	direction = (body.target_position - body.position).normalized()
+
+func update(_delta: float) -> void:
+	pass
+
+func physics_update(delta: float) -> void:
+	# 移动 Area2D
+	body.position += direction * body.speed * delta
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_ss60t"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	pass
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_27fgw"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	pass
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
+[sub_resource type="GDScript" id="GDScript_uo45s"]
+script/source = "extends State
+
+func _ready() -> void:
+	pass
+
+func enter() -> void:
+	pass
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	pass
+
+func _exit_tree() -> void:
+	pass
+
+"
+
 [node name="LightBullet" instance=ExtResource("1_7g6fs")]
+
+[node name="StateMachine" parent="." index="0" node_paths=PackedStringArray("start_state")]
+start_state = NodePath("Launched")
+
+[node name="Spawn" type="Node" parent="StateMachine" index="0"]
+script = SubResource("GDScript_5dfo8")
+
+[node name="Idle" type="Node" parent="StateMachine" index="1"]
+script = SubResource("GDScript_1mfna")
+
+[node name="Launched" type="Node" parent="StateMachine" index="2"]
+script = SubResource("GDScript_r2fni")
+
+[node name="Flying" type="Node" parent="StateMachine" index="3"]
+script = SubResource("GDScript_ss60t")
+
+[node name="Hit" type="Node" parent="StateMachine" index="4"]
+script = SubResource("GDScript_27fgw")
+
+[node name="Destroyed" type="Node" parent="StateMachine" index="5"]
+script = SubResource("GDScript_uo45s")
+
+[node name="Sprite2D" parent="." index="3"]
+visible = false

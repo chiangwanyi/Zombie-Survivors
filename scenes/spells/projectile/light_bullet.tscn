@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://d4i327mg2r0n2"]
+[gd_scene load_steps=3 format=3 uid="uid://d4i327mg2r0n2"]
 
 [ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://components/spells/spell.tscn" id="1_h4deq"]
+[ext_resource type="PackedScene" uid="uid://c7e4ru75ajbk7" path="res://scenes/projectiles/light_bullet.tscn" id="2_xnfq4"]
 
 [node name="LightBullet" instance=ExtResource("1_h4deq")]
 cast_delay = 0.05
+recharge_time = 0.1
 damage = 3
+projectile_scene = ExtResource("2_xnfq4")
 
 [node name="Projectile" type="Sprite2D" parent="." index="0"]

@@ -41,8 +41,14 @@ var hand: Array[Spell]
 var discared: Array[Spell]
 
 var current_cast_group: Array[Spell]
+var cast_group_stack: Array = []
 
 func _ready() -> void:
+	reset()
+	state_machine = $StateMachine as StateMachine
+	state_machine.start()
+
+func reset() -> void:
 	spells = []
 	deck = []
 	hand = []
@@ -64,9 +70,5 @@ func _ready() -> void:
 	print("%s 初始化 cast, 当前剩余: [%d/%d]" % [name, cast, max_cast])
 	energe = max_energe
 	print("%s 初始化 energe, 当前剩余: [%d/%d]" % [name, energe, max_energe])
-	
-	state_machine = $StateMachine as StateMachine
-	state_machine.start()
-	
 #func weapon_input_start() -> void:
 	#_trigger_pressed = true
