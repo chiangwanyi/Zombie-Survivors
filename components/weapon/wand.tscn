@@ -21,7 +21,6 @@ func _ready() -> void:
 func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Idle 状态\" % wand.name)
-	super.enter()
 
 func update(_delta: float) -> void:
 	if wand.trigger_pressed:
@@ -39,7 +38,6 @@ func physics_update(delta: float) -> void:
 	
 func exit() -> void:
 	print(\"%s 退出 Idle 状态\" % wand.name)
-	super.exit()
 
 func _exit_tree() -> void:
 	pass
@@ -68,9 +66,7 @@ func enter() -> void:
 		cast_group = draw_spell()
 		# 3. 施放数-1
 		wand.cast -= 1
-	super.enter()
-
-func update(_delta: float) -> void:
+	
 	if cast_group.is_empty(): 
 		print(\"%s 本次抽取未抽取到法术\" % [wand.name, cast_group])
 		#emit_signal(\"finished\", \"Idle\")
@@ -102,7 +98,6 @@ func draw_spell() -> Array[Spell]:
 
 func exit() -> void:
 	print(\"%s 退出 Draw 状态\" % wand.name)
-	super.exit()
 
 func _exit_tree() -> void:
 	pass
@@ -113,6 +108,7 @@ func _exit_tree() -> void:
 script/source = "extends State
 
 var wand: Wand
+var projectiles: Array[Projectile2D]
 
 func _ready() -> void:
 	pass
@@ -120,11 +116,15 @@ func _ready() -> void:
 func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Cast 状态，cast_group:[%s]\" % [wand.name, wand.current_cast_group])
+	for spell in wand.current_cast_group:
+		if spell.spell_type == Spell.SpellType.Projectile:
+			projectiles.append((load(\"res://scenes/projectiles/light_bullet.tscn\") as PackedScene).instantiate())
 	# 先检查
 	super.enter()
 
-func update(_delta: float) -> void:
-	pass
+#func update(_delta: float) -> void:
+	#for projectile in projectiles:
+		#GameManager.current_level.call_deferred(\"add_child\", projectile)
 	
 func exit() -> void:
 	super.exit()
@@ -151,8 +151,7 @@ func enter() -> void:
 	super.enter()
 
 func update(_delta: float) -> void:
-	if not is_active():
-		return
+	pass
 	
 func exit() -> void:
 	super.exit()
@@ -172,8 +171,7 @@ func enter() -> void:
 	super.enter()
 
 func update(_delta: float) -> void:
-	if not is_active():
-		return
+	pass
 	
 func exit() -> void:
 	super.exit()
@@ -193,8 +191,7 @@ func enter() -> void:
 	super.enter()
 
 func update(_delta: float) -> void:
-	if not is_active():
-		return
+	pass
 	
 func exit() -> void:
 	super.exit()
@@ -214,8 +211,7 @@ func enter() -> void:
 	super.enter()
 
 func update(_delta: float) -> void:
-	if not is_active():
-		return
+	pass
 	
 func exit() -> void:
 	super.exit()

@@ -7,8 +7,7 @@ var _level: Array
 var plants: Array[Plant] = []
 ## 当前存活的僵尸
 #var zombies: Array[Zombie] = []
-## 当前游戏场景
-var current_level: Node2D
+
 
 ## 所有 Seed 的Dict, key为seed_name, value为Dict
 var cfg_seeds: Dictionary = {}
@@ -26,6 +25,8 @@ var projectile_scenes : Dictionary = {}
 var selected_seeds: Array[StringName]
 
 var main_hud: CanvasLayer
+## 当前游戏场景
+var current_level: Node2D
 
 func _ready() -> void:
 	_load_cfg()
