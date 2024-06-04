@@ -29,7 +29,7 @@ func update(_delta: float) -> void:
 		
 func physics_update(delta: float) -> void:
 	if wand.energe < wand.max_energe:
-		print(\"恢复 energe ...\")
+		print(\"%s 恢复 energe [%f/%f]\" % [wand.name, wand.energe, wand.max_energe])
 		# 计算在这个特定帧的时间内应当恢复多少 energe
 		# delta 的单位是秒。如果delta是0.016秒（约等于60帧/秒），
 		# 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。
@@ -122,6 +122,7 @@ func enter() -> void:
 	wand = owner as Wand
 	print(\"%s 进入 Cast 状态，当前待施放【施法法术组】:%s\" % [wand.name, wand.cast_group_stack[0]])
 	for spell in wand.cast_group_stack[0] as Array[Spell]:
+		wand.energe -= spell.energe_drain
 		if spell.spell_type == Spell.SpellType.Projectile:
 			var p = spell.projectile_scene.instantiate() as Projectile2D
 			p.target_position = ($\"../../WeaponAimAbility\" as WeaponAimAbility).reticle_position
@@ -185,16 +186,29 @@ script/source = "extends State
 
 var wand: Wand
 
+var recharge_delay: float
+var ts: float
+
 func _ready() -> void:
 	pass
 	
 func enter() -> void:
 	wand = owner as Wand
-	print(\"%s 进入 RechargeDelay 状态，本轮所有施法组：%s\" % [wand.name, wand.cast_group_stack])
-
-func update(_delta: float) -> void:
-	pass
+	recharge_delay = 0.0
+	ts = 0.0
+	for cast_group in wand.cast_group_stack:
+		for spell in cast_group as Array[Spell]:
+			recharge_delay += spell.recharge_time
+	recharge_delay += wand.recharge_time
+	print(\"%s 进入 RechargeDelay 状态，本轮所有施法组：%s，总计recharge_delay:%f\" % [wand.name, wand.cast_group_stack, recharge_delay])
 	
+
+func update(delta: float) -> void:
+	if ts >= recharge_delay:
+		print(\"%s 充能延迟结束\" % [wand.name])
+		wand.reset()
+		emit_signal(\"finished\", \"Idle\")
+	ts += delta
 func exit() -> void:
 	pass
 
