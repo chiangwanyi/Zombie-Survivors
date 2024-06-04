@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://lv87k3c4qwsu" path="res://_assets/items/wands/wand1.png" id="4_0llch"]
 
 [node name="SunSpawner" node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("1_ldx4b")]
-max_cast = 3
 energe_recharge_speed = 30
 projectile_spawn = NodePath("Marker2D")
 

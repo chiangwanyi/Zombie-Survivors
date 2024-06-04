@@ -21,7 +21,7 @@ enum ProjectileTrajectory {
 # 目标位置
 @export var target_position: Vector2
 # 速度
-@export var speed: float = 200.0
+@export var speed: float = 800.0
 @export var trajectory: ProjectileTrajectory = ProjectileTrajectory.LINEAR
 
 # Called when the node enters the scene tree for the first time.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dub12avp0i8ud"]
+[gd_scene load_steps=8 format=3 uid="uid://dub12avp0i8ud"]
 
 [ext_resource type="Script" path="res://components/weapon/wand.gd" id="1_r2q1q"]
 
@@ -28,13 +28,7 @@ func update(_delta: float) -> void:
 		emit_signal(\"finished\", \"Draw\")
 		
 func physics_update(delta: float) -> void:
-	if wand.energe < wand.max_energe:
-		print(\"%s 恢复 energe [%f/%f]\" % [wand.name, wand.energe, wand.max_energe])
-		# 计算在这个特定帧的时间内应当恢复多少 energe
-		# delta 的单位是秒。如果delta是0.016秒（约等于60帧/秒），
-		# 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。
-		wand.energe += wand.energe_recharge_speed * delta
-		wand.energe = min(wand.energe, wand.max_energe)
+	wand.recharge(delta)
 	
 func exit() -> void:
 	pass
@@ -62,20 +56,18 @@ func enter() -> void:
 		##TODO 标记回绕
 		#pass
 	
-	if wand.cast > 0:
-		# 2. 抽取法术，得到一次施法的【施法组】
+	if not wand.deck.is_empty():
 		cast_group = draw_spell()
-		# 3. 施放数-1
-		wand.cast -= 1
+		# 牌库有法术，但是抽取失败，直接进入充能延迟
 		if cast_group.is_empty(): 
-			print(\"%s 本次抽取未抽取到法术\" % [wand.name])
-			emit_signal(\"finished\", \"Idle\")
+			print(\"%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却\" % [wand.name, wand.energe, wand.max_energe])
+			emit_signal(\"finished\", \"RechargeDelay\")
 		else:
 			wand.cast_group_stack.push_front(cast_group)
-			print(\"%s 本次抽取到法术:%s，剩余cast[%d/%d]，准备【施法】\" % [wand.name, cast_group, wand.cast, wand.max_cast])
+			print(\"%s 本次抽取到法术:%s，剩余energe[%f/%f]，剩余desk:%d，准备【施法】\" % [wand.name, cast_group, wand.energe, wand.max_energe, wand.deck.size()])
 			emit_signal(\"finished\", \"Cast\")
 	else:
-		print(\"%s 抽取数耗尽，准备进入【充能延迟】\" % [wand.name])
+		print(\"%s 牌库为空，准备进入【充能延迟】\" % [wand.name])
 		emit_signal(\"finished\", \"RechargeDelay\")
 
 
@@ -84,7 +76,7 @@ func draw_spell() -> Array[Spell]:
 	var cast_group: Array[Spell] = []
 	
 	# 定义本次抽取次数
-	var draw = 1
+	var draw = wand.max_cast
 	# 暂存当前的剩余 energe
 	var remaining_energe = wand.energe
 	while draw > 0 and not wand.deck.is_empty():
@@ -130,7 +122,10 @@ func enter() -> void:
 			projectiles.append(p)
 			GameManager.current_level.call_deferred(\"add_child\", p)
 	print(\"%s 本次施法完毕\" % [wand.name])
-	emit_signal(\"finished\", \"CastDelay\")
+	if wand.deck.is_empty():
+		emit_signal(\"finished\", \"RechargeDelay\")
+	else:
+		emit_signal(\"finished\", \"CastDelay\")
 
 #func update(_delta: float) -> void:
 	#for projectile in projectiles:
@@ -166,11 +161,16 @@ func enter() -> void:
 	wand.cast_delay, cast_delay, (wand.cast_delay + cast_delay)])
 	cast_delay += wand.cast_delay
 
-func update(delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if ts >= cast_delay:
-		print(\"%s 施法延迟结束，先回到Idle状态\" % [wand.name])
-		emit_signal(\"finished\", \"Idle\")
+		if wand.deck.is_empty():
+			print(\"%s 施法延迟结束，牌库为空，进入充能冷却状态\" % [wand.name])
+			emit_signal(\"finished\", \"RechargeDelay\")
+		else:
+			print(\"%s 施法延迟结束，先回到Idle状态\" % [wand.name])
+			emit_signal(\"finished\", \"Idle\")
 	ts += delta
+	wand.recharge(delta)
 	#print(\"%s 等待施法延迟...[%f/%f]\" % [wand.name, ts, cast_delay])
 	
 func exit() -> void:
@@ -203,54 +203,17 @@ func enter() -> void:
 	print(\"%s 进入 RechargeDelay 状态，本轮所有施法组：%s，总计recharge_delay:%f\" % [wand.name, wand.cast_group_stack, recharge_delay])
 	
 
-func update(delta: float) -> void:
+func physics_update(delta: float) -> void:
 	if ts >= recharge_delay:
 		print(\"%s 充能延迟结束\" % [wand.name])
 		wand.reset()
 		emit_signal(\"finished\", \"Idle\")
 	ts += delta
-func exit() -> void:
-	pass
-
-func _exit_tree() -> void:
-	pass
-
-"
-
-[sub_resource type="GDScript" id="GDScript_43gfs"]
-script/source = "extends State
-
-func _ready() -> void:
-	pass
-
-func enter() -> void:
-	super.enter()
-
-func update(_delta: float) -> void:
-	pass
+	#print(\"%s 等待充能延迟...[%f/%f]\" % [wand.name, ts, recharge_delay])
+	wand.recharge(delta)
 	
 func exit() -> void:
-	super.exit()
-
-func _exit_tree() -> void:
 	pass
-
-"
-
-[sub_resource type="GDScript" id="GDScript_w52mh"]
-script/source = "extends State
-
-func _ready() -> void:
-	pass
-
-func enter() -> void:
-	super.enter()
-
-func update(_delta: float) -> void:
-	pass
-	
-func exit() -> void:
-	super.exit()
 
 func _exit_tree() -> void:
 	pass
@@ -280,11 +243,5 @@ script = SubResource("GDScript_om8ju")
 
 [node name="RechargeDelay" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_jxwcj")
-
-[node name="DelayBetweenUses" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_43gfs")
-
-[node name="Reload" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_w52mh")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
