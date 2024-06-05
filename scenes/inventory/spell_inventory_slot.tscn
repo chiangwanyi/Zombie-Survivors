@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bu4wwswj5f825"]
+
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="1_dihkv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q7cc6"]
+texture = ExtResource("1_dihkv")
+
+[node name="SpellInventorySlot" type="Panel"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+theme_override_styles/panel = SubResource("StyleBoxTexture_q7cc6")

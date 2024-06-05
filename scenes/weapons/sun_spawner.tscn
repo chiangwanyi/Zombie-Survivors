@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1g7imiy1kxsy"]
+[gd_scene load_steps=8 format=3 uid="uid://b1g7imiy1kxsy"]
 
 [ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://components/weapon/wand.tscn" id="1_ldx4b"]
 [ext_resource type="PackedScene" uid="uid://d4i327mg2r0n2" path="res://scenes/spells/projectile/light_bullet.tscn" id="2_33kfh"]
 [ext_resource type="PackedScene" uid="uid://xsetvby3pqi0" path="res://components/ability/weapon/weapon_aim_ability.tscn" id="2_qe0oo"]
 [ext_resource type="PackedScene" uid="uid://bhqkl4cunywh3" path="res://scenes/weapons/reticles/ui_reticle.tscn" id="3_yd7u4"]
 [ext_resource type="Texture2D" uid="uid://lv87k3c4qwsu" path="res://_assets/items/wands/wand1.png" id="4_0llch"]
+[ext_resource type="PackedScene" uid="uid://bu4wwswj5f825" path="res://scenes/inventory/spell_inventory_slot.tscn" id="4_0p5gs"]
+[ext_resource type="Resource" uid="uid://pkg8nbuq6ec7" path="res://resources/spells/light_bullet.tres" id="5_qnm7v"]
 
 [node name="SunSpawner" node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("1_ldx4b")]
 energe_recharge_speed = 30
@@ -13,16 +15,21 @@ projectile_spawn = NodePath("Marker2D")
 [node name="WeaponAimAbility" parent="." index="0" instance=ExtResource("2_qe0oo")]
 reticle_scene = ExtResource("3_yd7u4")
 
+[node name="WeaponInventoryAbility" parent="." index="1"]
+inventory_name = "Wand Inventory"
+slot = ExtResource("4_0p5gs")
+items = Array[Resource]([ExtResource("5_qnm7v"), null, ExtResource("5_qnm7v"), ExtResource("5_qnm7v")])
+
 [node name="LightBullet" parent="Slots" index="0" instance=ExtResource("2_33kfh")]
 
 [node name="LightBullet2" parent="Slots" index="1" instance=ExtResource("2_33kfh")]
 
 [node name="LightBullet3" parent="Slots" index="2" instance=ExtResource("2_33kfh")]
 
-[node name="Sprite2D" parent="." index="3"]
+[node name="Marker2D" type="Marker2D" parent="." index="4"]
+position = Vector2(19, 0)
+
+[node name="Sprite2D" parent="." index="5"]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_0llch")
-
-[node name="Marker2D" type="Marker2D" parent="." index="4"]
-position = Vector2(19, 0)

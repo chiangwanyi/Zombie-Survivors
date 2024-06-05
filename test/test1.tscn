@@ -10,6 +10,7 @@ script/source = "extends Node2D
 func _ready() -> void:
 	GameManager.main_hud = $HUD
 	GameManager.current_level = self
+	GameManager.inventories[\"Wand Inventory\"] = $HUD/Control/WandInventory
 
 "
 
@@ -43,6 +44,27 @@ script = SubResource("GDScript_h3o0b")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="Panel" type="Panel" parent="HUD/Control"]
+layout_mode = 0
+offset_right = 448.0
+offset_bottom = 64.0
+metadata/_edit_lock_ = true
+
+[node name="WandInventory" type="GridContainer" parent="HUD/Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 440.0
+offset_bottom = 56.0
+columns = 7
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Player" type="Area2D" parent="."]
@@ -56,8 +78,6 @@ weapon_attachment = NodePath("../WeaponAttachment")
 texture = ExtResource("1_m27m6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2(-2, 7)
 shape = SubResource("CapsuleShape2D_4768o")
 
 [node name="WeaponAttachment" type="Marker2D" parent="Player"]
-position = Vector2(39, 5)

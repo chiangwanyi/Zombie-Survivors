@@ -18,6 +18,8 @@ func _ready() -> void:
 		weapon.position = weapon_attachment.position
 		weapon.weapon_owner = $".." as Node2D
 		current_weapon = weapon
+		if auto_use:
+			weapon.trigger_pressed = true
 		owner.add_child.call_deferred(weapon)
 
 func shoot_start() -> void:
@@ -32,6 +34,5 @@ func shoot_stop() -> void:
 	print("weapon %s shoot stop" % current_weapon.name)
 	current_weapon.turn_off()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+#func _physics_process(delta: float) -> void:
+	#

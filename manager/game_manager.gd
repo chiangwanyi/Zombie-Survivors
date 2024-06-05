@@ -27,6 +27,8 @@ var selected_seeds: Array[StringName]
 var main_hud: CanvasLayer
 ## 当前游戏场景
 var current_level: Node2D
+## 背包 Map<String:InventoryName, Node:Inventory>
+var inventories: Dictionary = {}
 
 func _ready() -> void:
 	_load_cfg()

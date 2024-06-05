@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dub12avp0i8ud"]
+[gd_scene load_steps=9 format=3 uid="uid://dub12avp0i8ud"]
 
 [ext_resource type="Script" path="res://components/weapon/wand.gd" id="1_r2q1q"]
+[ext_resource type="PackedScene" uid="uid://i3nge2hbvasu" path="res://components/ability/weapon/weapon_inventory_ability.tscn" id="2_4kdg8"]
 
 [sub_resource type="GDScript" id="GDScript_uhq8u"]
 script/source = "extends StateMachine
@@ -222,6 +223,8 @@ func _exit_tree() -> void:
 
 [node name="Wand" type="Node2D"]
 script = ExtResource("1_r2q1q")
+
+[node name="WeaponInventoryAbility" parent="." instance=ExtResource("2_4kdg8")]
 
 [node name="Slots" type="Node" parent="."]
 
