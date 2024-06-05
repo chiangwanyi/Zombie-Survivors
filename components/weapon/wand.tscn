@@ -117,7 +117,7 @@ func enter() -> void:
 		wand.energe -= spell.energe_drain
 		if spell.spell_type == Spell.SpellType.Projectile:
 			var p = spell.projectile_scene.instantiate() as Projectile2D
-			p.target_position = ($\"../../WeaponAimAbility\" as WeaponAimAbility).reticle_position
+			p.target_position = wand.get_global_mouse_position()
 			p.global_position = wand.projectile_spawn.global_position
 			projectiles.append(p)
 			GameManager.current_level.call_deferred(\"add_child\", p)

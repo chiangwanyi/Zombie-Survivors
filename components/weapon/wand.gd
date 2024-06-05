@@ -75,3 +75,6 @@ func recharge(delta: float) -> void:
 		# 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。
 		energe += energe_recharge_speed * delta
 		energe = min(energe, max_energe)
+		
+func _physics_process(delta: float) -> void:
+	get_global_mouse_position()
