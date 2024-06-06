@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="1_m27m6"]
 [ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://_abilities/character_abilities/character_handle_weapon_ability.tscn" id="1_xgklq"]
-[ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://weapons/wands/wand_sun_spawner.tscn" id="2_qu4bs"]
+[ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://weapon/wands/wand_sun_spawner.tscn" id="2_qu4bs"]
 
 [sub_resource type="GDScript" id="GDScript_h3o0b"]
 script/source = "extends Node2D
@@ -54,7 +54,7 @@ scale = Vector2(2, 2)
 [node name="Panel" type="Panel" parent="HUD/Control"]
 layout_mode = 0
 offset_right = 448.0
-offset_bottom = 64.0
+offset_bottom = 48.0
 metadata/_edit_lock_ = true
 
 [node name="WandInventory" type="GridContainer" parent="HUD/Control"]
@@ -62,7 +62,7 @@ layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 440.0
-offset_bottom = 56.0
+offset_bottom = 40.0
 columns = 7
 
 [node name="Camera2D" type="Camera2D" parent="."]

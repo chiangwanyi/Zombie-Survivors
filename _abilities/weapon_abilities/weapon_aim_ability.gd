@@ -23,6 +23,8 @@ var reticle_position: Vector2
 var weapon: Weapon
 
 func _ready() -> void:
+	if not available:
+		return
 	if owner is Weapon:
 		weapon = owner
 		
@@ -33,6 +35,8 @@ func _ready() -> void:
 			GameManager.main_hud.call_deferred("add_child", reticle)
 
 func _physics_process(delta: float) -> void:
+	if not available:
+		return
 	if weapon:
 		if reticle_type == ReticleTypes.UI and aim_control == AimControls.Mouse and reticle:
 			weapon.look_at(weapon.get_global_mouse_position())

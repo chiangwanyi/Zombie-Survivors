@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt07ygu4yxa8h"]
+
+[ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="1_xpw5l"]
+
+[node name="InventoryItem" type="TextureRect"]
+script = ExtResource("1_xpw5l")

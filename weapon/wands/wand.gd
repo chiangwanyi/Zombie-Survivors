@@ -3,7 +3,6 @@ class_name Wand extends Weapon
 enum TriggerModes { SemiAuto, Auto }
 
 @onready var weapon_inventory_ability: WeaponInventoryAbility = $WeaponInventoryAbility
-@onready var slots: Node = $Slots
 @onready var state_machine: StateMachine = $StateMachine
 
 @export_group("Wand Statistics")

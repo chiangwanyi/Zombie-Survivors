@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dub12avp0i8ud"]
 
-[ext_resource type="Script" path="res://weapons/wands/wand.gd" id="1_xh8mq"]
+[ext_resource type="Script" path="res://weapon/wands/wand.gd" id="1_xh8mq"]
 [ext_resource type="PackedScene" uid="uid://i3nge2hbvasu" path="res://_abilities/weapon_abilities/weapon_inventory_ability.tscn" id="2_a6c5u"]
 
 [sub_resource type="GDScript" id="GDScript_uhq8u"]
