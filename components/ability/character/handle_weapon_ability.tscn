@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4vysyw60saap"]
-
-[ext_resource type="Script" path="res://components/ability/character/handle_weapon_ability.gd" id="1_giy6c"]
-
-[node name="HandleWeaponAbility" type="Node"]
-script = ExtResource("1_giy6c")

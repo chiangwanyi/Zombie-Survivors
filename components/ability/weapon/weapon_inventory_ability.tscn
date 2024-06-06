@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://i3nge2hbvasu"]
-
-[ext_resource type="Script" path="res://components/ability/weapon/weapon_inventory_ability.gd" id="1_o8b4w"]
-
-[node name="WeaponInventoryAbility" type="Node"]
-script = ExtResource("1_o8b4w")

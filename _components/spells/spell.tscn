@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdhqsl8r8ylph"]
+
+[ext_resource type="Script" path="res://_components/spells/spell.gd" id="1_veams"]
+
+[node name="Spell" type="Node"]
+script = ExtResource("1_veams")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8ng02at2vtga"]
+
+[sub_resource type="GDScript" id="GDScript_q0fr2"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	load(\"res://resources/wands/sun_spawner.tres\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[node name="Test2" type="Node2D"]
+script = SubResource("GDScript_q0fr2")

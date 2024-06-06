@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cjrphc0jfrf2c"]
 
 [ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="1_m27m6"]
-[ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://components/ability/character/handle_weapon_ability.tscn" id="1_xgklq"]
-[ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://scenes/weapons/sun_spawner.tscn" id="2_qu4bs"]
+[ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://_abilities/character_abilities/character_handle_weapon_ability.tscn" id="1_xgklq"]
+[ext_resource type="PackedScene" uid="uid://b1g7imiy1kxsy" path="res://weapons/wands/wand_sun_spawner.tscn" id="2_qu4bs"]
 
 [sub_resource type="GDScript" id="GDScript_h3o0b"]
 script/source = "extends Node2D
@@ -30,9 +30,9 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
-			($HandleWeaponAbility as HandleWeaponAbility).shoot_start()
+			($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_start()
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
-			($HandleWeaponAbility as HandleWeaponAbility).shoot_stop()
+			($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_stop()
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4768o"]

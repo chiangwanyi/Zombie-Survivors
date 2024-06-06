@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c7e4ru75ajbk7"]
 
-[ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://components/weapon/projectiles/projectile_2d.tscn" id="1_7g6fs"]
+[ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/weapon/projectiles/projectile_2d.tscn" id="1_7g6fs"]
 
 [sub_resource type="GDScript" id="GDScript_5dfo8"]
 script/source = "extends State

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyqr04uteca2t"]
+
+[ext_resource type="Script" path="res://_abilities/gui_abilities/gui_follow_mouse_ability.gd" id="1_b8inh"]
+
+[node name="GUIFollowMouseAbility" type="Node"]
+script = ExtResource("1_b8inh")

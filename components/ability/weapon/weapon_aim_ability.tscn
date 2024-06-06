@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://xsetvby3pqi0"]
-
-[ext_resource type="Script" path="res://components/ability/weapon/weapon_aim_ability.gd" id="1_uwv8v"]
-
-[node name="WeaponAimAbility" type="Node"]
-script = ExtResource("1_uwv8v")

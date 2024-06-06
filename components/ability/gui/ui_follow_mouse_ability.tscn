@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyqr04uteca2t"]
-
-[ext_resource type="Script" path="res://components/ability/gui/ui_follow_mouse_ability.gd" id="1_krwax"]
-
-[node name="UiFollowMouse" type="Node"]
-script = ExtResource("1_krwax")

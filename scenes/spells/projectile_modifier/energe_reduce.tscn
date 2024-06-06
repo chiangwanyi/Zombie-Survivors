@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ro4g128kvsqc"]
 
-[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://components/spells/spell.tscn" id="1_7tntx"]
+[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://_components/spells/spell.tscn" id="1_7tntx"]
 
 [node name="EnergeReduce" instance=ExtResource("1_7tntx")]
 energe_drain = -30
