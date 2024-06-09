@@ -2,5 +2,23 @@
 
 [ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="1_xpw5l"]
 
-[node name="InventoryItem" type="TextureRect"]
+[node name="InventoryItem" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_xpw5l")
+
+[node name="ItemBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+expand_mode = 3

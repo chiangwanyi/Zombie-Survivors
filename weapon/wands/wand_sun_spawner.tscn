@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1g7imiy1kxsy"]
+[gd_scene load_steps=8 format=3 uid="uid://b1g7imiy1kxsy"]
 
 [ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://weapon/wands/wand.tscn" id="1_80ho1"]
 [ext_resource type="PackedScene" uid="uid://xsetvby3pqi0" path="res://_abilities/weapon_abilities/weapon_aim_ability.tscn" id="2_qe0oo"]
 [ext_resource type="PackedScene" uid="uid://bhqkl4cunywh3" path="res://weapon_reticle/weapon_ui_reticle.tscn" id="3_ny4f5"]
 [ext_resource type="Texture2D" uid="uid://lv87k3c4qwsu" path="res://_assets/items/wands/wand1.png" id="4_0llch"]
 [ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="4_fxesr"]
-[ext_resource type="PackedScene" uid="uid://d27tsraakg43y" path="res://inventory/item/spell/light_bullet_item.tscn" id="5_unqq6"]
+[ext_resource type="PackedScene" uid="uid://dp0ju4juyitg8" path="res://inventory/item/spell/sun_item.tscn" id="5_unqq6"]
+[ext_resource type="PackedScene" uid="uid://dradgrvq3fpb2" path="res://inventory/item/spell/pea_item.tscn" id="6_cgi7t"]
 
 [node name="WandSunSpawner" node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("1_80ho1")]
 energe_recharge_speed = 30
@@ -17,8 +18,10 @@ available = false
 
 [node name="WeaponInventoryAbility" parent="." index="1"]
 inventory_name = "Wand Inventory"
+size = null
 slot = ExtResource("4_fxesr")
-items = Array[PackedScene]([ExtResource("5_unqq6"), ExtResource("5_unqq6"), null, ExtResource("5_unqq6")])
+items = Array[PackedScene]([ExtResource("5_unqq6"), null, ExtResource("6_cgi7t"), ExtResource("5_unqq6")])
+available = null
 
 [node name="Sprite2D" parent="." index="3"]
 texture_filter = 1

@@ -8,9 +8,9 @@
 script/source = "extends Node2D
 
 func _ready() -> void:
-	GameManager.main_hud = $HUD
-	GameManager.current_level = self
-	GameManager.inventories[\"Wand Inventory\"] = $HUD/Control/WandInventory
+    GameManager.main_hud = $HUD
+    GameManager.current_level = self
+    GameManager.inventories[\"Wand Inventory\"] = $HUD/Control/WandInventory
 
 "
 
@@ -20,19 +20,20 @@ script/source = "extends Area2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-	
+    pass
+    
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
-			($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_start()
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
-			($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_stop()
+    pass
+    #if event is InputEventMouseButton:
+        #if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
+            #($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_start()
+        #if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
+            #($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_stop()
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4768o"]

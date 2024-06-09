@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp0ju4juyitg8"]
+
+[ext_resource type="PackedScene" uid="uid://bt07ygu4yxa8h" path="res://_components/inventory/inventory_item.tscn" id="1_nir3x"]
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="2_p365q"]
+[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="3_qcuxj"]
+
+[node name="InventoryItem" instance=ExtResource("1_nir3x")]
+item_name = "Sun"
+item_description = "阳光"
+
+[node name="ItemBorder" parent="." index="0"]
+texture = ExtResource("2_p365q")
+
+[node name="ItemAvatar" parent="." index="1"]
+texture = ExtResource("3_qcuxj")

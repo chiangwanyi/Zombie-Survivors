@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://_components/inventory/inventory_item_slot.gd" id="1_jbwah"]
 
-[node name="InventoryItemSlot" type="Panel"]
+[node name="InventoryItemSlot" type="PanelContainer"]
 script = ExtResource("1_jbwah")

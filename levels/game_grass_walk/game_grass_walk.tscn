@@ -1,31 +1,197 @@
 [gd_scene load_steps=29 format=3 uid="uid://w7xu435qumq2"]
 
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/game_grass_walk.gd" id="1_r4vxq"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/loading.gd" id="2_i8a5t"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/selecting.gd" id="3_x4axk"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/selection_complete.gd" id="4_l7r2d"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/playing.gd" id="5_eqaaq"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/set_ready_plant.gd" id="5_o18ft"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/paused.gd" id="6_d7nnx"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/victory.gd" id="7_xgw4o"]
-[ext_resource type="Script" path="res://scenes/levels/game_grass_walk/state/defeat.gd" id="8_kgr8n"]
-[ext_resource type="PackedScene" uid="uid://cqkrmdxlwvvqk" path="res://scenes/ui/seed_bank/seed_bank.tscn" id="9_tg541"]
-[ext_resource type="PackedScene" uid="uid://bskyhs7d56e76" path="res://scenes/ui/seed_chooser/seed_chooser.tscn" id="10_m3yp0"]
-[ext_resource type="PackedScene" uid="uid://bwam8xt0qchv4" path="res://scenes/ui/flag_meter/flag_meter.tscn" id="11_etymr"]
-[ext_resource type="Texture2D" uid="uid://c32mgta82qfth" path="res://_assets/Images/StartSet.png" id="13_7vqg2"]
-[ext_resource type="Texture2D" uid="uid://b021tnlalnkew" path="res://_assets/Images/StartReady.png" id="14_fy7ta"]
-[ext_resource type="Texture2D" uid="uid://v8vywatdjo4r" path="res://_assets/Images/StartPlant.png" id="15_7prpl"]
-[ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="16_30wmg"]
-[ext_resource type="AudioStream" uid="uid://yngl4x0ai5qq" path="res://_assets/sounds/choose_your_seeds.ogg" id="17_vjo61"]
-[ext_resource type="AudioStream" uid="uid://col177jby5sq" path="res://_assets/sounds/level_grasswalk.ogg" id="18_1y4cb"]
-[ext_resource type="AudioStream" uid="uid://cdppqqkbqcdvt" path="res://_assets/sounds/readysetplant.ogg" id="19_et3j0"]
+[ext_resource type="Script" path="res://levels/game_grass_walk/game_grass_walk.gd" id="1_n6s2u"]
+[ext_resource type="PackedScene" uid="uid://cqkrmdxlwvvqk" path="res://scenes/ui/seed_bank/seed_bank.tscn" id="10_y22a7"]
+[ext_resource type="PackedScene" uid="uid://bskyhs7d56e76" path="res://scenes/ui/seed_chooser/seed_chooser.tscn" id="11_n65fi"]
+[ext_resource type="PackedScene" uid="uid://bwam8xt0qchv4" path="res://scenes/ui/flag_meter/flag_meter.tscn" id="12_pvo8f"]
+[ext_resource type="Texture2D" uid="uid://c32mgta82qfth" path="res://_assets/images/StartSet.png" id="13_ibmc7"]
+[ext_resource type="Texture2D" uid="uid://b021tnlalnkew" path="res://_assets/images/StartReady.png" id="14_naa5b"]
+[ext_resource type="Texture2D" uid="uid://v8vywatdjo4r" path="res://_assets/images/StartPlant.png" id="15_44iqo"]
+[ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="16_84d87"]
+[ext_resource type="AudioStream" uid="uid://yngl4x0ai5qq" path="res://_assets/sounds/choose_your_seeds.ogg" id="17_tj2js"]
+[ext_resource type="AudioStream" uid="uid://col177jby5sq" path="res://_assets/sounds/level_grasswalk.ogg" id="18_8ofpi"]
+[ext_resource type="AudioStream" uid="uid://cdppqqkbqcdvt" path="res://_assets/sounds/readysetplant.ogg" id="19_s6ygs"]
 
 [sub_resource type="GDScript" id="GDScript_qpbja"]
 script/source = "extends StateMachine
+
+func _ready() -> void:
+    super._ready()
+"
+
+[sub_resource type="GDScript" id="GDScript_y5wl6"]
+script/source = "extends State
+
+@onready var seed_chooser := $\"../../HUD/SeedChooser\" as SeedChooser
+@onready var seed_bank := $\"../../HUD/SeedBank\" as SeedBank
+@onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
+
+func enter() -> void:
+    print(\"Loding start...\")
+    seed_chooser.init()
+    seed_bank.init(GameManager.levels[(owner as GameLevel).level_name][\"initial_sun\"])
+    animation.play(\"level_loading\")
+    super.enter()
+
+func update(_delta: float) -> void:
+    pass
+    
+func exit() -> void:
+    print(\"Loading end.\")
+    super.exit()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    if not is_active():
+        return
+    if anim_name == \"level_loading\":
+        emit_signal(\"finished\", \"Selecting\")
+"
+
+[sub_resource type="GDScript" id="GDScript_6jpss"]
+script/source = "extends State
+
+var seed_chooser_event := SeedChooserEvent.new()
+
+func _ready() -> void:
+    seed_chooser_event.on_event.connect(_on_event_seed_chooser)
+    EventManager.add_listener(seed_chooser_event)
+
+func enter() -> void:
+    print(\"Selecting start...\")
+    ($\"../../BgmSelecting\" as AudioStreamPlayer).play()
+    super.enter()
+
+func update(_delta: float) -> void:
+    pass
+    
+func exit() -> void:
+    super.exit()
+
+func _on_event_seed_chooser(e: SeedChooserEvent) -> void:
+    if not is_active():
+        return
+    if e.type == SeedChooserEvent.Type.SELECTION_COMPLETE:
+        emit_signal(\"finished\", \"SelectionComplete\")
+        
+func _exit_tree() -> void:
+    EventManager.remove_listener(seed_chooser_event)
+
+"
+
+[sub_resource type="GDScript" id="GDScript_ub4hr"]
+script/source = "extends State
+
+@onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
+
+func enter() -> void:
+    print(\"Selection Complete\")
+    animation.play(\"selection_complete\")
+
+    var tween := create_tween()
+    tween.tween_property(($\"../../BgmSelecting\" as AudioStreamPlayer), \"volume_db\", -80.0, 5)
+    
+    super.enter()
+
+func update(_delta: float) -> void:
+    pass
+    
+func exit() -> void:
+    super.exit()
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    if not is_active():
+        return
+    if anim_name == \"selection_complete\":
+        emit_signal(\"finished\", \"SetReadyPlant\")
+"
+
+[sub_resource type="GDScript" id="GDScript_cgeak"]
+script/source = "extends State
+
+@onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
+
+func _ready() -> void:
+    pass
+
+func enter() -> void:
+    animation.play(\"set_ready_plant\")
+    super.enter()
+
+func update(_delta: float) -> void:
+    pass
+    
+func exit() -> void:
+    super.exit()
+
+func _exit_tree() -> void:
+    pass
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    if not is_active():
+        return
+    if anim_name == \"set_ready_plant\":
+        emit_signal(\"finished\", \"Playing\")
+"
+
+[sub_resource type="GDScript" id="GDScript_sktyx"]
+script/source = "extends State
+
+func enter() -> void:
+    print(\"Playing\")
+    ($\"../../BgmGameGrasswalk\" as AudioStreamPlayer).play()
+    super.enter()
+
+func update(_delta: float) -> void:
+    pass
+    
+func exit() -> void:
+    super.exit()
+"
+
+[sub_resource type="GDScript" id="GDScript_pi3yj"]
+script/source = "extends State
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	super.exit()
+"
+
+[sub_resource type="GDScript" id="GDScript_7sy5t"]
+script/source = "extends State
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	super.exit()
+
+"
+
+[sub_resource type="GDScript" id="GDScript_1c2u5"]
+script/source = "extends State
+
+func enter() -> void:
+	super.enter()
+
+func update(_delta: float) -> void:
+	pass
+	
+func exit() -> void:
+	super.exit()
+
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
-texture = ExtResource("16_30wmg")
+texture = ExtResource("16_84d87")
 texture_region_size = Vector2i(200, 200)
 0:0/0 = 0
 
@@ -313,50 +479,50 @@ _data = {
 point_count = 5
 
 [node name="GameGrassWalk" type="Node2D"]
-script = ExtResource("1_r4vxq")
+script = ExtResource("1_n6s2u")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = SubResource("GDScript_qpbja")
 start_state = NodePath("LevelLoading")
 
 [node name="LevelLoading" type="Node" parent="StateMachine"]
-script = ExtResource("2_i8a5t")
+script = SubResource("GDScript_y5wl6")
 
 [node name="Selecting" type="Node" parent="StateMachine"]
-script = ExtResource("3_x4axk")
+script = SubResource("GDScript_6jpss")
 
 [node name="SelectionComplete" type="Node" parent="StateMachine"]
-script = ExtResource("4_l7r2d")
+script = SubResource("GDScript_ub4hr")
 
 [node name="SetReadyPlant" type="Node" parent="StateMachine"]
-script = ExtResource("5_o18ft")
+script = SubResource("GDScript_cgeak")
 
 [node name="Playing" type="Node" parent="StateMachine"]
-script = ExtResource("5_eqaaq")
+script = SubResource("GDScript_sktyx")
 
 [node name="Paused" type="Node" parent="StateMachine"]
-script = ExtResource("6_d7nnx")
+script = SubResource("GDScript_pi3yj")
 
 [node name="Victory" type="Node" parent="StateMachine"]
-script = ExtResource("7_xgw4o")
+script = SubResource("GDScript_7sy5t")
 
 [node name="Defeat" type="Node" parent="StateMachine"]
-script = ExtResource("8_kgr8n")
+script = SubResource("GDScript_1c2u5")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="SeedBank" parent="HUD" instance=ExtResource("9_tg541")]
+[node name="SeedBank" parent="HUD" instance=ExtResource("10_y22a7")]
 offset_left = -726.0
 offset_right = -726.0
 scale = Vector2(0.7, 0.7)
 
-[node name="SeedChooser" parent="HUD" instance=ExtResource("10_m3yp0")]
+[node name="SeedChooser" parent="HUD" instance=ExtResource("11_n65fi")]
 offset_left = -560.0
 offset_top = 132.0
 offset_right = -520.0
 offset_bottom = 172.0
 
-[node name="FlagMeter" parent="HUD" instance=ExtResource("11_etymr")]
+[node name="FlagMeter" parent="HUD" instance=ExtResource("12_pvo8f")]
 offset_left = 1617.0
 offset_top = 1033.0
 offset_right = 1657.0
@@ -394,7 +560,7 @@ offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 66)
-texture = ExtResource("13_7vqg2")
+texture = ExtResource("13_ibmc7")
 
 [node name="StartReady" type="TextureRect" parent="HUD/Ready"]
 visible = false
@@ -411,7 +577,7 @@ offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(150, 66)
-texture = ExtResource("14_fy7ta")
+texture = ExtResource("14_naa5b")
 
 [node name="StartPlant" type="TextureRect" parent="HUD/Ready"]
 visible = false
@@ -429,7 +595,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(150, 66)
-texture = ExtResource("15_7prpl")
+texture = ExtResource("15_44iqo")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.75, 0.75)
@@ -445,13 +611,13 @@ libraries = {
 }
 
 [node name="BgmSelecting" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("17_vjo61")
+stream = ExtResource("17_tj2js")
 
 [node name="BgmGameGrasswalk" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("18_1y4cb")
+stream = ExtResource("18_8ofpi")
 
 [node name="BgmReadySetPlant" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_et3j0")
+stream = ExtResource("19_s6ygs")
 
 [node name="OverHUD" type="CanvasLayer" parent="."]
 layer = 2
