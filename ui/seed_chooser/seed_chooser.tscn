@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://bskyhs7d56e76"]
+
+[ext_resource type="Script" path="res://ui/seed_chooser/seed_chooser.gd" id="1_t6mie"]
+[ext_resource type="Texture2D" uid="uid://bvoly6vjdd7tc" path="res://_assets/images/SeedChooser_Background.png" id="2_rmjoo"]
+[ext_resource type="Texture2D" uid="uid://c6e10kqvkmg5r" path="res://_assets/images/SeedChooser_Button.png" id="3_kh46k"]
+[ext_resource type="Texture2D" uid="uid://cc0ju37pa361v" path="res://_assets/images/SeedChooser_Button_Disabled.png" id="4_osydl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_33b08"]
+texture = ExtResource("2_rmjoo")
+texture_margin_left = 80.0
+texture_margin_top = 35.5167
+texture_margin_right = 80.0
+texture_margin_bottom = 14.275
+
+[node name="SeedChooser" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.7, 0.7)
+script = ExtResource("1_t6mie")
+
+[node name="SeedChooserBG" type="PanelContainer" parent="."]
+layout_mode = 1
+offset_right = 461.0
+offset_bottom = 745.0
+scale = Vector2(1.7, 1.7)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_33b08")
+
+[node name="SeedPacketContainer" type="HFlowContainer" parent="."]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 67.0
+offset_right = 757.0
+offset_bottom = 1237.0
+
+[node name="SelectionCompleteButton" type="TextureButton" parent="."]
+layout_mode = 1
+offset_left = 254.286
+offset_top = 1128.57
+offset_right = 410.286
+offset_bottom = 1170.57
+scale = Vector2(1.8, 1.8)
+disabled = true
+texture_normal = ExtResource("3_kh46k")
+texture_disabled = ExtResource("4_osydl")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="SelectionCompleteButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.188235, 0.0823529, 0.027451, 1)
+theme_override_font_sizes/font_size = 24
+text = "一起摇滚吧"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="SelectionCompleteButton" to="." method="_on_selection_complete_button_pressed"]

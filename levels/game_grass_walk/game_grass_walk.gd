@@ -20,7 +20,7 @@ func _on_seed_packet_event(e: SeedPacketEvent) -> void:
                 hold_seed_name = e.seed_name
                 
                 var avatar := Sprite2D.new()
-                avatar.texture = load("res://Assets/Images/Plants/%s.png" % e.seed_name)
+                avatar.texture = load("res://_assets/images/plants/%s.png" % e.seed_name)
                 avatar.modulate = Color(Color.WHITE, 0.5)
                 avatar.position = get_global_mouse_position()
                 add_child(avatar)

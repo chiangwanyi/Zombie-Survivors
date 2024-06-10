@@ -1,12 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://beoeb1tokplbb"]
 
-[ext_resource type="PackedScene" uid="uid://cn3wq5jc8sr2n" path="res://_components/inventory/inventory_item_slot.tscn" id="1_00wtj"]
+[ext_resource type="Script" path="res://_components/inventory/inventory_item_slot.gd" id="1_qhywb"]
 [ext_resource type="Texture2D" uid="uid://cjl8506gcoaba" path="res://_assets/images/spell_slot_bg.png" id="2_h0rvj"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r38ml"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ot6pi"]
 texture = ExtResource("2_h0rvj")
 
-[node name="InventoryItemSlot" instance=ExtResource("1_00wtj")]
+[node name="InventoryItemSlot" type="PanelContainer"]
 texture_filter = 1
 custom_minimum_size = Vector2(32, 32)
-theme_override_styles/panel = SubResource("StyleBoxTexture_r38ml")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ot6pi")
+script = ExtResource("1_qhywb")

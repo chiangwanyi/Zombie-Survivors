@@ -1,13 +1,15 @@
-[gd_scene load_steps=29 format=3 uid="uid://w7xu435qumq2"]
+[gd_scene load_steps=27 format=3 uid="uid://w7xu435qumq2"]
 
 [ext_resource type="Script" path="res://levels/game_grass_walk/game_grass_walk.gd" id="1_n6s2u"]
-[ext_resource type="PackedScene" uid="uid://cqkrmdxlwvvqk" path="res://scenes/ui/seed_bank/seed_bank.tscn" id="10_y22a7"]
-[ext_resource type="PackedScene" uid="uid://bskyhs7d56e76" path="res://scenes/ui/seed_chooser/seed_chooser.tscn" id="11_n65fi"]
-[ext_resource type="PackedScene" uid="uid://bwam8xt0qchv4" path="res://scenes/ui/flag_meter/flag_meter.tscn" id="12_pvo8f"]
+[ext_resource type="Script" path="res://levels/game_grass_walk/state/level_loading.gd" id="2_gtcnf"]
+[ext_resource type="PackedScene" uid="uid://cqkrmdxlwvvqk" path="res://ui/seed_bank/seed_bank.tscn" id="2_s4oq4"]
+[ext_resource type="Script" path="res://levels/game_grass_walk/state/level_selecting.gd" id="3_2i8r2"]
+[ext_resource type="PackedScene" uid="uid://bskyhs7d56e76" path="res://ui/seed_chooser/seed_chooser.tscn" id="3_8ulcr"]
+[ext_resource type="PackedScene" uid="uid://bwam8xt0qchv4" path="res://ui/flag_meter/flag_meter.tscn" id="4_4jprc"]
+[ext_resource type="Script" path="res://levels/game_grass_walk/state/level_selection_complete.gd" id="4_5xbx0"]
 [ext_resource type="Texture2D" uid="uid://c32mgta82qfth" path="res://_assets/images/StartSet.png" id="13_ibmc7"]
 [ext_resource type="Texture2D" uid="uid://b021tnlalnkew" path="res://_assets/images/StartReady.png" id="14_naa5b"]
 [ext_resource type="Texture2D" uid="uid://v8vywatdjo4r" path="res://_assets/images/StartPlant.png" id="15_44iqo"]
-[ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="16_84d87"]
 [ext_resource type="AudioStream" uid="uid://yngl4x0ai5qq" path="res://_assets/sounds/choose_your_seeds.ogg" id="17_tj2js"]
 [ext_resource type="AudioStream" uid="uid://col177jby5sq" path="res://_assets/sounds/level_grasswalk.ogg" id="18_8ofpi"]
 [ext_resource type="AudioStream" uid="uid://cdppqqkbqcdvt" path="res://_assets/sounds/readysetplant.ogg" id="19_s6ygs"]
@@ -19,113 +21,14 @@ func _ready() -> void:
     super._ready()
 "
 
-[sub_resource type="GDScript" id="GDScript_y5wl6"]
-script/source = "extends State
-
-@onready var seed_chooser := $\"../../HUD/SeedChooser\" as SeedChooser
-@onready var seed_bank := $\"../../HUD/SeedBank\" as SeedBank
-@onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
-
-func enter() -> void:
-    print(\"Loding start...\")
-    seed_chooser.init()
-    seed_bank.init(GameManager.levels[(owner as GameLevel).level_name][\"initial_sun\"])
-    animation.play(\"level_loading\")
-    super.enter()
-
-func update(_delta: float) -> void:
-    pass
-    
-func exit() -> void:
-    print(\"Loading end.\")
-    super.exit()
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-    if not is_active():
-        return
-    if anim_name == \"level_loading\":
-        emit_signal(\"finished\", \"Selecting\")
-"
-
-[sub_resource type="GDScript" id="GDScript_6jpss"]
-script/source = "extends State
-
-var seed_chooser_event := SeedChooserEvent.new()
-
-func _ready() -> void:
-    seed_chooser_event.on_event.connect(_on_event_seed_chooser)
-    EventManager.add_listener(seed_chooser_event)
-
-func enter() -> void:
-    print(\"Selecting start...\")
-    ($\"../../BgmSelecting\" as AudioStreamPlayer).play()
-    super.enter()
-
-func update(_delta: float) -> void:
-    pass
-    
-func exit() -> void:
-    super.exit()
-
-func _on_event_seed_chooser(e: SeedChooserEvent) -> void:
-    if not is_active():
-        return
-    if e.type == SeedChooserEvent.Type.SELECTION_COMPLETE:
-        emit_signal(\"finished\", \"SelectionComplete\")
-        
-func _exit_tree() -> void:
-    EventManager.remove_listener(seed_chooser_event)
-
-"
-
-[sub_resource type="GDScript" id="GDScript_ub4hr"]
-script/source = "extends State
-
-@onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
-
-func enter() -> void:
-    print(\"Selection Complete\")
-    animation.play(\"selection_complete\")
-
-    var tween := create_tween()
-    tween.tween_property(($\"../../BgmSelecting\" as AudioStreamPlayer), \"volume_db\", -80.0, 5)
-    
-    super.enter()
-
-func update(_delta: float) -> void:
-    pass
-    
-func exit() -> void:
-    super.exit()
-
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-    if not is_active():
-        return
-    if anim_name == \"selection_complete\":
-        emit_signal(\"finished\", \"SetReadyPlant\")
-"
-
 [sub_resource type="GDScript" id="GDScript_cgeak"]
 script/source = "extends State
 
 @onready var animation := $\"../../AnimationPlayer\" as AnimationPlayer
 
-func _ready() -> void:
-    pass
 
 func enter() -> void:
     animation.play(\"set_ready_plant\")
-    super.enter()
-
-func update(_delta: float) -> void:
-    pass
-    
-func exit() -> void:
-    super.exit()
-
-func _exit_tree() -> void:
-    pass
-
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
     if not is_active():
@@ -190,14 +93,8 @@ func exit() -> void:
 
 "
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
-texture = ExtResource("16_84d87")
-texture_region_size = Vector2i(200, 200)
-0:0/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_c6pwi"]
 tile_size = Vector2i(200, 200)
-sources/1 = SubResource("TileSetAtlasSource_duibv")
 
 [sub_resource type="Animation" id="Animation_3pxwd"]
 length = 0.001
@@ -486,13 +383,13 @@ script = SubResource("GDScript_qpbja")
 start_state = NodePath("LevelLoading")
 
 [node name="LevelLoading" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_y5wl6")
+script = ExtResource("2_gtcnf")
 
-[node name="Selecting" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_6jpss")
+[node name="LevelSelecting" type="Node" parent="StateMachine"]
+script = ExtResource("3_2i8r2")
 
-[node name="SelectionComplete" type="Node" parent="StateMachine"]
-script = SubResource("GDScript_ub4hr")
+[node name="LevelSelectionComplete" type="Node" parent="StateMachine"]
+script = ExtResource("4_5xbx0")
 
 [node name="SetReadyPlant" type="Node" parent="StateMachine"]
 script = SubResource("GDScript_cgeak")
@@ -511,18 +408,18 @@ script = SubResource("GDScript_1c2u5")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="SeedBank" parent="HUD" instance=ExtResource("10_y22a7")]
+[node name="SeedBank" parent="HUD" instance=ExtResource("2_s4oq4")]
 offset_left = -726.0
 offset_right = -726.0
 scale = Vector2(0.7, 0.7)
 
-[node name="SeedChooser" parent="HUD" instance=ExtResource("11_n65fi")]
+[node name="SeedChooser" parent="HUD" instance=ExtResource("3_8ulcr")]
 offset_left = -560.0
 offset_top = 132.0
 offset_right = -520.0
 offset_bottom = 172.0
 
-[node name="FlagMeter" parent="HUD" instance=ExtResource("12_pvo8f")]
+[node name="FlagMeter" parent="HUD" instance=ExtResource("4_4jprc")]
 offset_left = 1617.0
 offset_top = 1033.0
 offset_right = 1657.0
@@ -630,5 +527,5 @@ curve = SubResource("Curve2D_titk4")
 [node name="PathFollow2D" type="PathFollow2D" parent="ZombieSpawnPath"]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/LevelLoading" method="_on_animation_player_animation_finished"]
-[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SelectionComplete" method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/LevelSelectionComplete" method="_on_animation_player_animation_finished"]
 [connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/SetReadyPlant" method="_on_animation_player_animation_finished"]

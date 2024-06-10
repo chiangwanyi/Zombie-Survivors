@@ -2,13 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://d1jj3lsv3yrdh" path="res://_assets/images/SeedPacket_Larger.png" id="1_42heu"]
 [ext_resource type="Texture2D" uid="uid://dlxnfdc3xpqxt" path="res://_assets/images/SeedPacketSilhouette.png" id="2_txdxv"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/seed_packet.gd" id="3_pxjot"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/blank.gd" id="4_dx40a"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/selection.gd" id="5_5sbcn"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/loading.gd" id="6_d82l2"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/ready.gd" id="7_351my"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/cooldown.gd" id="8_tf4oj"]
-[ext_resource type="Script" path="res://scenes/ui/seed_packet/state/unavailable.gd" id="9_dr0u6"]
+[ext_resource type="Script" path="res://ui/seed_packet/seed_packet.gd" id="3_pxjot"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/blank.gd" id="4_dx40a"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/selection.gd" id="5_5sbcn"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/loading.gd" id="6_d82l2"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/ready.gd" id="7_351my"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/cooldown.gd" id="8_tf4oj"]
+[ext_resource type="Script" path="res://ui/seed_packet/state/unavailable.gd" id="9_dr0u6"]
 
 [sub_resource type="GDScript" id="GDScript_31ej0"]
 script/source = "extends StateMachine
