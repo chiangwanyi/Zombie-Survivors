@@ -1,5 +1,7 @@
 extends Node
 
+var _cfg_path = "res://cfg.json"
+
 var _cfg: Dictionary
 var _level: Array
 
