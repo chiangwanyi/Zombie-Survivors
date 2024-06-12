@@ -1,4 +1,27 @@
 {
-    "sun": 0,
-    "sun_init": 0
-}
+    "seeds": [
+      {
+        "name": "Pea Shooter",
+        "description": "豌豆射手",
+        "cost": 100,
+        "cooldown": 10,
+        "health": 100,
+        "defense": 50
+      },
+      {
+        "name": "Sunflower",
+        "description": "向日葵",
+        "cooldown": 5,
+        "health": 100,
+        "defense": 50
+      }
+    ],
+    "levels": [
+      {
+        "name": "Level 1",
+        "description": "关卡1",
+        "initial_sun": 100
+      }
+    ],
+    "current_sun": 100
+  }
