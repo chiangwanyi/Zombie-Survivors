@@ -9,3 +9,12 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
         data.visible = true
         if get_child_count() == 0:
             data.reparent(self)
+
+## （安全地）装载背包物品
+func push_item_safe(inventory_item: InventoryItem) -> void:
+    if get_child_count() == 0:
+        if inventory_item.get_parent():
+            inventory_item.reparent(self)
+        else:
+            add_child(inventory_item)
+        inventory_item.visible = true

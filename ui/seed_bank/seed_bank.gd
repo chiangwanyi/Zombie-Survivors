@@ -2,9 +2,19 @@ class_name SeedBank extends Control
 
 @onready var seed_container := $SeedContainer
 @onready var sun_label := $SunCount as Label
-@onready var scene_seed_packet := preload("res://ui/seed_packet/seed_packet.tscn")
-
 @onready var basic_inventory_ability: InventoryBasicAbility = $BasicInventoryAbility
+
+## 当前 Sun 数
+@export var sun: int = 0:
+    set(value):
+        if not is_inside_tree():
+            await ready
+        sun = value
+        sun_label.text = str(sun)
+## Seed 容量
+@export var seed_capacity := 8
+
+var _seed_packet_item_scene := preload("res://inventory/item/seed_packet/seed_packet_item.tscn")
 
 #var game_event := GameEvent.new()
 #var seed_packet_event := SeedPacketEvent.new()
@@ -15,13 +25,6 @@ class_name SeedBank extends Control
 ## 当前选择的 Seed 个数
 var selected_seed_count := 0
 
-## 当前 Sun 数
-@export var sun: int = 0:
-    set(value):
-        if not is_inside_tree():
-            await ready
-        sun = value
-        sun_label.text = str(sun)
 
 var is_game_playing := false
 
@@ -42,9 +45,24 @@ func _ready() -> void:
 
 func reload() -> void:
     var cfg_level := GameManager.cfg_levels.get(GameManager.current_level_name) as Dictionary
+
+    # 读取并初始化 sun 值
     sun = cfg_level.get("initial_sun")
-    
-    basic_inventory_ability.reload()
+
+    # 背包容量重载
+    seed_capacity = cfg_level.get("initial_seed_capacity")
+
+    # 加载初始【植物种子】列表
+    var initial_seeds = cfg_level.get("initial_seeds") as Array
+
+    var item_list = []
+    for seed_name in initial_seeds:
+        var item := _seed_packet_item_scene.instantiate() as SeedPacketItem
+        item.item_name = seed_name
+        item_list.append(item as InventoryItem)
+
+    # 背包重载
+    basic_inventory_ability.reload_with_items(seed_capacity, item_list)
 
 ### 更新 sun 值
 #func update_sun(new_sun: int) -> void:
@@ -64,7 +82,7 @@ func _on_game_event(e: GameEvent) -> void:
 func _on_event_seed_packet(e: SeedPacketEvent) -> void:
     # 将被选中的 SeedPacket 添加到 SeedBank 中
     if not is_game_playing and e.type == SeedPacketEvent.Type.ADD_TO_SEED_BANK:
-        var packet := scene_seed_packet.instantiate() as SeedPacket
+        var packet := _seed_packet_item_scene.instantiate() as SeedPacket
         packet.seed_bank = self
         packet.pressed.connect(_on_seed_packet_pressed.bind(packet))
         seed_container.add_child(packet)

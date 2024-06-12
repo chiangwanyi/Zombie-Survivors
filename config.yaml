@@ -1,6 +1,6 @@
 # 游戏【植物种子】列表
 seeds:
-  - name: Pea Shooter
+  - name: PeaShooterSingle
     description: 豌豆射手
     cost: 100
     cooldown: 10
@@ -23,5 +23,5 @@ levels:
     initial_seed_capacity: 8
     # 初始【植物种子】列表
     initial_seeds:
-      - Pea Shooter
+      - PeaShooterSingle
       - Sunflower

@@ -19,7 +19,6 @@ script = ExtResource("1_xapnq")
 sun = 100
 
 [node name="BasicInventoryAbility" parent="." node_paths=PackedStringArray("inventory_container") instance=ExtResource("2_vufyr")]
-size = 8
 slot_scene = ExtResource("4_tpi5q")
 inventory_container = NodePath("../SeedContainer")
 

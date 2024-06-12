@@ -9,7 +9,8 @@ var _cfg_path = "res://config.json"
 var cfg: Dictionary
 ## 加载的游戏关卡配置内容，Map<String:LevelName, Dict:Level>
 var cfg_levels: Dictionary
-
+## 加载的游戏 Seed 配置内容，Map<String:SeedName, Dict:Seed>
+var cfg_seeds: Dictionary
 
 ## 当前活动 Level 场景名称
 var current_level_name: String
@@ -30,6 +31,9 @@ func _ready() -> void:
     # 读取关卡配置
     for level in cfg.get("levels", []):
         cfg_levels[level.get("name")] = level
+
+    for item in cfg.get("seeds", []):
+        cfg_seeds[item.get("name")] = item
 
 # var _level: Array
 

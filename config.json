@@ -1,7 +1,7 @@
 {
     "seeds": [
       {
-        "name": "Pea Shooter",
+        "name": "PeaShooterSingle",
         "description": "豌豆射手",
         "cost": 100,
         "cooldown": 10,
@@ -11,6 +11,7 @@
       {
         "name": "Sunflower",
         "description": "向日葵",
+        "cost": 50,
         "cooldown": 5,
         "health": 100,
         "defense": 50
@@ -20,8 +21,12 @@
       {
         "name": "Level 1",
         "description": "关卡1",
-        "initial_sun": 100
+        "initial_sun": 100,
+        "initial_seed_capacity": 8,
+        "initial_seeds": [
+          "PeaShooterSingle",
+          "Sunflower"
+        ]
       }
-    ],
-    "current_sun": 100
+    ]
   }

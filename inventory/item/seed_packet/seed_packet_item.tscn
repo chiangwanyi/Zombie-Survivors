@@ -1,16 +1,52 @@
 [gd_scene load_steps=3 format=3 uid="uid://br72ddxtibkri"]
 
-[ext_resource type="PackedScene" uid="uid://bt07ygu4yxa8h" path="res://_components/inventory/inventory_item.tscn" id="1_hyjxw"]
+[ext_resource type="Script" path="res://inventory/item/seed_packet/seed_packet_item.gd" id="1_6pkuc"]
 [ext_resource type="Texture2D" uid="uid://d1jj3lsv3yrdh" path="res://_assets/images/SeedPacket_Larger.png" id="2_glrgw"]
 
-[node name="InventoryItem" instance=ExtResource("1_hyjxw")]
+[node name="SeedPacketItem" type="Control" groups=["seed_packet_item"]]
+texture_filter = 1
 custom_minimum_size = Vector2(100, 140)
+layout_mode = 3
+anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 120.0
+script = ExtResource("1_6pkuc")
 
-[node name="ItemBorder" parent="." index="0"]
+[node name="ItemBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 offset_right = 63.0
 offset_bottom = 47.0
 texture = ExtResource("2_glrgw")
-expand_mode = 0
 stretch_mode = 2
+
+[node name="ItemAvatar" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -50.0
+offset_right = 40.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="CostLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = -30.0
+offset_right = -37.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
