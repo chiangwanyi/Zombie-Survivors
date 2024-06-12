@@ -16,7 +16,7 @@ func enter() -> void:
 func _spawn_sun() -> void:
 	var sun := sun_scene.instantiate() as RigidBody2D
 	sun.position = (owner as Plant).position
-	GameManager.current_level.add_child(sun)
+	GameManager.current_level_name.add_child(sun)
 
 func update(_delta: float) -> void:
 	pass

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br72ddxtibkri"]
+
+[ext_resource type="PackedScene" uid="uid://bt07ygu4yxa8h" path="res://_components/inventory/inventory_item.tscn" id="1_hyjxw"]
+[ext_resource type="Texture2D" uid="uid://d1jj3lsv3yrdh" path="res://_assets/images/SeedPacket_Larger.png" id="2_glrgw"]
+
+[node name="InventoryItem" instance=ExtResource("1_hyjxw")]
+custom_minimum_size = Vector2(100, 140)
+offset_right = 100.0
+offset_bottom = 120.0
+
+[node name="ItemBorder" parent="." index="0"]
+offset_right = 63.0
+offset_bottom = 47.0
+texture = ExtResource("2_glrgw")
+expand_mode = 0
+stretch_mode = 2

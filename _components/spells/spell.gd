@@ -1,21 +1,21 @@
 class_name Spell extends Node
 
 enum SpellType {
-	Projectile,
-	StaticProjectile,
-	Passive,
-	Utility,
-	ProjectileModifier,
-	Multicast
+    Projectile,
+    StaticProjectile,
+    Passive,
+    Utility,
+    ProjectileModifier,
+    Multicast
 }
 
 enum DamageType {
-	## 投射物伤害
-	Projectile,
-	## 穿凿伤害
-	Drill,
-	## 近战伤害
-	Melee
+    ## 投射物伤害
+    Projectile,
+    ## 穿凿伤害
+    Drill,
+    ## 近战伤害
+    Melee
 }
 
 @export_group("Spell Attributes")
@@ -40,10 +40,10 @@ enum DamageType {
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+    pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+    pass
 

@@ -2,47 +2,57 @@ class_name SeedBank extends Control
 
 @onready var seed_container := $SeedContainer
 @onready var sun_label := $SunCount as Label
-
 @onready var scene_seed_packet := preload("res://ui/seed_packet/seed_packet.tscn")
 
-var game_event := GameEvent.new()
-var seed_packet_event := SeedPacketEvent.new()
-var seed_chooser_event := SeedChooserEvent.new()
-var spawn_event := SpawnEvent.new()
-var pick_event := PickEvent.new()
+@onready var basic_inventory_ability: InventoryBasicAbility = $BasicInventoryAbility
+
+#var game_event := GameEvent.new()
+#var seed_packet_event := SeedPacketEvent.new()
+#var seed_chooser_event := SeedChooserEvent.new()
+#var spawn_event := SpawnEvent.new()
+#var pick_event := PickEvent.new()
 
 ## 当前选择的 Seed 个数
 var selected_seed_count := 0
 
 ## 当前 Sun 数
-@export var sun: int
+@export var sun: int = 0:
+    set(value):
+        if not is_inside_tree():
+            await ready
+        sun = value
+        sun_label.text = str(sun)
 
 var is_game_playing := false
 
 func _ready() -> void:
-    game_event.on_event.connect(_on_game_event)
-    seed_packet_event.on_event.connect(_on_event_seed_packet)
-    seed_chooser_event.on_event.connect(_on_event_seed_chooser)
-    spawn_event.on_event.connect(_on_event_spawn)
-    pick_event.on_event.connect(_on_event_pick)
-    
-    EventManager.add_listener(game_event)
-    EventManager.add_listener(seed_packet_event)
-    EventManager.add_listener(seed_chooser_event)
-    EventManager.add_listener(spawn_event)
-    EventManager.add_listener(pick_event)
-    
-    GameManager.inventories["Seed Bank"] = $SeedContainer
-    
-    update_sun(sun)
+    reload()
+    #game_event.on_event.connect(_on_game_event)
+    #seed_packet_event.on_event.connect(_on_event_seed_packet)
+    #seed_chooser_event.on_event.connect(_on_event_seed_chooser)
+    #spawn_event.on_event.connect(_on_event_spawn)
+    #pick_event.on_event.connect(_on_event_pick)
+    #EventManager.add_listener(game_event)
+    #EventManager.add_listener(seed_packet_event)
+    #EventManager.add_listener(seed_chooser_event)
+    #EventManager.add_listener(spawn_event)
+    #EventManager.add_listener(pick_event)
+    # GameManager.inventories["Seed Bank"] = $SeedContainer
+    # update_sun(sun)
 
-## 更新 sun 值
-func update_sun(new_sun: int) -> void:
-    sun = new_sun
-    sun_label.text = str(sun)
+func reload() -> void:
+    var cfg_level := GameManager.cfg_levels.get(GameManager.current_level_name) as Dictionary
+    sun = cfg_level.get("initial_sun")
+    
+    basic_inventory_ability.reload()
 
-func init(init_sun: int) -> void:
-    sun = init_sun    
+### 更新 sun 值
+#func update_sun(new_sun: int) -> void:
+    #sun = new_sun
+    #
+#
+#func init(init_sun: int) -> void:
+    #sun = init_sun    
 
 func _on_game_event(e: GameEvent) -> void:
     if e.type == GameEvent.Type.Playing:

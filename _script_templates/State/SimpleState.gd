@@ -1,16 +1,16 @@
 extends State
 
 func _ready() -> void:
-	pass
+    pass
 
 func enter() -> void:
-	pass
+    pass
 
 func update(_delta: float) -> void:
-	pass
-	
+    pass
+    
 func exit() -> void:
-	pass
+    pass
 
 func _exit_tree() -> void:
-	pass
+    pass

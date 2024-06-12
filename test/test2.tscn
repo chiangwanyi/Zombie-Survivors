@@ -64,3 +64,5 @@ layout_mode = 2
 
 [node name="InventoryItemSlot3" parent="CanvasLayer/Control/GridContainer" instance=ExtResource("1_q2yp7")]
 layout_mode = 2
+
+[editable path="CanvasLayer/Control/GridContainer/InventoryItemSlot/InventoryItem"]

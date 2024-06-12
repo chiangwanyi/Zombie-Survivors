@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt4e0ovapeqr"]
+
+[ext_resource type="Script" path="res://_abilities/inventory_abilities/inventory_basic_ability.gd" id="1_4ynux"]
+
+[node name="BasicInventoryAbility" type="Node"]
+script = ExtResource("1_4ynux")

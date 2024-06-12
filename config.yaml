@@ -1,4 +1,27 @@
-# 当前 Sun 数
-sun: 0
-# 初始 Sun 数
-sun_init: 0
+# 游戏【植物种子】列表
+seeds:
+  - name: Pea Shooter
+    description: 豌豆射手
+    cost: 100
+    cooldown: 10
+    health: 100
+    defense: 50
+  - name: Sunflower
+    description: 向日葵
+    cost: 50
+    cooldown: 5
+    health: 100
+    defense: 50
+# 游戏【关卡】列表
+levels:
+  - name: Level 1
+    # 关卡描述
+    description: 关卡1
+    # 初始【阳光】数
+    initial_sun: 100
+    # 初始【植物种子】容量
+    initial_seed_capacity: 8
+    # 初始【植物种子】列表
+    initial_seeds:
+      - Pea Shooter
+      - Sunflower
