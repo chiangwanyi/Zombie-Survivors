@@ -44,6 +44,26 @@ script = SubResource("GDScript_ka5j4")
 [node name="SeedBank" parent="HUD/Control" instance=ExtResource("2_eqxuf")]
 scale = Vector2(0.75, 0.75)
 
+[node name="WandBar" type="Control" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Control/WandBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="HUD/Control/WandBar"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 10
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5pcki")
 format = 2
@@ -52,3 +72,5 @@ layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, -1310
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Sunflower" parent="." instance=ExtResource("4_t3xqn")]
+
+[editable path="HUD/Control/SeedBank"]
