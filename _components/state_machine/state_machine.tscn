@@ -4,7 +4,7 @@
 script/source = "extends StateMachine
 
 func _ready() -> void:
-	super._ready()
+    super._ready()
 
 "
 

@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://br72ddxtibkri"]
+[gd_scene load_steps=6 format=3 uid="uid://br72ddxtibkri"]
 
 [ext_resource type="Script" path="res://inventory/item/seed_packet/seed_packet_item.gd" id="1_6pkuc"]
+[ext_resource type="PackedScene" uid="uid://c5us232yjcjox" path="res://_components/state_machine/state_machine.tscn" id="2_362ue"]
 [ext_resource type="Texture2D" uid="uid://d1jj3lsv3yrdh" path="res://_assets/images/SeedPacket_Larger.png" id="2_glrgw"]
+[ext_resource type="Script" path="res://inventory/item/seed_packet/state/active.gd" id="3_14j31"]
+[ext_resource type="Script" path="res://inventory/item/seed_packet/state/dragging.gd" id="4_e6o5j"]
 
 [node name="SeedPacketItem" type="Control" groups=["seed_packet_item"]]
 texture_filter = 1
@@ -11,6 +14,16 @@ anchors_preset = 0
 offset_right = 100.0
 offset_bottom = 120.0
 script = ExtResource("1_6pkuc")
+is_swappable = false
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("start_state") instance=ExtResource("2_362ue")]
+start_state = NodePath("Active")
+
+[node name="Active" type="Node" parent="StateMachine"]
+script = ExtResource("3_14j31")
+
+[node name="Dragging" type="Node" parent="StateMachine"]
+script = ExtResource("4_e6o5j")
 
 [node name="ItemBorder" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)

@@ -28,12 +28,11 @@ func _process(delta: float) -> void:
     pass
     
 func _input(event: InputEvent) -> void:
-    pass
-    #if event is InputEventMouseButton:
-        #if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
-            #($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_start()
-        #if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
-            #($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_stop()
+    if event is InputEventMouseButton:
+        if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true:
+            ($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_start()
+        if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == false:
+            ($HandleWeaponAbility as CharacterHandleWeaponAbility).shoot_stop()
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4768o"]

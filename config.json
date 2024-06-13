@@ -22,7 +22,7 @@
         "name": "Level 1",
         "description": "关卡1",
         "initial_sun": 100,
-        "initial_seed_capacity": 8,
+        "initial_seed_capacity": 4,
         "initial_seeds": [
           "PeaShooterSingle",
           "Sunflower"

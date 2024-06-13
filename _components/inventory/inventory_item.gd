@@ -1,22 +1,29 @@
 class_name InventoryItem extends Control
 
-# InventoryItem 的名字
+## InventoryItem 的名字
 @export var item_name: String = ""
-# InventoryItem 的描述
+## InventoryItem 的描述
 @export var item_description: String = ""
 
+## 是否可拖拽
+@export var is_draggable: bool = true
+## 是否可交换
+@export var is_swappable: bool = true
+
 func _get_drag_data(_at_position: Vector2) -> Variant:
+    if not is_draggable:
+        return null
     visible = false
     var item := duplicate() as InventoryItem
     item.position = Vector2.ZERO
     item.visible = true
-    item.scale = Vector2(2, 2)
+    #item.scale = Vector2(2, 2)
     set_drag_preview(item)
     return self
     
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
     # 用来拖动交换两个 InventoryItem
-    if data is InventoryItem:
+    if data is InventoryItem and is_swappable:
         return true
     return false
     

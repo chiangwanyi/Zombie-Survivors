@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://cqkrmdxlwvvqk"]
+[gd_scene load_steps=9 format=3 uid="uid://cqkrmdxlwvvqk"]
 
 [ext_resource type="Texture2D" uid="uid://bn6xsggbhlbvi" path="res://_assets/images/SeedBank.png" id="1_slpqo"]
 [ext_resource type="Script" path="res://ui/seed_bank/seed_bank.gd" id="1_xapnq"]
+[ext_resource type="PackedScene" uid="uid://c5us232yjcjox" path="res://_components/state_machine/state_machine.tscn" id="2_5d0s6"]
 [ext_resource type="PackedScene" uid="uid://bt4e0ovapeqr" path="res://_abilities/inventory_abilities/inventory_basic_ability.tscn" id="2_vufyr"]
+[ext_resource type="Script" path="res://ui/seed_bank/state/display.gd" id="3_o28y1"]
+[ext_resource type="Script" path="res://ui/seed_bank/state/hide.gd" id="4_kjdpr"]
 [ext_resource type="PackedScene" uid="uid://u2oqdoouqch0" path="res://inventory/item_slot/seed_packet_slot.tscn" id="4_tpi5q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1h3mi"]
@@ -12,11 +15,20 @@ texture_margin_top = 10.0
 texture_margin_right = 40.0
 texture_margin_bottom = 10.0
 
-[node name="SeedBank" type="Control"]
+[node name="SeedBank" type="Control" groups=["seed_bank"]]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_xapnq")
 sun = 100
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("start_state") instance=ExtResource("2_5d0s6")]
+start_state = NodePath("Display")
+
+[node name="Display" type="Node" parent="StateMachine"]
+script = ExtResource("3_o28y1")
+
+[node name="Hide" type="Node" parent="StateMachine"]
+script = ExtResource("4_kjdpr")
 
 [node name="BasicInventoryAbility" parent="." node_paths=PackedStringArray("inventory_container") instance=ExtResource("2_vufyr")]
 slot_scene = ExtResource("4_tpi5q")
