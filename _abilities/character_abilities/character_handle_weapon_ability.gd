@@ -4,23 +4,22 @@ class_name CharacterHandleWeaponAbility extends CharacterAbility
 @export var initial_weapon_scene: PackedScene
 ## 武器挂载位置
 @export var weapon_attachment: Marker2D
+## 当前持有的武器
+@export var current_weapon: Weapon
 ## 是否自动使用武器
 @export var auto_use: bool = false
-#@export var projectile_spawn: Marker2D
 
-## 当前持有的武器
-var current_weapon: Weapon
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+    if not available:
+        return
     if initial_weapon_scene:
-        var weapon = initial_weapon_scene.instantiate() as Weapon
-        weapon.position = weapon_attachment.position
-        weapon.weapon_owner = $".." as Node2D
-        current_weapon = weapon
-        if auto_use:
-            weapon.trigger_pressed = true
-        owner.add_child.call_deferred(weapon)
+        current_weapon = initial_weapon_scene.instantiate() as Weapon
+    current_weapon.position = weapon_attachment.position
+    current_weapon.weapon_owner = $".." as Node2D
+    if auto_use:
+        current_weapon.trigger_pressed = true
+    if initial_weapon_scene:
+        owner.add_child.call_deferred(current_weapon)
 
 func shoot_start() -> void:
     if not current_weapon:

@@ -1,8 +1,11 @@
 class_name InventoryItemSlot extends PanelContainer
 
+## 是否可拖拽
+@export var can_drop: bool = true
+
 ## 是否允许其他 Node 拖动到该 Node 上
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
-    return true
+    return can_drop
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
     if data is InventoryItem:

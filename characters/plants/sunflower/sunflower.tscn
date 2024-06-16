@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://b85p1ngrke0t"]
+[gd_scene load_steps=41 format=3 uid="uid://b85p1ngrke0t"]
 
 [ext_resource type="Script" path="res://characters/plants/sunflower/sunflower.gd" id="1_ejfcf"]
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_components/ability/other/health_ability.tscn" id="1_v4i00"]
@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://x4atkkiea847" path="res://_assets/items/plants/sunflower/SunFlower0029.png" id="27_3gsvq"]
 [ext_resource type="AudioStream" uid="uid://dlk62lwp0c6ie" path="res://_assets/sounds/plant.ogg" id="29_p8vgj"]
 [ext_resource type="AudioStream" uid="uid://c21tfe6vgwbej" path="res://_assets/sounds/plant2.ogg" id="30_yfb73"]
+[ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://weapon/wands/wand.tscn" id="35_jhqgc"]
 
 [sub_resource type="GDScript" id="GDScript_uhq8u"]
 script/source = "extends StateMachine
@@ -145,13 +146,13 @@ stream_1/stream = ExtResource("30_yfb73")
 stream_1/weight = 1.0
 
 [node name="Sunflower" type="Area2D"]
-position = Vector2(431, 195)
 script = ExtResource("1_ejfcf")
 
 [node name="HealthAbility" parent="." instance=ExtResource("1_v4i00")]
 
-[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment") instance=ExtResource("2_ckkvy")]
+[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment", "current_weapon") instance=ExtResource("2_ckkvy")]
 weapon_attachment = NodePath("../WeaponAttachment")
+current_weapon = NodePath("../Wand")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = SubResource("GDScript_uhq8u")
@@ -184,5 +185,10 @@ stream = SubResource("AudioStreamRandomizer_0ep04")
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
+one_shot = true
+
+[node name="Wand" parent="." node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("35_jhqgc")]
+spells_name = PackedStringArray("Sun", "", "", "")
+projectile_spawn = NodePath("../WeaponAttachment")
 
 [connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]

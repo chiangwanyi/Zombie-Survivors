@@ -6,7 +6,6 @@ func _ready() -> void:
     pass
 
 func enter() -> void:
-    print("enter active")
     body = owner as SeedPacketItem
     body.modulate = Color(1, 1, 1, 1)
    

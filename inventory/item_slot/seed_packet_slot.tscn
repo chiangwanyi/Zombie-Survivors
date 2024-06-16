@@ -10,3 +10,4 @@ texture = ExtResource("2_qfs54")
 texture_filter = 1
 custom_minimum_size = Vector2(100, 140)
 theme_override_styles/panel = SubResource("StyleBoxTexture_qy110")
+can_drop = false

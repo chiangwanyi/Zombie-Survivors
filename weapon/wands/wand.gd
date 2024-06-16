@@ -2,7 +2,7 @@ class_name Wand extends Weapon
 
 enum TriggerModes { SemiAuto, Auto }
 
-@onready var weapon_inventory_ability: WeaponInventoryAbility = $WeaponInventoryAbility
+#@onready var weapon_inventory_ability: WeaponInventoryAbility = $WeaponInventoryAbility
 @onready var state_machine: StateMachine = $StateMachine
 
 @export_group("Wand Statistics")
@@ -18,9 +18,11 @@ enum TriggerModes { SemiAuto, Auto }
 @export var max_energe: int = 100
 ## 每秒回复的能量值
 @export var energe_recharge_speed: int = 10
-
 ## 当前剩余能量值
 @export var energe: float = float(max_energe)
+
+@export_group("Spells")
+@export var spells_name: PackedStringArray
 
 ## 【法术槽】
 var spells: Array[Spell]
@@ -37,11 +39,11 @@ var cast_group_stack: Array = []
 
 func _ready() -> void:
     # 1. 首先初始化武器槽位
-    weapon_inventory_ability.init(capacity)
+    #weapon_inventory_ability.init(capacity)
     # 2. 填装 Spell
-    if not weapon_inventory_ability.items.is_empty():
-        for item in weapon_inventory_ability.items:
-            pass
+    #if not weapon_inventory_ability.items.is_empty():
+        #for item in weapon_inventory_ability.items:
+            #pass
     reset()
     
     state_machine.start()
