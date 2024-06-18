@@ -25,6 +25,9 @@ var main_hud: CanvasLayer
 ## 背包 Map<String:InventoryName, Node:Inventory>
 var inventories: Dictionary = {}
 
+## 法杖武器 Map<String:SpellName, PackedScene:Spell>
+var registed_wand_spells: Dictionary = {}
+
 func _ready() -> void:
     # 读取配置文件
     var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
@@ -38,7 +41,7 @@ func _ready() -> void:
         cfg_seeds[item.get("name")] = item
 
 ## 创建植物
-func create_plant(pos: Vector2, plant_name: String):
+func create_plant(_pos: Vector2, plant_name: String):
     if not current_level:
         return
     var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"

@@ -39,14 +39,16 @@ var cast_group_stack: Array = []
 
 func _ready() -> void:
     # 1. 首先初始化武器槽位
+    
     #weapon_inventory_ability.init(capacity)
     # 2. 填装 Spell
     #if not weapon_inventory_ability.items.is_empty():
         #for item in weapon_inventory_ability.items:
             #pass
-    reset()
+    #reset()
     
-    state_machine.start()
+    #state_machine.start()
+    pass
 
 func reset() -> void:
     deck.clear()

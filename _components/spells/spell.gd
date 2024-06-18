@@ -19,6 +19,7 @@ enum DamageType {
 }
 
 @export_group("Spell Attributes")
+@export var spell_name: String
 ## 可使用次数（为负数表示无使用次数限制）
 @export var uses: int = -1
 ## 能量消耗
@@ -38,12 +39,7 @@ enum DamageType {
 
 @export var projectile_scene: PackedScene
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    pass # Replace with function body.
+    GameManager.registed_wand_spells[spell_name] = "res://spells/projectile/sun.tscn"
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
 
