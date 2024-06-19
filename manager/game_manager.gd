@@ -39,6 +39,8 @@ func _ready() -> void:
 
     for item in cfg.get("seeds", []):
         cfg_seeds[item.get("name")] = item
+        
+    _register_wand_spells()
 
 ## 创建植物
 func create_plant(_pos: Vector2, plant_name: String):
@@ -49,4 +51,6 @@ func create_plant(_pos: Vector2, plant_name: String):
     plant.position = current_level.get_local_mouse_position()
     current_level.add_child(plant)
 
+func _register_wand_spells():
+    registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
 

@@ -9,4 +9,4 @@ func enter() -> void:
 func _on_spawn_timer_timeout() -> void:
     if not is_active():
         return
-    emit_signal("finished", "Attack")
+    #emit_signal("finished", "Attack")

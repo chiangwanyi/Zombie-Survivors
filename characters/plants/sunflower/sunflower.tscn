@@ -188,7 +188,8 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Wand" parent="." node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("35_jhqgc")]
-spells_name = PackedStringArray("Sun", "", "", "")
+spells = PackedStringArray("", "Sun", "", "")
 projectile_spawn = NodePath("../WeaponAttachment")
 
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]

@@ -22,10 +22,10 @@ enum TriggerModes { SemiAuto, Auto }
 @export var energe: float = float(max_energe)
 
 @export_group("Spells")
-@export var spells_name: PackedStringArray
+@export var spells: PackedStringArray
 
 ## 【法术槽】
-var spells: Array[Spell]
+var spell_list: Array[Spell]
 
 ## 【牌库】
 var deck: Array[Spell]
@@ -38,22 +38,29 @@ var current_cast_group: Array[Spell]
 var cast_group_stack: Array = []
 
 func _ready() -> void:
-    # 1. 首先初始化武器槽位
+    # 1. 初始化 Spell
+    spell_list.resize(spells.size())
+    for i in range(spells.size()):
+        if spells[i]:
+            spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
+            add_child(spell_list[i])
+            
+    # 2. 重置 Wand
+    reset()
+    
+    # 3. 开始
+    state_machine.start()
     
     #weapon_inventory_ability.init(capacity)
     # 2. 填装 Spell
     #if not weapon_inventory_ability.items.is_empty():
         #for item in weapon_inventory_ability.items:
             #pass
-    #reset()
-    
-    #state_machine.start()
-    pass
 
 func reset() -> void:
     deck.clear()
-    for s in spells:
-        deck.append(s)
+    for spell in spell_list:
+        deck.append(spell)
     hand.clear()
     discared.clear()
     cast_group_stack.clear()

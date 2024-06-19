@@ -12,4 +12,4 @@ func enter() -> void:
     #tween.tween_property(material, "shader_parameter/glow_power", 1, 1)
     #tween.tween_callback(func ():
         #emit_signal("finished", "Idle"))
-    #handle_weapon_ability.shoot_start()
+    handle_weapon_ability.shoot_start()
