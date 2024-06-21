@@ -23,16 +23,16 @@ script/source = "extends RigidBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	state_machine.start()
+    state_machine.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+    pass
 
 
 func _on_pickable_ability_picked() -> void:
-	print(\"picked\")
+    print(\"picked\")
 "
 
 [sub_resource type="GDScript" id="GDScript_bcfrd"]

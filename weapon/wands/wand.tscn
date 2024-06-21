@@ -212,11 +212,11 @@ func physics_update(delta: float) -> void:
         print(\"%s 充能延迟结束\" % [wand.name])
         wand.reset()
         emit_signal(\"finished\", \"Idle\")
-        return
-    ts += delta
-    wand.wand_recharge_bar.value = lerp(0, 100, ts / recharge_delay)
-    #print(\"%s 等待充能延迟...[%f/%f]\" % [wand.name, ts, recharge_delay])
-    wand.recharge(delta)
+    else:
+        ts += delta
+        wand.wand_recharge_bar.value = lerp(0, 100, ts / recharge_delay)
+        #print(\"%s 等待充能延迟...[%f/%f]\" % [wand.name, ts, recharge_delay])
+        wand.recharge(delta)
     
 func exit() -> void:
     pass
