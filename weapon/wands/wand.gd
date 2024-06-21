@@ -5,6 +5,8 @@ enum TriggerModes { SemiAuto, Auto }
 #@onready var weapon_inventory_ability: WeaponInventoryAbility = $WeaponInventoryAbility
 @onready var state_machine: StateMachine = $StateMachine
 
+@export var wand_recharge_bar : ProgressBar
+
 @export_group("Wand Statistics")
 ## 容量
 @export var capacity: int = 4
@@ -60,14 +62,17 @@ func _ready() -> void:
 func reset() -> void:
     deck.clear()
     for spell in spell_list:
-        deck.append(spell)
+        if spell:
+            deck.append(spell)
     hand.clear()
     discared.clear()
     cast_group_stack.clear()
     
+    trigger_pressed = false
+    
 func recharge(delta: float) -> void:
     if energe < max_energe:
-        print("%s 恢复 energe [%f/%f]" % [name, energe, max_energe])
+        #print("%s 恢复 energe [%f/%f]" % [name, energe, max_energe])
         # 计算在这个特定帧的时间内应当恢复多少 energe
         # delta 的单位是秒。如果delta是0.016秒（约等于60帧/秒），
         # 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。

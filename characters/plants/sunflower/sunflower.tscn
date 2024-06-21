@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://b85p1ngrke0t"]
+[gd_scene load_steps=43 format=3 uid="uid://b85p1ngrke0t"]
 
 [ext_resource type="Script" path="res://characters/plants/sunflower/sunflower.gd" id="1_ejfcf"]
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_components/ability/other/health_ability.tscn" id="1_v4i00"]
@@ -145,6 +145,12 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("30_yfb73")
 stream_1/weight = 1.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0s5"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu1ay"]
+bg_color = Color(1, 1, 1, 1)
+
 [node name="Sunflower" type="Area2D"]
 script = ExtResource("1_ejfcf")
 
@@ -187,9 +193,21 @@ stream = SubResource("AudioStreamRandomizer_0ep04")
 wait_time = 5.0
 one_shot = true
 
-[node name="Wand" parent="." node_paths=PackedStringArray("projectile_spawn") instance=ExtResource("35_jhqgc")]
+[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("35_jhqgc")]
+wand_recharge_bar = NodePath("../WandRechargeBar")
 spells = PackedStringArray("", "Sun", "", "")
 projectile_spawn = NodePath("../WeaponAttachment")
+
+[node name="WandRechargeBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = 40.0
+offset_right = 20.0
+offset_bottom = 46.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0s0s5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xu1ay")
+step = 1.0
+show_percentage = false
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]
