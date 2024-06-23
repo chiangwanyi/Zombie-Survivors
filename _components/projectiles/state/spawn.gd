@@ -9,9 +9,7 @@ func enter() -> void:
         sprite_2d.visible = true
     if animated_sprite_2d.sprite_frames:
         animated_sprite_2d.visible = true
-
-func update(_delta: float) -> void:
     emit_signal("finished", "Launch")
-    
+
 func exit() -> void:
     pass

@@ -39,8 +39,9 @@ enum DamageType {
 
 @export var projectile_scene: PackedScene
 
-func cast(start_position: Vector2, target_position: Vector2) -> void:
+func cast(start_position: Vector2, target_position: Vector2, force: float) -> void:
     var projectile = projectile_scene.instantiate() as Projectile2D
+    projectile.body_force = force
     projectile.global_position = start_position
     projectile.target_position = target_position
     projectile.trajectory = Projectile2D.ProjectileTrajectory.GRAVITY_AFFECTED

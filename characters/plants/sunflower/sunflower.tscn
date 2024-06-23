@@ -194,8 +194,9 @@ one_shot = true
 
 [node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("35_jhqgc")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
-spells = PackedStringArray("Sun", "", "", "")
+spells = PackedStringArray("Sun")
 projectile_spawn = NodePath("../WeaponAttachment")
+FORCE = 300.0
 
 [node name="WandRechargeBar" type="ProgressBar" parent="."]
 visible = false
@@ -210,5 +211,3 @@ show_percentage = false
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]
-
-[editable path="Wand"]

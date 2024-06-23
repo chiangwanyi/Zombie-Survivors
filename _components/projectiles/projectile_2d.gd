@@ -32,6 +32,7 @@ enum ProjectileTrajectory {
 
 var body_gravity: float
 var body_drag: float
+var body_force: float
 
 func _ready() -> void:
     animated_sprite_2d.visible = false

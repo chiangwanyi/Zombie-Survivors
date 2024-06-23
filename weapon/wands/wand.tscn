@@ -119,21 +119,12 @@ func enter() -> void:
     for spell in wand.cast_group_stack[0] as Array[Spell]:
         wand.energe -= spell.energe_drain
         if spell.spell_type == Spell.SpellType.Projectile:
-            spell.cast(wand.projectile_spawn.global_position, wand.get_global_mouse_position())
-            #var p = spell.projectile_scene.instantiate() as Projectile2D
-            #p.target_position = wand.get_global_mouse_position()
-            #p.global_position = wand.projectile_spawn.global_position
-            ##projectiles.append(p)
-            #GameManager.current_level.call_deferred(\"add_child\", p)
+            spell.cast(wand.projectile_spawn.global_position, wand.get_global_mouse_position(), wand.FORCE)
     print(\"%s 本次施法完毕\" % [wand.name])
     if wand.deck.is_empty():
         emit_signal(\"finished\", \"RechargeDelay\")
     else:
         emit_signal(\"finished\", \"CastDelay\")
-
-#func update(_delta: float) -> void:
-    #for projectile in projectiles:
-        #GameManager.current_level.call_deferred(\"add_child\", projectile)
     
 func exit() -> void:
     pass
@@ -229,7 +220,6 @@ func _exit_tree() -> void:
 
 [node name="Wand" type="Node2D"]
 script = ExtResource("1_xh8mq")
-FORCE = 400.0
 
 [node name="WeaponInventoryAbility" parent="." instance=ExtResource("2_a6c5u")]
 

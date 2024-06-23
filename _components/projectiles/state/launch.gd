@@ -7,7 +7,7 @@ var velocity : Vector2
 func enter() -> void:
     body = owner as Projectile2D
     timestep = 0.02
-    velocity = 500 * body.get_forward_direction()
+    velocity = body.body_force * body.get_forward_direction()
     print("projectile launch...")
 
    
