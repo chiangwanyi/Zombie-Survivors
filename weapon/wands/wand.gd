@@ -44,6 +44,7 @@ func _ready() -> void:
     spell_list.resize(spells.size())
     for i in range(spells.size()):
         if spells[i]:
+            print(spells[i])
             spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
             add_child(spell_list[i])
             

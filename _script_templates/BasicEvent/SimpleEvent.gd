@@ -10,7 +10,7 @@ var type : Type
 func _init() -> void:
 	event_name = &"EventName"
 	
-static func trigger(t: Type) -> void:
+static func trigger(_t: Type) -> void:
 	#var e := SeedBankEvent.new()
 	#e.type = t
 	

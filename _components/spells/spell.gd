@@ -42,4 +42,9 @@ enum DamageType {
 func _ready() -> void:
     GameManager.registed_wand_spells[spell_name] = "res://spells/projectile/sun.tscn"
 
-
+func cast(start_position: Vector2, target_position: Vector2) -> void:
+    var projectile = projectile_scene.instantiate() as Projectile2D
+    projectile.global_position = start_position
+    projectile.target_position = target_position
+    projectile.trajectory = Projectile2D.ProjectileTrajectory.GRAVITY_AFFECTED
+    GameManager.current_level.call_deferred("add_child", projectile)

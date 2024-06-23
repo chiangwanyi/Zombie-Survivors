@@ -1,12 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://d4i327mg2r0n2"]
 
 [ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://_components/spells/spell.tscn" id="1_u4qqi"]
-[ext_resource type="PackedScene" uid="uid://c7e4ru75ajbk7" path="res://projectiles/light_bullet.tscn" id="2_alxag"]
+[ext_resource type="PackedScene" uid="uid://dm1rfub7dvlta" path="res://projectiles/sun.tscn" id="2_n8dej"]
 
 [node name="Sun" instance=ExtResource("1_u4qqi")]
 spell_name = "Sun"
 cast_delay = 0.05
 damage = 3
-projectile_scene = ExtResource("2_alxag")
-
-[node name="Projectile" type="Sprite2D" parent="." index="0"]
+projectile_scene = ExtResource("2_n8dej")

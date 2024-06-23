@@ -28,6 +28,8 @@ var inventories: Dictionary = {}
 ## 法杖武器 Map<String:SpellName, PackedScene:Spell>
 var registed_wand_spells: Dictionary = {}
 
+var plants: Array[Plant]
+
 func _ready() -> void:
     # 读取配置文件
     var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
@@ -50,6 +52,7 @@ func create_plant(_pos: Vector2, plant_name: String):
     var plant = (load(scene_path) as PackedScene).instantiate() as Plant
     plant.position = current_level.get_local_mouse_position()
     current_level.add_child(plant)
+    plants.append(plant)
 
 func _register_wand_spells():
     registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
