@@ -44,7 +44,6 @@ func _ready() -> void:
     spell_list.resize(spells.size())
     for i in range(spells.size()):
         if spells[i]:
-            print(spells[i])
             spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
             add_child(spell_list[i])
             
@@ -53,12 +52,7 @@ func _ready() -> void:
     
     # 3. 开始
     state_machine.start()
-    
-    #weapon_inventory_ability.init(capacity)
-    # 2. 填装 Spell
-    #if not weapon_inventory_ability.items.is_empty():
-        #for item in weapon_inventory_ability.items:
-            #pass
+
 
 func reset() -> void:
     deck.clear()

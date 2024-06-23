@@ -14,7 +14,7 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
         (data.state_machine as StateMachine).change_state(\"Active\")
         GameManager.create_plant(at_position, data.item_name)
         
-func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
     return true
 "
 

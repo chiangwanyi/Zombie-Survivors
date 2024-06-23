@@ -194,7 +194,7 @@ one_shot = true
 
 [node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("35_jhqgc")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
-spells = PackedStringArray("", "Sun", "", "")
+spells = PackedStringArray("Sun", "", "", "")
 projectile_spawn = NodePath("../WeaponAttachment")
 
 [node name="WandRechargeBar" type="ProgressBar" parent="."]

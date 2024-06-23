@@ -51,7 +51,7 @@ func create_plant(_pos: Vector2, plant_name: String):
     var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
     var plant = (load(scene_path) as PackedScene).instantiate() as Plant
     plant.position = current_level.get_local_mouse_position()
-    current_level.add_child(plant)
+    current_level.call_deferred("add_child", plant)
     plants.append(plant)
 
 func _register_wand_spells():
