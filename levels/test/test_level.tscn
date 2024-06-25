@@ -1,8 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr2x0n6devb8n"]
+[gd_scene load_steps=16 format=3 uid="uid://cr2x0n6devb8n"]
 
 [ext_resource type="Script" path="res://levels/test/test_level.gd" id="1_6cuaf"]
 [ext_resource type="PackedScene" uid="uid://cqkrmdxlwvvqk" path="res://ui/seed_bank/seed_bank.tscn" id="2_eqxuf"]
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="2_l2oys"]
+[ext_resource type="Texture2D" uid="uid://c5kwygmrfum8v" path="res://_assets/images/plants/Sunflower.png" id="3_sl6dq"]
+[ext_resource type="PackedScene" uid="uid://dradgrvq3fpb2" path="res://inventory/item/spell/pea_item.tscn" id="4_a0r3b"]
+[ext_resource type="FontFile" uid="uid://blb46yk3panhm" path="res://_assets/fonts/SourceHanSansSC-Normal.otf" id="4_dvp72"]
+[ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="4_wtufg"]
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="5_3psxq"]
+[ext_resource type="PackedScene" uid="uid://dp0ju4juyitg8" path="res://inventory/item/spell/sun_item.tscn" id="5_047rc"]
+[ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="6_dy43i"]
+[ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="7_763l2"]
+[ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="8_i4tow"]
 
 [sub_resource type="GDScript" id="GDScript_ka5j4"]
 script/source = "extends Control
@@ -55,6 +64,173 @@ script = SubResource("GDScript_ka5j4")
 
 [node name="SeedBank" parent="HUD/Control" instance=ExtResource("2_eqxuf")]
 scale = Vector2(0.75, 0.75)
+
+[node name="Control" type="Control" parent="HUD/Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -275.0
+offset_right = 498.0
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="HUD/Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 40.0
+offset_right = -17.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/Control/Control/Panel"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 35.0
+offset_right = 113.0
+offset_bottom = 115.0
+texture = ExtResource("3_sl6dq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 161.0
+offset_top = 11.0
+offset_bottom = -106.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Control/Control/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HUD/Control/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("4_dvp72")
+theme_override_font_sizes/font_size = 28
+text = "类型"
+
+[node name="Label2" type="Label" parent="HUD/Control/Control/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "向日葵"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Control/Control/Panel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="HUD/Control/Control/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "施放数"
+
+[node name="Label2" type="Label" parent="HUD/Control/Control/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "1"
+
+[node name="GridContainer" type="GridContainer" parent="HUD/Control/Control/Panel"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -84.0
+offset_right = 208.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 2
+
+[node name="InventoryItem" type="Control" parent="HUD/Control/Control/Panel/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+script = ExtResource("4_wtufg")
+item_name = "Pea"
+item_description = "普通豌豆"
+
+[node name="ItemBorder" type="TextureRect" parent="HUD/Control/Control/Panel/GridContainer/InventoryItem"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("5_3psxq")
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="HUD/Control/Control/Panel/GridContainer/InventoryItem"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("6_dy43i")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="InventoryItem2" type="Control" parent="HUD/Control/Control/Panel/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+script = ExtResource("4_wtufg")
+item_name = "Sun"
+item_description = "阳光"
+
+[node name="ItemBorder" type="TextureRect" parent="HUD/Control/Control/Panel/GridContainer/InventoryItem2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("5_3psxq")
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="HUD/Control/Control/Panel/GridContainer/InventoryItem2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("7_763l2")
+expand_mode = 3
+
+[node name="GridContainer2" type="GridContainer" parent="HUD/Control/Control/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 21.0
+offset_top = -51.0
+offset_right = -24.0
+offset_bottom = -19.0
+grow_horizontal = 2
+grow_vertical = 0
+columns = 6
+
+[node name="InventoryItemSlot" parent="HUD/Control/Control/Panel/GridContainer2" instance=ExtResource("8_i4tow")]
+layout_mode = 2
+
+[node name="InventoryItem" parent="HUD/Control/Control/Panel/GridContainer2/InventoryItemSlot" instance=ExtResource("4_a0r3b")]
+layout_mode = 2
+
+[node name="InventoryItemSlot2" parent="HUD/Control/Control/Panel/GridContainer2" instance=ExtResource("8_i4tow")]
+layout_mode = 2
+
+[node name="InventoryItem" parent="HUD/Control/Control/Panel/GridContainer2/InventoryItemSlot2" instance=ExtResource("5_047rc")]
+layout_mode = 2
+
+[node name="InventoryItemSlot3" parent="HUD/Control/Control/Panel/GridContainer2" instance=ExtResource("8_i4tow")]
+layout_mode = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5pcki")

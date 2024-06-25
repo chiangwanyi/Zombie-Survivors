@@ -8,6 +8,6 @@ texture = ExtResource("2_h0rvj")
 
 [node name="InventoryItemSlot" type="PanelContainer"]
 texture_filter = 1
-custom_minimum_size = Vector2(32, 32)
+custom_minimum_size = Vector2(48, 48)
 theme_override_styles/panel = SubResource("StyleBoxTexture_ot6pi")
 script = ExtResource("1_qhywb")

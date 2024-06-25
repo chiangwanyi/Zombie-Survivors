@@ -16,9 +16,7 @@ bg_color = Color(1, 1, 1, 1)
 
 [node name="HealthAbility" parent="." instance=ExtResource("1_5qod3")]
 
-[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment", "current_weapon") instance=ExtResource("2_rdim5")]
-weapon_attachment = NodePath("")
-current_weapon = NodePath("")
+[node name="HandleWeaponAbility" parent="." instance=ExtResource("2_rdim5")]
 
 [node name="StateMachine" parent="." instance=ExtResource("3_jc8kf")]
 
