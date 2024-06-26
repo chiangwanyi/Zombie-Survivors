@@ -14,8 +14,9 @@ func _ready() -> void:
         return
     if initial_weapon_scene:
         current_weapon = initial_weapon_scene.instantiate() as Weapon
-    current_weapon.position = weapon_attachment.position
-    current_weapon.weapon_owner = $".." as Node2D
+    if current_weapon:
+        current_weapon.position = weapon_attachment.position
+        current_weapon.weapon_owner = $".." as Node2D
     if auto_use:
         current_weapon.trigger_pressed = true
     if initial_weapon_scene:

@@ -1,11 +1,7 @@
-[gd_scene load_steps=43 format=3 uid="uid://b85p1ngrke0t"]
+[gd_scene load_steps=31 format=3 uid="uid://kgx24r5de8gr"]
 
-[ext_resource type="Script" path="res://characters/plants/sunflower/sunflower.gd" id="1_ejfcf"]
-[ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_components/ability/other/health_ability.tscn" id="1_v4i00"]
-[ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://_abilities/character_abilities/character_handle_weapon_ability.tscn" id="2_ckkvy"]
-[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/images/Plantshadow.png" id="2_klucd"]
+[ext_resource type="PackedScene" uid="uid://cy4kvtp3c3dxc" path="res://characters/plants/plant.tscn" id="1_g2umh"]
 [ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="3_5b4nf"]
-[ext_resource type="Shader" path="res://characters/plants/sunflower/sunflower.gdshader" id="3_vyrsn"]
 [ext_resource type="Script" path="res://characters/plants/sunflower/state/idle.gd" id="4_6027s"]
 [ext_resource type="Texture2D" uid="uid://bb2hxiim7l344" path="res://_assets/items/plants/sunflower/SunFlower0006.png" id="4_j2e1e"]
 [ext_resource type="Texture2D" uid="uid://ccfn7fr46617t" path="res://_assets/items/plants/sunflower/SunFlower0007.png" id="5_0g0mc"]
@@ -32,26 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://bmvo751ekqvvs" path="res://_assets/items/plants/sunflower/SunFlower0027.png" id="25_fnq2y"]
 [ext_resource type="Texture2D" uid="uid://ebaoo0b28upn" path="res://_assets/items/plants/sunflower/SunFlower0028.png" id="26_3jlxi"]
 [ext_resource type="Texture2D" uid="uid://x4atkkiea847" path="res://_assets/items/plants/sunflower/SunFlower0029.png" id="27_3gsvq"]
-[ext_resource type="AudioStream" uid="uid://dlk62lwp0c6ie" path="res://_assets/sounds/plant.ogg" id="29_p8vgj"]
-[ext_resource type="AudioStream" uid="uid://c21tfe6vgwbej" path="res://_assets/sounds/plant2.ogg" id="30_yfb73"]
-[ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://weapon/wands/wand.tscn" id="35_jhqgc"]
 
-[sub_resource type="GDScript" id="GDScript_uhq8u"]
-script/source = "extends StateMachine
-
-func _ready() -> void:
-    super._ready()
-
-"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6osas"]
-shader = ExtResource("3_vyrsn")
-shader_parameter/glow_color = Color(1, 0.996, 0.431, 1)
-shader_parameter/glow_power = 1.0
-shader_parameter/glow_shift = 0.0
-shader_parameter/glow_radius = 1.0
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_50igw"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ugn8j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -131,83 +109,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 12.0
+"speed": 14.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_k0d48"]
-radius = 20.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6l50b"]
+radius = 24.0
+height = 58.0
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0ep04"]
-playback_mode = 1
-streams_count = 2
-stream_0/stream = ExtResource("29_p8vgj")
-stream_0/weight = 1.0
-stream_1/stream = ExtResource("30_yfb73")
-stream_1/weight = 1.0
+[node name="Plant" instance=ExtResource("1_g2umh")]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0s5"]
-bg_color = Color(0.152941, 0.152941, 0.152941, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu1ay"]
-bg_color = Color(1, 1, 1, 1)
-
-[node name="Sunflower" type="Area2D"]
-script = ExtResource("1_ejfcf")
-
-[node name="HealthAbility" parent="." instance=ExtResource("1_v4i00")]
-
-[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment", "current_weapon") instance=ExtResource("2_ckkvy")]
-weapon_attachment = NodePath("../WeaponAttachment")
-current_weapon = NodePath("../Wand")
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
-script = SubResource("GDScript_uhq8u")
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("start_state")]
 start_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("4_6027s")
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gu1n8")
 
-[node name="Shadow" type="Sprite2D" parent="."]
-position = Vector2(0, 32)
-texture = ExtResource("2_klucd")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_6osas")
-sprite_frames = SubResource("SpriteFrames_50igw")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+sprite_frames = SubResource("SpriteFrames_ugn8j")
 animation = &"idle"
-frame_progress = 0.879845
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_k0d48")
-
-[node name="SfxPlant" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_0ep04")
-
-[node name="WeaponAttachment" type="Marker2D" parent="."]
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("35_jhqgc")]
-wand_recharge_bar = NodePath("../WandRechargeBar")
-spells = PackedStringArray("Sun")
-projectile_spawn = NodePath("../WeaponAttachment")
-FORCE = 300.0
-
-[node name="WandRechargeBar" type="ProgressBar" parent="."]
-visible = false
-offset_left = -20.0
-offset_top = 40.0
-offset_right = 20.0
-offset_bottom = 46.0
-theme_override_styles/background = SubResource("StyleBoxFlat_0s0s5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_xu1ay")
-step = 1.0
-show_percentage = false
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2(1, 2)
+shape = SubResource("CapsuleShape2D_6l50b")

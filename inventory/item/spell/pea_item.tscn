@@ -5,16 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="3_pgeq1"]
 
 [node name="InventoryItem" instance=ExtResource("1_qkwi4")]
-custom_minimum_size = Vector2(48, 48)
 item_name = "Pea"
 item_description = "普通豌豆"
 
 [node name="ItemBorder" parent="." index="0"]
-custom_minimum_size = Vector2(48, 48)
 texture = ExtResource("2_laqyn")
 
 [node name="ItemAvatar" parent="." index="1"]
-custom_minimum_size = Vector2(48, 48)
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 53.0

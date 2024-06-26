@@ -1,0 +1,215 @@
+[gd_scene load_steps=43 format=3 uid="uid://b6cnrcye7ar1h"]
+
+[ext_resource type="Script" path="res://characters/plants/sunflower/sunflower.gd" id="1_slpn2"]
+[ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_components/ability/other/health_ability.tscn" id="2_xcg5a"]
+[ext_resource type="PackedScene" uid="uid://b4vysyw60saap" path="res://_abilities/character_abilities/character_handle_weapon_ability.tscn" id="3_cvc7e"]
+[ext_resource type="Script" path="res://characters/plants/sunflower/state/idle.gd" id="4_lp3kk"]
+[ext_resource type="Script" path="res://characters/plants/sunflower/state/attack.gd" id="5_qoxia"]
+[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/images/Plantshadow.png" id="6_d5ptr"]
+[ext_resource type="Shader" path="res://characters/plants/sunflower/sunflower.gdshader" id="7_orjqs"]
+[ext_resource type="Texture2D" uid="uid://byn450xaie3yq" path="res://_assets/items/plants/sunflower/SunFlower0005.png" id="8_3olvk"]
+[ext_resource type="Texture2D" uid="uid://bb2hxiim7l344" path="res://_assets/items/plants/sunflower/SunFlower0006.png" id="9_g501b"]
+[ext_resource type="Texture2D" uid="uid://ccfn7fr46617t" path="res://_assets/items/plants/sunflower/SunFlower0007.png" id="10_awswk"]
+[ext_resource type="Texture2D" uid="uid://cjbbhyiicx42q" path="res://_assets/items/plants/sunflower/SunFlower0008.png" id="11_nlvq6"]
+[ext_resource type="Texture2D" uid="uid://c0vtgpjksop84" path="res://_assets/items/plants/sunflower/SunFlower0009.png" id="12_vdkhl"]
+[ext_resource type="Texture2D" uid="uid://w3ophdc7hjtd" path="res://_assets/items/plants/sunflower/SunFlower0010.png" id="13_xnag0"]
+[ext_resource type="Texture2D" uid="uid://gqr8jdi2limt" path="res://_assets/items/plants/sunflower/SunFlower0011.png" id="14_mhqae"]
+[ext_resource type="Texture2D" uid="uid://3ayofvjh6b2x" path="res://_assets/items/plants/sunflower/SunFlower0012.png" id="15_dd8oe"]
+[ext_resource type="Texture2D" uid="uid://dtk6ma7a58c1r" path="res://_assets/items/plants/sunflower/SunFlower0013.png" id="16_b6cdf"]
+[ext_resource type="Texture2D" uid="uid://bj7kkhbktxh1q" path="res://_assets/items/plants/sunflower/SunFlower0014.png" id="17_maibo"]
+[ext_resource type="Texture2D" uid="uid://c066vis65ydaf" path="res://_assets/items/plants/sunflower/SunFlower0015.png" id="18_63jci"]
+[ext_resource type="Texture2D" uid="uid://ci7cjyr6q7q2y" path="res://_assets/items/plants/sunflower/SunFlower0016.png" id="19_twff7"]
+[ext_resource type="Texture2D" uid="uid://cjem01unxo7x4" path="res://_assets/items/plants/sunflower/SunFlower0017.png" id="20_7lq7v"]
+[ext_resource type="Texture2D" uid="uid://by53orqra58ik" path="res://_assets/items/plants/sunflower/SunFlower0018.png" id="21_uw4i1"]
+[ext_resource type="Texture2D" uid="uid://byo7vsqy3t8ll" path="res://_assets/items/plants/sunflower/SunFlower0019.png" id="22_qvkqx"]
+[ext_resource type="Texture2D" uid="uid://bxts8i7dm35ab" path="res://_assets/items/plants/sunflower/SunFlower0020.png" id="23_ablga"]
+[ext_resource type="Texture2D" uid="uid://b11s8bhx075s0" path="res://_assets/items/plants/sunflower/SunFlower0021.png" id="24_imnvn"]
+[ext_resource type="Texture2D" uid="uid://dp2e6p7hbhfhg" path="res://_assets/items/plants/sunflower/SunFlower0022.png" id="25_yifgc"]
+[ext_resource type="Texture2D" uid="uid://doa08oveuipsr" path="res://_assets/items/plants/sunflower/SunFlower0023.png" id="26_flir6"]
+[ext_resource type="Texture2D" uid="uid://b23pera6cgycr" path="res://_assets/items/plants/sunflower/SunFlower0024.png" id="27_42g5p"]
+[ext_resource type="Texture2D" uid="uid://dh5an0gkxl4" path="res://_assets/items/plants/sunflower/SunFlower0025.png" id="28_2aevo"]
+[ext_resource type="Texture2D" uid="uid://bvqyer37y3tjv" path="res://_assets/items/plants/sunflower/SunFlower0026.png" id="29_p1m8y"]
+[ext_resource type="Texture2D" uid="uid://bmvo751ekqvvs" path="res://_assets/items/plants/sunflower/SunFlower0027.png" id="30_44syt"]
+[ext_resource type="Texture2D" uid="uid://ebaoo0b28upn" path="res://_assets/items/plants/sunflower/SunFlower0028.png" id="31_58osk"]
+[ext_resource type="Texture2D" uid="uid://x4atkkiea847" path="res://_assets/items/plants/sunflower/SunFlower0029.png" id="32_porlx"]
+[ext_resource type="AudioStream" uid="uid://dlk62lwp0c6ie" path="res://_assets/sounds/plant.ogg" id="33_5qedn"]
+[ext_resource type="AudioStream" uid="uid://c21tfe6vgwbej" path="res://_assets/sounds/plant2.ogg" id="34_4d6h8"]
+[ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://weapon/wands/wand.tscn" id="35_tkub6"]
+
+[sub_resource type="GDScript" id="GDScript_uhq8u"]
+script/source = "extends StateMachine
+
+func _ready() -> void:
+    super._ready()
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6osas"]
+shader = ExtResource("7_orjqs")
+shader_parameter/glow_color = Color(1, 0.996, 0.431, 1)
+shader_parameter/glow_power = 1.0
+shader_parameter/glow_shift = 0.0
+shader_parameter/glow_radius = 1.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_50igw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_3olvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_g501b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_awswk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nlvq6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vdkhl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xnag0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mhqae")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dd8oe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_b6cdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_maibo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_63jci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_twff7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7lq7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_uw4i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_qvkqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ablga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_imnvn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_yifgc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_flir6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_42g5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_2aevo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_p1m8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_44syt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_58osk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_porlx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chi0x"]
+radius = 21.0
+height = 62.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0ep04"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("33_5qedn")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("34_4d6h8")
+stream_1/weight = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0s0s5"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xu1ay"]
+bg_color = Color(1, 1, 1, 1)
+
+[node name="Sunflower" type="Area2D"]
+script = ExtResource("1_slpn2")
+
+[node name="HealthAbility" parent="." instance=ExtResource("2_xcg5a")]
+
+[node name="HandleWeaponAbility" parent="." node_paths=PackedStringArray("weapon_attachment", "current_weapon") instance=ExtResource("3_cvc7e")]
+weapon_attachment = NodePath("../WeaponAttachment")
+current_weapon = NodePath("../Wand")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
+script = SubResource("GDScript_uhq8u")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_lp3kk")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("5_qoxia")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 32)
+texture = ExtResource("6_d5ptr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_6osas")
+sprite_frames = SubResource("SpriteFrames_50igw")
+animation = &"idle"
+frame_progress = 0.879845
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 6)
+shape = SubResource("CapsuleShape2D_chi0x")
+
+[node name="SfxPlant" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_0ep04")
+
+[node name="WeaponAttachment" type="Marker2D" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("35_tkub6")]
+wand_recharge_bar = NodePath("../WandRechargeBar")
+spells = PackedStringArray("Sun")
+projectile_spawn = NodePath("../WeaponAttachment")
+FORCE = 300.0
+
+[node name="WandRechargeBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = 40.0
+offset_right = 20.0
+offset_bottom = 46.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0s0s5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_xu1ay")
+step = 1.0
+show_percentage = false
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="SpawnTimer" to="StateMachine/Idle" method="_on_spawn_timer_timeout"]
