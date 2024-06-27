@@ -40,21 +40,23 @@ var current_cast_group: Array[Spell]
 var cast_group_stack: Array = []
 
 func _ready() -> void:
-    # 1. 初始化 Spell
+    # 1. 重置 Wand
+    reset()
+    
+    # 2. 开始
+    state_machine.start()
+
+
+func reset() -> void:
+    for spell in spell_list:
+        spell.queue_free()
+    
     spell_list.resize(spells.size())
     for i in range(spells.size()):
         if spells[i]:
             spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
             add_child(spell_list[i])
-            
-    # 2. 重置 Wand
-    reset()
     
-    # 3. 开始
-    state_machine.start()
-
-
-func reset() -> void:
     deck.clear()
     for spell in spell_list:
         if spell:

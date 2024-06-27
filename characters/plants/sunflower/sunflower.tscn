@@ -118,6 +118,10 @@ height = 58.0
 
 [node name="Sunflower" instance=ExtResource("1_g2umh")]
 
+[node name="HandleWeaponAbility" parent="." index="1" node_paths=PackedStringArray("weapon_attachment", "current_weapon")]
+weapon_attachment = NodePath("../WeaponAttachment")
+current_weapon = NodePath("../Wand")
+
 [node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("start_state")]
 start_state = NodePath("Idle")
 

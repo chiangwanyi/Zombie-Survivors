@@ -4,12 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_mcxia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up7hn"]
-radius = 3.16228
 
 [node name="Pea" instance=ExtResource("1_piyeu")]
 
 [node name="Sprite2D" parent="." index="1"]
 visible = true
+scale = Vector2(1, 1)
 texture = ExtResource("2_mcxia")
 
 [node name="CollisionShape2D" parent="." index="2"]

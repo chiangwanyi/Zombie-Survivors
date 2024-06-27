@@ -23,7 +23,7 @@ func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 func _on_gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
         # 遍历所有植物
-        for plant in GameManager.plants:
+        for plant in GameManager.registerd_plants.values():
             # 获取名为HandleWeaponAbility的子节点
             if plant.has_node(\"HandleWeaponAbility\"):
                 # 获取HandleWeaponAbility节点

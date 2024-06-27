@@ -4,12 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="2_7k58j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_622xf"]
-radius = 11.0454
+radius = 21.0238
 
 [node name="Sun" instance=ExtResource("1_13ks3")]
 
 [node name="Sprite2D" parent="." index="1"]
 visible = true
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_7k58j")
 
 [node name="CollisionShape2D" parent="." index="2"]
