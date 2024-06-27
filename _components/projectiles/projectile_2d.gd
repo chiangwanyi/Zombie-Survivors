@@ -2,7 +2,7 @@ class_name Projectile2D extends Area2D
 
 @onready var state_machine: StateMachine = $StateMachine
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+#@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 enum ProjectileTrajectory {
@@ -35,7 +35,7 @@ var body_drag: float
 var body_force: float
 
 func _ready() -> void:
-    animated_sprite_2d.visible = false
+    #animated_sprite_2d.visible = false
     sprite_2d.visible = false
     
     if trajectory == ProjectileTrajectory.GRAVITY_AFFECTED:

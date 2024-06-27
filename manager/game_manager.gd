@@ -57,4 +57,5 @@ func create_plant(_pos: Vector2, plant_name: String):
 
 func _register_wand_spells():
     registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
+    registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
 

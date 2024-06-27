@@ -1,77 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://dm1rfub7dvlta"]
+[gd_scene load_steps=4 format=3 uid="uid://dm1rfub7dvlta"]
 
 [ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_13ks3"]
 [ext_resource type="Texture2D" uid="uid://bq5iffhuqsek5" path="res://_assets/items/projectiles/sun/Sun0001.png" id="2_7k58j"]
-[ext_resource type="Texture2D" uid="uid://djke70ux2o8vf" path="res://_assets/items/projectiles/sun/Sun0002.png" id="3_cayew"]
-[ext_resource type="Texture2D" uid="uid://cf22g6tsmk0im" path="res://_assets/items/projectiles/sun/Sun0003.png" id="4_rtaxc"]
-[ext_resource type="Texture2D" uid="uid://pyekqghtu3e4" path="res://_assets/items/projectiles/sun/Sun0004.png" id="5_f52vd"]
-[ext_resource type="Texture2D" uid="uid://cikwpfbh7n0ii" path="res://_assets/items/projectiles/sun/Sun0005.png" id="6_ai1yj"]
-[ext_resource type="Texture2D" uid="uid://boqljvn6xpb1q" path="res://_assets/items/projectiles/sun/Sun0006.png" id="7_tc072"]
-[ext_resource type="Texture2D" uid="uid://bdwwbansciyqa" path="res://_assets/items/projectiles/sun/Sun0007.png" id="8_ptowh"]
-[ext_resource type="Texture2D" uid="uid://clk0db8n0rqeu" path="res://_assets/items/projectiles/sun/Sun0008.png" id="9_e0te5"]
-[ext_resource type="Texture2D" uid="uid://f6vkntkbhcn4" path="res://_assets/items/projectiles/sun/Sun0009.png" id="10_em2yy"]
-[ext_resource type="Texture2D" uid="uid://bml6jit4t7ih5" path="res://_assets/items/projectiles/sun/Sun0010.png" id="11_3uvwf"]
-[ext_resource type="Texture2D" uid="uid://btw0fhv4myyo1" path="res://_assets/items/projectiles/sun/Sun0011.png" id="12_wlbiv"]
-[ext_resource type="Texture2D" uid="uid://b1e1x783tcykg" path="res://_assets/items/projectiles/sun/Sun0012.png" id="13_84jwy"]
-[ext_resource type="Texture2D" uid="uid://c63v33xtidump" path="res://_assets/items/projectiles/sun/Sun0013.png" id="14_kmbvd"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_u5w08"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_7k58j")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_cayew")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_rtaxc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_f52vd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_ai1yj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_tc072")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_ptowh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_e0te5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_em2yy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_3uvwf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_wlbiv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_84jwy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_kmbvd")
-}],
-"loop": true,
-"name": &"launch",
-"speed": 12.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_hh2b7"]
-radius = 19.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_622xf"]
+radius = 11.0454
 
 [node name="Sun" instance=ExtResource("1_13ks3")]
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="1"]
 visible = true
-scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_u5w08")
-animation = &"launch"
+texture = ExtResource("2_7k58j")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
-shape = SubResource("CircleShape2D_hh2b7")
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource("CircleShape2D_622xf")

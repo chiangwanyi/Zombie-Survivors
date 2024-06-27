@@ -41,9 +41,8 @@ script = ExtResource("6_p7xis")
 [node name="Destory" type="Node" parent="StateMachine"]
 script = ExtResource("7_fplla")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 scale = Vector2(0.25, 0.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

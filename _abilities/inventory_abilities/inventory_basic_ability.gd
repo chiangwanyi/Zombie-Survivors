@@ -17,7 +17,8 @@ var _item_slot_list : Array[InventoryItemSlot] = []
 
 ## 重载背包
 func reload(size: int) -> void :
-    slot_size = size
+    if size > 0:
+        slot_size = size
 
     if slot_size < 0:
         slot_size = 0
