@@ -1,7 +1,6 @@
 extends Node
 ## 全局游戏管理器，管理整个游戏中的数据、资源
 
-
 ## 游戏配置文件路径
 var _cfg_path = "res://config.json"
 ## 植物场景文件夹
@@ -28,7 +27,8 @@ var inventories: Dictionary = {}
 ## 法杖武器 Map<String:SpellName, PackedScene:Spell>
 var registed_wand_spells: Dictionary = {}
 
-var plants: Array[Plant]
+## 当前存活的的植物 Map<String:Key, Plant:植物>
+var registerd_plants: Dictionary
 
 func _ready() -> void:
     # 读取配置文件
@@ -51,9 +51,10 @@ func create_plant(_pos: Vector2, plant_name: String):
     var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
     var plant = (load(scene_path) as PackedScene).instantiate() as Plant
     plant.position = current_level.get_local_mouse_position()
+    plant.key = IdUtils.unique_key()
     plant.plant_name = plant_name
     current_level.call_deferred("add_child", plant)
-    plants.append(plant)
+    registerd_plants[plant.key] = plant
 
 func _register_wand_spells():
     registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene

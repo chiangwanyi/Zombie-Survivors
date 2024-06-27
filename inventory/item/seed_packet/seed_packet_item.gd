@@ -28,4 +28,6 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
     var viewr = Control.new()
     viewr.add_child(item_avatar.duplicate())
     set_drag_preview(viewr)
+    viewr.tree_exited.connect(func (): 
+        state_machine.change_state("Active"))
     return self

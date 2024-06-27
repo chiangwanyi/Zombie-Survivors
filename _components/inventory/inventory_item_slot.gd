@@ -19,5 +19,6 @@ func push_item_safe(inventory_item: InventoryItem) -> void:
         if inventory_item.get_parent():
             inventory_item.reparent(self)
         else:
-            add_child(inventory_item)
+            call_deferred("add_child", inventory_item)
+            #add_child(inventory_item)
         inventory_item.visible = true

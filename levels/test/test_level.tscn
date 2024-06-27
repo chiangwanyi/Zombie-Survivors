@@ -9,12 +9,13 @@
 script/source = "extends Control
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-    if data is InventoryItem:
-        data.visible = true
+    #if data is InventoryItem:
+        #data.visible = true
     if data is SeedPacketItem:
-        (data.state_machine as StateMachine).change_state(\"Active\")
         GameManager.create_plant(at_position, data.item_name)
-        
+    #else:
+        #data.visible = true
+        #
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
     return true
 
@@ -73,5 +74,3 @@ layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, -1310
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="gui_input" from="HUD/Control" to="HUD/Control" method="_on_gui_input"]
-
-[editable path="HUD/Control/SeedBank"]

@@ -19,11 +19,13 @@ config/icon="res://icon.svg"
 
 GameManager="*res://manager/game_manager.gd"
 EventManager="*res://manager/event_manager.gd"
+IdUtils="*res://utils/id_utils.gd"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [editor]

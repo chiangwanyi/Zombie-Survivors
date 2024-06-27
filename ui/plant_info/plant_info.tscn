@@ -97,3 +97,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("5_21vf8")
 text = "12/100"
+
+[connection signal="item_sync" from="BasicInventoryAbility" to="." method="_on_inventory_item_sync"]

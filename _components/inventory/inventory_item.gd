@@ -1,5 +1,8 @@
 class_name InventoryItem extends Control
 
+@export var inventory_name: String = ""
+## 区分 InventoryItem 的类别
+@export var item_type_name: String = ""
 ## InventoryItem 的名字
 @export var item_name: String = ""
 ## InventoryItem 的描述
@@ -19,11 +22,14 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
     item.visible = true
     #item.scale = Vector2(2, 2)
     set_drag_preview(item)
+    item.tree_exited.connect(func (): 
+        visible = true
+        (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit())
     return self
     
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
     # 用来拖动交换两个 InventoryItem
-    if data is InventoryItem and is_swappable:
+    if data is InventoryItem and is_swappable and data.item_type_name == item_type_name:
         return true
     return false
     
