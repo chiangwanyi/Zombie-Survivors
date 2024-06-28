@@ -250,7 +250,8 @@ shape = SubResource("CapsuleShape2D_5myh8")
 [node name="WeaponAttachment" parent="." index="7"]
 position = Vector2(25, -10)
 
-[node name="Wand" parent="." index="8"]
+[node name="Wand" parent="." index="8" node_paths=PackedStringArray("wand_energy_bar")]
+wand_energy_bar = NodePath("../WandEnergyBar")
 capacity = 3
 spells = PackedStringArray("Pea", "", "")
 FORCE = 1000.0

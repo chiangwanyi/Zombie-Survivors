@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cy4kvtp3c3dxc"]
+[gd_scene load_steps=10 format=3 uid="uid://cy4kvtp3c3dxc"]
 
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_components/ability/other/health_ability.tscn" id="1_5qod3"]
 [ext_resource type="Script" path="res://characters/plants/plant.gd" id="1_ap4tu"]
@@ -12,6 +12,9 @@ bg_color = Color(0.152941, 0.152941, 0.152941, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pxskg"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gws0y"]
+bg_color = Color(0.611765, 1, 1, 1)
 
 [node name="Plant" type="Area2D"]
 script = ExtResource("1_ap4tu")
@@ -30,8 +33,9 @@ texture = ExtResource("1_mowso")
 
 [node name="WeaponAttachment" type="Marker2D" parent="."]
 
-[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "projectile_spawn") instance=ExtResource("4_vulds")]
+[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "projectile_spawn") instance=ExtResource("4_vulds")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
+wand_energy_bar = NodePath("../WandEnergyBar")
 spells = PackedStringArray("Sun")
 projectile_spawn = NodePath("../WeaponAttachment")
 FORCE = 300.0
@@ -39,11 +43,22 @@ FORCE = 300.0
 [node name="WandRechargeBar" type="ProgressBar" parent="."]
 visible = false
 offset_left = -20.0
-offset_top = 40.0
+offset_top = 47.0
 offset_right = 20.0
-offset_bottom = 46.0
+offset_bottom = 53.0
 theme_override_styles/background = SubResource("StyleBoxFlat_yr5d6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_pxskg")
+step = 1.0
+show_percentage = false
+
+[node name="WandEnergyBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = 55.0
+offset_right = 20.0
+offset_bottom = 61.0
+theme_override_styles/background = SubResource("StyleBoxFlat_yr5d6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gws0y")
 step = 1.0
 show_percentage = false
 

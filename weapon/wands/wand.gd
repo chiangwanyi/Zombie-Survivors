@@ -2,10 +2,12 @@ class_name Wand extends Weapon
 
 enum TriggerModes { SemiAuto, Auto }
 
-#@onready var weapon_inventory_ability: WeaponInventoryAbility = $WeaponInventoryAbility
 @onready var state_machine: StateMachine = $StateMachine
 
+## 武器重装条
 @export var wand_recharge_bar : ProgressBar
+## 武器能量条
+@export var wand_energy_bar: ProgressBar
 
 @export_group("Wand Statistics")
 ## 容量
@@ -78,4 +80,9 @@ func recharge(delta: float) -> void:
         # 那么每帧应该恢复的 energe 为 10 * 0.016 = 0.16 点。
         energe += energe_recharge_speed * delta
         energe = min(energe, max_energe)
+
+        wand_energy_bar.visible = true
+        wand_energy_bar.value = lerp(0, 100, energe / max_energe)
+    else:
+        wand_energy_bar.visible = false
         
