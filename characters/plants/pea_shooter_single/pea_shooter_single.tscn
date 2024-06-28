@@ -226,6 +226,10 @@ height = 58.0
 
 [node name="PeaShooterSingle" instance=ExtResource("1_n61w1")]
 
+[node name="HandleWeaponAbility" parent="." index="1" node_paths=PackedStringArray("weapon_attachment", "current_weapon")]
+weapon_attachment = NodePath("../WeaponAttachment")
+current_weapon = NodePath("../Wand")
+
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("2_7a8d1")
 
@@ -242,6 +246,9 @@ sprite_frames = SubResource("SpriteFrames_48253")
 [node name="CollisionShape2D" parent="." index="6"]
 position = Vector2(1, 10)
 shape = SubResource("CapsuleShape2D_5myh8")
+
+[node name="WeaponAttachment" parent="." index="7"]
+position = Vector2(25, -10)
 
 [node name="Wand" parent="." index="8"]
 capacity = 3

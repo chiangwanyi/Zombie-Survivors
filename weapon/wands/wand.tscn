@@ -202,7 +202,7 @@ func enter() -> void:
 func physics_update(delta: float) -> void:
     if ts >= recharge_delay:
         print(\"%s 充能延迟结束\" % [wand.name])
-        wand.reset()
+        wand.reload()
         emit_signal(\"finished\", \"Idle\")
     else:
         ts += delta

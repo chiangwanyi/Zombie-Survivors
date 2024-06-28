@@ -44,5 +44,5 @@ func cast(start_position: Vector2, target_position: Vector2, force: float) -> vo
     projectile.body_force = force
     projectile.global_position = start_position
     projectile.target_position = target_position
-    projectile.trajectory = Projectile2D.ProjectileTrajectory.GRAVITY_AFFECTED
+    #projectile.trajectory = Projectile2D.ProjectileTrajectory.GRAVITY_AFFECTED
     GameManager.current_level.call_deferred("add_child", projectile)

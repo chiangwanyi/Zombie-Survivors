@@ -35,7 +35,6 @@ var body_drag: float
 var body_force: float
 
 func _ready() -> void:
-    #animated_sprite_2d.visible = false
     sprite_2d.visible = false
     
     if trajectory == ProjectileTrajectory.GRAVITY_AFFECTED:
@@ -45,3 +44,7 @@ func _ready() -> void:
     
 func get_forward_direction() -> Vector2:
     return global_position.direction_to(target_position)
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+    queue_free()

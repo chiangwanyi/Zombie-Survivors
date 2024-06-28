@@ -46,4 +46,4 @@ func _on_inventory_item_sync() -> void:
             
     var plant := GameManager.registerd_plants[current_plant_key] as Plant
     plant.wand.spells = spell_list
-    plant.wand.reset()
+    plant.wand.reload()

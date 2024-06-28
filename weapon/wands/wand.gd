@@ -46,17 +46,7 @@ func _ready() -> void:
     # 2. 开始
     state_machine.start()
 
-
-func reset() -> void:
-    for spell in spell_list:
-        spell.queue_free()
-    
-    spell_list.resize(spells.size())
-    for i in range(spells.size()):
-        if spells[i]:
-            spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
-            add_child(spell_list[i])
-    
+func reload() -> void:
     deck.clear()
     for spell in spell_list:
         if spell:
@@ -66,6 +56,19 @@ func reset() -> void:
     cast_group_stack.clear()
     
     trigger_pressed = false
+
+func reset() -> void:
+    for spell in spell_list:
+        if spell:
+            spell.queue_free()
+    
+    spell_list.resize(spells.size())
+    for i in range(spells.size()):
+        if spells[i]:
+            spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
+            add_child(spell_list[i])
+            
+    reload()
     
 func recharge(delta: float) -> void:
     if energe < max_energe:
