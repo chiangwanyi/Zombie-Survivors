@@ -5,13 +5,13 @@ extends RigidBody2D
 var picked_flag := false
 
 func _ready() -> void:
-	state_machine.start()
-	
+    state_machine.start()
+    
 #func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#state_machine._rigid_process(state)
+    #state_machine._rigid_process(state)
 
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true and not picked_flag:
-			state_machine.change_state("Pick")
+    if event is InputEventMouseButton:
+        if event.button_index == MOUSE_BUTTON_LEFT and event.pressed == true and not picked_flag:
+            state_machine.change_state("Pick")

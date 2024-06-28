@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5ktrsime2807"]
+
+[ext_resource type="Script" path="res://characters/zombies/zombie.gd" id="1_x0706"]
+[ext_resource type="PackedScene" uid="uid://c5us232yjcjox" path="res://_components/state_machine/state_machine.tscn" id="2_64u6a"]
+[ext_resource type="Texture2D" uid="uid://bwlks66ror70d" path="res://_assets/images/Plantshadow.png" id="3_sk82u"]
+
+[node name="Zombie" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_x0706")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_64u6a")]
+
+[node name="Shadow" type="Sprite2D" parent="."]
+position = Vector2(0, 30)
+texture = ExtResource("3_sk82u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

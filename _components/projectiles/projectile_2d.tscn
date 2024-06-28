@@ -17,6 +17,7 @@ func _ready() -> void:
 "
 
 [node name="Projectile2D" type="Area2D"]
+collision_mask = 2
 script = ExtResource("1_qq2hn")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
