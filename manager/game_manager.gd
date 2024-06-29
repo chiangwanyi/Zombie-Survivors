@@ -24,39 +24,58 @@ var main_hud: CanvasLayer
 ## 背包 Map<String:InventoryName, Node:Inventory>
 var inventories: Dictionary = {}
 
-## 法杖武器 Map<String:SpellName, PackedScene:Spell>
+## 法杖武器 Spell Map<String:SpellName, PackedScene:Spell>
 var registed_wand_spells: Dictionary = {}
 
-## 当前存活的的植物 Map<String:Key, Plant:植物>
+## 当前存活的植物 Map<String:Key, Plant:植物>
 var registerd_plants: Dictionary
 
+## 当前存活的僵尸 Map<String:Key, Zombie:僵尸>
+var registerd_zombies: Dictionary
+
 func _ready() -> void:
-	# 读取配置文件
-	var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
-	cfg = JSON.parse_string(cfg_file.get_as_text()) as Dictionary
+    # 读取配置文件
+    var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
+    cfg = JSON.parse_string(cfg_file.get_as_text()) as Dictionary
 
-	# 读取关卡配置
-	for level in cfg.get("levels", []):
-		cfg_levels[level.get("name")] = level
+    # 读取关卡配置
+    for level in cfg.get("levels", []):
+        cfg_levels[level.get("name")] = level
 
-	for item in cfg.get("seeds", []):
-		cfg_seeds[item.get("name")] = item
-		
-	_register_wand_spells()
+    for item in cfg.get("seeds", []):
+        cfg_seeds[item.get("name")] = item
+        
+    _register_wand_spells()
 
 ## 创建植物
 func create_plant(_pos: Vector2, plant_name: String):
-	if not current_level:
-		return
-	var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
-	var plant = (load(scene_path) as PackedScene).instantiate() as Plant
-	plant.position = current_level.get_local_mouse_position()
-	plant.key = IdUtils.unique_key()
-	plant.plant_name = plant_name
-	current_level.call_deferred("add_child", plant)
-	registerd_plants[plant.key] = plant
+    if not current_level:
+        return
+    var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
+    var plant = (load(scene_path) as PackedScene).instantiate() as Plant
+
+    plant.position = current_level.get_local_mouse_position()
+    plant.key = IdUtils.unique_key()
+    plant.plant_name = plant_name
+
+    current_level.call_deferred("add_child", plant)
+    registerd_plants[plant.key] = plant
+
+## 创建僵尸
+func create_zombie(pos: Vector2, zombie_name: String):
+    if not current_level:
+        return
+    var scene_path = "res://characters/zombies/" + zombie_name.to_lower() + "/" + zombie_name.to_lower() + ".tscn"
+    var zombie = (load(scene_path) as PackedScene).instantiate() as Zombie
+
+    zombie.position = pos
+    zombie.key = IdUtils.unique_key()
+    zombie.zombie_name = zombie_name
+
+    current_level.call_deferred("add_child", zombie)
+    registerd_zombies[zombie.key] = zombie
 
 func _register_wand_spells():
-	registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
-	registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
+    registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
+    registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
 

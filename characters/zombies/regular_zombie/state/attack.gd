@@ -5,15 +5,15 @@ extends State
 var body: Zombie
 
 func enter() -> void:
-	body = owner as Zombie
-	animated_sprite_2d.play("attack")
+    body = owner as Zombie
+    animated_sprite_2d.play("attack")
 
 func update(_delta: float) -> void:
-	pass
-	
+    pass
+    
 func exit() -> void:
-	pass
+    pass
 
 func _exit_tree() -> void:
-	pass
+    pass
 

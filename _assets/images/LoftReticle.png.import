@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cuuoyxqoa3x0k"
-path="res://.godot/imported/LoftReticle.png-a913edaa3a9b207bcbb9ca7dbb45811c.ctex"
+path="res://.godot/imported/LoftReticle.png-1bfb9f55b84765ff9541c5cf88b6e009.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_assets/Images/LoftReticle.png"
-dest_files=["res://.godot/imported/LoftReticle.png-a913edaa3a9b207bcbb9ca7dbb45811c.ctex"]
+source_file="res://_assets/images/LoftReticle.png"
+dest_files=["res://.godot/imported/LoftReticle.png-1bfb9f55b84765ff9541c5cf88b6e009.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://v8vywatdjo4r"
-path="res://.godot/imported/StartPlant.png-6b5a4b9f1142c90f46889d8ff106ecd7.ctex"
+path="res://.godot/imported/StartPlant.png-cf3c581050fc4bba57fac8a9f5d10e07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_assets/Images/StartPlant.png"
-dest_files=["res://.godot/imported/StartPlant.png-6b5a4b9f1142c90f46889d8ff106ecd7.ctex"]
+source_file="res://_assets/images/StartPlant.png"
+dest_files=["res://.godot/imported/StartPlant.png-cf3c581050fc4bba57fac8a9f5d10e07.ctex"]
 
 [params]
 

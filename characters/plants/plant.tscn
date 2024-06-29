@@ -17,8 +17,8 @@ bg_color = Color(1, 1, 1, 1)
 bg_color = Color(0.611765, 1, 1, 1)
 
 [node name="Plant" type="Area2D"]
-collision_layer = 16
-collision_mask = 2
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_ap4tu")
 
 [node name="HealthAbility" parent="." instance=ExtResource("1_5qod3")]
@@ -38,6 +38,7 @@ texture = ExtResource("1_mowso")
 [node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "projectile_spawn") instance=ExtResource("4_vulds")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
 wand_energy_bar = NodePath("../WandEnergyBar")
+attack_range = 500.0
 spells = PackedStringArray("Sun")
 projectile_spawn = NodePath("../WeaponAttachment")
 FORCE = 300.0

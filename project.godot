@@ -43,6 +43,8 @@ fire={
 
 2d_physics/layer_1="Projectile"
 2d_physics/layer_2="Zombie"
+2d_physics/layer_3="Zombie Attack Zone"
+2d_physics/layer_4="Plant"
 
 [rendering]
 
