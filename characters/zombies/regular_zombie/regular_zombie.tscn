@@ -1,4 +1,4 @@
-[gd_scene load_steps=186 format=3 uid="uid://6q78nrka2urt"]
+[gd_scene load_steps=187 format=3 uid="uid://6q78nrka2urt"]
 
 [ext_resource type="PackedScene" uid="uid://c5ktrsime2807" path="res://characters/zombies/zombie.tscn" id="1_ufphp"]
 [ext_resource type="Script" path="res://characters/zombies/regular_zombie/state/idle.gd" id="2_4lv8b"]
@@ -597,7 +597,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk1",
-"speed": 12.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -743,14 +743,18 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk2",
-"speed": 12.0
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7086n"]
 radius = 21.0
 height = 92.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wjn6e"]
+radius = 46.0109
+
 [node name="RegularZombie" instance=ExtResource("1_ufphp")]
+speed = 25.0
 
 [node name="StateMachine" parent="." index="0" node_paths=PackedStringArray("start_state")]
 start_state = NodePath("Idle")
@@ -771,8 +775,15 @@ script = ExtResource("5_yjeeq")
 position = Vector2(-37, -28)
 sprite_frames = SubResource("SpriteFrames_uclv3")
 animation = &"walk2"
-frame_progress = 0.306392
+frame_progress = 0.879802
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(-8, -25)
 shape = SubResource("CapsuleShape2D_7086n")
+
+[node name="CollisionShape2D" parent="AttackZone" index="0"]
+position = Vector2(-8, -25)
+shape = SubResource("CircleShape2D_wjn6e")
+debug_color = Color(0.831373, 0.309804, 0.619608, 0.419608)
+
+[connection signal="area_entered" from="AttackZone" to="." method="_on_attack_zone_area_entered"]

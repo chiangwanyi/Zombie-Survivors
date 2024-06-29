@@ -220,9 +220,9 @@ animations = [{
 "speed": 14.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5myh8"]
-radius = 17.0
-height = 58.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yu2m"]
+radius = 18.0
+height = 54.0
 
 [node name="PeaShooterSingle" instance=ExtResource("1_n61w1")]
 
@@ -244,8 +244,8 @@ animation = &"idle"
 sprite_frames = SubResource("SpriteFrames_48253")
 
 [node name="CollisionShape2D" parent="." index="6"]
-position = Vector2(1, 10)
-shape = SubResource("CapsuleShape2D_5myh8")
+position = Vector2(0, 8)
+shape = SubResource("CapsuleShape2D_3yu2m")
 
 [node name="WeaponAttachment" parent="." index="7"]
 position = Vector2(25, -10)

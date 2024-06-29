@@ -5,15 +5,15 @@ extends State
 
 
 func enter() -> void:
-    head_animated_sprite_2d.play("idle")
-    stem_animated_sprite_2d.play("default")
+	head_animated_sprite_2d.play("idle")
+	stem_animated_sprite_2d.play("default")
 
 func update(_delta: float) -> void:
-    pass
-    
+	pass
+	
 func exit() -> void:
-    pass
+	pass
 
 func _exit_tree() -> void:
-    pass
+	pass
 

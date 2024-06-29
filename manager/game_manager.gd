@@ -31,32 +31,32 @@ var registed_wand_spells: Dictionary = {}
 var registerd_plants: Dictionary
 
 func _ready() -> void:
-    # 读取配置文件
-    var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
-    cfg = JSON.parse_string(cfg_file.get_as_text()) as Dictionary
+	# 读取配置文件
+	var cfg_file = FileAccess.open(_cfg_path, FileAccess.READ)
+	cfg = JSON.parse_string(cfg_file.get_as_text()) as Dictionary
 
-    # 读取关卡配置
-    for level in cfg.get("levels", []):
-        cfg_levels[level.get("name")] = level
+	# 读取关卡配置
+	for level in cfg.get("levels", []):
+		cfg_levels[level.get("name")] = level
 
-    for item in cfg.get("seeds", []):
-        cfg_seeds[item.get("name")] = item
-        
-    _register_wand_spells()
+	for item in cfg.get("seeds", []):
+		cfg_seeds[item.get("name")] = item
+		
+	_register_wand_spells()
 
 ## 创建植物
 func create_plant(_pos: Vector2, plant_name: String):
-    if not current_level:
-        return
-    var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
-    var plant = (load(scene_path) as PackedScene).instantiate() as Plant
-    plant.position = current_level.get_local_mouse_position()
-    plant.key = IdUtils.unique_key()
-    plant.plant_name = plant_name
-    current_level.call_deferred("add_child", plant)
-    registerd_plants[plant.key] = plant
+	if not current_level:
+		return
+	var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
+	var plant = (load(scene_path) as PackedScene).instantiate() as Plant
+	plant.position = current_level.get_local_mouse_position()
+	plant.key = IdUtils.unique_key()
+	plant.plant_name = plant_name
+	current_level.call_deferred("add_child", plant)
+	registerd_plants[plant.key] = plant
 
 func _register_wand_spells():
-    registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
-    registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
+	registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
+	registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
 

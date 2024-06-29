@@ -1,17 +1,19 @@
 extends State
 
-func _ready() -> void:
-    pass
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+
+var body: Zombie
 
 func enter() -> void:
-    pass
+	body = owner as Zombie
+	animated_sprite_2d.play("attack")
 
 func update(_delta: float) -> void:
-    pass
-    
+	pass
+	
 func exit() -> void:
-    pass
+	pass
 
 func _exit_tree() -> void:
-    pass
+	pass
 
