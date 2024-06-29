@@ -254,3 +254,5 @@ position = Vector2(25, -10)
 capacity = 3
 spells = PackedStringArray("Pea", "", "")
 FORCE = 1000.0
+
+[editable path="Wand"]

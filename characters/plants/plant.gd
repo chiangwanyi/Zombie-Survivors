@@ -2,8 +2,18 @@ class_name Plant extends Area2D
 
 @onready var state_machine: StateMachine = $StateMachine
 @onready var wand: Wand = $Wand
+@onready var handle_weapon_ability: CharacterHandleWeaponAbility = $HandleWeaponAbility
 
 @export var key: String
+## 攻击速度（两次攻击的间隔时间，单位秒）
+@export var attack_speed: float = 1.0:
+    set(value):
+        if not is_inside_tree():
+            await ready
+        attack_speed = value
+        if handle_weapon_ability:
+            handle_weapon_ability.auto_use_timer.wait_time = value
+        
 
 var plant_name: String
 var target_zombies: Array[Zombie] = []

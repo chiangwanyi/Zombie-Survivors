@@ -15,13 +15,16 @@ func update(_delta: float) -> void:
     
     if body.target_zombies.is_empty():
         for zombie in GameManager.registerd_zombies.values() as Array[Zombie]:
+            # 植物与僵尸的距离
             var distance = zombie.global_position.distance_to(body.global_position)
+            # 如果距离在攻击范围内
             if distance < body.wand.attack_range:
                 can_attack_zombies.append(zombie)
     else:
         # 单发豌豆射手一次只能攻击一个僵尸
         # TODO 攻击策略（优先攻击 血量低/危险性最大/距离最近）
-        pass
+        if not can_attack_zombies.is_empty():
+            body.target_zombies = can_attack_zombies.pick_random()
         
 func exit() -> void:
     pass

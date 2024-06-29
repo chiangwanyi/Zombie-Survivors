@@ -59,7 +59,7 @@ func reload() -> void:
     discared.clear()
     cast_group_stack.clear()
     
-    trigger_pressed = false
+    turn_off()
 
 func reset() -> void:
     for spell in spell_list:
