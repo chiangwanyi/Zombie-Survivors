@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjl8506gcoaba"
-path="res://.godot/imported/spell_slot_bg.png-d490d07b7565028e51b35e5f41af2aaa.ctex"
+path="res://.godot/imported/spell_slot_bg.png-1b9670507d52af07bac7488965f88b0e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_assets/images/spell_slot_bg.png"
-dest_files=["res://.godot/imported/spell_slot_bg.png-d490d07b7565028e51b35e5f41af2aaa.ctex"]
+source_file="res://_assets/Images/spell_slot_bg.png"
+dest_files=["res://.godot/imported/spell_slot_bg.png-1b9670507d52af07bac7488965f88b0e.ctex"]
 
 [params]
 
