@@ -225,6 +225,7 @@ radius = 18.0
 height = 54.0
 
 [node name="PeaShooterSingle" instance=ExtResource("1_n61w1")]
+auto_attack = true
 
 [node name="HandleWeaponAbility" parent="." index="1" node_paths=PackedStringArray("weapon_attachment", "current_weapon")]
 weapon_attachment = NodePath("../WeaponAttachment")
@@ -250,9 +251,9 @@ shape = SubResource("CapsuleShape2D_3yu2m")
 [node name="WeaponAttachment" parent="." index="7"]
 position = Vector2(25, -10)
 
-[node name="Wand" parent="." index="8"]
+[node name="Wand" parent="." index="9"]
 capacity = 3
 spells = PackedStringArray("Pea", "", "")
 FORCE = 1000.0
 
-[editable path="Wand"]
+[editable path="HandleWeaponAbility"]

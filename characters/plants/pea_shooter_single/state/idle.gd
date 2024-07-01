@@ -2,6 +2,7 @@ extends State
 
 @onready var head_animated_sprite_2d: AnimatedSprite2D = $"../../HeadAnimatedSprite2D"
 @onready var stem_animated_sprite_2d: AnimatedSprite2D = $"../../StemAnimatedSprite2D"
+@onready var weapon_aim_point: Marker2D = $"../../WeaponAimPoint"
 
 var body: Plant
 
@@ -20,11 +21,14 @@ func update(_delta: float) -> void:
             # 如果距离在攻击范围内
             if distance < body.wand.attack_range:
                 can_attack_zombies.append(zombie)
-    else:
-        # 单发豌豆射手一次只能攻击一个僵尸
-        # TODO 攻击策略（优先攻击 血量低/危险性最大/距离最近）
-        if not can_attack_zombies.is_empty():
-            body.target_zombies = can_attack_zombies.pick_random()
+                
+            # 单发豌豆射手一次只能攻击一个僵尸
+            # TODO 攻击策略（优先攻击 血量低/危险性最大/距离最近）
+            if not can_attack_zombies.is_empty():
+                body.target_zombies.clear()
+                var target_zombie = can_attack_zombies.pick_random() as Zombie
+                body.target_zombies.append(target_zombie)
+                weapon_aim_point.global_position = target_zombie.global_position
         
 func exit() -> void:
     pass
