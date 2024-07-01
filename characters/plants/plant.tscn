@@ -37,9 +37,10 @@ texture = ExtResource("1_mowso")
 
 [node name="WeaponAimPoint" type="Marker2D" parent="."]
 
-[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "projectile_spawn") instance=ExtResource("4_vulds")]
+[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "weapon_aim_point", "projectile_spawn") instance=ExtResource("4_vulds")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
 wand_energy_bar = NodePath("../WandEnergyBar")
+weapon_aim_point = NodePath("../WeaponAimPoint")
 attack_range = 500.0
 spells = PackedStringArray("Sun")
 projectile_spawn = NodePath("../WeaponAttachment")

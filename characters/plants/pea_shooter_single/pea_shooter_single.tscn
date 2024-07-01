@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://h6qb7007whpp"]
+[gd_scene load_steps=82 format=3 uid="uid://h6qb7007whpp"]
 
 [ext_resource type="PackedScene" uid="uid://cy4kvtp3c3dxc" path="res://characters/plants/plant.tscn" id="1_n61w1"]
 [ext_resource type="Script" path="res://characters/plants/pea_shooter_single/state/idle.gd" id="2_7a8d1"]
@@ -6,30 +6,55 @@
 [ext_resource type="Script" path="res://characters/plants/pea_shooter_single/state/attack.gd" id="3_410c6"]
 [ext_resource type="Texture2D" uid="uid://d3548ysmf8ni4" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0081.png" id="3_inwks"]
 [ext_resource type="Texture2D" uid="uid://nilfuqgyreqv" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0082.png" id="4_8d02d"]
+[ext_resource type="Texture2D" uid="uid://lnd041imia3" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0055.png" id="4_8k0dk"]
 [ext_resource type="Texture2D" uid="uid://b72f7qs5xsb6y" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0083.png" id="5_3vc80"]
+[ext_resource type="Texture2D" uid="uid://cfu3g5nrb5ww8" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0056.png" id="5_wfbsy"]
 [ext_resource type="Texture2D" uid="uid://cha0fu1e80meg" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0084.png" id="6_bwe0y"]
+[ext_resource type="Texture2D" uid="uid://b5iwq4gb3y4ws" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0057.png" id="6_dvwmy"]
+[ext_resource type="Texture2D" uid="uid://o4vqp3crewfs" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0058.png" id="7_g6gxo"]
 [ext_resource type="Texture2D" uid="uid://lat0ajb6kfsw" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0085.png" id="7_q7yv5"]
 [ext_resource type="Texture2D" uid="uid://d3s2w4kk24kni" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0086.png" id="8_57pm7"]
+[ext_resource type="Texture2D" uid="uid://cbjc0g3chqjth" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0059.png" id="8_ys4ax"]
+[ext_resource type="Texture2D" uid="uid://160au01afopm" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0060.png" id="9_1jpcb"]
 [ext_resource type="Texture2D" uid="uid://db6cg7c7s5i2f" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0087.png" id="9_6kcux"]
+[ext_resource type="Texture2D" uid="uid://dq6ylg22lu6dl" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0061.png" id="10_3tk55"]
 [ext_resource type="Texture2D" uid="uid://2mpb36wa0f34" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0088.png" id="10_u5ebe"]
 [ext_resource type="Texture2D" uid="uid://b8nkqfl5qf5wi" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0089.png" id="11_erml4"]
+[ext_resource type="Texture2D" uid="uid://bxorsldt24gnx" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0062.png" id="11_fgq7v"]
+[ext_resource type="Texture2D" uid="uid://bd8kkxkqyxkou" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0063.png" id="12_1ma73"]
 [ext_resource type="Texture2D" uid="uid://1v1pxdj0qesd" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0090.png" id="12_68614"]
 [ext_resource type="Texture2D" uid="uid://b5ssiudh4d528" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0091.png" id="13_skdxh"]
+[ext_resource type="Texture2D" uid="uid://bghdreaw245d8" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0064.png" id="13_u5ols"]
+[ext_resource type="Texture2D" uid="uid://bexknmo6xmd2e" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0065.png" id="14_1yea4"]
 [ext_resource type="Texture2D" uid="uid://vplklxvoxpnx" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0092.png" id="14_6k803"]
 [ext_resource type="Texture2D" uid="uid://caxbgo5yystgr" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0093.png" id="15_u17l2"]
+[ext_resource type="Texture2D" uid="uid://ca25tmhtiwdtm" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0066.png" id="15_v6k4a"]
 [ext_resource type="Texture2D" uid="uid://c3w21rfsti4ik" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0094.png" id="16_eyngf"]
+[ext_resource type="Texture2D" uid="uid://dcod5sh3ya8gk" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0067.png" id="16_uqqw6"]
+[ext_resource type="Texture2D" uid="uid://bgbfntaqqhqxu" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0068.png" id="17_cbeuc"]
 [ext_resource type="Texture2D" uid="uid://3dsxnkjf7cq0" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0095.png" id="17_xx126"]
+[ext_resource type="Texture2D" uid="uid://bkxrlubtyy6o3" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0069.png" id="18_qgm8p"]
 [ext_resource type="Texture2D" uid="uid://cupmomqg3o4b1" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0096.png" id="18_s75j3"]
+[ext_resource type="Texture2D" uid="uid://dvm75r7f55pmr" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0070.png" id="19_2fnbw"]
 [ext_resource type="Texture2D" uid="uid://c322i8lndy47x" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0097.png" id="19_w5far"]
+[ext_resource type="Texture2D" uid="uid://3cr8qi1hp3se" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0071.png" id="20_cu2d6"]
 [ext_resource type="Texture2D" uid="uid://c58vhlo4kkuj1" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0098.png" id="20_jmss1"]
+[ext_resource type="Texture2D" uid="uid://bmspmtgmges8a" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0072.png" id="21_fytyh"]
 [ext_resource type="Texture2D" uid="uid://ohcl8dm8yxdd" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0099.png" id="21_yv83i"]
+[ext_resource type="Texture2D" uid="uid://cipb8g7lvih1w" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0073.png" id="22_70fqn"]
 [ext_resource type="Texture2D" uid="uid://bmy60md3qvidv" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0100.png" id="22_hxn6b"]
 [ext_resource type="Texture2D" uid="uid://by2yxjbt3uc5g" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0101.png" id="23_eavvs"]
+[ext_resource type="Texture2D" uid="uid://dpndcq401qnpu" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0074.png" id="23_h4ehv"]
+[ext_resource type="Texture2D" uid="uid://d0rirbs0fnonk" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0075.png" id="24_3e06e"]
 [ext_resource type="Texture2D" uid="uid://dasrpoy7t31er" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0102.png" id="24_r4noq"]
+[ext_resource type="Texture2D" uid="uid://cvi7torcnumbv" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0076.png" id="25_1cbts"]
 [ext_resource type="Texture2D" uid="uid://c58s4socbf2aq" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0103.png" id="25_7hen2"]
+[ext_resource type="Texture2D" uid="uid://ho2oamb1oyk2" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0077.png" id="26_nffsn"]
 [ext_resource type="Texture2D" uid="uid://b6uxihw6vwfcf" path="res://_assets/items/plants/pea_shooter_single/idle/PeaShooterSingle0104.png" id="26_ws247"]
+[ext_resource type="Texture2D" uid="uid://cicvpi82hm06x" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0078.png" id="27_rr07u"]
 [ext_resource type="Texture2D" uid="uid://dbgxqujp4y4m2" path="res://_assets/items/plants/pea_shooter_single/PeaShooterSingle0005.png" id="27_srhrx"]
 [ext_resource type="Texture2D" uid="uid://btrcimfuns5yh" path="res://_assets/items/plants/pea_shooter_single/PeaShooterSingle0006.png" id="28_1oyqo"]
+[ext_resource type="Texture2D" uid="uid://daf6s11p4lsyr" path="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0079.png" id="28_u5cry"]
 [ext_resource type="Texture2D" uid="uid://mc2sivqx2ctt" path="res://_assets/items/plants/pea_shooter_single/PeaShooterSingle0007.png" id="29_hjflt"]
 [ext_resource type="Texture2D" uid="uid://bqi7fojxq2sp8" path="res://_assets/items/plants/pea_shooter_single/PeaShooterSingle0008.png" id="30_653qt"]
 [ext_resource type="Texture2D" uid="uid://c3jfrj4a3qo0r" path="res://_assets/items/plants/pea_shooter_single/PeaShooterSingle0009.png" id="31_xgul3"]
@@ -56,6 +81,86 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_83t14"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8k0dk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wfbsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dvwmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_g6gxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ys4ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1jpcb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_3tk55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_fgq7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1ma73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_u5ols")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_1yea4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_v6k4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_uqqw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_cbeuc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_qgm8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2fnbw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_cu2d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_fytyh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_70fqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_h4ehv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_3e06e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_1cbts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_nffsn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_rr07u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_u5cry")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 14.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_q6jrm")
@@ -132,7 +237,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("26_ws247")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 14.0
 }]
@@ -215,7 +320,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("51_2yk3n")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 14.0
 }]
@@ -225,7 +330,6 @@ radius = 18.0
 height = 54.0
 
 [node name="PeaShooterSingle" instance=ExtResource("1_n61w1")]
-auto_attack = true
 
 [node name="HandleWeaponAbility" parent="." index="1" node_paths=PackedStringArray("weapon_attachment", "current_weapon")]
 weapon_attachment = NodePath("../WeaponAttachment")
@@ -239,7 +343,7 @@ script = ExtResource("3_410c6")
 
 [node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
 sprite_frames = SubResource("SpriteFrames_83t14")
-animation = &"idle"
+animation = &"attack"
 
 [node name="StemAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_48253")

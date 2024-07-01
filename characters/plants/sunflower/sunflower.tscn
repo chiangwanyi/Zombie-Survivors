@@ -139,6 +139,8 @@ animation = &"idle"
 position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_6l50b")
 
-[node name="Wand" parent="." index="7"]
+[node name="Wand" parent="." index="8"]
 capacity = 2
 spells = PackedStringArray("Sun", "Pea")
+
+[editable path="HandleWeaponAbility"]

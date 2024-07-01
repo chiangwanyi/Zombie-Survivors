@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dq6ylg22lu6dl"
-path="res://.godot/imported/PeaShooterSingle0061.png-d25ad3d3e6661aef993b2f3735a074c9.ctex"
+uid="uid://bgbfntaqqhqxu"
+path="res://.godot/imported/PeaShooterSingle0068.png-7f0f2b04b75f0f662247565a7c9ab8be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_assets/items/plants/pea_shooter_single/shoot/PeaShooterSingle0061.png"
-dest_files=["res://.godot/imported/PeaShooterSingle0061.png-d25ad3d3e6661aef993b2f3735a074c9.ctex"]
+source_file="res://_assets/items/plants/pea_shooter_single/attack/PeaShooterSingle0068.png"
+dest_files=["res://.godot/imported/PeaShooterSingle0068.png-7f0f2b04b75f0f662247565a7c9ab8be.ctex"]
 
 [params]
 

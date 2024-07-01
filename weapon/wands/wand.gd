@@ -8,6 +8,7 @@ enum TriggerModes { SemiAuto, Auto }
 @export var wand_recharge_bar : ProgressBar
 ## 武器能量条
 @export var wand_energy_bar: ProgressBar
+@export var weapon_aim_point: Marker2D
 
 @export_group("Wand Statistics")
 ## 容量

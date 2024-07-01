@@ -14,6 +14,7 @@ func enter() -> void:
 func update(_delta: float) -> void:
     var can_attack_zombies : Array[Zombie] = []
     
+    # 当前时刻【之前】，该植物没有攻击目标
     if body.target_zombies.is_empty():
         for zombie in GameManager.registerd_zombies.values() as Array[Zombie]:
             # 植物与僵尸的距离
@@ -28,7 +29,14 @@ func update(_delta: float) -> void:
                 body.target_zombies.clear()
                 var target_zombie = can_attack_zombies.pick_random() as Zombie
                 body.target_zombies.append(target_zombie)
-                weapon_aim_point.global_position = target_zombie.global_position
+        
+    if not head_animated_sprite_2d.is_playing() and not stem_animated_sprite_2d.is_playing():
+        if not body.target_zombies.is_empty():
+            emit_signal("finished", "Attack")
+        else:
+            head_animated_sprite_2d.play("idle")
+            stem_animated_sprite_2d.play("default")
+    
         
 func exit() -> void:
     pass
