@@ -1,9 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpm4wkdq4u22n"]
+[gd_scene load_steps=7 format=3 uid="uid://dpm4wkdq4u22n"]
 
 [ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_piyeu"]
 [ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_mcxia"]
+[ext_resource type="Texture2D" uid="uid://t502xwa110ra" path="res://_assets/items/particles/Pea_particles.png" id="3_03tiu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up7hn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c63b0"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6rivx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.699422), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Pea" instance=ExtResource("1_piyeu")]
 
@@ -20,3 +31,16 @@ texture = ExtResource("2_mcxia")
 
 [node name="CollisionShape2D" parent="." index="3"]
 shape = SubResource("CircleShape2D_up7hn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="5"]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_c63b0")
+explosiveness = 1.0
+texture = ExtResource("3_03tiu")
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_6rivx")
