@@ -1,10 +1,16 @@
 extends State
 
-func _ready() -> void:
-    pass
+@onready var animated_sprite_2d: AnimatedSprite2D = $"../../AnimatedSprite2D"
+@onready var body_collision_shape_2d: CollisionShape2D = $"../../CollisionShape2D"
+@onready var attack_zone_collision_shape_2d: CollisionShape2D = $"../../AttackZone/CollisionShape2D"
+
+var body: Zombie
 
 func enter() -> void:
-    pass
+    body = owner as Zombie
+    body_collision_shape_2d.set_deferred("disabled", true)
+    attack_zone_collision_shape_2d.set_deferred("disabled", true)
+    animated_sprite_2d.play(["die1", "die2"].pick_random())
 
 func update(_delta: float) -> void:
     pass

@@ -44,3 +44,5 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_6atcw")
 step = 1.0
 value = 100.0
 show_percentage = false
+
+[connection signal="killed" from="HealthAbility" to="." method="_on_health_ability_killed"]

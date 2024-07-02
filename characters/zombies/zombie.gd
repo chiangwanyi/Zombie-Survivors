@@ -15,5 +15,10 @@ func _ready() -> void:
 
 
 ## 当 Plant 进入僵尸的 Attack Zone 时
-func _on_attack_zone_area_entered(area: Area2D) -> void:
+func _on_attack_zone_area_entered(_area: Area2D) -> void:
     state_machine.change_state("Attack")
+
+
+## 当 HP 归零（小于零）时
+func _on_health_ability_killed() -> void:
+    state_machine.change_state("Die")

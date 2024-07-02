@@ -45,7 +45,7 @@ func take_damage(damage: int) -> void:
     if current_health <= 0:
         _kill()
         
-func _compute_damage_output(damage: int) -> float :
+func _compute_damage_output(damage: int) -> int :
     if in_vulnerable:
         return 0
     var total_damage = 0
