@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3ys8iwhlsnis"]
+
+[ext_resource type="Script" path="res://_abilities/other/damage_on_touch_ability.gd" id="1_a8e2e"]
+
+[node name="DamageOnTouchAbility" type="Node"]
+script = ExtResource("1_a8e2e")

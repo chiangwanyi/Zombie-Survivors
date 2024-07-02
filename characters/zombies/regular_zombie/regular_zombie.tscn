@@ -756,7 +756,7 @@ radius = 46.0109
 [node name="RegularZombie" instance=ExtResource("1_ufphp")]
 speed = 25.0
 
-[node name="StateMachine" parent="." index="0" node_paths=PackedStringArray("start_state")]
+[node name="StateMachine" parent="." index="1" node_paths=PackedStringArray("start_state")]
 start_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
@@ -777,7 +777,7 @@ sprite_frames = SubResource("SpriteFrames_uclv3")
 animation = &"walk2"
 frame_progress = 0.879802
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="CollisionShape2D" parent="." index="4"]
 position = Vector2(-8, -25)
 shape = SubResource("CapsuleShape2D_7086n")
 

@@ -34,6 +34,8 @@ var body_gravity: float
 var body_drag: float
 var body_force: float
 
+var hited_body: Area2D
+
 func _ready() -> void:
     sprite_2d.visible = false
     

@@ -13,15 +13,10 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_6rivx"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.699422), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740437, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="Pea" instance=ExtResource("1_piyeu")]
-
-[node name="Sprite2D" parent="." index="1"]
-visible = true
-scale = Vector2(1, 1)
-texture = ExtResource("2_mcxia")
 
 [node name="Shadow" type="Sprite2D" parent="." index="2"]
 modulate = Color(0, 0, 0, 0.329412)
@@ -29,18 +24,29 @@ position = Vector2(0, 35)
 scale = Vector2(0.8, 0.4)
 texture = ExtResource("2_mcxia")
 
-[node name="CollisionShape2D" parent="." index="3"]
+[node name="Sprite2D" parent="." index="3"]
+visible = true
+scale = Vector2(1, 1)
+texture = ExtResource("2_mcxia")
+
+[node name="CollisionShape2D" parent="." index="4"]
 shape = SubResource("CircleShape2D_up7hn")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." index="5"]
+z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_c63b0")
+emitting = false
+lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 texture = ExtResource("3_03tiu")
 spread = 180.0
 gravity = Vector2(0, 200)
-initial_velocity_min = 50.0
-initial_velocity_max = 100.0
-scale_amount_min = 3.0
-scale_amount_max = 6.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_6rivx")
+
+[connection signal="area_entered" from="." to="StateMachine/Launch" method="_on_pea_area_entered"]

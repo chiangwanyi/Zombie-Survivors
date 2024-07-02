@@ -1,16 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnoahf82ofrcs"]
-
-[sub_resource type="GDScript" id="GDScript_4ldd1"]
-script/source = "class_name HealthAbility extends Ability
+class_name HealthAbility extends Ability
 
 signal damaged
 signal killed
 
 ## 节点的初始HP
-@export var initial_health: float = 10
+@export var initial_health: int = 10
+## HP 条
+@export var hp_bar: ProgressBar
 
 ## 节点的当前HP
-var current_health: float
+var current_health: int
 
 ## 如果为true，则当前节点无法受到伤害
 var in_vulnerable: bool
@@ -19,8 +18,11 @@ var destory_on_death: bool = true
 func _ready() -> void:
     _set_health(initial_health)
 
-func _set_health(hp: float) -> void:
+func _set_health(hp: int) -> void:
     current_health = hp
+    if hp_bar:
+        hp_bar.visible = true
+        hp_bar.value = lerp(0, 100, current_health * 1.0 / initial_health)
 
 func _can_take_damage_this_frame() -> bool:
     if in_vulnerable:
@@ -30,7 +32,8 @@ func _can_take_damage_this_frame() -> bool:
         return false
     return true
 
-func take_damage(damage: float, _instigator: Node, _invincibility_duration: float) -> void:
+#func take_damage(damage: int, _instigator: Node, _invincibility_duration: float) -> void:
+func take_damage(damage: int) -> void:
     if not _can_take_damage_this_frame():
         return
     
@@ -42,7 +45,7 @@ func take_damage(damage: float, _instigator: Node, _invincibility_duration: floa
     if current_health <= 0:
         _kill()
         
-func _compute_damage_output(damage: float) -> float :
+func _compute_damage_output(damage: int) -> float :
     if in_vulnerable:
         return 0
     var total_damage = 0
@@ -54,7 +57,3 @@ func _compute_damage_output(damage: float) -> float :
 
 func _kill() -> void:
     killed.emit()
-"
-
-[node name="HealthAbility" type="Node"]
-script = SubResource("GDScript_4ldd1")

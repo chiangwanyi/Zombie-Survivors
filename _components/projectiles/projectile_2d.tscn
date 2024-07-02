@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsuparv4ev2j4"]
+[gd_scene load_steps=10 format=3 uid="uid://bsuparv4ev2j4"]
 
 [ext_resource type="Script" path="res://_components/projectiles/projectile_2d.gd" id="1_qq2hn"]
 [ext_resource type="Script" path="res://_components/projectiles/state/spawn.gd" id="2_dle8s"]
+[ext_resource type="PackedScene" uid="uid://b3ys8iwhlsnis" path="res://_abilities/other/damage_on_touch_ability.tscn" id="2_twqtx"]
 [ext_resource type="Script" path="res://_components/projectiles/state/idle.gd" id="3_lsxlx"]
 [ext_resource type="Script" path="res://_components/projectiles/state/launch.gd" id="4_h66d7"]
 [ext_resource type="Script" path="res://_components/projectiles/state/flying.gd" id="5_ooj6b"]
@@ -20,6 +21,8 @@ func _ready() -> void:
 collision_mask = 2
 script = ExtResource("1_qq2hn")
 
+[node name="DamageOnTouchAbility" parent="." instance=ExtResource("2_twqtx")]
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("start_state")]
 script = SubResource("GDScript_uhq8u")
 start_state = NodePath("Spawn")
@@ -27,20 +30,20 @@ start_state = NodePath("Spawn")
 [node name="Spawn" type="Node" parent="StateMachine"]
 script = ExtResource("2_dle8s")
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("3_lsxlx")
-
 [node name="Launch" type="Node" parent="StateMachine"]
 script = ExtResource("4_h66d7")
-
-[node name="Flying" type="Node" parent="StateMachine"]
-script = ExtResource("5_ooj6b")
 
 [node name="Hit" type="Node" parent="StateMachine"]
 script = ExtResource("6_p7xis")
 
 [node name="Destory" type="Node" parent="StateMachine"]
 script = ExtResource("7_fplla")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_lsxlx")
+
+[node name="Flying" type="Node" parent="StateMachine"]
+script = ExtResource("5_ooj6b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -50,4 +53,5 @@ scale = Vector2(0.25, 0.25)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
+[connection signal="area_entered" from="." to="DamageOnTouchAbility" method="_on_projectile_2d_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
