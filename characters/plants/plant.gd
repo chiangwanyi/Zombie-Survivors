@@ -27,11 +27,12 @@ class_name Plant extends Area2D
         
 var key: String
 var plant_name: String
-var target_zombies: Array[Zombie] = []
+var target_zombies: Array[String] = []
 
 func _ready() -> void:
     state_machine.start()
-    
+
+# 鼠标动作
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
     # 右键单击植物，显示植物信息
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -40,3 +41,6 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 func _on_attack_timer_timeout() -> void:
     if not target_zombies.is_empty():
         state_machine.change_state("Attack")
+
+func remove_target_zombie(zombie_key: String) -> void:
+    target_zombies.erase(zombie_key)

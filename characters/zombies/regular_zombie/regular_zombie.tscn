@@ -605,7 +605,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("117_17mn4")
 }],
-"loop": true,
+"loop": false,
 "name": &"die2",
 "speed": 18.0
 }, {
@@ -1073,7 +1073,6 @@ script = ExtResource("5_yjeeq")
 position = Vector2(-37, -28)
 sprite_frames = SubResource("SpriteFrames_uclv3")
 animation = &"die2"
-frame_progress = 0.272657
 
 [node name="CollisionShape2D" parent="." index="4"]
 position = Vector2(-8, -25)

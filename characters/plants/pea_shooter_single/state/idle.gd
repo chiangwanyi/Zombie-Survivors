@@ -28,7 +28,7 @@ func update(_delta: float) -> void:
             if not can_attack_zombies.is_empty():
                 body.target_zombies.clear()
                 var target_zombie = can_attack_zombies.pick_random() as Zombie
-                body.target_zombies.append(target_zombie)
+                body.target_zombies.append(target_zombie.key)
         
     if not head_animated_sprite_2d.is_playing() and not stem_animated_sprite_2d.is_playing():
         if not body.target_zombies.is_empty():

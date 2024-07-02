@@ -75,6 +75,12 @@ func create_zombie(pos: Vector2, zombie_name: String):
     current_level.call_deferred("add_child", zombie)
     registerd_zombies[zombie.key] = zombie
 
+func remove_zombie(key: String) -> void:
+    get_tree().call_group("plant", "remove_target_zombie", key)
+    var zombie = registerd_zombies[key] as Zombie
+    registerd_zombies.erase(key)
+    zombie.queue_free()
+
 func _register_wand_spells():
     registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
     registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene

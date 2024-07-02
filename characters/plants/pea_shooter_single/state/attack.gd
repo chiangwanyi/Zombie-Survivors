@@ -7,24 +7,27 @@ extends State
 
 
 var body: Plant
-var target_zombie: Zombie
+var current
 
 func enter() -> void:
     body = owner as Plant
     head_animated_sprite_2d.play("attack")
     stem_animated_sprite_2d.play("default")
-    target_zombie = body.target_zombies.pick_random()
 
 func update(_delta: float) -> void:
+    # 豌豆射手在攻击帧时选择攻击对象，然后射击
     if head_animated_sprite_2d.frame == 12:
+        if not body.target_zombies.is_empty():
+            var key = body.target_zombies.pick_random()
+            weapon_aim_point.global_position = GameManager.registerd_zombies[key].global_position
         handle_weapon_ability.shoot_start()
-        
-    if target_zombie:
-        weapon_aim_point.global_position = target_zombie.global_position
     
     if not head_animated_sprite_2d.is_playing() and not stem_animated_sprite_2d.is_playing():
-        head_animated_sprite_2d.play("attack")
-        stem_animated_sprite_2d.play("default")
+        if body.target_zombies.is_empty():
+            emit_signal("finished", "Idle")
+        else:
+            head_animated_sprite_2d.play("attack")
+            stem_animated_sprite_2d.play("default")
     
 func exit() -> void:
     pass
