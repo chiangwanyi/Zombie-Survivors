@@ -47,6 +47,8 @@ func _ready() -> void:
 func get_forward_direction() -> Vector2:
     return global_position.direction_to(target_position)
 
-
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-    queue_free()
+    state_machine.change_state("Destory")
+
+func _on_health_ability_killed() -> void:
+    state_machine.change_state("Destory")

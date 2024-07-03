@@ -14,12 +14,12 @@ func turn_on() -> void:
 func turn_off() -> void:
     trigger_pressed = false
 
-func _process(_delta: float) -> void:
-    queue_redraw()
+# func _process(_delta: float) -> void:
+#     queue_redraw()
 
-func _draw() -> void:
-    update_trajectory()
-    _draw_line_global(global_position, get_global_mouse_position(), Color.RED)
+# func _draw() -> void:
+#     update_trajectory()
+#     _draw_line_global(global_position, get_global_mouse_position(), Color.RED)
 
 func update_trajectory() -> void:
     var velocity : Vector2 = FORCE * get_forward_direction()

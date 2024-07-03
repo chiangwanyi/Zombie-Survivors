@@ -21,4 +21,5 @@ func _on_attack_zone_area_entered(_area: Area2D) -> void:
 
 ## 当 HP 归零（小于零）时
 func _on_health_ability_killed() -> void:
+    get_tree().call_group("plant", "remove_target_zombie", key)
     state_machine.change_state("Die")

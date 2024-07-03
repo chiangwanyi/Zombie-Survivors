@@ -11,10 +11,10 @@ func enter() -> void:
     body_collision_shape_2d.set_deferred("disabled", true)
     attack_zone_collision_shape_2d.set_deferred("disabled", true)
     animated_sprite_2d.play(["die1", "die2"].pick_random())
-    GameManager.remove_zombie(body.key)
 
 func update(_delta: float) -> void:
-    pass
+    if not animated_sprite_2d.is_playing():
+        GameManager.remove_zombie(body.key)
     
 func exit() -> void:
     pass
