@@ -17,6 +17,14 @@
         "defense": 50
       }
     ],
+    "spells": [
+        {
+            "name": "pea"
+        },
+        {
+            "name": "sun"
+        }
+    ],
     "levels": [
       {
         "name": "Level 1",
