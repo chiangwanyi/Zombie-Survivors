@@ -357,7 +357,7 @@ position = Vector2(25, -10)
 
 [node name="Wand" parent="." index="9"]
 capacity = 3
-spells = PackedStringArray("Pea", "", "")
+spells = PackedStringArray("Pea", "Pea", "")
 FORCE = 1000.0
 
 [editable path="HandleWeaponAbility"]

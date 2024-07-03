@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0k3dax8qug8j"]
+
+[ext_resource type="Script" path="res://_abilities/inventory_abilities/inventory_basic_ability.gd" id="1_emp75"]
+[ext_resource type="Script" path="res://ui/spells_inventory/spells_inventory.gd" id="1_s0nnd"]
+[ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="2_tjp3k"]
+
+[node name="SpellsInventory" type="Panel"]
+offset_right = 820.0
+offset_bottom = 140.0
+script = ExtResource("1_s0nnd")
+
+[node name="InventoryBasicAbility" type="Node" parent="." node_paths=PackedStringArray("inventory_container")]
+script = ExtResource("1_emp75")
+inventory_name = "Spells Inventory"
+slot_size = 30
+slot_scene = ExtResource("2_tjp3k")
+inventory_container = NodePath("../SpellContainer")
+item_list = ["", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
+
+[node name="SpellContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 797.0
+offset_bottom = 119.0
+columns = 15

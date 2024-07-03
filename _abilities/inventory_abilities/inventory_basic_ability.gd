@@ -11,6 +11,7 @@ signal item_sync
 ## 背包挂载的 Container
 @export var inventory_container: Container
 
+@export var item_list: PackedStringArray = []
 ## 背包 item_slot 列表
 var item_slot_list : Array[InventoryItemSlot] = []
 
@@ -21,9 +22,12 @@ func _ready() -> void:
 func reload(size: int) -> void :
     if size > 0:
         slot_size = size
+        item_list.resize(size)
 
     if slot_size < 0:
         slot_size = 0
+        
+    item_list.resize(slot_size)
 
     # 清空 inventory_container 的所有子节点
     for i in range(inventory_container.get_child_count()):
