@@ -1,5 +1,6 @@
 class_name InventoryItem extends Control
 
+## 所属 Inventory 名称，用于通知
 @export var inventory_name: String = ""
 ## 区分 InventoryItem 的类别
 @export var item_type_name: String = ""

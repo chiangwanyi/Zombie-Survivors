@@ -49,8 +49,11 @@
           "pea_shooter_single",
           "sunflower"
         ],
-        "initial_spells": [
-            "Pea", "Sun", ""
+        "inventories": [
+            {
+                "inventory_name": "Spells Inventory",
+                "inventory_items": ["Pea", "", "Sun"]
+            }
         ]
       }
     ]
