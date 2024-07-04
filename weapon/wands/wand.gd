@@ -70,7 +70,7 @@ func reset() -> void:
     spell_list.resize(spells.size())
     for i in range(spells.size()):
         if spells[i]:
-            spell_list[i] = (GameManager.registed_wand_spells[spells[i]] as PackedScene).instantiate()
+            spell_list[i] = (GameManager.registed_spells[spells[i]] as PackedScene).instantiate()
             add_child(spell_list[i])
             
     reload()

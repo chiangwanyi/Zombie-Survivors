@@ -15,7 +15,6 @@ inventory_name = "Spells Inventory"
 slot_size = 30
 slot_scene = ExtResource("2_tjp3k")
 inventory_container = NodePath("../SpellContainer")
-item_list = ["", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null]
 
 [node name="SpellContainer" type="GridContainer" parent="."]
 layout_mode = 0

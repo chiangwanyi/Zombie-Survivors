@@ -17,12 +17,26 @@
         "defense": 50
       }
     ],
-    "spells": [
+    "inventories": [
         {
-            "name": "pea"
+            "item_name": "Pea",
+            "item_inventory": "Spells Inventory",
+            "item_scene": "res://inventory/item/spell/pea_item.tscn"
         },
         {
-            "name": "sun"
+            "item_name": "Sun",
+            "item_inventory": "Spells Inventory",
+            "item_scene": "res://inventory/item/spell/sun_item.tscn"
+        }
+    ],
+    "spells": [
+        {
+            "name": "Pea",
+            "scene": "res://spells/projectile/pea.tscn"
+        },
+        {
+            "name": "Sun",
+            "scene": "res://spells/projectile/sun.tscn"
         }
     ],
     "levels": [
@@ -34,6 +48,9 @@
         "initial_seeds": [
           "pea_shooter_single",
           "sunflower"
+        ],
+        "initial_spells": [
+            "Pea", "Sun", ""
         ]
       }
     ]

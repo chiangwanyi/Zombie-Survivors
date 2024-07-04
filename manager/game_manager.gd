@@ -24,8 +24,11 @@ var main_hud: CanvasLayer
 ## 背包 Map<String:InventoryName, Node:Inventory>
 var inventories: Dictionary = {}
 
+## 背包 Map<String:InventoryName, Dictionary:Map<String:ItemName, PackedScene:InventoryItem>>
+var inventory_item_dict: Dictionary = {}
+
 ## 法杖武器 Spell Map<String:SpellName, PackedScene:Spell>
-var registed_wand_spells: Dictionary = {}
+var registed_spells: Dictionary = {}
 
 ## 当前存活的植物 Map<String:Key, Plant:植物>
 var registerd_plants: Dictionary
@@ -44,11 +47,13 @@ func _ready() -> void:
 
     for item in cfg.get("seeds", []):
         cfg_seeds[item.get("name")] = item
-        
-    _register_wand_spells()
+    
+    _register_inventory_items()
+
+    _register_spells()
 
 ## 创建植物
-func create_plant(_pos: Vector2, plant_name: String):
+func create_plant(_pos: Vector2, plant_name: String) -> void:
     if not current_level:
         return
     var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
@@ -62,7 +67,7 @@ func create_plant(_pos: Vector2, plant_name: String):
     registerd_plants[plant.key] = plant
 
 ## 创建僵尸
-func create_zombie(pos: Vector2, zombie_name: String):
+func create_zombie(pos: Vector2, zombie_name: String) -> void:
     if not current_level:
         return
     var scene_path = "res://characters/zombies/" + zombie_name.to_lower() + "/" + zombie_name.to_lower() + ".tscn"
@@ -81,7 +86,16 @@ func remove_zombie(key: String) -> void:
     registerd_zombies.erase(key)
     zombie.queue_free()
 
-func _register_wand_spells():
-    registed_wand_spells["Sun"] = load("res://spells/projectile/sun.tscn") as PackedScene
-    registed_wand_spells["Pea"] = load("res://spells/projectile/pea.tscn") as PackedScene
+func _register_spells() -> void:
+    for spell in cfg.get("spells", []):
+        registed_spells[spell.get("name")] = load(spell.get("scene")) as PackedScene
 
+func _register_inventory_items() -> void:
+    for value in cfg.get("inventories", []):
+        var item_name = value.get("item_name")
+        var item_inventory = value.get("item_inventory")
+        var item_scene = load(value.get("item_scene")) as PackedScene
+
+        if not inventory_item_dict.has(item_inventory):
+            inventory_item_dict[item_inventory] = {}
+        inventory_item_dict[item_inventory][item_name] = item_scene
