@@ -3,7 +3,7 @@ class_name Projectile2D extends Area2D
 @onready var state_machine: StateMachine = $StateMachine
 
 #@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
+#@onready var sprite_2d: Sprite2D = $Sprite2D
 
 enum ProjectileTrajectory {
     ## 直线弹道
@@ -37,7 +37,7 @@ var body_force: float
 var hited_body: Area2D
 
 func _ready() -> void:
-    sprite_2d.visible = false
+    #sprite_2d.visible = false
     
     if trajectory == ProjectileTrajectory.GRAVITY_AFFECTED:
         body_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

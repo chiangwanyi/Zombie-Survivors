@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=3 uid="uid://cka1xvtki45t4"]
+
+[ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_jbsrm"]
+[ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_4nq0g"]
+[ext_resource type="Texture2D" uid="uid://cwvjqpyvq3jhc" path="res://_assets/images/ExplosionCloud.png" id="4_v8tbi"]
+
+[sub_resource type="Curve" id="Curve_q5snw"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 1, Vector2(0.928571, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.0, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_r6kgv"]
+max_value = 5.0
+_data = [Vector2(0, 2.4874), 0.0, 3.22535, 0, 1, Vector2(0.779018, 5), 0.0, 0.0, 0, 0, Vector2(1, 0), -41.8824, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up7hn"]
+
+[node name="Pea" instance=ExtResource("1_jbsrm")]
+
+[node name="DamageOnTouchAbility" parent="." index="0"]
+atk = 30
+
+[node name="Shadow" type="Sprite2D" parent="." index="2"]
+modulate = Color(0, 0, 0, 0.329412)
+position = Vector2(0, 35)
+scale = Vector2(0.8, 0.4)
+texture = ExtResource("2_4nq0g")
+
+[node name="Sprite2D" parent="." index="4"]
+visible = true
+scale = Vector2(1, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." index="5"]
+z_index = 1
+texture_filter = 1
+emitting = false
+amount = 10
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_v8tbi")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 300.0
+angle_max = 20.0
+scale_amount_curve = SubResource("Curve_q5snw")
+color = Color(1, 0.592157, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="6"]
+z_index = 1
+texture_filter = 1
+emitting = false
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_v8tbi")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 200.0
+angle_max = 20.0
+scale_amount_curve = SubResource("Curve_r6kgv")
+color = Color(1, 0.768627, 0.0117647, 1)
+
+[node name="CollisionShape2D" parent="." index="7"]
+shape = SubResource("CircleShape2D_up7hn")
+
+[connection signal="area_entered" from="." to="StateMachine/Launch" method="_on_pea_area_entered"]

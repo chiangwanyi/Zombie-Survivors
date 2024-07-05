@@ -1,7 +1,5 @@
 extends State
 
-@onready var cpu_particles_2d: CPUParticles2D = $"../../CPUParticles2D"
-
 var body: Projectile2D
 var timestep : float
 var velocity : Vector2
@@ -26,5 +24,4 @@ func physics_update(delta: float) -> void:
 
 func _on_pea_area_entered(area: Area2D) -> void:
     body.hited_body = area
-    cpu_particles_2d.emitting = true
-    #emit_signal("finished", "Hit")
+    #cpu_particles_2d.emitting = true

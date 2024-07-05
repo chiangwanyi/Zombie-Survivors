@@ -1,7 +1,5 @@
 class_name InventoryItem extends Control
 
-## 所属 Inventory 名称，用于通知
-@export var inventory_name: String = ""
 ## 区分 InventoryItem 的类别
 @export var item_type_name: String = ""
 ## InventoryItem 的名字
@@ -13,6 +11,9 @@ class_name InventoryItem extends Control
 @export var is_draggable: bool = true
 ## 是否可交换
 @export var is_swappable: bool = true
+
+## 所属 Inventory 名称，用于通知
+var inventory_name: String = ""
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
     if not is_draggable:

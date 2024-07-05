@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq7a7xedtnons"]
+
+[ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://_components/spells/spell.tscn" id="1_p3lu4"]
+[ext_resource type="PackedScene" uid="uid://dpm4wkdq4u22n" path="res://projectiles/pea.tscn" id="2_ivheh"]
+
+[node name="Pea" instance=ExtResource("1_p3lu4")]
+spell_name = "Pea"
+cast_delay = 0.05
+damage = 10
+projectile_scene = ExtResource("2_ivheh")
