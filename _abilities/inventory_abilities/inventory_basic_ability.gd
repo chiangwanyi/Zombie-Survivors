@@ -19,7 +19,7 @@ func _ready() -> void:
         
 
 ## 重载背包
-func reload(size: int) -> void :
+func reload(size := -1) -> void :
     if size > 0:
         slot_size = size
 

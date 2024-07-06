@@ -12,7 +12,7 @@ var current_plant_key: String
 
 func _ready() -> void:
     visible = false
-    inventory_ability.reload(-1)
+    inventory_ability.reload()
 
 # 由被点击的【植物】调用
 func show_info(plant_key: String) -> void:

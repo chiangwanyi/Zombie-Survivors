@@ -21,18 +21,6 @@ var seed_packet_item_scene := preload("res://inventory/item/seed_packet/seed_pac
 func _ready() -> void:
     reload()
     state_machine.start()
-    #game_event.on_event.connect(_on_game_event)
-    #seed_packet_event.on_event.connect(_on_event_seed_packet)
-    #seed_chooser_event.on_event.connect(_on_event_seed_chooser)
-    #spawn_event.on_event.connect(_on_event_spawn)
-    #pick_event.on_event.connect(_on_event_pick)
-    #EventManager.add_listener(game_event)
-    #EventManager.add_listener(seed_packet_event)
-    #EventManager.add_listener(seed_chooser_event)
-    #EventManager.add_listener(spawn_event)
-    #EventManager.add_listener(pick_event)
-    # GameManager.inventories["Seed Bank"] = $SeedContainer
-    # update_sun(sun)
 
 func reload() -> void:
     var cfg_level := GameManager.cfg_levels.get(GameManager.current_level_name) as Dictionary
@@ -53,7 +41,7 @@ func reload() -> void:
         item_list.append(item)
 
     # 背包重载
-    basic_inventory_ability.reload_with_items(seed_capacity, item_list)
+    #basic_inventory_ability.reload_with_items(seed_capacity, item_list)
 
 func hide_panel() -> void:
     state_machine.change_state("Hide")
