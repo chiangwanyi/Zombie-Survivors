@@ -106,14 +106,21 @@ func clean_slots(size := -1) -> void :
     # 根据 slot_size 数，添加 n 个 slot_scene 的节点
     for i in range(slot_size):
         var slot = slot_scene.instantiate() as InventoryItemSlot
+
+        slot.inventory_name = inventory_name
         item_slot_list.append(slot)
         inventory_container.add_child(slot)
 
 func _on_item_sync() -> void :
+    print("inventory:%s 更新" % inventory_name)
     var new_item_name_list := []
     for slot in item_slot_list:
         if slot.has_item():
-            new_item_name_list.append(slot.get_item().item_name)
+            var item = slot.get_item()
+            
+            item.inventory_name = inventory_name
+            item.item_type_name = inventory_type
+            new_item_name_list.append(item.item_name)
         else:
             new_item_name_list.append("")
     item_name_list = new_item_name_list

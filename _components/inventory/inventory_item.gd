@@ -26,6 +26,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
     set_drag_preview(item)
     item.tree_exited.connect(func (): 
         visible = true
+        print("1111")
         (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit())
     return self
     
@@ -34,12 +35,24 @@ func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:
     if data is InventoryItem and is_swappable and data.item_type_name == item_type_name:
         return true
     return false
-    
+
+# 当两个 item 发生交换时
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
     if data is InventoryItem:
+        # 等待通知的 Inventory
+        var call_inventories := []
+
         var item = self as InventoryItem
         var item_parent = item.get_parent()
         
         reparent(data.get_parent())
         data.visible = true
         data.reparent(item_parent)
+        
+        if not call_inventories.has(data.inventory_name):
+            call_inventories.append(data.inventory_name)
+        if not call_inventories.has(item.inventory_name):
+            call_inventories.append(item.inventory_name)
+
+        for value in call_inventories:
+            (GameManager.inventories[value] as InventoryBasicAbility).item_sync.emit()

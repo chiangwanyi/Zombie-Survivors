@@ -123,6 +123,7 @@ weapon_attachment = NodePath("../WeaponAttachment")
 current_weapon = NodePath("../Wand")
 
 [node name="InventoryBasicAbility" parent="." index="2"]
+random_inventory_name = true
 slot_size = 2
 item_name_list = ["Sun", ""]
 

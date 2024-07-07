@@ -37,7 +37,7 @@ func reload() -> void:
     var item_list = []
     for seed_name in initial_seeds:
         var item := seed_packet_item_scene.instantiate() as SeedPacketItem
-        item.item_name = seed_name
+        # item.item_name = seed_name
         item_list.append(item)
 
     # 背包重载

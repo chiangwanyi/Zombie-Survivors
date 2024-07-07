@@ -3,6 +3,9 @@ class_name InventoryItemSlot extends PanelContainer
 ## 是否可拖拽
 @export var can_drop: bool = true
 
+## 所属 Inventory 名称，用于通知
+var inventory_name: String = ""
+
 ## 是否允许其他 Node 拖动到该 Node 上
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
     return can_drop
@@ -12,6 +15,7 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
         data.visible = true
         if get_child_count() == 0:
             data.reparent(self)
+        (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit()
 
 ## 获取背包物品，即第一个子节点，如果没有则返回 null
 func get_item() -> InventoryItem:
