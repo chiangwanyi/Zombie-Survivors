@@ -4,6 +4,7 @@ class_name Plant extends Area2D
 @onready var wand: Wand = $Wand
 @onready var handle_weapon_ability: CharacterHandleWeaponAbility = $HandleWeaponAbility
 @onready var attack_timer: Timer = $AttackTimer
+@onready var inventory_basic_ability: InventoryBasicAbility = $InventoryBasicAbility
 
 
 ## 是否自动使用武器

@@ -322,6 +322,7 @@ scroll_fit_content_height = true
 [node name="InventoryBasicAbility" type="Node" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell" node_paths=PackedStringArray("inventory_container")]
 script = ExtResource("7_crwol")
 inventory_name = "Spell Inventory"
+inventory_type = "Spell"
 slot_size = 20
 slot_scene = ExtResource("8_tfrpi")
 inventory_container = NodePath("../VBoxContainer/MarginContainer/HFlowContainer")

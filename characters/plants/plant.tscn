@@ -29,6 +29,7 @@ script = ExtResource("1_ap4tu")
 
 [node name="InventoryBasicAbility" type="Node" parent="."]
 script = ExtResource("4_dcrx0")
+inventory_type = "Spell"
 slot_scene = ExtResource("5_luy2b")
 
 [node name="StateMachine" parent="." instance=ExtResource("3_jc8kf")]
@@ -43,12 +44,12 @@ texture = ExtResource("1_mowso")
 
 [node name="WeaponAimPoint" type="Marker2D" parent="."]
 
-[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "weapon_aim_point", "projectile_spawn") instance=ExtResource("4_vulds")]
+[node name="Wand" parent="." node_paths=PackedStringArray("wand_recharge_bar", "wand_energy_bar", "weapon_aim_point", "spell_inventory", "projectile_spawn") instance=ExtResource("4_vulds")]
 wand_recharge_bar = NodePath("../WandRechargeBar")
 wand_energy_bar = NodePath("../WandEnergyBar")
 weapon_aim_point = NodePath("../WeaponAimPoint")
 attack_range = 500.0
-spells = PackedStringArray("Sun")
+spell_inventory = NodePath("../InventoryBasicAbility")
 projectile_spawn = NodePath("../WeaponAttachment")
 FORCE = 300.0
 

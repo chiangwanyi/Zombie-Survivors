@@ -17,14 +17,18 @@ signal item_sync
 
 ## 背包 item_slot 列表
 var item_slot_list : Array[InventoryItemSlot] = []
+## 背包 item_name 列表
+@export var item_name_list := []
 
 func _ready() -> void:
     if random_inventory_name:
         inventory_name = IdUtils.unique_key(16)
     GameManager.inventories[inventory_name] = self
+
+    item_sync.connect(_on_item_sync)
         
 
-## 重载背包
+## 重载背包，背包数据自动从 config.json 中读取
 func reload(size := -1) -> void :
     if size > 0:
         slot_size = size
@@ -47,12 +51,16 @@ func reload(size := -1) -> void :
     reset_items(type, inventory_items)
         
 
-## 重载背包，并同时插入物品
-func reload_with_items(size: int, list: Array[InventoryItem]) -> void :
-    reload(size)
-    # 调用 set_item 插入物品
-    for i in range(list.size()):
-        set_item(i, list[i])
+## 重载背包，并同时插入物品（并非从 config.json 中读取）
+func reload_with_items(list: Array, size := -1) -> void :
+    if size > 0:
+        slot_size = size
+
+    if slot_size < 0:
+        slot_size = 0
+
+    clean_slots(slot_size)
+    reset_items(inventory_type, list)
 
 
 ## 向背包的指定槽位插入物品
@@ -69,11 +77,13 @@ func get_item(slot_index: int) -> InventoryItem :
 
 
 func reset_items(type: String, item_list: Array) -> void :
+    item_name_list = item_list
+
     clean_slots()
 
     for i in range(slot_size):
-        if i < item_list.size():
-            var item_name := item_list[i] as String
+        if i < item_name_list.size():
+            var item_name := item_name_list[i] as String
             if item_name:
                 var item_map := GameManager.inventory_item_dict.get(type) as Dictionary
                 var item := (item_map.get(item_name) as PackedScene).instantiate() as InventoryItem
@@ -84,14 +94,26 @@ func reset_items(type: String, item_list: Array) -> void :
                 set_item(i, item)
 
 
-func clean_slots() -> void :
+func clean_slots(size := -1) -> void :
     for i in range(inventory_container.get_child_count()):
         inventory_container.get_child(i).queue_free()
 
     item_slot_list.clear()
+    
+    if size > 0 and slot_size != size:
+        slot_size = size
         
     # 根据 slot_size 数，添加 n 个 slot_scene 的节点
     for i in range(slot_size):
         var slot = slot_scene.instantiate() as InventoryItemSlot
         item_slot_list.append(slot)
         inventory_container.add_child(slot)
+
+func _on_item_sync() -> void :
+    var new_item_name_list := []
+    for slot in item_slot_list:
+        if slot.has_item():
+            new_item_name_list.append(slot.get_item().item_name)
+        else:
+            new_item_name_list.append("")
+    item_name_list = new_item_name_list

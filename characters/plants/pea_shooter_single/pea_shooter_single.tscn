@@ -337,6 +337,8 @@ current_weapon = NodePath("../Wand")
 
 [node name="InventoryBasicAbility" parent="." index="2"]
 random_inventory_name = true
+slot_size = 3
+item_name_list = ["Pea", "Pea", ""]
 
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("2_7a8d1")
@@ -360,7 +362,6 @@ position = Vector2(25, -10)
 
 [node name="Wand" parent="." index="10"]
 capacity = 3
-spells = PackedStringArray("Pea", "Pea", "")
 FORCE = 1000.0
 
 [editable path="HandleWeaponAbility"]

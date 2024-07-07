@@ -29,7 +29,8 @@ enum TriggerModes { SemiAuto, Auto }
 @export var attack_range: float = 100
 
 @export_group("Spells")
-@export var spells: PackedStringArray
+@export var spell_inventory: InventoryBasicAbility
+#@export var spells: PackedStringArray
 
 ## 【法术槽】
 var spell_list: Array[Spell]
@@ -67,10 +68,11 @@ func reset() -> void:
         if spell:
             spell.queue_free()
     
-    spell_list.resize(spells.size())
-    for i in range(spells.size()):
-        if spells[i]:
-            spell_list[i] = (GameManager.registed_spells[spells[i]] as PackedScene).instantiate()
+    spell_list.resize(spell_inventory.slot_size)
+    for i in range(spell_inventory.slot_size):
+        var spell_name = spell_inventory.item_name_list[i]
+        if spell_name:
+            spell_list[i] = (GameManager.registed_spells[spell_name] as PackedScene).instantiate()
             add_child(spell_list[i])
             
     reload()

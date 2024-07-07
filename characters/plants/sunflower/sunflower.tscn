@@ -122,7 +122,11 @@ height = 58.0
 weapon_attachment = NodePath("../WeaponAttachment")
 current_weapon = NodePath("../Wand")
 
-[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("start_state")]
+[node name="InventoryBasicAbility" parent="." index="2"]
+slot_size = 2
+item_name_list = ["Sun", ""]
+
+[node name="StateMachine" parent="." index="3" node_paths=PackedStringArray("start_state")]
 start_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
@@ -135,12 +139,11 @@ script = ExtResource("5_gu1n8")
 sprite_frames = SubResource("SpriteFrames_ugn8j")
 animation = &"idle"
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="6"]
 position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_6l50b")
 
-[node name="Wand" parent="." index="8"]
+[node name="Wand" parent="." index="9"]
 capacity = 2
-spells = PackedStringArray("Sun", "Pea")
 
 [editable path="HandleWeaponAbility"]
