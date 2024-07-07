@@ -13,6 +13,16 @@ func _drop_data(_at_position: Vector2, data: Variant) -> void:
         if get_child_count() == 0:
             data.reparent(self)
 
+## 获取背包物品，即第一个子节点，如果没有则返回 null
+func get_item() -> InventoryItem:
+    if has_item():
+        return get_child(0)
+    return null
+
+func has_item() -> bool:
+    var t = get_child_count()
+    return t > 0
+
 ## （安全地）装载背包物品
 func push_item_safe(inventory_item: InventoryItem) -> void:
     if get_child_count() == 0:

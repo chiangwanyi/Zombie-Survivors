@@ -13,13 +13,14 @@ class_name SeedPacketItem extends InventoryItem
 var _avatar_folder = "res://_assets/images/plants/"        
 
 func _ready() -> void:
-    var res = load(_avatar_folder + item_name + ".png")
+    # 启动状态机
+    state_machine.start()
+    
+func reset_profile(avatar_name: String) -> void:
+    var res = load(_avatar_folder + avatar_name + ".png")
     if res:
         item_avatar.texture = res
     cost_label.text = str(cost)
-    # 启动状态机
-    state_machine.start()
-
 
 func _get_drag_data(_at_position: Vector2) -> Variant:
     if not is_draggable:
@@ -31,3 +32,7 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
     viewr.tree_exited.connect(func (): 
         state_machine.change_state("Active"))
     return self
+
+
+func _on_mouse_entered() -> void:
+    get_tree().call_group("menu_seeds", "on_seed_packet_hover", item_name)

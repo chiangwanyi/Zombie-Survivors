@@ -1,16 +1,18 @@
 {
   "seeds": [
     {
-      "name": "pea_shooter_single",
-      "description": "豌豆射手",
+      "name": "Pea Shooter Single",
+      "title": "豌豆射手",
+      "description": "单发豌豆射手",
       "cost": 100,
       "cooldown": 10,
       "health": 100,
       "defense": 50
     },
     {
-      "name": "sunflower",
-      "description": "向日葵",
+      "name": "Sunflower",
+      "title": "向日葵",
+      "description": "生产阳光，阳光用于种植植物",
       "cost": 50,
       "cooldown": 5,
       "health": 100,
@@ -77,16 +79,14 @@
         "pea_shooter_single",
         "sunflower"
       ],
-      "inventories": [
-        {
-          "inventory_name": "Seed Inventory",
+      "inventories": {
+        "Seed Inventory": {
           "inventory_items": [
             "Pea Shooter Single",
             "Sunflower"
           ]
         },
-        {
-          "inventory_name": "Spells Inventory",
+        "Spells Inventory": {
           "inventory_items": [
             "Pea",
             "",
@@ -95,7 +95,7 @@
             "Cherry Bomb"
           ]
         }
-      ]
+      }
     }
   ]
 }

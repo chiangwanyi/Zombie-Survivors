@@ -26,14 +26,10 @@ func reload(size := -1) -> void :
     if slot_size < 0:
         slot_size = 0
         
-    clean_slots()
-        
     var cfg_level := GameManager.cfg_levels.get(GameManager.current_level_name) as Dictionary
-    for value in cfg_level.get("inventories", []) as Array[Dictionary]:
-        if value.get("inventory_name") == inventory_name:
-            var inventory_items = value.get("inventory_items", [])
-            reset_items(inventory_items)
-            break
+    var inventory := (cfg_level.get("inventories") as Dictionary).get(inventory_name) as Dictionary
+    var inventory_items = inventory.get("inventory_items", [])
+    reset_items(inventory_items)
         
 
 ## 重载背包，并同时插入物品
@@ -52,13 +48,18 @@ func set_item(slot_index: int, item: InventoryItem) -> void :
     item.inventory_name = inventory_name
     item_slot_list[slot_index].push_item_safe(item)
 
+func get_item(slot_index: int) -> InventoryItem :
+    if slot_index < 0 or slot_index >= slot_size:
+        return null
+    return (item_slot_list[slot_index] as InventoryItemSlot).get_item()
 
-func reset_items(list: Array) -> void :
+
+func reset_items(item_list: Array) -> void :
     clean_slots()
 
     for i in range(slot_size):
-        if i < list.size():
-            var item_name = list[i]
+        if i < item_list.size():
+            var item_name = item_list[i]
             if item_name:
                 var item_map := GameManager.inventory_item_dict.get(inventory_name) as Dictionary
                 var item := (item_map.get(item_name) as PackedScene).instantiate() as InventoryItem

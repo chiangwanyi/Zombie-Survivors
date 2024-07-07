@@ -4,13 +4,14 @@ extends VBoxContainer
 @onready var tab_bar: HBoxContainer = $TabBar
 @onready var tab_container: VBoxContainer = $TabContainer
 
-@onready var seed_tab: HBoxContainer = $TabContainer/Seed
+@onready var seeds_tab: HBoxContainer = $TabContainer/Seeds
 @onready var spell_tab: HBoxContainer = $TabContainer/Spell
 
 ## 当前选项
 var current_tab: String
 
 func _ready() -> void:
+    tab_container.visible = false
     _update_tab_bar()
 
 ## 更新 tab_bar 按钮
@@ -44,7 +45,7 @@ func _display_tab_container(item: String) -> void:
             "配方" : _display_recipe_tab()
 
 func _display_plant_tab() -> void:
-    seed_tab.visible = true
+    seeds_tab.visible = true
 
 func _display_recipe_tab() -> void:
     spell_tab.visible = true  

@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://u2oqdoouqch0" path="res://inventory/item_slot/seed_packet_slot.tscn" id="3_2wnfa"]
 [ext_resource type="Texture2D" uid="uid://dbug3r1xrsiti" path="res://_assets/images/coin_silver_dollar.png" id="3_cfqak"]
 [ext_resource type="Texture2D" uid="uid://buj136a5gcpw3" path="res://_assets/images/ZombieHead.png" id="4_l7x3o"]
-[ext_resource type="Script" path="res://ui/level_menu/seed/seed.gd" id="5_3ejij"]
 [ext_resource type="Texture2D" uid="uid://cuuoyxqoa3x0k" path="res://_assets/images/LoftReticle.png" id="5_hg83g"]
 [ext_resource type="Script" path="res://ui/level_menu/level_menu.gd" id="5_hyiv4"]
+[ext_resource type="Script" path="res://ui/level_menu/seeds/seeds.gd" id="6_tdopl"]
 [ext_resource type="Script" path="res://_abilities/inventory_abilities/inventory_basic_ability.gd" id="7_crwol"]
 [ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="8_tfrpi"]
 
@@ -102,23 +102,21 @@ alignment = 2
 script = ExtResource("5_hyiv4")
 
 [node name="TabContainer" type="VBoxContainer" parent="Panel/LevelMenu"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 alignment = 2
 
-[node name="Seed" type="HBoxContainer" parent="Panel/LevelMenu/TabContainer"]
-visible = false
+[node name="Seeds" type="HBoxContainer" parent="Panel/LevelMenu/TabContainer" groups=["menu_seeds"]]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("5_3ejij")
+script = ExtResource("6_tdopl")
 
-[node name="InfoPanel" type="Panel" parent="Panel/LevelMenu/TabContainer/Seed"]
+[node name="InfoPanel" type="Panel" parent="Panel/LevelMenu/TabContainer/Seeds"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 
-[node name="Panel" type="VBoxContainer" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel"]
+[node name="Panel" type="VBoxContainer" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -128,45 +126,43 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.25
 
-[node name="Panel" type="VBoxContainer" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel"]
+[node name="Panel" type="VBoxContainer" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel/Panel"]
+[node name="Title" type="Label" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel/Panel"]
 layout_mode = 2
-text = "向日葵"
 
-[node name="Label2" type="Label" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel/Panel"]
+[node name="Description" type="Label" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel/Panel"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-text = "可以生产阳光，阳光用于种植植物sdfsdfsdfsd"
 autowrap_mode = 3
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="TextureRect" type="TextureRect" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_hg83g")
 expand_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="Panel/LevelMenu/TabContainer/Seed/InfoPanel/Panel/HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="Panel/LevelMenu/TabContainer/Seeds/InfoPanel/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 scroll_past_end_of_file = true
 scroll_fit_content_height = true
 
-[node name="InventoryBasicAbility" type="Node" parent="Panel/LevelMenu/TabContainer/Seed" node_paths=PackedStringArray("inventory_container")]
+[node name="InventoryBasicAbility" type="Node" parent="Panel/LevelMenu/TabContainer/Seeds" node_paths=PackedStringArray("inventory_container")]
 script = ExtResource("7_crwol")
 inventory_name = "Seed Inventory"
 slot_size = 2
 slot_scene = ExtResource("3_2wnfa")
 inventory_container = NodePath("../HFlowContainer")
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Panel/LevelMenu/TabContainer/Seed"]
+[node name="HFlowContainer" type="HFlowContainer" parent="Panel/LevelMenu/TabContainer/Seeds"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
