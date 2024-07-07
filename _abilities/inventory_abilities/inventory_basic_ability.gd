@@ -27,7 +27,7 @@ func reload(size := -1) -> void :
         slot_size = 0
         
     var cfg_level := GameManager.cfg_levels.get(GameManager.current_level_name) as Dictionary
-    var inventory := (cfg_level.get("inventories") as Dictionary).get(inventory_name) as Dictionary
+    var inventory := (cfg_level.get("inventories") as Dictionary).get(inventory_name, {}) as Dictionary
     var inventory_items = inventory.get("inventory_items", [])
     reset_items(inventory_items)
         
@@ -35,6 +35,7 @@ func reload(size := -1) -> void :
 ## 重载背包，并同时插入物品
 func reload_with_items(size: int, list: Array) -> void :
     reload(size)
+    return
     # 调用 set_item 插入物品
     for i in range(list.size()):
         set_item(i, list[i])

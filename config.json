@@ -60,6 +60,8 @@
       "item_inventory": "Seed Inventory",
       "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
     },
+
+    
     {
       "item_name": "Pea",
       "item_inventory": "Spell Inventory",

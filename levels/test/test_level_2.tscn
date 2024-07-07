@@ -19,7 +19,7 @@
 [sub_resource type="GDScript" id="GDScript_gcv5p"]
 script/source = "extends Panel
 
-@onready var tab_container: VBoxContainer = $LevelMenu/TabContainer
+@onready var level_menu: LevelMenu = $LevelMenu
 
 func _drop_data(at_position: Vector2, data: Variant) -> void:
     if data is SeedPacketItem:
@@ -32,7 +32,7 @@ func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 
 func _on_gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-        tab_container.visible = false
+        level_menu.hide_all_tab()
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
@@ -218,11 +218,11 @@ size_flags_stretch_ratio = 0.25
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
+[node name="Avatar" type="TextureRect" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("11_jjpl7")
 
-[node name="Title" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
 layout_mode = 2
 text = "豌豆射手"
 
@@ -274,7 +274,6 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("10_ekls2")
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell"]
 layout_mode = 2
