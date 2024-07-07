@@ -36,7 +36,7 @@ func _ready() -> void:
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
     # 右键单击植物，显示植物信息
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-        get_tree().call_group("plant_info", "show_info", key)
+        get_tree().call_group("menu_plant", "show_plant_info", key)
 
 func _on_attack_timer_timeout() -> void:
     if not target_zombies.is_empty():

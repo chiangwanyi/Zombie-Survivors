@@ -7,7 +7,9 @@
       "cost": 100,
       "cooldown": 10,
       "health": 100,
-      "defense": 50
+      "defense": 50,
+      "initial_spell_capacity": 3,
+      "initial_spell": ["Pea"]
     },
     {
       "name": "Sunflower",
@@ -16,7 +18,9 @@
       "cost": 50,
       "cooldown": 5,
       "health": 100,
-      "defense": 50
+      "defense": 50,
+      "initial_spell_capacity": 2,
+      "initial_spell": ["Sun"]
     }
   ],
   "spells": [

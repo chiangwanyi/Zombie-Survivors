@@ -361,3 +361,4 @@ spells = PackedStringArray("Pea", "Pea", "")
 FORCE = 1000.0
 
 [editable path="HandleWeaponAbility"]
+[editable path="Wand"]

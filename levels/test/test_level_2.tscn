@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=18 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -11,19 +11,28 @@
 [ext_resource type="Script" path="res://ui/level_menu/seeds/seeds.gd" id="6_tdopl"]
 [ext_resource type="Script" path="res://_abilities/inventory_abilities/inventory_basic_ability.gd" id="7_crwol"]
 [ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="8_tfrpi"]
-[ext_resource type="Script" path="res://ui/level_menu/spell/spell.gd" id="10_s2sag"]
+[ext_resource type="Script" path="res://ui/level_menu/plant/plant.gd" id="10_ekls2"]
+[ext_resource type="Texture2D" uid="uid://bamxr8eqaowwq" path="res://_assets/images/plants/pea_shooter_single.png" id="11_jjpl7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olayq"]
 
 [sub_resource type="GDScript" id="GDScript_gcv5p"]
 script/source = "extends Panel
 
+@onready var tab_container: VBoxContainer = $LevelMenu/TabContainer
+
 func _drop_data(at_position: Vector2, data: Variant) -> void:
     if data is SeedPacketItem:
         GameManager.create_plant(at_position, data.item_name)
         
+        
 func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
     return true
+    
+
+func _on_gui_input(event: InputEvent) -> void:
+    if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+        tab_container.visible = false
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
@@ -111,7 +120,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -402.0
+offset_top = -450.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 2
@@ -123,6 +132,7 @@ size_flags_vertical = 3
 alignment = 2
 
 [node name="Seeds" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer" groups=["menu_seeds"]]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_tdopl")
@@ -184,11 +194,87 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
 
+[node name="Plant" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer" groups=["menu_plant"]]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("10_ekls2")
+
+[node name="InfoPanel" type="Panel" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Panel" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_jjpl7")
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer"]
+layout_mode = 2
+text = "豌豆射手"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer2"]
+layout_mode = 2
+text = "健康:"
+
+[node name="Value" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer2"]
+layout_mode = 2
+text = "100/200"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer3"]
+layout_mode = 2
+text = "能量:"
+
+[node name="Value" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel/HBoxContainer3"]
+layout_mode = 2
+text = "100/200"
+
+[node name="Info" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/InfoPanel/Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="InventoryBasicAbility" type="Node" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant" node_paths=PackedStringArray("inventory_container")]
+script = ExtResource("7_crwol")
+inventory_name = "Plant Inventory"
+slot_scene = ExtResource("8_tfrpi")
+inventory_container = NodePath("../VBoxContainer/MarginContainer/HFlowContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Spell" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("10_s2sag")
+script = ExtResource("10_ekls2")
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell"]
 layout_mode = 2
@@ -209,15 +295,17 @@ size_flags_stretch_ratio = 0.25
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/InfoPanel/Panel/Info"]
+[node name="Title" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/InfoPanel/Panel/Info"]
 layout_mode = 2
-text = "向日葵"
+text = "豌豆"
 
-[node name="Label2" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/InfoPanel/Panel/Info"]
+[node name="Descript" type="Label" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/InfoPanel/Panel/Info"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_vertical = 3
-text = "可以生产阳光，阳光用于种植植物sdfsdfsdfsd"
+text = "单发豌豆
+
+伤害：xx"
 autowrap_mode = 3
 
 [node name="Search" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/InfoPanel/Panel"]
@@ -241,7 +329,7 @@ script = ExtResource("7_crwol")
 inventory_name = "Spell Inventory"
 slot_size = 20
 slot_scene = ExtResource("8_tfrpi")
-inventory_container = NodePath("../VBoxContainer/MarginContainer/HFlowContainer")
+inventory_container = NodePath("../../Plant/VBoxContainer/MarginContainer/HFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell"]
 layout_mode = 2
@@ -264,6 +352,9 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="InventoryItemSlot" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/VBoxContainer/MarginContainer/HFlowContainer" instance=ExtResource("8_tfrpi")]
+layout_mode = 2
+
 [node name="TabBar" type="HBoxContainer" parent="CanvasLayer/Panel/LevelMenu"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -283,4 +374,4 @@ layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, -1310
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
 
-[connection signal="tab_changed" from="CanvasLayer/Panel/LevelMenu/TabContainer/Spell/VBoxContainer/TabBar" to="CanvasLayer/Panel/LevelMenu/TabContainer/Spell" method="_on_tab_bar_tab_changed"]
+[connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]

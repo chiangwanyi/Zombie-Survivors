@@ -21,7 +21,7 @@ var current_level: Node
 ## 主HUD
 var main_hud: CanvasLayer
 
-## 背包 Map<String:InventoryName, Node:Inventory>
+## 背包 Map<String:InventoryName, Node:InventoryBasicAbility>
 var inventories: Dictionary = {}
 
 ## 背包 Map<String:InventoryName, Dictionary:Map<String:ItemName, PackedScene:InventoryItem>>
