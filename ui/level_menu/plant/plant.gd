@@ -1,7 +1,5 @@
 extends HBoxContainer
 
-@onready var inventory_basic_ability: InventoryBasicAbility = $InventoryBasicAbility
-
 @onready var level_menu: LevelMenu = $"../.."
 @onready var tab_container: VBoxContainer = $".."
 
@@ -26,7 +24,11 @@ func show_plant_info(plant_key: String) -> void:
     var avatar_name = plant.plant_name.to_lower().replace(" ", "_")
     plant_avatar.texture = load(_avatar_folder + avatar_name + ".png")
     
-    inventory_basic_ability.reload_with_items(wand.capacity, wand.spells)
+    for i in range(wand.spells.size()):
+        var spell_name = wand.spells[i]
+        if spell_name:
+            var inventory_item := (GameManager.inventory_item_dict.get("Spell Inventory").get(spell_name) as PackedScene).instantiate() as InventoryItem
+            #inventory_basic_ability.set_item(i, inventory_item)
 
     level_menu.hide_all_tab()
     level_menu.plant_tab.visible = true

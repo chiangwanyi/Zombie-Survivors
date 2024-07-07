@@ -24,7 +24,7 @@ var main_hud: CanvasLayer
 ## 背包 Map<String:InventoryName, Node:InventoryBasicAbility>
 var inventories: Dictionary = {}
 
-## 背包 Map<String:InventoryName, Dictionary:Map<String:ItemName, PackedScene:InventoryItem>>
+## 背包 Map<String:InventoryType, Dictionary:Map<String:ItemName, PackedScene:InventoryItem>>
 var inventory_item_dict: Dictionary = {}
 
 ## 法杖武器 Spell Map<String:SpellName, PackedScene:Spell>
@@ -93,9 +93,9 @@ func _register_spells() -> void:
 func _register_inventory_items() -> void:
     for value in cfg.get("inventories", []):
         var item_name = value.get("item_name")
-        var item_inventory = value.get("item_inventory")
+        var item_inventory_type = value.get("item_inventory_type")
         var item_scene = load(value.get("item_scene")) as PackedScene
 
-        if not inventory_item_dict.has(item_inventory):
-            inventory_item_dict[item_inventory] = {}
-        inventory_item_dict[item_inventory][item_name] = item_scene
+        if not inventory_item_dict.has(item_inventory_type):
+            inventory_item_dict[item_inventory_type] = {}
+        inventory_item_dict[item_inventory_type][item_name] = item_scene

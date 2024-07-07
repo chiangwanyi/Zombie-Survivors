@@ -335,6 +335,9 @@ height = 54.0
 weapon_attachment = NodePath("../WeaponAttachment")
 current_weapon = NodePath("../Wand")
 
+[node name="InventoryBasicAbility" parent="." index="2"]
+random_inventory_name = true
+
 [node name="Idle" type="Node" parent="StateMachine" index="0"]
 script = ExtResource("2_7a8d1")
 
@@ -348,14 +351,14 @@ animation = &"attack"
 [node name="StemAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_48253")
 
-[node name="CollisionShape2D" parent="." index="6"]
+[node name="CollisionShape2D" parent="." index="7"]
 position = Vector2(0, 8)
 shape = SubResource("CapsuleShape2D_3yu2m")
 
-[node name="WeaponAttachment" parent="." index="7"]
+[node name="WeaponAttachment" parent="." index="8"]
 position = Vector2(25, -10)
 
-[node name="Wand" parent="." index="9"]
+[node name="Wand" parent="." index="10"]
 capacity = 3
 spells = PackedStringArray("Pea", "Pea", "")
 FORCE = 1000.0

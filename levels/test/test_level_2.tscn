@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=19 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="8_tfrpi"]
 [ext_resource type="Script" path="res://ui/level_menu/plant/plant.gd" id="10_ekls2"]
 [ext_resource type="Texture2D" uid="uid://bamxr8eqaowwq" path="res://_assets/images/plants/pea_shooter_single.png" id="11_jjpl7"]
+[ext_resource type="Script" path="res://ui/level_menu/spell/spell.gd" id="13_v6dk1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olayq"]
 
@@ -185,7 +186,7 @@ scroll_fit_content_height = true
 [node name="InventoryBasicAbility" type="Node" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Seeds" node_paths=PackedStringArray("inventory_container")]
 script = ExtResource("7_crwol")
 inventory_name = "Seed Inventory"
-slot_size = 2
+inventory_type = "Seed"
 slot_scene = ExtResource("3_2wnfa")
 inventory_container = NodePath("../HFlowContainer")
 
@@ -252,12 +253,6 @@ text = "100/200"
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="InventoryBasicAbility" type="Node" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant" node_paths=PackedStringArray("inventory_container")]
-script = ExtResource("7_crwol")
-inventory_name = "Plant Inventory"
-slot_scene = ExtResource("8_tfrpi")
-inventory_container = NodePath("../VBoxContainer/MarginContainer/HFlowContainer")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Plant"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -274,6 +269,7 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("13_v6dk1")
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell"]
 layout_mode = 2
@@ -328,7 +324,7 @@ script = ExtResource("7_crwol")
 inventory_name = "Spell Inventory"
 slot_size = 20
 slot_scene = ExtResource("8_tfrpi")
-inventory_container = NodePath("../../Plant/VBoxContainer/MarginContainer/HFlowContainer")
+inventory_container = NodePath("../VBoxContainer/MarginContainer/HFlowContainer")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Spell"]
 layout_mode = 2
