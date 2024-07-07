@@ -56,7 +56,7 @@ func _ready() -> void:
 func create_plant(_pos: Vector2, plant_name: String) -> void:
     if not current_level:
         return
-    var scene_path = _scenes_plant_folder + plant_name.to_lower() + "/" + plant_name.to_lower() + ".tscn"
+    var scene_path = _scenes_plant_folder + plant_name.to_lower().replace(" ", "_") + "/" + plant_name.to_lower().replace(" ", "_") + ".tscn"
     var plant = (load(scene_path) as PackedScene).instantiate() as Plant
 
     plant.position = current_level.get_local_mouse_position()
