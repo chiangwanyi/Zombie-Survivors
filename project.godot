@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 GameManager="*res://manager/game_manager.gd"
 EventManager="*res://manager/event_manager.gd"
 IdUtils="*res://utils/id_utils.gd"
+PolygonUtils="*res://utils/polygon_utils.gd"
 
 [display]
 

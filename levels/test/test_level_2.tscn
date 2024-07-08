@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=22 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -45,11 +45,47 @@ texture_region_size = Vector2i(200, 200)
 tile_size = Vector2i(200, 200)
 sources/1 = SubResource("TileSetAtlasSource_duibv")
 
+[sub_resource type="Curve2D" id="Curve2D_lljyy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -681, -374, 0, 0, 0, 0, 664, -363, 0, 0, 0, 0, 652, 340, 0, 0, 0, 0, -681, 350, 0, 0, 0, 0, -681, -374)
+}
+point_count = 5
+
+[sub_resource type="GDScript" id="GDScript_qv8ok"]
+script/source = "extends Path2D
+
+@onready var spawn_pos: PathFollow2D = $PathFollow2D
+
+
+func _on_timer_timeout() -> void:
+    # 选择一个随机位置
+    spawn_pos.progress_ratio = randf()
+    GameManager.create_zombie(spawn_pos.position, \"regular_zombie\")
+"
+
+[sub_resource type="GDScript" id="GDScript_ybrln"]
+script/source = "extends Polygon2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+    polygon = PolygonUtils.generate_circle_polygon(100, 100, Vector2.ZERO)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+    pass
+"
+
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -112.0
+offset_top = -87.0
+offset_right = -112.0
+offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qcx47")
@@ -65,13 +101,13 @@ grow_vertical = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_olayq")
 script = SubResource("GDScript_gcv5p")
+metadata/_edit_lock_ = true
 
 [node name="LevelBoard" type="VFlowContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_left = 18.0
 offset_right = 84.0
 offset_bottom = 111.0
-metadata/_edit_lock_ = true
 
 [node name="Sun" type="HBoxContainer" parent="CanvasLayer/Panel/LevelBoard"]
 layout_mode = 2
@@ -137,7 +173,6 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("6_tdopl")
-metadata/_edit_lock_ = true
 
 [node name="InfoPanel" type="Panel" parent="CanvasLayer/Panel/LevelMenu/TabContainer/Seeds"]
 layout_mode = 2
@@ -361,13 +396,31 @@ size_flags_horizontal = 3
 text = "种植"
 
 [node name="Level" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="TileMap" type="TileMap" parent="Level"]
 z_index = -1
 tile_set = SubResource("TileSet_6fea2")
 format = 2
 layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, -131071, 1, 0, -131072, 1, 0, -65537, 1, 0, -65538, 1, 0, -65539, 1, 0, -131075, 1, 0, -131074, 1, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -131076, 1, 0, -131077, 1, 0, -65541, 1, 0, -65540, 1, 0, -4, 1, 0, -5, 1, 0, -3, 1, 0, -2, 1, 0, 65531, 1, 0, 65532, 1, 0, 65533, 1, 0, 65534, 1, 0, 65535, 1, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 131075, 1, 0, 131074, 1, 0, 131073, 1, 0, 131072, 1, 0, 196607, 1, 0, 196606, 1, 0, 196605, 1, 0, 196604, 1, 0, 196603, 1, 0, 131067, 1, 0, 131068, 1, 0, 131069, 1, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, -65532, 1, 0, -65533, 1, 0, -65534, 1, 0, -131070, 1, 0, -131069, 1, 0, -131068, 1, 0, -196604, 1, 0, -196605, 1, 0, -196606, 1, 0, -327690, 1, 0, -262154, 1, 0, -196618, 1, 0, -131082, 1, 0, -65546, 1, 0, -10, 1, 0, 65526, 1, 0, 131062, 1, 0, 196598, 1, 0, 262134, 1, 0, 327670, 1, 0, 393206, 1, 0, -327689, 1, 0, -262153, 1, 0, -196617, 1, 0, -131081, 1, 0, -65545, 1, 0, -9, 1, 0, 65527, 1, 0, 131063, 1, 0, 196599, 1, 0, 262135, 1, 0, 327671, 1, 0, 393207, 1, 0, -327688, 1, 0, -262152, 1, 0, -196616, 1, 0, -131080, 1, 0, -65544, 1, 0, -8, 1, 0, 65528, 1, 0, 131064, 1, 0, 196600, 1, 0, 262136, 1, 0, 327672, 1, 0, 393208, 1, 0, -327687, 1, 0, -262151, 1, 0, -196615, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, 327673, 1, 0, 393209, 1, 0, -327686, 1, 0, -262150, 1, 0, -196614, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, 196602, 1, 0, 262138, 1, 0, 327674, 1, 0, 393210, 1, 0, -327685, 1, 0, -262149, 1, 0, -196613, 1, 0, 262139, 1, 0, 327675, 1, 0, 393211, 1, 0, -327684, 1, 0, -262148, 1, 0, -196612, 1, 0, 262140, 1, 0, 327676, 1, 0, 393212, 1, 0, -327683, 1, 0, -262147, 1, 0, -196611, 1, 0, 262141, 1, 0, 327677, 1, 0, 393213, 1, 0, -327682, 1, 0, -262146, 1, 0, -196610, 1, 0, 262142, 1, 0, 327678, 1, 0, 393214, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, -393216, 1, 0, -327680, 1, 0, -262144, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, -393215, 1, 0, -327679, 1, 0, -262143, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, -393214, 1, 0, -327678, 1, 0, -262142, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, -393213, 1, 0, -327677, 1, 0, -262141, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, -393212, 1, 0, -327676, 1, 0, -262140, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, -393211, 1, 0, -327675, 1, 0, -262139, 1, 0, -196603, 1, 0, -131067, 1, 0, -65531, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, -393210, 1, 0, -327674, 1, 0, -262138, 1, 0, -196602, 1, 0, -131066, 1, 0, -65530, 1, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 327687, 1, 0, -393208, 1, 0, -327672, 1, 0, -262136, 1, 0, -196600, 1, 0, -131064, 1, 0, -65528, 1, 0, 8, 1, 0, 65544, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, -393207, 1, 0, -327671, 1, 0, -262135, 1, 0, -196599, 1, 0, -131063, 1, 0, -65527, 1, 0, 9, 1, 0, 65545, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 1, 0, 327689, 1, 0)
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
 
+[node name="ZombieSpawnPath_01" type="Path2D" parent="Level"]
+curve = SubResource("Curve2D_lljyy")
+script = SubResource("GDScript_qv8ok")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Level/ZombieSpawnPath_01"]
+position = Vector2(-681, -374)
+rotation = 0.00817826
+
+[node name="Timer" type="Timer" parent="Level/ZombieSpawnPath_01"]
+wait_time = 5.0
+autostart = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Level"]
+script = SubResource("GDScript_ybrln")
+
 [connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]
+[connection signal="timeout" from="Level/ZombieSpawnPath_01/Timer" to="Level/ZombieSpawnPath_01" method="_on_timer_timeout"]

@@ -346,11 +346,11 @@ script = ExtResource("2_7a8d1")
 [node name="Attack" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("3_410c6")
 
-[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+[node name="HeadAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_83t14")
 animation = &"attack"
 
-[node name="StemAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
+[node name="StemAnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6"]
 sprite_frames = SubResource("SpriteFrames_48253")
 
 [node name="CollisionShape2D" parent="." index="7"]

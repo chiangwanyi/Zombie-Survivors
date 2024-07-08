@@ -136,7 +136,7 @@ script = ExtResource("4_6027s")
 [node name="Attack" type="Node" parent="StateMachine" index="1"]
 script = ExtResource("5_gu1n8")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="5"]
 sprite_frames = SubResource("SpriteFrames_ugn8j")
 animation = &"idle"
 
