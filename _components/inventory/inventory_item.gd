@@ -22,12 +22,11 @@ func _get_drag_data(_at_position: Vector2) -> Variant:
     var item := duplicate() as InventoryItem
     item.position = Vector2.ZERO
     item.visible = true
-    #item.scale = Vector2(2, 2)
     set_drag_preview(item)
     item.tree_exited.connect(func (): 
         visible = true
-        print("1111")
-        (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit())
+        # (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit()
+        )
     return self
     
 func _can_drop_data(_at_position: Vector2, data: Variant) -> bool:

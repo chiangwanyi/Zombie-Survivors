@@ -12,10 +12,21 @@ func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 
 func _drop_data(_at_position: Vector2, data: Variant) -> void:
     if data is InventoryItem:
+        # 等待通知的 Inventory
+        var call_inventories := []
+        print("From inventory:%s, To inventory:%s" % [data.inventory_name, inventory_name])
+
+        if not call_inventories.has(data.inventory_name):
+            call_inventories.append(data.inventory_name)
+        if not call_inventories.has(inventory_name):
+            call_inventories.append(inventory_name)        
+
         data.visible = true
         if get_child_count() == 0:
             data.reparent(self)
-        (GameManager.inventories[inventory_name] as InventoryBasicAbility).item_sync.emit()
+            
+        for value in call_inventories:
+            (GameManager.inventories[value] as InventoryBasicAbility).item_sync.emit()
 
 ## 获取背包物品，即第一个子节点，如果没有则返回 null
 func get_item() -> InventoryItem:
