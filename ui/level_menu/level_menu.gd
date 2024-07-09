@@ -56,3 +56,6 @@ func hide_all_tab() -> void:
     for i in range(tab_container.get_child_count()):
         tab_container.get_child(i).visible = false
     current_tab = ""
+    for plant in GameManager.registerd_plants.values():
+        if plant is Plant:
+            ((plant.attack_detection) as Polygon2D).visible = false

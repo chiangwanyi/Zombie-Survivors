@@ -48,7 +48,6 @@ texture = ExtResource("1_mowso")
 wand_recharge_bar = NodePath("../WandRechargeBar")
 wand_energy_bar = NodePath("../WandEnergyBar")
 weapon_aim_point = NodePath("../WeaponAimPoint")
-attack_range = 500.0
 spell_inventory = NodePath("../InventoryBasicAbility")
 projectile_spawn = NodePath("../WeaponAttachment")
 FORCE = 300.0
@@ -75,9 +74,9 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_gws0y")
 step = 1.0
 show_percentage = false
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.490196, 1, 1, 0.490196)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
 
 [editable path="HandleWeaponAbility"]

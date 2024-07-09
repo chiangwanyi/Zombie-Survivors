@@ -25,12 +25,9 @@ enum TriggerModes { SemiAuto, Auto }
 @export var energe_recharge_speed: int = 10
 ## 当前剩余能量值
 @export var energe: float = float(max_energe)
-## 攻击检测范围半径
-@export var attack_range: float = 100
 
 @export_group("Spells")
 @export var spell_inventory: InventoryBasicAbility
-#@export var spells: PackedStringArray
 
 ## 【法术槽】
 var spell_list: Array[Spell]
@@ -51,7 +48,7 @@ func _ready() -> void:
     
     # 2. 开始
     state_machine.start()
-
+    
 func reload() -> void:
     deck.clear()
     for spell in spell_list:

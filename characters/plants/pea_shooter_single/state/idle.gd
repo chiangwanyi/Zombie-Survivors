@@ -20,7 +20,7 @@ func update(_delta: float) -> void:
             # 植物与僵尸的距离
             var distance = zombie.global_position.distance_to(body.global_position)
             # 如果距离在攻击范围内
-            if distance < body.wand.attack_range:
+            if distance < body.attack_detection_radius:
                 can_attack_zombies.append(zombie)
                 
             # 单发豌豆射手一次只能攻击一个僵尸

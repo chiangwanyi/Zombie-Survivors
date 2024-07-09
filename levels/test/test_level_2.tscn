@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=21 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -63,32 +63,15 @@ func _on_timer_timeout() -> void:
     GameManager.create_zombie(spawn_pos.position, \"regular_zombie\")
 "
 
-[sub_resource type="GDScript" id="GDScript_ybrln"]
-script/source = "extends Polygon2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-    polygon = PolygonUtils.generate_circle_polygon(100, 100, Vector2.ZERO)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-    pass
-"
-
 [node name="Main" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -112.0
-offset_top = -87.0
-offset_right = -112.0
-offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qcx47")
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -406,6 +389,7 @@ layer_0/tile_data = PackedInt32Array(-1, 1, 0, -65536, 1, 0, -65535, 1, 0, -1310
 metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Level"]
+metadata/_edit_lock_ = true
 
 [node name="ZombieSpawnPath_01" type="Path2D" parent="Level"]
 curve = SubResource("Curve2D_lljyy")
@@ -418,9 +402,6 @@ rotation = 0.00817826
 [node name="Timer" type="Timer" parent="Level/ZombieSpawnPath_01"]
 wait_time = 5.0
 autostart = true
-
-[node name="Polygon2D" type="Polygon2D" parent="Level"]
-script = SubResource("GDScript_ybrln")
 
 [connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]
 [connection signal="timeout" from="Level/ZombieSpawnPath_01/Timer" to="Level/ZombieSpawnPath_01" method="_on_timer_timeout"]
