@@ -1,7 +1,5 @@
 extends State
 
-@onready var sprite_2d: Sprite2D = $"../../Sprite2D"
-
 func enter() -> void:
     pass
     
