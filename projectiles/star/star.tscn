@@ -1,0 +1,108 @@
+[gd_scene load_steps=13 format=3 uid="uid://cf52indujrhg5"]
+
+[ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_o3yke"]
+[ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_c8xsi"]
+[ext_resource type="Texture2D" uid="uid://bst2885p8fnop" path="res://_assets/items/projectiles/star/Projectile_star.png" id="3_lr582"]
+[ext_resource type="Texture2D" uid="uid://t502xwa110ra" path="res://_assets/items/particles/Pea_particles.png" id="4_iwcqf"]
+[ext_resource type="Script" path="res://projectiles/star/state/before_launch.gd" id="4_qhkgb"]
+[ext_resource type="Script" path="res://projectiles/star/state/hit.gd" id="4_vapfa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_up7hn"]
+radius = 12.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_c63b0"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_6rivx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740437, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_qkdso"]
+resource_name = "spin"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_a2jam"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4q7yn"]
+_data = {
+"RESET": SubResource("Animation_a2jam"),
+"spin": SubResource("Animation_qkdso")
+}
+
+[node name="Star" instance=ExtResource("1_o3yke")]
+
+[node name="DamageOnTouchAbility" parent="." index="0"]
+atk = 30
+damage_self = false
+
+[node name="Shadow" type="Sprite2D" parent="." index="2"]
+modulate = Color(0, 0, 0, 0.329412)
+position = Vector2(0, 35)
+scale = Vector2(0.8, 0.4)
+texture = ExtResource("2_c8xsi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+texture_filter = 1
+texture = ExtResource("3_lr582")
+
+[node name="StateMachine" parent="." index="4" node_paths=PackedStringArray("start_state")]
+start_state = NodePath("BeforeLaunch")
+
+[node name="BeforeLaunch" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("4_qhkgb")
+
+[node name="Hit" type="Node" parent="StateMachine" index="2"]
+script = ExtResource("4_vapfa")
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_up7hn")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="6"]
+z_index = 1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_c63b0")
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_iwcqf")
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_6rivx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="9"]
+libraries = {
+"": SubResource("AnimationLibrary_4q7yn")
+}
