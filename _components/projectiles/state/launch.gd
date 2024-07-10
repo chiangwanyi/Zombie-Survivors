@@ -20,3 +20,9 @@ func physics_update(delta: float) -> void:
         velocity = velocity * clampf(1.0 - body.body_drag * timestep, 0.0, 1.0)
     elif body.trajectory == Projectile2D.ProjectileTrajectory.LINEAR:
         body.position += (linera_direction * body.body_force * delta)
+
+
+func _on_projectile_2d_area_entered(area: Area2D) -> void:
+    if not body.waiting_damage_area_list.has(area):
+        body.waiting_damage_area_list.append(area)
+    emit_signal("finished", "Hit")

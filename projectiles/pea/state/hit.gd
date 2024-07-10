@@ -9,11 +9,11 @@ func enter() -> void:
     cpu_particles_2d.emitting = true
     
 func physics_update(_delta: float) -> void:
-    var list: Array[Area2D] = []
+    var valid_body: Array[Area2D] = []
     
     for damage_body in body.waiting_damage_area_list:
         if is_instance_valid(damage_body):
-            list.append(damage_body)
+            valid_body.append(damage_body)
             
-    body.damage_on_touch_ability.damage(list)
+    body.damage_on_touch_ability.damage(valid_body)
 

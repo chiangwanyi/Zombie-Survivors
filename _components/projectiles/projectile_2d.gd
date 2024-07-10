@@ -29,7 +29,7 @@ enum ProjectileTrajectory {
 @export var speed: float = 800.0
 ## 弹道
 @export var trajectory: ProjectileTrajectory = ProjectileTrajectory.LINEAR
-## 伤害延迟计算时间
+## 伤害延迟计算时间（为0则表示碰到敌人后立即计算伤害）
 @export var hit_delay_time: float = 0.0
 
 var waiting_damage_area_list: Array[Area2D] = []
@@ -50,28 +50,10 @@ func get_forward_direction() -> Vector2:
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
     state_machine.change_state("Destory")
 
+
 func _on_health_ability_killed() -> void:
     state_machine.change_state("Destory")
 
-func _on_area_entered(area: Area2D) -> void:
-    if state_machine.current_state.name != "Launch":
-        return
-    if not waiting_damage_area_list.has(area):
-        waiting_damage_area_list.append(area)
-    
-    if hit_delay_time <= 0:
-        state_machine.change_state("Hit")
-        return
-    
-    if hit_delay_timer.is_stopped():
-        hit_delay_timer.one_shot = true
-        hit_delay_timer.wait_time = hit_delay_time
-        hit_delay_timer.start()
-
-func _on_area_exited(area: Area2D) -> void:
-    if state_machine.current_state.name != "Launch":
-        return    
-    waiting_damage_area_list.erase(area)
 
 func _on_hit_delay_timer_timeout() -> void:
     state_machine.change_state("Hit")

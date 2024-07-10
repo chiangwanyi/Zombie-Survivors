@@ -21,7 +21,6 @@ point_count = 2
 
 [node name="DamageOnTouchAbility" parent="." index="0"]
 atk = 30
-damage_self = false
 
 [node name="Shadow" type="Sprite2D" parent="." index="2"]
 modulate = Color(0, 0, 0, 0.329412)

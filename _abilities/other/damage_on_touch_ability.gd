@@ -15,3 +15,4 @@ func damage(area_list: Array[Area2D]):
     if damage_self and owner.has_node(^"HealthAbility"):
         var self_health_ability := owner.get_node(^"HealthAbility") as HealthAbility
         self_health_ability.take_damage(self_atk_total)        
+    
