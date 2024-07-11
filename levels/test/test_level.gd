@@ -4,7 +4,8 @@ extends Node2D
 
 
 func _ready():
-    GameManager.current_level = self
+    pass
+    #GameManager.current_level = self
 
 
 func _on_zombie_spawn_timer_1_timeout() -> void:

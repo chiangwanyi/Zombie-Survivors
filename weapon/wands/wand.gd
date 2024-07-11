@@ -43,8 +43,8 @@ var current_cast_group: Array[Spell]
 var cast_group_stack: Array = []
 
 func _ready() -> void:
-    # 1. 重载法术槽
-    reset_spell_list()
+    ## 1. 重载法术槽
+    #reset_spell_list()
     
     # 2. 开始
     state_machine.start()
@@ -55,8 +55,8 @@ func reset_spell_list() -> void:
         if spell:
             spell.queue_free()
     
-    spell_list.resize(spell_inventory.slot_size)
-    for i in range(spell_inventory.slot_size):
+    spell_list.resize(spell_inventory.item_name_list.size())
+    for i in range(spell_inventory.item_name_list.size()):
         var spell_name = spell_inventory.item_name_list[i]
         if spell_name:
             spell_list[i] = (GameManager.registed_spells[spell_name] as PackedScene).instantiate()

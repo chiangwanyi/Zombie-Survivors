@@ -4,5 +4,5 @@ extends State
 
 func enter() -> void:
     animation_player.play("spin")
-    emit_signal("Launch")
+    emit_signal("finished", "Launch")
 

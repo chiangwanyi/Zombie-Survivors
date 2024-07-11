@@ -1,4 +1,4 @@
-class_name GameLevel extends Node2D
+extends Node2D
 
 @onready var state_machine := $StateMachine as StateMachine
 @export var level_name := "Level 1"

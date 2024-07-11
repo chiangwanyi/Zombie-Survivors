@@ -1075,7 +1075,7 @@ script = ExtResource("5_yjeeq")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(-37, -28)
 sprite_frames = SubResource("SpriteFrames_uclv3")
-animation = &"die2"
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="." index="4"]
 position = Vector2(-8, -25)

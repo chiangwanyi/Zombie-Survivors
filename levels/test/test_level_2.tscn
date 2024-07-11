@@ -400,7 +400,7 @@ position = Vector2(-681, -374)
 rotation = 0.00817826
 
 [node name="Timer" type="Timer" parent="Level/ZombieSpawnPath_01"]
-wait_time = 5.0
+wait_time = 2.5
 autostart = true
 
 [connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]

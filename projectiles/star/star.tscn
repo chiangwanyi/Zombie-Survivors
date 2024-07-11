@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_o3yke"]
 [ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_c8xsi"]
 [ext_resource type="Texture2D" uid="uid://bst2885p8fnop" path="res://_assets/items/projectiles/star/Projectile_star.png" id="3_lr582"]
-[ext_resource type="Texture2D" uid="uid://t502xwa110ra" path="res://_assets/items/particles/Pea_particles.png" id="4_iwcqf"]
 [ext_resource type="Script" path="res://projectiles/star/state/before_launch.gd" id="4_qhkgb"]
 [ext_resource type="Script" path="res://projectiles/star/state/hit.gd" id="4_vapfa"]
+[ext_resource type="Texture2D" uid="uid://bstcy3pjy4w7y" path="res://_assets/items/particles/Star_particles.png" id="6_scr5n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_up7hn"]
 radius = 12.0
@@ -60,8 +60,7 @@ _data = {
 [node name="Star" instance=ExtResource("1_o3yke")]
 
 [node name="DamageOnTouchAbility" parent="." index="0"]
-atk = 30
-damage_self = false
+atk = 80
 
 [node name="Shadow" type="Sprite2D" parent="." index="2"]
 modulate = Color(0, 0, 0, 0.329412)
@@ -93,7 +92,7 @@ emitting = false
 lifetime = 0.5
 one_shot = true
 explosiveness = 1.0
-texture = ExtResource("4_iwcqf")
+texture = ExtResource("6_scr5n")
 spread = 180.0
 gravity = Vector2(0, 200)
 initial_velocity_min = 100.0

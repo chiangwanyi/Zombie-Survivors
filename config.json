@@ -10,8 +10,8 @@
 			"defense": 50,
 			"initial_spell_capacity": 4,
 			"initial_spell": [
-				"Pea",
-				"Pea"
+				"Star",
+        "Pea"
 			]
 		},
 		{

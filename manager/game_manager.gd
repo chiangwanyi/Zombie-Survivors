@@ -16,7 +16,7 @@ var cfg_seeds: Dictionary
 ## 当前活动 Level 场景名称
 var current_level_name: String
 ## 当前活动 Level 场景
-var current_level: Node
+var current_level: Node2D
 
 ## 主HUD
 var main_hud: CanvasLayer

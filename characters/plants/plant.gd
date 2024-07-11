@@ -9,6 +9,8 @@ class_name Plant extends Area2D
 ## 植物的攻击检测范围 图形
 @onready var attack_detection: Polygon2D = $Polygon2D
 
+@onready var sfx_plant: AudioStreamPlayer = $SfxPlant
+
 @export var attack_detection_radius: int = 100
 
 ### 是否自动使用武器
@@ -42,7 +44,12 @@ func _ready() -> void:
     
     var seed_info := GameManager.cfg_seeds.get(plant_name) as Dictionary
     inventory_basic_ability.slot_size = seed_info.get("initial_spell_capacity")
-    inventory_basic_ability.item_name_list = seed_info.get("initial_spell")    
+    inventory_basic_ability.item_name_list = seed_info.get("initial_spell")
+    
+    wand.reset_spell_list()
+    
+    sfx_plant.play()
+    
 
 # 鼠标动作
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cy4kvtp3c3dxc"]
+[gd_scene load_steps=15 format=3 uid="uid://cy4kvtp3c3dxc"]
 
 [ext_resource type="PackedScene" uid="uid://dnoahf82ofrcs" path="res://_abilities/other/health_ability.tscn" id="1_5qod3"]
 [ext_resource type="Script" path="res://characters/plants/plant.gd" id="1_ap4tu"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://_abilities/inventory_abilities/inventory_basic_ability.gd" id="4_dcrx0"]
 [ext_resource type="PackedScene" uid="uid://dub12avp0i8ud" path="res://weapon/wands/wand.tscn" id="4_vulds"]
 [ext_resource type="PackedScene" uid="uid://beoeb1tokplbb" path="res://inventory/item_slot/spell_item_slot.tscn" id="5_luy2b"]
+[ext_resource type="AudioStream" uid="uid://dlk62lwp0c6ie" path="res://_assets/sounds/plant.ogg" id="9_spbr0"]
+[ext_resource type="AudioStream" uid="uid://c21tfe6vgwbej" path="res://_assets/sounds/plant2.ogg" id="10_nmt3i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yr5d6"]
 bg_color = Color(0.152941, 0.152941, 0.152941, 1)
@@ -17,6 +19,14 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gws0y"]
 bg_color = Color(0.611765, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6k0bv"]
+playback_mode = 1
+streams_count = 2
+stream_0/stream = ExtResource("9_spbr0")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("10_nmt3i")
+stream_1/weight = 1.0
 
 [node name="Plant" type="Area2D" groups=["plant"]]
 collision_layer = 8
@@ -76,6 +86,10 @@ show_percentage = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.490196, 1, 1, 0.490196)
+
+[node name="SfxPlant" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_6k0bv")
+bus = &"Sfx"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 
