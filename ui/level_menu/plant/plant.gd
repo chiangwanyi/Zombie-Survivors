@@ -28,7 +28,7 @@ func show_plant_info(plant_key: String) -> void:
     var plant_inventory := GameManager.inventories.get(plant.inventory_basic_ability.inventory_name) as InventoryBasicAbility
     plant_inventory.inventory_container = spell_container
 
-    plant_inventory.reload_with_items(plant_inventory.item_name_list, plant_inventory.item_name_list.size())
+    plant_inventory.reload_with_items(plant_inventory.item_name_list, plant_inventory.slot_size)
 
     # for i in range(wand.spells.size()):
     #     var spell_name = wand.spells[i]

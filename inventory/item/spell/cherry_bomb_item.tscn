@@ -7,8 +7,8 @@
 
 [node name="InventoryItem" instance=ExtResource("1_ds5v0")]
 item_type_name = "Spell"
-item_name = "Pea With Trigger"
-item_description = "触发普通豌豆"
+item_name = "Cherry Bomb"
+item_description = "樱桃炸弹"
 
 [node name="ItemBorder" parent="." index="0"]
 texture = ExtResource("2_nkfxt")
