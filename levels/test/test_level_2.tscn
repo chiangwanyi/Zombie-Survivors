@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=29 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -14,6 +14,13 @@
 [ext_resource type="Script" path="res://ui/level_menu/plant/plant.gd" id="10_ekls2"]
 [ext_resource type="Texture2D" uid="uid://bamxr8eqaowwq" path="res://_assets/images/plants/pea_shooter_single.png" id="11_jjpl7"]
 [ext_resource type="Script" path="res://ui/level_menu/spell/spell.gd" id="13_v6dk1"]
+[ext_resource type="AudioStream" uid="uid://w241namw5f5" path="res://_assets/sounds/zombie_groan.ogg" id="15_ibgcl"]
+[ext_resource type="AudioStream" uid="uid://c1wprmylfxkho" path="res://_assets/sounds/zombie_groan2.ogg" id="16_vlsuu"]
+[ext_resource type="AudioStream" uid="uid://dc3wr2jrk15ms" path="res://_assets/sounds/zombie_groan3.ogg" id="17_010li"]
+[ext_resource type="AudioStream" uid="uid://c368fq1jsb1aq" path="res://_assets/sounds/zombie_groan4.ogg" id="18_suv4j"]
+[ext_resource type="AudioStream" uid="uid://djghlgm46j6al" path="res://_assets/sounds/zombie_groan5.ogg" id="19_krp3m"]
+[ext_resource type="AudioStream" uid="uid://bu3iigbv33cgl" path="res://_assets/sounds/zombie_groan6.ogg" id="20_5w28m"]
+[ext_resource type="AudioStream" uid="uid://col177jby5sq" path="res://_assets/sounds/level_grasswalk.ogg" id="21_6f0to"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_olayq"]
 
@@ -63,7 +70,22 @@ func _on_timer_timeout() -> void:
     GameManager.create_zombie(spawn_pos.position, \"regular_zombie\")
 "
 
-[node name="Main" type="Control"]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ro1ya"]
+streams_count = 6
+stream_0/stream = ExtResource("15_ibgcl")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_vlsuu")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("17_010li")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("18_suv4j")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("19_krp3m")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("20_5w28m")
+stream_5/weight = 1.0
+
+[node name="Main" type="Control" node_paths=PackedStringArray("level", "zombie_count_label", "sfx_zombie_groan", "sfx_zombie_groan_timer", "bgm_level_playing")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -71,6 +93,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qcx47")
+level = NodePath("Level")
+zombie_count_label = NodePath("CanvasLayer/Panel/LevelBoard/Zombie/ZombieCountLabel")
+sfx_zombie_groan = NodePath("SfxZombieGroan")
+sfx_zombie_groan_timer = NodePath("SfxZombieGroan/SfxZombieGroanTimer")
+bgm_level_playing = NodePath("BgmLevelPlaying")
 metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -130,7 +157,7 @@ texture = ExtResource("4_l7x3o")
 expand_mode = 2
 stretch_mode = 4
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/LevelBoard/Zombie"]
+[node name="ZombieCountLabel" type="Label" parent="CanvasLayer/Panel/LevelBoard/Zombie"]
 layout_mode = 2
 text = "0"
 
@@ -403,5 +430,17 @@ rotation = 0.00817826
 wait_time = 2.5
 autostart = true
 
+[node name="SfxZombieGroan" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ro1ya")
+bus = &"Sfx"
+
+[node name="SfxZombieGroanTimer" type="Timer" parent="SfxZombieGroan"]
+wait_time = 5.0
+
+[node name="BgmLevelPlaying" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_6f0to")
+bus = &"Bgm"
+
 [connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]
 [connection signal="timeout" from="Level/ZombieSpawnPath_01/Timer" to="Level/ZombieSpawnPath_01" method="_on_timer_timeout"]
+[connection signal="timeout" from="SfxZombieGroan/SfxZombieGroanTimer" to="." method="_on_sfx_zombie_groan_timer_timeout"]

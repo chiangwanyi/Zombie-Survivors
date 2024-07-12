@@ -16,7 +16,7 @@ var cfg_seeds: Dictionary
 ## 当前活动 Level 场景名称
 var current_level_name: String
 ## 当前活动 Level 场景
-var current_level: Node2D
+var current_level: GameLevel
 
 ## 主HUD
 var main_hud: CanvasLayer
@@ -54,21 +54,21 @@ func _ready() -> void:
 
 ## 创建植物
 func create_plant(_pos: Vector2, plant_name: String) -> void:
-    if not current_level:
+    if not is_instance_valid(current_level):
         return
     var scene_path = _scenes_plant_folder + plant_name.to_lower().replace(" ", "_") + "/" + plant_name.to_lower().replace(" ", "_") + ".tscn"
     var plant = (load(scene_path) as PackedScene).instantiate() as Plant
 
-    plant.position = current_level.get_local_mouse_position()
+    plant.position = current_level.level.get_local_mouse_position()
     plant.key = IdUtils.unique_key()
     plant.plant_name = plant_name
 
-    current_level.call_deferred("add_child", plant)
+    current_level.level.call_deferred("add_child", plant)
     registerd_plants[plant.key] = plant
 
 ## 创建僵尸
 func create_zombie(pos: Vector2, zombie_name: String) -> void:
-    if not current_level:
+    if not is_instance_valid(current_level):
         return
     var scene_path = "res://characters/zombies/" + zombie_name.to_lower() + "/" + zombie_name.to_lower() + ".tscn"
     var zombie = (load(scene_path) as PackedScene).instantiate() as Zombie
@@ -77,14 +77,16 @@ func create_zombie(pos: Vector2, zombie_name: String) -> void:
     zombie.key = IdUtils.unique_key()
     zombie.zombie_name = zombie_name
 
-    current_level.call_deferred("add_child", zombie)
+    current_level.level.call_deferred("add_child", zombie)
     registerd_zombies[zombie.key] = zombie
+    current_level.modify_zombie_count(1)
 
 func remove_zombie(key: String) -> void:
     get_tree().call_group("plant", "remove_target_zombie", key)
     var zombie = registerd_zombies[key] as Zombie
     registerd_zombies.erase(key)
     zombie.queue_free()
+    current_level.modify_zombie_count(-1)
 
 func _register_spells() -> void:
     for spell in cfg.get("spells", []):

@@ -1,130 +1,130 @@
 {
-	"seeds": [
-		{
-			"name": "Pea Shooter Single",
-			"title": "豌豆射手",
-			"description": "单发豌豆射手",
-			"cost": 100,
-			"cooldown": 10,
-			"health": 100,
-			"defense": 50,
-			"initial_spell_capacity": 4,
-			"initial_spell": [
-				"Star",
+    "seeds": [
+        {
+            "name": "Pea Shooter Single",
+            "title": "豌豆射手",
+            "description": "单发豌豆射手",
+            "cost": 100,
+            "cooldown": 10,
+            "health": 100,
+            "defense": 50,
+            "initial_spell_capacity": 4,
+            "initial_spell": [
+                "Star",
         "Pea"
-			]
-		},
-		{
-			"name": "Sunflower",
-			"title": "向日葵",
-			"description": "生产阳光，阳光用于种植植物",
-			"cost": 50,
-			"cooldown": 5,
-			"health": 100,
-			"defense": 50,
-			"initial_spell_capacity": 2,
-			"initial_spell": [
-				"Sun"
-			]
-		}
-	],
-	"spells": [
-		{
-			"name": "Pea",
-			"title": "豌豆",
-			"description": "一发豌豆",
-			"scene": "res://spells/projectile/pea.tscn"
-		},
-		{
-			"name": "Star",
-			"title": "星星",
-			"description": "星星",
-			"scene": "res://spells/projectile/star.tscn"
-		},
-		{
-			"name": "Sun",
-			"title": "阳光",
-			"description": "阳光",
-			"scene": "res://spells/projectile/sun.tscn"
-		},
-		{
-			"name": "Pea With Trigger",
-			"title": "带触发器的豌豆",
-			"description": "带触发器的豌豆",
-			"scene": "res://spells/projectile/pea_with_trigger.tscn"
-		},
-		{
-			"name": "Cherry Bomb",
-			"title": "樱桃炸弹",
-			"description": "樱桃炸弹",
-			"scene": "res://spells/projectile/cherry_bomb.tscn"
-		}
-	],
-	"inventories": [
-		{
-			"item_name": "Pea Shooter Single",
-			"item_inventory_type": "Seed",
-			"item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
-		},
-		{
-			"item_name": "Sunflower",
-			"item_inventory_type": "Seed",
-			"item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
-		},
-		{
-			"item_name": "Pea",
-			"item_inventory_type": "Spell",
-			"item_scene": "res://inventory/item/spell/pea_item.tscn"
-		},
-		{
-			"item_name": "Star",
-			"item_inventory_type": "Spell",
-			"item_scene": "res://inventory/item/spell/star_item.tscn"
-		},
-		{
-			"item_name": "Sun",
-			"item_inventory_type": "Spell",
-			"item_scene": "res://inventory/item/spell/sun_item.tscn"
-		},
-		{
-			"item_name": "Pea With Trigger",
-			"item_inventory_type": "Spell",
-			"item_scene": "res://inventory/item/spell/pea_with_trigger_item.tscn"
-		},
-		{
-			"item_name": "Cherry Bomb",
-			"item_inventory_type": "Spell",
-			"item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
-		}
-	],
-	"levels": [
-		{
-			"name": "Level 1",
-			"description": "关卡1",
-			"initial_sun": 100,
-			"initial_seed_capacity": 4,
-			"inventories": {
-				"Seed Inventory": {
-					"inventory_type": "Seed",
-					"inventory_items": [
-						"Pea Shooter Single",
-						"Sunflower"
-					]
-				},
-				"Spell Inventory": {
-					"inventory_type": "Spell",
-					"inventory_items": [
-						"Pea",
-						"",
-						"Sun",
-						"Pea With Trigger",
-						"Cherry Bomb",
-						"Cherry Bomb",
-						"Star",
-						""
-					]
-				}
-			}
-		}
-	]
+            ]
+        },
+        {
+            "name": "Sunflower",
+            "title": "向日葵",
+            "description": "生产阳光，阳光用于种植植物",
+            "cost": 50,
+            "cooldown": 5,
+            "health": 100,
+            "defense": 50,
+            "initial_spell_capacity": 2,
+            "initial_spell": [
+                "Sun"
+            ]
+        }
+    ],
+    "spells": [
+        {
+            "name": "Pea",
+            "title": "豌豆",
+            "description": "一发豌豆",
+            "scene": "res://spells/projectile/pea.tscn"
+        },
+        {
+            "name": "Star",
+            "title": "星星",
+            "description": "星星",
+            "scene": "res://spells/projectile/star.tscn"
+        },
+        {
+            "name": "Sun",
+            "title": "阳光",
+            "description": "阳光",
+            "scene": "res://spells/projectile/sun.tscn"
+        },
+        {
+            "name": "Pea With Trigger",
+            "title": "带触发器的豌豆",
+            "description": "带触发器的豌豆",
+            "scene": "res://spells/projectile/pea_with_trigger.tscn"
+        },
+        {
+            "name": "Cherry Bomb",
+            "title": "樱桃炸弹",
+            "description": "樱桃炸弹",
+            "scene": "res://spells/projectile/cherry_bomb.tscn"
+        }
+    ],
+    "inventories": [
+        {
+            "item_name": "Pea Shooter Single",
+            "item_inventory_type": "Seed",
+            "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
+        },
+        {
+            "item_name": "Sunflower",
+            "item_inventory_type": "Seed",
+            "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
+        },
+        {
+            "item_name": "Pea",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/pea_item.tscn"
+        },
+        {
+            "item_name": "Star",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/star_item.tscn"
+        },
+        {
+            "item_name": "Sun",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/sun_item.tscn"
+        },
+        {
+            "item_name": "Pea With Trigger",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/pea_with_trigger_item.tscn"
+        },
+        {
+            "item_name": "Cherry Bomb",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
+        }
+    ],
+    "levels": [
+        {
+            "name": "Level 1",
+            "description": "关卡1",
+            "initial_sun": 100,
+            "initial_seed_capacity": 4,
+            "inventories": {
+                "Seed Inventory": {
+                    "inventory_type": "Seed",
+                    "inventory_items": [
+                        "Pea Shooter Single",
+                        "Sunflower"
+                    ]
+                },
+                "Spell Inventory": {
+                    "inventory_type": "Spell",
+                    "inventory_items": [
+                        "Pea",
+                        "",
+                        "Sun",
+                        "Pea With Trigger",
+                        "Cherry Bomb",
+                        "Cherry Bomb",
+                        "Star",
+                        ""
+                    ]
+                }
+            }
+        }
+    ]
 }
