@@ -1,6 +1,7 @@
 class_name InventoryBasicAbility extends InventoryAbility
 
 signal item_sync
+signal inventory_sync_finish
 
 ## 背包在 GameManager 中注册的名称
 @export var inventory_name: String
@@ -124,3 +125,4 @@ func _on_item_sync() -> void :
         else:
             new_item_name_list.append("")
     item_name_list = new_item_name_list
+    inventory_sync_finish.emit()

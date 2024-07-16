@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://djv1hu70tko1"]
 
 [ext_resource type="PackedScene" uid="uid://bdhqsl8r8ylph" path="res://_components/spells/spell.tscn" id="1_t80jv"]
-[ext_resource type="PackedScene" uid="uid://dpm4wkdq4u22n" path="res://projectiles/pea/pea.tscn" id="2_q6288"]
+[ext_resource type="PackedScene" uid="uid://6fgct2xorjvi" path="res://projectiles/pea_with_trigger/pea_with_trigger.tscn" id="2_32kuh"]
 
 [node name="PeaWithTrigger" instance=ExtResource("1_t80jv")]
-spell_name = "Pea"
+spell_name = "Pea With Trigger"
 cast_delay = 0.05
 damage = 10
-projectile_scene = ExtResource("2_q6288")
+projectile_scene = ExtResource("2_32kuh")

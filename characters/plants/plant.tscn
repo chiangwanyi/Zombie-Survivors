@@ -92,5 +92,6 @@ stream = SubResource("AudioStreamRandomizer_6k0bv")
 bus = &"Sfx"
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="inventory_sync_finish" from="InventoryBasicAbility" to="." method="_on_spell_inventory_item_sync"]
 
 [editable path="HandleWeaponAbility"]

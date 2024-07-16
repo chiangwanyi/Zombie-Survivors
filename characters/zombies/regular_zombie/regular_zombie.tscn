@@ -1052,7 +1052,7 @@ height = 92.0
 radius = 46.0109
 
 [node name="RegularZombie" instance=ExtResource("1_ufphp")]
-speed = 10.0
+speed = 0.0
 
 [node name="HealthAbility" parent="." index="0"]
 initial_health = 1000

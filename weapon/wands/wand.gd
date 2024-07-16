@@ -43,17 +43,13 @@ var current_cast_group: Array[Spell]
 var cast_group_stack: Array = []
 
 func _ready() -> void:
-    ## 1. 重载法术槽
-    #reset_spell_list()
-    
     # 2. 开始
     state_machine.start()
 
 
+# 由植物初始化时调用
 func reset_spell_list() -> void:
-    for spell in spell_list:
-        if spell:
-            spell.queue_free()
+    spell_list.clear()
     
     spell_list.resize(spell_inventory.item_name_list.size())
     for i in range(spell_inventory.item_name_list.size()):

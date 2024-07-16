@@ -2,7 +2,7 @@ class_name Zombie extends Area2D
 
 @onready var state_machine: StateMachine = $StateMachine
 
-@export var key: String
+var key: String
 var zombie_name: String
 ## 当前的目标植物
 var target_plant: Plant

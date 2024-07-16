@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dq0f7fkq67ok7"]
+[gd_scene load_steps=30 format=3 uid="uid://dq0f7fkq67ok7"]
 
 [ext_resource type="Texture2D" uid="uid://71bteaioq234" path="res://_assets/items/Tiles/Almanac_GroundDay.jpg" id="1_4rosp"]
 [ext_resource type="Script" path="res://levels/test/test_level_2.gd" id="1_qcx47"]
@@ -41,6 +41,15 @@ func _can_drop_data(_at_position: Vector2, _data: Variant) -> bool:
 func _on_gui_input(event: InputEvent) -> void:
     if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
         level_menu.hide_all_tab()
+"
+
+[sub_resource type="GDScript" id="GDScript_dwvvo"]
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+    for plant in GameManager.registerd_plants.values() as Array[Plant]:
+        plant.handle_weapon_ability.shoot_start()
 "
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_duibv"]
@@ -116,8 +125,8 @@ metadata/_edit_lock_ = true
 [node name="LevelBoard" type="VFlowContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_left = 18.0
-offset_right = 84.0
-offset_bottom = 111.0
+offset_right = 123.0
+offset_bottom = 163.0
 
 [node name="Sun" type="HBoxContainer" parent="CanvasLayer/Panel/LevelBoard"]
 layout_mode = 2
@@ -160,6 +169,15 @@ stretch_mode = 4
 [node name="ZombieCountLabel" type="Label" parent="CanvasLayer/Panel/LevelBoard/Zombie"]
 layout_mode = 2
 text = "0"
+
+[node name="Test" type="HBoxContainer" parent="CanvasLayer/Panel/LevelBoard"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="CanvasLayer/Panel/LevelBoard/Test"]
+layout_mode = 2
+text = "测试攻击"
+script = SubResource("GDScript_dwvvo")
 
 [node name="LevelMenu" type="VBoxContainer" parent="CanvasLayer/Panel"]
 layout_mode = 1
@@ -442,5 +460,6 @@ stream = ExtResource("21_6f0to")
 bus = &"Bgm"
 
 [connection signal="gui_input" from="CanvasLayer/Panel" to="CanvasLayer/Panel" method="_on_gui_input"]
+[connection signal="pressed" from="CanvasLayer/Panel/LevelBoard/Test/Button" to="CanvasLayer/Panel/LevelBoard/Test/Button" method="_on_pressed"]
 [connection signal="timeout" from="Level/ZombieSpawnPath_01/Timer" to="Level/ZombieSpawnPath_01" method="_on_timer_timeout"]
 [connection signal="timeout" from="SfxZombieGroan/SfxZombieGroanTimer" to="." method="_on_sfx_zombie_groan_timer_timeout"]

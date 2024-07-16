@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://6fgct2xorjvi"]
+
+[ext_resource type="PackedScene" uid="uid://bsuparv4ev2j4" path="res://_components/projectiles/projectile_2d.tscn" id="1_42fnm"]
+[ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="2_exa5v"]
+[ext_resource type="Script" path="res://projectiles/pea_with_trigger/state/hit.gd" id="3_7rbnn"]
+[ext_resource type="Texture2D" uid="uid://t502xwa110ra" path="res://_assets/items/particles/Pea_particles.png" id="4_ip3ch"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xe5lh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s6enx"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_rkbcp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.740437, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Projectile2D" instance=ExtResource("1_42fnm")]
+
+[node name="Shadow" type="Sprite2D" parent="." index="2"]
+modulate = Color(0, 0, 0, 0.329412)
+position = Vector2(0, 35)
+scale = Vector2(0.8, 0.4)
+texture = ExtResource("2_exa5v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="3"]
+texture = ExtResource("2_exa5v")
+
+[node name="Hit" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("3_7rbnn")
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_xe5lh")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="6"]
+z_index = 1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_s6enx")
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("4_ip3ch")
+spread = 180.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_rkbcp")

@@ -13,25 +13,6 @@ class_name Plant extends Area2D
 
 @export var attack_detection_radius: int = 100
 
-### 是否自动使用武器
-#@export var auto_attack: bool = false:
-    #set(value):
-        #if not is_inside_tree():
-            #await ready
-        #auto_attack = value
-        #attack_timer.one_shot = not value
-        #if value and attack_timer.is_stopped():
-            #attack_timer.start()
-#
-### 攻击速度（两次攻击的间隔时间，单位秒）
-#@export var attack_speed: float = 1.0:
-    #set(value):
-        #if not is_inside_tree():
-            #await ready
-        #attack_speed = value
-        #if handle_weapon_ability:
-            #attack_timer.wait_time = value
-        
 var key: String
 var plant_name: String
 var target_zombies: Array[String] = []
@@ -64,3 +45,6 @@ func remove_target_zombie(zombie_key: String) -> void:
     
 func hide_attack_detection() -> void:
     attack_detection.visible = false
+
+func _on_spell_inventory_item_sync() -> void:
+    wand.reset_spell_list()

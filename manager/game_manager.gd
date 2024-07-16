@@ -70,6 +70,10 @@ func create_plant(_pos: Vector2, plant_name: String) -> void:
 func create_zombie(pos: Vector2, zombie_name: String) -> void:
     if not is_instance_valid(current_level):
         return
+        
+    if registerd_zombies.size() > 5:
+        return
+        
     var scene_path = "res://characters/zombies/" + zombie_name.to_lower() + "/" + zombie_name.to_lower() + ".tscn"
     var zombie = (load(scene_path) as PackedScene).instantiate() as Zombie
 
