@@ -1,7 +1,7 @@
 extends State
 
 var wand: Wand
-var cast_group: Array[Spell]
+var cast_group: Array
 
 func _ready() -> void:
     pass
@@ -13,47 +13,67 @@ func enter() -> void:
     #if not wand.deck.is_empty() and wand.discared.is_empty():
         ##TODO 标记回绕
         #pass
+
+    print("Discared:%s\tDeck:%s" % [wand.discared.map(get_spell_name), wand.deck.map(get_spell_name)]) 
     
     if not wand.deck.is_empty():
         cast_group = draw_spell()
-        # 牌库有法术，但是抽取失败，直接进入充能延迟
-        if cast_group.is_empty(): 
-            print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
-            emit_signal("finished", "RechargeDelay")
-        else:
-            wand.cast_group_stack.push_front(cast_group)
-            print("%s 本次抽取到法术:%s，剩余energe[%f/%f]，剩余desk:%d，准备【施法】" % [wand.name, cast_group, wand.energe, wand.max_energe, wand.deck.size()])
-            emit_signal("finished", "Cast")
+        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(get_spell_name), cast_group.map(get_spell_name), wand.deck.map(get_spell_name)]) 
+        ## 牌库有法术，但是抽取失败，直接进入充能延迟
+        #if cast_group.is_empty(): 
+            #print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
+            #emit_signal("finished", "RechargeDelay")
+        #else:
+            #wand.cast_group_stack.push_front(cast_group)
+            #print("%s 本次抽取到法术:%s，剩余energe[%f/%f]，剩余desk:%d，准备【施法】" % [wand.name, cast_group, wand.energe, wand.max_energe, wand.deck.size()])
+            #emit_signal("finished", "Cast")
     else:
         print("%s 牌库为空，准备进入【充能延迟】" % [wand.name])
         emit_signal("finished", "RechargeDelay")
 
 
 ## 抽取法术
-func draw_spell() -> Array[Spell]:
-    var group: Array[Spell] = []
+func draw_spell() -> Array:
+    var draw := 1
+    var remain_energe := wand.energe
+    var projectile_spells = []
+    var projectile_modifier_spells: Array[Spell] = []
     
-    # 定义本次抽取次数
-    var draw = wand.max_cast
-    # 暂存当前的剩余 energe
-    var remaining_energe = wand.energe
     while draw > 0 and not wand.deck.is_empty():
-        # 尝试从【牌库】中抽取一个法术
         var spell := wand.deck.pop_front() as Spell
-        # 如果当前的剩余 energe 不足以施放当前抽取的法术
-        if spell.energe_drain > remaining_energe:
+        if spell.energe_drain <= remain_energe:
+            draw -= 1
+            if spell.spell_type == Spell.SpellType.Multicast:
+                draw += spell.draw_num
+                wand.discared.append(spell)
+            elif spell.spell_type == Spell.SpellType.ProjectileModifier:
+                projectile_modifier_spells.append(spell)
+                draw += spell.draw_num
+                wand.discared.append(spell)
+            elif spell.spell_type == Spell.SpellType.Projectile or spell.spell_type == Spell.SpellType.StaticProjectile:
+                projectile_spells.append(spell)
+                if spell.draw_num == 0:
+                    draw += spell.draw_num
+                    wand.discared.append(spell)
+                else:
+                    var sub_loop_draw := spell.draw_num
+                    while sub_loop_draw > 0:
+                        projectile_spells.append(draw_spell())
+                        sub_loop_draw -= 1
+                    wand.discared.append(spell)
+        else:
             wand.discared.append(spell)
-            break
-        draw += spell.draw_num
-        draw -= 1
-        group.append(spell)
-        
-    return group
 
-func exit() -> void:
-    pass
-    #print("%s 退出 Draw 状态" % wand.name)
+    for item in projectile_spells:
+        if item is Spell:
+            item.projectile_modifier_spells = projectile_modifier_spells
 
-func _exit_tree() -> void:
-    pass
+    return projectile_spells
+
+func get_spell_name(value):
+    if value is Spell:
+        return value.spell_name
+    elif value is Array:
+        return value.map(get_spell_name)
+    return "NONE"
 
