@@ -15,7 +15,9 @@ enum DamageType {
     ## 穿凿伤害
     Drill,
     ## 近战伤害
-    Melee
+    Melee,
+    ## 爆炸伤害
+    Explosion
 }
 
 @export_group("Spell Attributes")

@@ -58,6 +58,30 @@
             "title": "樱桃炸弹",
             "description": "樱桃炸弹",
             "scene": "res://spells/projectile/cherry_bomb.tscn"
+        },
+        {
+            "name": "Fireball Orbit",
+            "title": "火球环绕",
+            "description": "令四个火球环绕投射物旋转",
+            "scene": "res://spells/projectile_modifier/fireball_orbit.tscn"
+        },
+        {
+            "name": "Burst 2",
+            "title": "2重施法",
+            "description": "同时施放2个法术",
+            "scene": "res://spells/projectile_modifier/burst_2.tscn"
+        },
+        {
+            "name": "Burst 3",
+            "title": "3重施法",
+            "description": "同时施放3个法术",
+            "scene": "res://spells/projectile_modifier/burst_3.tscn"
+        },
+        {
+            "name": "Burst 4",
+            "title": "4重施法",
+            "description": "同时施放4个法术",
+            "scene": "res://spells/projectile_modifier/burst_4.tscn"
         }
     ],
     "inventories": [
@@ -95,6 +119,26 @@
             "item_name": "Cherry Bomb",
             "item_inventory_type": "Spell",
             "item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
+        },
+        {
+            "item_name": "Fireball Orbit",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/orbit_fireball_item.tscn"
+        },
+        {
+            "item_name": "Burst 2",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/burst_2_item.tscn"
+        },
+        {
+            "item_name": "Burst 3",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/burst_3_item.tscn"
+        },
+        {
+            "item_name": "Burst 4",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/burst_4_item.tscn"
         }
     ],
     "levels": [
@@ -121,7 +165,11 @@
                         "Cherry Bomb",
                         "Cherry Bomb",
                         "Star",
-                        ""
+                        "",
+                        "Fireball Orbit",
+                        "Burst 2",
+                        "Burst 3",
+                        "Burst 4"
                     ]
                 }
             }

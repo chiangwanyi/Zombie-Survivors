@@ -72,6 +72,9 @@ func draw_spell() -> Array:
 
 func get_spell_name(value):
     if value is Spell:
+        var modifier_list: Array[Spell] = value.projectile_modifier_spells
+        if not modifier_list.is_empty():
+            return value.spell_name + "(" + str(modifier_list.map(get_spell_name)) + ")"
         return value.spell_name
     elif value is Array:
         return value.map(get_spell_name)

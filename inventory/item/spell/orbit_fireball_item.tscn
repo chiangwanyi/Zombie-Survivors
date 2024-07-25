@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c21fxsea4y3n0"]
+
+[ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="1_6ew6a"]
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="2_j4fuj"]
+[ext_resource type="Texture2D" uid="uid://cg5hjud4le5rd" path="res://_assets/items/modifier/orbit_fireballs.png" id="3_sfkbs"]
+
+[node name="InventoryItem" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6ew6a")
+item_type_name = "Spell"
+item_name = "Fire Orbit"
+item_description = "火球环绕"
+
+[node name="ItemBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_j4fuj")
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_sfkbs")
+expand_mode = 3
+stretch_mode = 3

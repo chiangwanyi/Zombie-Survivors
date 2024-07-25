@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6lybqaex0ni1"]
+
+[ext_resource type="Script" path="res://_components/spells/spell.gd" id="1_v1ccv"]
+
+[node name="Burst4" type="Node"]
+script = ExtResource("1_v1ccv")
+spell_name = "Burst 4"
+spell_type = 5
+draw_num = 4

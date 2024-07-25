@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://caxxhteh5b2fy"]
+
+[ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="1_85j61"]
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="2_ua608"]
+[ext_resource type="Texture2D" uid="uid://br7jhk6f8q2qk" path="res://_assets/items/modifier/burst_2.png" id="3_16h0t"]
+
+[node name="InventoryItem" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_85j61")
+item_type_name = "Spell"
+item_name = "Burst 2"
+item_description = "二重施法"
+
+[node name="ItemBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_ua608")
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_16h0t")
+expand_mode = 3
+stretch_mode = 3
