@@ -1,7 +1,7 @@
 extends State
 
 var wand: Wand
-var cast_group: Array
+var cast_projectile_spells: Array
 
 func _ready() -> void:
     pass
@@ -17,16 +17,16 @@ func enter() -> void:
     print("Discared:%s\tDeck:%s" % [wand.discared.map(get_spell_name), wand.deck.map(get_spell_name)]) 
     
     if not wand.deck.is_empty():
-        cast_group = draw_spell()
-        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(get_spell_name), cast_group.map(get_spell_name), wand.deck.map(get_spell_name)]) 
+        cast_projectile_spells = draw_spell()
+        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(get_spell_name), cast_projectile_spells.map(get_spell_name), wand.deck.map(get_spell_name)]) 
         ## 牌库有法术，但是抽取失败，直接进入充能延迟
-        #if cast_group.is_empty(): 
-            #print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
-            #emit_signal("finished", "RechargeDelay")
-        #else:
-            #wand.cast_group_stack.push_front(cast_group)
-            #print("%s 本次抽取到法术:%s，剩余energe[%f/%f]，剩余desk:%d，准备【施法】" % [wand.name, cast_group, wand.energe, wand.max_energe, wand.deck.size()])
-            #emit_signal("finished", "Cast")
+        if cast_projectile_spells.is_empty(): 
+            print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
+            emit_signal("finished", "RechargeDelay")
+        else:
+            wand.cast_group_stack.push_front(cast_projectile_spells)
+            print("%s 本次抽取到法术，剩余energe[%f/%f]，剩余desk:%d，准备【施法】" % [wand.name, wand.energe, wand.max_energe, wand.deck.size()])
+            emit_signal("finished", "Cast")
     else:
         print("%s 牌库为空，准备进入【充能延迟】" % [wand.name])
         emit_signal("finished", "RechargeDelay")
