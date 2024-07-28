@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://4xny2tmx43xw"]
+
+[ext_resource type="Script" path="res://_components/inventory/inventory_item.gd" id="1_pwjo5"]
+[ext_resource type="Texture2D" uid="uid://bisctadfis1up" path="res://_assets/images/Item_bg_projectile.png" id="2_tym5x"]
+[ext_resource type="Texture2D" uid="uid://cg5hjud4le5rd" path="res://_assets/items/modifier/orbit_fireballs.png" id="3_1mpj7"]
+[ext_resource type="Texture2D" uid="uid://c5t2doiem8b6u" path="res://_assets/items/projectiles/pea/ProjectilePea.png" id="4_vs8nu"]
+
+[node name="InventoryItem" type="Control"]
+texture_filter = 1
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pwjo5")
+item_type_name = "Spell"
+item_name = "Pea Orbit"
+item_description = "豌豆环绕"
+
+[node name="ItemBorder" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_right = 32.0
+offset_bottom = 32.0
+texture = ExtResource("2_tym5x")
+expand_mode = 3
+
+[node name="ItemAvatar" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+scale = Vector2(2, 2)
+texture = ExtResource("3_1mpj7")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 46.0
+offset_bottom = 36.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_vs8nu")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 8.0
+offset_right = 46.0
+offset_bottom = 36.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_vs8nu")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 28.0
+offset_right = 46.0
+offset_bottom = 56.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("4_vs8nu")

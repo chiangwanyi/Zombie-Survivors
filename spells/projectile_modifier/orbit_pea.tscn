@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn61cw7oeprmt"]
+
+[ext_resource type="Script" path="res://_components/spells/spell.gd" id="1_b6n7x"]
+
+[node name="OrbitPea" type="Node"]
+script = ExtResource("1_b6n7x")
+spell_name = "Orbit Pea"
+energe_drain = 40
+spell_type = 4
