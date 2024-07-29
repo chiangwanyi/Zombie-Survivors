@@ -14,11 +14,11 @@ func enter() -> void:
         ##TODO 标记回绕
         #pass
 
-    print("Discared:%s\tDeck:%s" % [wand.discared.map(get_spell_name), wand.deck.map(get_spell_name)]) 
+    print("Discared:%s\tDeck:%s" % [wand.discared.map(Spell.get_spell_name), wand.deck.map(Spell.get_spell_name)]) 
     
     if not wand.deck.is_empty():
         cast_projectile_spells = draw_spell()
-        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(get_spell_name), cast_projectile_spells.map(get_spell_name), wand.deck.map(get_spell_name)]) 
+        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(Spell.get_spell_name), cast_projectile_spells.map(Spell.get_spell_name), wand.deck.map(Spell.get_spell_name)]) 
         ## 牌库有法术，但是抽取失败，直接进入充能延迟
         if cast_projectile_spells.is_empty(): 
             print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
@@ -35,13 +35,14 @@ func enter() -> void:
 ## 抽取法术
 func draw_spell() -> Array:
     var draw := 1
-    var remain_energe := wand.energe
+    # var remain_energe := wand.energe
     var projectile_spells = []
     var projectile_modifier_spells: Array[Spell] = []
     
     while draw > 0 and not wand.deck.is_empty():
         var spell := wand.deck.pop_front() as Spell
-        if spell.energe_drain <= remain_energe:
+        if spell.energe_drain <= wand.energe:
+            wand.energe -= spell.energe_drain
             draw -= 1
             if spell.spell_type == Spell.SpellType.Multicast:
                 draw += spell.draw_num
@@ -69,14 +70,4 @@ func draw_spell() -> Array:
             item.projectile_modifier_spells = projectile_modifier_spells
 
     return projectile_spells
-
-func get_spell_name(value):
-    if value is Spell:
-        var modifier_list: Array[Spell] = value.projectile_modifier_spells
-        if not modifier_list.is_empty():
-            return value.spell_name + "(" + str(modifier_list.map(get_spell_name)) + ")"
-        return value.spell_name
-    elif value is Array:
-        return value.map(get_spell_name)
-    return "NONE"
 

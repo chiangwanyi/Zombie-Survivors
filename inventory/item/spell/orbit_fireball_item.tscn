@@ -11,7 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_6ew6a")
 item_type_name = "Spell"
-item_name = "Fire Orbit"
+item_name = "Orbit Fire"
 item_description = "火球环绕"
 
 [node name="ItemBorder" type="TextureRect" parent="."]

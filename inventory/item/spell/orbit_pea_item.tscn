@@ -12,7 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_pwjo5")
 item_type_name = "Spell"
-item_name = "Pea Orbit"
+item_name = "Orbit Pea"
 item_description = "豌豆环绕"
 
 [node name="ItemBorder" type="TextureRect" parent="."]

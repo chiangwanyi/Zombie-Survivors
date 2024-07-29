@@ -7,3 +7,4 @@ script = ExtResource("1_b6n7x")
 spell_name = "Orbit Pea"
 energe_drain = 40
 spell_type = 4
+draw_num = 1

@@ -8,10 +8,11 @@
             "cooldown": 10,
             "health": 100,
             "defense": 50,
-            "initial_spell_capacity": 4,
+            "initial_spell_capacity": 10,
             "initial_spell": [
-                "Pea With Trigger",
-                "Pea"
+                "Burst 2",
+                "Pea",
+                "Star"
             ]
         },
         {
@@ -60,10 +61,16 @@
             "scene": "res://spells/projectile/cherry_bomb.tscn"
         },
         {
-            "name": "Fireball Orbit",
+            "name": "Orbit Fireball",
             "title": "火球环绕",
             "description": "令四个火球环绕投射物旋转",
-            "scene": "res://spells/projectile_modifier/fireball_orbit.tscn"
+            "scene": "res://spells/projectile_modifier/orbit_fireball.tscn"
+        },
+        {
+            "name": "Orbit Pea",
+            "title": "豌豆环绕",
+            "description": "令四个豌豆环绕投射物旋转",
+            "scene": "res://spells/projectile_modifier/orbit_pea.tscn"
         },
         {
             "name": "Burst 2",
@@ -121,9 +128,14 @@
             "item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
         },
         {
-            "item_name": "Fireball Orbit",
+            "item_name": "Orbit Fireball",
             "item_inventory_type": "Spell",
             "item_scene": "res://inventory/item/spell/orbit_fireball_item.tscn"
+        },
+        {
+            "item_name": "Orbit Pea",
+            "item_inventory_type": "Spell",
+            "item_scene": "res://inventory/item/spell/orbit_pea_item.tscn"
         },
         {
             "item_name": "Burst 2",
@@ -165,8 +177,11 @@
                         "Cherry Bomb",
                         "Cherry Bomb",
                         "Star",
+                        "Star",
+                        "Star",
                         "",
-                        "Fireball Orbit",
+                        "Orbit Fireball",
+                        "Orbit Pea",
                         "Burst 2",
                         "Burst 3",
                         "Burst 4"

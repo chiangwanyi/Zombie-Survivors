@@ -42,6 +42,9 @@ func _ready() -> void:
     if trajectory == ProjectileTrajectory.GRAVITY_AFFECTED:
         body_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
         body_drag = ProjectSettings.get_setting("physics/2d/default_linear_damp")
+
+    body_force = speed
+    
     state_machine.start()
     
 func get_forward_direction() -> Vector2:

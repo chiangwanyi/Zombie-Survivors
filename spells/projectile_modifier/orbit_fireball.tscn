@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://be2jdl58lyjd3"]
+
+[ext_resource type="Script" path="res://_components/spells/spell.gd" id="1_2j5w5"]
+
+[node name="OrbitFireball" type="Node"]
+script = ExtResource("1_2j5w5")
+spell_name = "Orbit Fireball"
+energe_drain = 40
+spell_type = 4
+draw_num = 1
+damage_type = 3
