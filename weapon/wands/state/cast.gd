@@ -25,3 +25,15 @@ func enter() -> void:
     emit_signal("finished", "RechargeDelay")
     # else:
     #     emit_signal("finished", "CastDelay")
+
+func cast_spells(projectile_spawn_pos: Vector2, cast_group: Array) -> void:
+    while not cast_group.is_empty():
+        var value = cast_group.pop_front()
+        if value is Spell:
+            for modifier_spell in value.projectile_modifier_spells:
+                pass
+            if value.draw_num != 0:
+                if not cast_group.is_empty():
+                    var cast_group_on_hit = cast_group.pop_front()
+            value.cast(projectile_spawn_pos, wand.weapon_aim_point.global_position)
+            

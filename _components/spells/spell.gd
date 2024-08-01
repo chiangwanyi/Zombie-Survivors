@@ -49,7 +49,11 @@ func cast(start_position: Vector2, target_position: Vector2, force: float) -> vo
     projectile.global_position = start_position
     projectile.target_position = target_position
     GameManager.current_level.call_deferred("add_child", projectile)
-    
+
+func spawn_projectile() -> Projectile2D:
+    var projectile = projectile_scene.instantiate() as Projectile2D
+    return projectile
+
 static func get_spell_name(value):
     if value is Spell:
         var modifier_list: Array[Spell] = value.projectile_modifier_spells
