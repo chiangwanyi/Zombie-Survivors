@@ -8,7 +8,8 @@ func _ready() -> void:
 
 func enter() -> void:
     wand = owner as Wand
-    cast_spells(wand.projectile_spawn.global_position, wand.cast_group_stack)
+    print(wand.cast_group_stack.map(Spell.get_spell_name))
+    #cast_spells(wand.projectile_spawn.global_position, wand.cast_group_stack)
 
     # var cast_group := wand.cast_group_stack.pop_front() as Array
     # print("%s 进入 Cast 状态，当前待施放【施法法术组】:%s" % [wand.name, cast_group.map(Spell.get_spell_name)])
@@ -24,7 +25,7 @@ func enter() -> void:
     #         #spell.cast(wand.projectile_spawn.global_position, wand.get_global_mouse_position(), wand.FORCE)
     # print("%s 本次施法完毕" % [wand.name])
     # if wand.deck.is_empty():
-    emit_signal("finished", "RechargeDelay")
+    #emit_signal("finished", "RechargeDelay")
     # else:
     #     emit_signal("finished", "CastDelay")
 

@@ -45,6 +45,7 @@ func draw_spell() -> Array:
             wand.energe -= spell.energy_drain
             draw -= 1
             if spell.spell_type == Spell.SpellType.Multicast:
+                projectile_modifier_spells.append(spell)
                 draw += spell.draw_num
                 wand.discared.append(spell)
             elif spell.spell_type == Spell.SpellType.ProjectileModifier:

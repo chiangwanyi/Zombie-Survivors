@@ -17,12 +17,13 @@ enum DamageType {
     ## 近战伤害
     Melee,
     ## 爆炸伤害
-    Explosion
+    Explosion,
+    None
 }
 
 @export_group("Spell Attributes")
-@export var spell_name: String
 
+@export var spell_name: String
 ## 可使用次数（为负数表示无使用次数限制）
 var uses: int = -1
 ## 能量消耗

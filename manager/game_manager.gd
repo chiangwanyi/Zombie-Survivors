@@ -95,12 +95,12 @@ func remove_zombie(key: String) -> void:
 func _register_spells() -> void:
     for spell_info in cfg.get("spells", []):
         var spell := Spell.new()
-        spell.name = spell_info.get("name")
+        spell.spell_name = spell_info.get("name")
         spell.uses = spell_info.get("uses")
         spell.energy_drain = spell_info.get("energy_drain")
-        spell.spell_type = spell_info.get("spell_type")
+        spell.spell_type = Spell.SpellType[spell_info.get("spell_type")]
         spell.damage = spell_info.get("damage")
-        spell.damage_type = spell_info.get("damage_type")
+        spell.damage_type = Spell.DamageType[spell_info.get("damage_type")]
         spell.damage_radius = spell_info.get("damage_radius")
         spell.min_speed = spell_info.get("min_speed")
         spell.max_speed = spell_info.get("max_speed")
