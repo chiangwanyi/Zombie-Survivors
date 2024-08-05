@@ -1,200 +1,335 @@
 {
     "seeds": [
-        {
-            "name": "Pea Shooter Single",
-            "title": "豌豆射手",
-            "description": "单发豌豆射手",
-            "cost": 100,
-            "cooldown": 10,
-            "health": 100,
-            "defense": 50,
-            "initial_spell_capacity": 10,
-            "initial_spell": [
-                "Burst 2",
-                "Pea",
-                "Star"
-            ]
-        },
-        {
-            "name": "Sunflower",
-            "title": "向日葵",
-            "description": "生产阳光，阳光用于种植植物",
-            "cost": 50,
-            "cooldown": 5,
-            "health": 100,
-            "defense": 50,
-            "initial_spell_capacity": 2,
-            "initial_spell": [
-                "Sun"
-            ]
-        }
+      {
+        "name": "Pea Shooter Single",
+        "title": "豌豆射手",
+        "description": "单发豌豆射手",
+        "cost": 100,
+        "cooldown": 10,
+        "health": 100,
+        "defense": 50,
+        "initial_spell_capacity": 10,
+        "initial_spell": [
+          "Scatter 3",
+          "Pea",
+          "Star",
+          "Pea With Trigger"
+        ]
+      },
+      {
+        "name": "Sunflower",
+        "title": "向日葵",
+        "description": "生产阳光，阳光用于种植植物",
+        "cost": 50,
+        "cooldown": 5,
+        "health": 100,
+        "defense": 50,
+        "initial_spell_capacity": 2,
+        "initial_spell": [
+          "Sun"
+        ]
+      }
     ],
     "spells": [
-        {
-            "name": "Pea",
-            "title": "豌豆",
-            "description": "一发豌豆",
-            "uses": -1,
-            "cast_delay": 0,
-            "recharge_delay": 0,
-            "energy_drain": 5,
-            "lifetime_change": 0,
-            "spread_degrees": -1,
-            "damange_critical": 5,
-            "scene": "res://spells/projectile/pea.tscn"
-        },
-        {
-            "name": "Star",
-            "title": "星星",
-            "description": "星星",
-            "scene": "res://spells/projectile/star.tscn"
-        },
-        {
-            "name": "Sun",
-            "title": "阳光",
-            "description": "阳光",
-            "scene": "res://spells/projectile/sun.tscn"
-        },
-        {
-            "name": "Pea With Trigger",
-            "title": "带触发器的豌豆",
-            "description": "带触发器的豌豆",
-            "scene": "res://spells/projectile/pea_with_trigger.tscn"
-        },
-        {
-            "name": "Cherry Bomb",
-            "title": "樱桃炸弹",
-            "description": "樱桃炸弹",
-            "scene": "res://spells/projectile/cherry_bomb.tscn"
-        },
-        {
-            "name": "Orbit Fireball",
-            "title": "火球环绕",
-            "description": "令四个火球环绕投射物旋转",
-            "scene": "res://spells/projectile_modifier/orbit_fireball.tscn"
-        },
-        {
-            "name": "Orbit Pea",
-            "title": "豌豆环绕",
-            "description": "令四个豌豆环绕投射物旋转",
-            "scene": "res://spells/projectile_modifier/orbit_pea.tscn"
-        },
-        {
-            "name": "Burst 2",
-            "title": "2重施法",
-            "description": "同时施放2个法术",
-            "scene": "res://spells/projectile_modifier/burst_2.tscn"
-        },
-        {
-            "name": "Burst 3",
-            "title": "3重施法",
-            "description": "同时施放3个法术",
-            "scene": "res://spells/projectile_modifier/burst_3.tscn"
-        },
-        {
-            "name": "Burst 4",
-            "title": "4重施法",
-            "description": "同时施放4个法术",
-            "scene": "res://spells/projectile_modifier/burst_4.tscn"
-        }
+      {
+        "name": "Pea",
+        "title": "豌豆",
+        "description": "一发豌豆",
+        "uses": -1,
+        "energy_drain": 5,
+        "spell_type": "Projectile",
+        "damage": 3,
+        "damage_type": "Projectile",
+        "damage_radius": 10,
+        "min_speed": 750,
+        "max_speed": 800,
+        "projectile_count": 1,
+        "lifetime": -1,
+        "cast_delay": 0.05,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": -1,
+        "damange_critical": 5,
+        "speed_multiplier": 1,
+        "draw": "0,",
+        "scene": "res://spells/projectile/pea.tscn"
+      },
+      {
+        "name": "Star",
+        "title": "星星",
+        "description": "星星",
+        "uses": -1,
+        "energy_drain": 30,
+        "spell_type": "Projectile",
+        "damage": 10,
+        "damage_type": "Explosion",
+        "damage_radius": 20,
+        "min_speed": 100,
+        "max_speed": 140,
+        "projectile_count": 1,
+        "lifetime": -1,
+        "cast_delay": -0.37,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 0,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "0,",
+        "scene": "res://spells/projectile/star.tscn"
+      },
+      {
+        "name": "Pea With Trigger",
+        "title": "带触发器的豌豆",
+        "description": "带触发器的豌豆",
+        "uses": -1,
+        "energy_drain": 10,
+        "spell_type": "Projectile",
+        "damage": 3,
+        "damage_type": "Projectile",
+        "damage_radius": 10,
+        "min_speed": 750,
+        "max_speed": 800,
+        "projectile_count": 1,
+        "lifetime": -1,
+        "cast_delay": 0.05,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": -1,
+        "damange_critical": 5,
+        "speed_multiplier": 1,
+        "draw": "1,",
+        "scene": "res://spells/projectile/pea_with_trigger.tscn"
+      },
+      {
+        "name": "Cherry Bomb",
+        "title": "樱桃炸弹",
+        "uses": 10,
+        "energy_drain": 50,
+        "spell_type": "Projectile",
+        "damage": 62,
+        "damage_type": "Explosion",
+        "damage_radius": 28,
+        "min_speed": 750,
+        "max_speed": 800,
+        "projectile_count": 1,
+        "lifetime": -1,
+        "cast_delay": 0.83,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 6,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "0,",
+        "description": "召唤一枚樱桃炸弹",
+        "scene": "res://spells/projectile/cherry_bomb.tscn"
+      },
+      {
+        "name": "Orbit Pea",
+        "title": "豌豆环绕",
+        "uses": -1,
+        "energy_drain": 40,
+        "spell_type": "ProjectileModifier",
+        "damage": 0,
+        "damage_type": "None",
+        "damage_radius": 0,
+        "min_speed": 0,
+        "max_speed": 0,
+        "projectile_count": 0,
+        "lifetime": -1,
+        "cast_delay": 0,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 0,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "1,",
+        "description": "令四个豌豆环绕投射物旋转",
+        "scene": "res://spells/projectile_modifier/orbit_pea.tscn"
+      },
+      {
+        "name": "Burst 2",
+        "title": "2重施法",
+        "uses": -1,
+        "energy_drain": 0,
+        "spell_type": "Multicast",
+        "damage": 0,
+        "damage_type": "None",
+        "damage_radius": 0,
+        "min_speed": 0,
+        "max_speed": 0,
+        "projectile_count": 0,
+        "lifetime": -1,
+        "cast_delay": 0,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 0,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "2,",
+        "description": "同时施放2个法术",
+        "scene": "res://spells/projectile_modifier/burst_2.tscn"
+      },
+      {
+        "name": "Burst 3",
+        "title": "3重施法",
+        "uses": -1,
+        "energy_drain": 2,
+        "spell_type": "Multicast",
+        "damage": 0,
+        "damage_type": "None",
+        "damage_radius": 0,
+        "min_speed": 0,
+        "max_speed": 0,
+        "projectile_count": 0,
+        "lifetime": -1,
+        "cast_delay": 0,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 0,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "3,",
+        "description": "同时施放3个法术",
+        "scene": "res://spells/projectile_modifier/burst_3.tscn"
+      },
+      {
+        "name": "Burst 4",
+        "title": "4重施法",
+        "uses": -1,
+        "energy_drain": 5,
+        "spell_type": "Multicast",
+        "damage": 0,
+        "damage_type": "None",
+        "damage_radius": 0,
+        "min_speed": 0,
+        "max_speed": 0,
+        "projectile_count": 0,
+        "lifetime": -1,
+        "cast_delay": 0,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 0,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "4,",
+        "description": "同时4个法术",
+        "scene": "res://spells/projectile_modifier/burst_4.tscn"
+      },
+      {
+        "name": "Scatter 3",
+        "title": "3重散射",
+        "uses": -1,
+        "energy_drain": 1,
+        "spell_type": "Multicast",
+        "damage": 0,
+        "damage_type": "None",
+        "damage_radius": 0,
+        "min_speed": 0,
+        "max_speed": 0,
+        "projectile_count": 0,
+        "lifetime": -1,
+        "cast_delay": 0,
+        "recharge_delay": 0,
+        "lifetime_change": 0,
+        "spread_degrees": 20,
+        "damange_critical": 0,
+        "speed_multiplier": 1,
+        "draw": "3,",
+        "description": "同时3个法术，但是增加散射角度",
+        "scene": "res://spells/projectile_modifier/scatter_3.tscn"
+      }
     ],
     "inventories": [
-        {
-            "item_name": "Pea Shooter Single",
-            "item_inventory_type": "Seed",
-            "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
-        },
-        {
-            "item_name": "Sunflower",
-            "item_inventory_type": "Seed",
-            "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
-        },
-        {
-            "item_name": "Pea",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/pea_item.tscn"
-        },
-        {
-            "item_name": "Star",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/star_item.tscn"
-        },
-        {
-            "item_name": "Sun",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/sun_item.tscn"
-        },
-        {
-            "item_name": "Pea With Trigger",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/pea_with_trigger_item.tscn"
-        },
-        {
-            "item_name": "Cherry Bomb",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
-        },
-        {
-            "item_name": "Orbit Fireball",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/orbit_fireball_item.tscn"
-        },
-        {
-            "item_name": "Orbit Pea",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/orbit_pea_item.tscn"
-        },
-        {
-            "item_name": "Burst 2",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/burst_2_item.tscn"
-        },
-        {
-            "item_name": "Burst 3",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/burst_3_item.tscn"
-        },
-        {
-            "item_name": "Burst 4",
-            "item_inventory_type": "Spell",
-            "item_scene": "res://inventory/item/spell/burst_4_item.tscn"
-        }
+      {
+        "item_name": "Pea Shooter Single",
+        "item_inventory_type": "Seed",
+        "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
+      },
+      {
+        "item_name": "Sunflower",
+        "item_inventory_type": "Seed",
+        "item_scene": "res://inventory/item/seed_packet/seed_packet_item.tscn"
+      },
+      {
+        "item_name": "Pea",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/pea_item.tscn"
+      },
+      {
+        "item_name": "Star",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/star_item.tscn"
+      },
+      {
+        "item_name": "Pea With Trigger",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/pea_with_trigger_item.tscn"
+      },
+      {
+        "item_name": "Cherry Bomb",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/cherry_bomb_item.tscn"
+      },
+      {
+        "item_name": "Orbit Pea",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/orbit_pea_item.tscn"
+      },
+      {
+        "item_name": "Burst 2",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/burst_2_item.tscn"
+      },
+      {
+        "item_name": "Burst 3",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/burst_3_item.tscn"
+      },
+      {
+        "item_name": "Burst 4",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/burst_4_item.tscn"
+      },
+      {
+        "item_name": "Scatter 3",
+        "item_inventory_type": "Spell",
+        "item_scene": "res://inventory/item/spell/scatter_3_item.tscn"
+      }
     ],
     "levels": [
-        {
-            "name": "Level 1",
-            "description": "关卡1",
-            "initial_sun": 100,
-            "initial_seed_capacity": 4,
-            "inventories": {
-                "Seed Inventory": {
-                    "inventory_type": "Seed",
-                    "inventory_items": [
-                        "Pea Shooter Single",
-                        "Sunflower"
-                    ]
-                },
-                "Spell Inventory": {
-                    "inventory_type": "Spell",
-                    "inventory_items": [
-                        "Pea",
-                        "",
-                        "Sun",
-                        "Pea With Trigger",
-                        "Cherry Bomb",
-                        "Cherry Bomb",
-                        "Star",
-                        "Star",
-                        "Star",
-                        "",
-                        "Orbit Fireball",
-                        "Orbit Pea",
-                        "Burst 2",
-                        "Burst 3",
-                        "Burst 4"
-                    ]
-                }
-            }
+      {
+        "name": "Level 1",
+        "description": "关卡1",
+        "initial_sun": 100,
+        "initial_seed_capacity": 4,
+        "inventories": {
+          "Seed Inventory": {
+            "inventory_type": "Seed",
+            "inventory_items": [
+              "Pea Shooter Single",
+              "Sunflower"
+            ]
+          },
+          "Spell Inventory": {
+            "inventory_type": "Spell",
+            "inventory_items": [
+              "Pea",
+              "",
+              "Pea With Trigger",
+              "Cherry Bomb",
+              "Cherry Bomb",
+              "Star",
+              "Star",
+              "Star",
+              "",
+              "Orbit Pea",
+              "Burst 2",
+              "Burst 3",
+              "Burst 4",
+              "Scatter 3"
+            ]
+          }
         }
+      }
     ]
-}
+  }
