@@ -19,7 +19,7 @@ func physics_update(delta: float) -> void:
         body.position = body.position + velocity * timestep
         velocity = velocity * clampf(1.0 - body.body_drag * timestep, 0.0, 1.0)
     elif body.trajectory == Projectile2D.ProjectileTrajectory.LINEAR:
-        body.position += (linera_direction * body.body_force * delta)
+        body.position += (linera_direction * body.speed * delta)
 
 
 func _on_projectile_2d_area_entered(area: Area2D) -> void:

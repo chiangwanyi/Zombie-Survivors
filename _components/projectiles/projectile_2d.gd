@@ -43,7 +43,7 @@ func _ready() -> void:
         body_gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
         body_drag = ProjectSettings.get_setting("physics/2d/default_linear_damp")
 
-    body_force = speed
+    # body_force = speed
     
     state_machine.start()
     

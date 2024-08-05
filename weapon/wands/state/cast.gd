@@ -8,12 +8,14 @@ func _ready() -> void:
 
 func enter() -> void:
     wand = owner as Wand
-    var cast_group := wand.cast_group_stack.pop_front() as Array
-    print("%s 进入 Cast 状态，当前待施放【施法法术组】:%s" % [wand.name, cast_group.map(Spell.get_spell_name)])
+    cast_spells(wand.projectile_spawn.global_position, wand.cast_group_stack)
 
-    for value in cast_group:
-        if value is Spell:
-            value.cast(wand.projectile_spawn.global_position, wand.weapon_aim_point.global_position, wand.FORCE)
+    # var cast_group := wand.cast_group_stack.pop_front() as Array
+    # print("%s 进入 Cast 状态，当前待施放【施法法术组】:%s" % [wand.name, cast_group.map(Spell.get_spell_name)])
+
+    # for value in cast_group:
+    #     if value is Spell:
+    #         value.cast(wand.projectile_spawn.global_position, wand.weapon_aim_point.global_position, wand.FORCE)
     #     elif value is Array:
     # for spell in wand.cast_group_stack[0] as Array[Spell]:
     #     wand.energe -= spell.energe_drain
@@ -30,10 +32,14 @@ func cast_spells(projectile_spawn_pos: Vector2, cast_group: Array) -> void:
     while not cast_group.is_empty():
         var value = cast_group.pop_front()
         if value is Spell:
-            for modifier_spell in value.projectile_modifier_spells:
-                pass
-            if value.draw_num != 0:
-                if not cast_group.is_empty():
-                    var cast_group_on_hit = cast_group.pop_front()
-            value.cast(projectile_spawn_pos, wand.weapon_aim_point.global_position)
+            # for modifier_spell in value.projectile_modifier_spells:
+            #     var modifier_projectile = modifier_spell.spawn_projectile()
+            # if value.draw_num != 0:
+            #     if not cast_group.is_empty():
+            #         var cast_group_on_hit = cast_group.pop_front()
+            var main_projectile = value.spawn_projectile()
+            main_projectile.global_position = projectile_spawn_pos
+            main_projectile.target_position = wand.get_global_mouse_position()
+            GameManager.current_level.call_deferred("add_child", main_projectile)            
+            # value.cast(projectile_spawn_pos, wand.weapon_aim_point.global_position)
             

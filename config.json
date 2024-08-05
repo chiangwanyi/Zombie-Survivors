@@ -34,6 +34,13 @@
             "name": "Pea",
             "title": "豌豆",
             "description": "一发豌豆",
+            "uses": -1,
+            "cast_delay": 0,
+            "recharge_delay": 0,
+            "energy_drain": 5,
+            "lifetime_change": 0,
+            "spread_degrees": -1,
+            "damange_critical": 5,
             "scene": "res://spells/projectile/pea.tscn"
         },
         {

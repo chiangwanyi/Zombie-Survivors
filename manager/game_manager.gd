@@ -71,7 +71,7 @@ func create_zombie(pos: Vector2, zombie_name: String) -> void:
     if not is_instance_valid(current_level):
         return
         
-    if registerd_zombies.size() > 5:
+    if registerd_zombies.size() > 1:
         return
         
     var scene_path = "res://characters/zombies/" + zombie_name.to_lower() + "/" + zombie_name.to_lower() + ".tscn"

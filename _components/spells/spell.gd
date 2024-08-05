@@ -41,7 +41,7 @@ enum DamageType {
 
 @export var projectile_scene: PackedScene
 
-var projectile_modifier_spells: Array[Spell]
+var projectile_modifier_spells: Array[Spell] = []
 
 func cast(start_position: Vector2, target_position: Vector2, force: float) -> void:
     var projectile = projectile_scene.instantiate() as Projectile2D
