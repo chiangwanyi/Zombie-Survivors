@@ -41,8 +41,8 @@ func draw_spell() -> Array:
     
     while draw > 0 and not wand.deck.is_empty():
         var spell := wand.deck.pop_front() as Spell
-        if spell.energe_drain <= wand.energe:
-            wand.energe -= spell.energe_drain
+        if spell.energy_drain <= wand.energe:
+            wand.energe -= spell.energy_drain
             draw -= 1
             if spell.spell_type == Spell.SpellType.Multicast:
                 draw += spell.draw_num

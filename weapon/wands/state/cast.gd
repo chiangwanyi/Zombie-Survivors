@@ -18,7 +18,7 @@ func enter() -> void:
     #         value.cast(wand.projectile_spawn.global_position, wand.weapon_aim_point.global_position, wand.FORCE)
     #     elif value is Array:
     # for spell in wand.cast_group_stack[0] as Array[Spell]:
-    #     wand.energe -= spell.energe_drain
+    #     wand.energe -= spell.energy_drain
     #     if spell.spell_type == Spell.SpellType.Projectile:
     #         spell.cast(wand.projectile_spawn.global_position, wand.weapon_aim_point.global_position, wand.FORCE)
     #         #spell.cast(wand.projectile_spawn.global_position, wand.get_global_mouse_position(), wand.FORCE)
