@@ -5,6 +5,4 @@
 
 [node name="CherryBomb" instance=ExtResource("1_p3lu4")]
 spell_name = "Pea"
-cast_delay = 0.05
-damage = 10
 projectile_scene = ExtResource("2_ivheh")

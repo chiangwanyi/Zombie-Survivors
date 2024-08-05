@@ -93,8 +93,28 @@ func remove_zombie(key: String) -> void:
     current_level.modify_zombie_count(-1)
 
 func _register_spells() -> void:
-    for spell in cfg.get("spells", []):
-        registed_spells[spell.get("name")] = load(spell.get("scene")) as PackedScene
+    for spell_info in cfg.get("spells", []):
+        var spell := Spell.new()
+        spell.name = spell_info.get("name")
+        spell.uses = spell_info.get("uses")
+        spell.energy_drain = spell_info.get("energy_drain")
+        spell.spell_type = spell_info.get("spell_type")
+        spell.damage = spell_info.get("damage")
+        spell.damage_type = spell_info.get("damage_type")
+        spell.damage_radius = spell_info.get("damage_radius")
+        spell.min_speed = spell_info.get("min_speed")
+        spell.max_speed = spell_info.get("max_speed")
+        spell.projectile_count = spell_info.get("projectile_count")
+        spell.lifetime = spell_info.get("lifetime")
+        spell.cast_delay = spell_info.get("cast_delay")
+        spell.recharge_delay = spell_info.get("recharge_delay")
+        spell.lifetime_change = spell_info.get("lifetime_change")
+        spell.spread_degrees = spell_info.get("spread_degrees")
+        spell.damage_critical = spell_info.get("damage_critical")
+        spell.speed_multiplier = spell_info.get("speed_multiplier")
+        spell.draw_num = spell_info.get("draw_num")
+
+        registed_spells[spell_info.get("name")] = spell
 
 func _register_inventory_items() -> void:
     for value in cfg.get("inventories", []):

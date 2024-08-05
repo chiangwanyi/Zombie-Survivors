@@ -60,7 +60,7 @@ spells:
     # 【修正】速度加成，单位：x倍率
     speed_multiplier: 1
     # 【修正】抽取数加成，单位：次
-    draw: 0,
+    draw_num: 0,
     scene: "res://spells/projectile/pea.tscn"
   - name: Star
     title: 星星
@@ -81,7 +81,7 @@ spells:
     spread_degrees: 0
     damange_critical: 0
     speed_multiplier: 1
-    draw: 0,
+    draw_num: 0,
     scene: "res://spells/projectile/star.tscn"
   # - name: Sun
   #   title: 阳光
@@ -106,7 +106,7 @@ spells:
     spread_degrees: -1
     damange_critical: 5
     speed_multiplier: 1
-    draw: 1,
+    draw_num: 1,
     scene: "res://spells/projectile/pea_with_trigger.tscn"
   - name: Cherry Bomb
     title: 樱桃炸弹
@@ -126,7 +126,7 @@ spells:
     spread_degrees: 6
     damange_critical: 0
     speed_multiplier: 1
-    draw: 0,
+    draw_num: 0,
     description: 召唤一枚樱桃炸弹
     scene: "res://spells/projectile/cherry_bomb.tscn"
   - name: Orbit Pea
@@ -147,7 +147,7 @@ spells:
     spread_degrees: 0
     damange_critical: 0
     speed_multiplier: 1
-    draw: 1,
+    draw_num: 1,
     description: 令四个豌豆环绕投射物旋转
     scene: "res://spells/projectile_modifier/orbit_pea.tscn"
   - name: Burst 2
@@ -168,7 +168,7 @@ spells:
     spread_degrees: 0
     damange_critical: 0
     speed_multiplier: 1
-    draw: 2,
+    draw_num: 2,
     description: 同时施放2个法术
     scene: "res://spells/projectile_modifier/burst_2.tscn"
   - name: Burst 3
@@ -189,7 +189,7 @@ spells:
     spread_degrees: 0
     damange_critical: 0
     speed_multiplier: 1
-    draw: 3,
+    draw_num: 3,
     description: 同时施放3个法术
     scene: "res://spells/projectile_modifier/burst_3.tscn"
   - name: Burst 4
@@ -210,7 +210,7 @@ spells:
     spread_degrees: 0
     damange_critical: 0
     speed_multiplier: 1
-    draw: 4,
+    draw_num: 4,
     description: 同时4个法术
     scene: "res://spells/projectile_modifier/burst_4.tscn"
   - name: Scatter 3
@@ -231,7 +231,7 @@ spells:
     spread_degrees: 20
     damange_critical: 0
     speed_multiplier: 1
-    draw: 3,
+    draw_num: 3,
     description: 同时3个法术，但是增加散射角度
     scene: "res://spells/projectile_modifier/scatter_3.tscn"
 inventories:
