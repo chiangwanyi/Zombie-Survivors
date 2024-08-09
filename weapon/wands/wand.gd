@@ -55,9 +55,8 @@ func reset_spell_list() -> void:
     for i in range(spell_inventory.item_name_list.size()):
         var spell_name = spell_inventory.item_name_list[i]
         if spell_name:
-            spell_list[i] = (GameManager.registed_spells[spell_name] as Spell).duplicate()
-            add_child(spell_list[i])
-            
+            var spell = (GameManager.registed_spells[spell_name] as Spell).copy()
+            spell_list[i] = spell            
     reload()
 
 func reload() -> void:

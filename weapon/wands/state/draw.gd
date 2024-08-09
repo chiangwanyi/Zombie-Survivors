@@ -18,7 +18,7 @@ func enter() -> void:
     
     if not wand.deck.is_empty():
         cast_projectile_spells = draw_spell()
-        print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(Spell.get_spell_name), cast_projectile_spells.map(Spell.get_spell_name), wand.deck.map(Spell.get_spell_name)]) 
+        #print("Discared:%s\tProjectils:%s\tDeck:%s" % [wand.discared.map(Spell.get_spell_name), cast_projectile_spells.map(Spell.get_spell_name), wand.deck.map(Spell.get_spell_name)]) 
         ## 牌库有法术，但是抽取失败，直接进入充能延迟
         if cast_projectile_spells.is_empty(): 
             print("%s 本次抽取未抽取到法术，剩余energe[%f/%f]，进入充能冷却" % [wand.name, wand.energe, wand.max_energe])
@@ -45,7 +45,7 @@ func draw_spell() -> Array:
             wand.energe -= spell.energy_drain
             draw -= 1
             if spell.spell_type == Spell.SpellType.Multicast:
-                projectile_modifier_spells.append(spell)
+                # projectile_modifier_spells.append(spell)
                 draw += spell.draw_num
                 wand.discared.append(spell)
             elif spell.spell_type == Spell.SpellType.ProjectileModifier:

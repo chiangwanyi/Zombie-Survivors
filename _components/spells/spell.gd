@@ -74,6 +74,28 @@ func cast(start_position: Vector2, target_position: Vector2, force: float) -> vo
 func spawn_projectile() -> Projectile2D:
     var projectile = projectile_scene.instantiate() as Projectile2D
     return projectile
+    
+func copy() -> Spell:
+    var copy_spell = Spell.new()
+    copy_spell.spell_name = spell_name
+    copy_spell.uses = uses
+    copy_spell.energy_drain = energy_drain
+    copy_spell.spell_type = spell_type
+    copy_spell.damage = damage
+    copy_spell.damage_type = damage_type
+    copy_spell.damage_radius = damage_radius
+    copy_spell.min_speed = min_speed
+    copy_spell.max_speed = max_speed
+    copy_spell.projectile_count = projectile_count
+    copy_spell.lifetime = lifetime
+    copy_spell.cast_delay = cast_delay
+    copy_spell.recharge_delay = recharge_delay
+    copy_spell.lifetime_change = lifetime_change
+    copy_spell.spread_degrees = spread_degrees
+    copy_spell.damage_critical = damage_critical
+    copy_spell.speed_multiplier = speed_multiplier
+    copy_spell.draw_num = draw_num
+    return copy_spell
 
 static func get_spell_name(value):
     if value is Spell:

@@ -19,7 +19,7 @@ func show_plant_info(plant_key: String) -> void:
     var plant = GameManager.registerd_plants[plant_key] as Plant
     current_plant_key = plant_key
     
-    var wand = plant.wand as Wand
+    #var wand = plant.wand as Wand
 
     plant_title_label.text = GameManager.cfg_seeds[plant.plant_name].title
     var avatar_name = plant.plant_name.to_lower().replace(" ", "_")
